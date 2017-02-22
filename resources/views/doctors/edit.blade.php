@@ -37,7 +37,7 @@
 									<div class="form-group {{ $errors->has('lastname') ? 'has-error' : '' }}">
 										<label class="control-label">Last Name</label>
 										<span style="color: red">*</span>
-											{!! Form::text('lastname', $data->userInfo->lastname, ['class' => 'form-control']) !!}
+										{!! Form::text('lastname', $data->userInfo->lastname, ['class' => 'form-control']) !!}
 										@if($errors->has('lastname'))
 											<span class="help-block">{{ $errors->first('lastname') }}</span>
 										@endif
