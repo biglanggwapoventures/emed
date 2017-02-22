@@ -6,11 +6,15 @@
 	<div class="row-bod">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1>Doctors</h1>
+				<h2>Doctors</h2>
 			</div>
-
-
-			<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span></a>
+			<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>
+			<form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
 			<table class="table">
 				<thead>
 					<tr class="active">

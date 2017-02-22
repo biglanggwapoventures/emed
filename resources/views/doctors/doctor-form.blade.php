@@ -27,7 +27,7 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('middle_initial') ? 'has-error' : '' }}">
-										<label class="control-label">Middle Name</label>
+										<label class="control-label">Middle Initial</label>
 										<span style="color: red">*</span>
 										<input type="text" name="middle_initial" class="form-control">
 										@if($errors->has('middle_initial'))

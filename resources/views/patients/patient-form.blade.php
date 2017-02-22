@@ -10,7 +10,7 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Patient Registration</h4>
 			    	</div>
 					<div class="panel-body">
-						<form action="{{route ('doctors.store')}}" method=POST>
+						<form action="{{route ('patients.store')}}" method=POST>
 							{{ csrf_field() }}
 							<h4>Personal Information</h4>
 							<hr class="third">

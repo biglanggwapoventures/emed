@@ -14,32 +14,30 @@
 			<table class="table">
 				<thead>
 					<tr class="active">
-						<th>Firstname</th>
-						<th>Lastname</th>
-						<th>Address</th>
-						<th></th>
+						<th>Name</th>
+						<th>Username</th>
+						<th>Doctor</th>
+						<th>Manage</th>
 					</tr>
 				</thead>
 				<tbody>
 					@forelse($items AS $i)
 						<tr>
-							<td>{{ $i->userInfo->firstname }}</td>
-							<td>{{ $i->userInfo->lastname }}</td>
-							<td>{{ $i->address}}</td>
+							<td>{{ $i->userInfo->fullname()}}</td>
+							<td>{{ $i->userInfo->username }}</td>
+							<td>{{ $i->bloodtype}}</td>
 							<td>
-							<div class="row">
-							<div class="col-md-2">
+							
+							
 								<form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
 									{{ csrf_field() }}
 									{{ method_field('DELETE') }}
-									<button type="submit" class="btn btn-danger">Delete</button>
-								</form></div>
-								<div class="col-md-2">
-								<form>
-									<button type="submit" class="btn btn-success">Edit</button>
+									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 								</form>
-								</div>
-								</div>
+								
+									<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+									<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a>
+								
 							</td>
 						</tr>
 					@empty

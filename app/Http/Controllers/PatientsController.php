@@ -55,7 +55,7 @@ class PatientsController extends Controller
            ]);
 
         // get fields for user table
-        $input = $request->only(['username', 'firstname', 'lastname']);
+        $input = $request->only(['username', 'firstname', 'lastname','address','middle_initial','birthdate','gender','contact_number','address','email','sex']);
         // verify if username exists
         $credentials = $request->only(['username']);
 
@@ -66,9 +66,16 @@ class PatientsController extends Controller
         //save to DB (users)
         $user = User::create($input);
 
-        // save to DB (managers)       
+        // save to DB      
         $user->patient()->create([
-            'address' => $request->address
+            'bloodtype' => $request->bloodtype,
+            'econtact'=> $request ->econtact,
+            'erelationship'=> $request->erelationship,
+            'civilstatus'=> $request->civilstatus,
+            'bloodtype'=> $request->bloodtype,
+            'enumber'=> $request->enumber,
+            'nationality'=> $request->nationality
+
         ]);
 
        return redirect()->route('patients.index');
