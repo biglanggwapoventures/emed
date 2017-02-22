@@ -28,13 +28,21 @@ class DoctorRequest extends FormRequest
     {
         $rules = [
             'firstname' => 'required',
-            'lastname' => 'required',
-            'license' => 'required',
             'middle_initial' => 'required|size:1',
+            'lastname' => 'required',
+            'birthdate' => 'required',
             'sex' => 'required',
-            'email' => 'required:unique:users',
+            'contact_number' => 'required',
+            'address' => 'required',
             'username' => 'required|unique:users',
-            'specialization' => 'required'
+            'email' => 'required:unique:users',
+            'prc' => 'required',
+            'ptr' => 'required',
+            'specialization' => 'required',
+            'title' => 'required',
+            'clinic' => 'required',
+            'clinic_address' => 'required',
+            'clinic_hours' => 'required'
         ];
 
         if($this->isMethod('post')){
@@ -54,13 +62,21 @@ class DoctorRequest extends FormRequest
     {
         return [
             'firstname.required' => 'Please enter your first name.',
-            'lastname.required' => 'Please enter your last name.',
             'middle_initial.required' => 'Please enter your middle initial.',
-            'license.required' => 'Please enter your sex.',
+            'lastname.required' => 'Please enter your last name.',
+            'birthdate.required' => 'Please enter your birthdate.',
             'sex.required' => 'Please enter your gender.',
+            'contact_number.required' => 'Please enter your contact number.',
+            'address.required' => 'Please enter your home address.',
             'username.required' => 'Please enter your username.',
             'email.required' => 'Please enter your email.',
-            'specialization.required' => 'Please enter your specialization.'
+            'prc.required' => 'Please enter your PRC license number.',
+            'ptr.required' => 'Please enter your PTR number.',
+            'specialization.required' => 'Please enter your specialization.',
+            'title.required' => 'Please enter your title.',
+            'clinic.required' => 'Please enter your clinic name.',
+            'clinic_address.required' => 'Please enter your clinic address.',
+            'clinic_hours.required' => 'Please enter your clinic hours.'
         ];
     }
 }

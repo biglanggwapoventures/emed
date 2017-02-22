@@ -123,7 +123,17 @@
 								<h4>Licenses</h4>
 							    <hr class="third">
 								<div class="row">
-								
+
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
+										<label class="control-label">PRC License Number</label>
+										<span style="color: red">*</span>
+										<input type="text" name="prc" class="form-control">
+										@if($errors->has('prc'))
+											<span class="help-block">{{ $errors->first('prc') }}</span>
+										@endif
+									</div>
+								</div>
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
 										<label class="control-label">PTR Number</label>
@@ -131,16 +141,6 @@
 										<input type="text" name="ptrc" class="form-control">
 										@if($errors->has('ptr'))
 											<span class="help-block">{{ $errors->first('ptr') }}</span>
-										@endif
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
-										<label class="control-label">PRC Number</label>
-										<span style="color: red">*</span>
-										<input type="text" name="prc" class="form-control">
-										@if($errors->has('prc'))
-											<span class="help-block">{{ $errors->first('prc') }}</span>
 										@endif
 									</div>
 								</div>
