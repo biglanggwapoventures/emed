@@ -128,15 +128,7 @@
 										@endif
 									</div>
 								</div>
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('religion') ? 'has-error' : '' }}">
-										<label class="control-label">Religion</label>
-										<input type="text" name="religion" class="form-control">
-										@if($errors->has('religion'))
-											<span class="help-block">{{ $errors->first('religion') }}</span>
-										@endif
-									</div>
-								</div>
+								
 							</div>
 							<h4>Account Information</h4>
 							<hr class="third">

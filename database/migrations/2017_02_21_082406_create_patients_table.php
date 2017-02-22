@@ -16,7 +16,12 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('address');
+            $table->string('bloodtype');
+            $table->string('econtact');
+            $table->string('enumber');
+            $table->string('nationality');
+            $table->string('civilstatus');
+            $table->string('erelationship');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
