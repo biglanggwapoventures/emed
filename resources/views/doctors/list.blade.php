@@ -16,8 +16,8 @@
 					<tr class="active">
 						<th>Name</th>
 						<th>Specialization</th>
-						<th>License</th>
-						<th></th>
+						<th>username</th>
+						<th>Manage</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -25,7 +25,7 @@
 						<tr>
 							<td>{{ $i->userInfo->fullname() }}, {{ $i->title}} </td>
 							<td>{{ $i->specialization }}</td>
-							<td>{{ $i->license }}</td>
+							<td>{{ $i->userInfo->username }}</td>
 							<td>
 								<form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
 									{{ csrf_field() }}
