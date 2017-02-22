@@ -7,7 +7,7 @@
     		<div class="col-md-9 col-md-offset-1">
     			<div class="panel panel-default"> 
 			    	<div class="panel-heading">
-			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>{{ $i->userInfo->fullname() }}, {{ $i->title}} </h4>
+			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Doctor Registration </h4>
 			    	</div>
 					<div class="panel-body">
 						<form action="{{route ('doctors.store')}}" method=POST>
