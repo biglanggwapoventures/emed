@@ -25,7 +25,7 @@
 						<tr>
 							<td>{{ $i->userInfo->fullname() }}, {{ $i->title}} </td>
 							<td>{{ $i->userInfo->lastname }}</td>
-							<td>{{ $i->address}}</td>
+							<td>{{ $i->userInfo->address}}</td>
 							<td>
 							<div class="row">
 							<div class="col-md-2">
