@@ -51,6 +51,7 @@ class DoctorsController extends Controller
             'lastname',
             'middle_initial',
             'contact_number',
+            'birthdate',
             'sex',
             'email',
             'address'
@@ -69,7 +70,6 @@ class DoctorsController extends Controller
         // save to DB (doctors)       
         $user->doctor()->create([
             'specialization' => $request->specialization,
-            'license' => $request->license,
             'clinic' => $request->clinic,
             'clinic_address'=> $request->clinic_address,
             'clinic_hours' => $request->clinic_hours,
