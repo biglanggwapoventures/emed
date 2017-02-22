@@ -6,7 +6,7 @@
 	<div class="row-bod">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1>Patients</h1>
+				<h1>PATIENTS</h1>
 			</div>
 
 
@@ -43,7 +43,7 @@
 					@empty
 						<tr>
 
-							<td colspan="4" class="text-center">No patients recored</td>
+							<td colspan="4" class="text-center">No patients recorded</td>
 						</tr>
 					@endforelse
 				</tbody>

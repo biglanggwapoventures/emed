@@ -14,10 +14,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="{{ route('patients.index') }}">Patient</a></li>
-       
-      </ul>
+      
       <form class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -33,7 +30,7 @@
             <li class="divider"></li>
             <li><a href="#">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="#">Doctors<span class="badge pull-right"> 42 </span></a></li>
+            <li><a href="{{ route('patients.index') }}">Patients<span class="badge pull-right"> 42 </span></a></li>
             <li class="divider"></li>
             <li><a href="#">Prescriptions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>

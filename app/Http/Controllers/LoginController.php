@@ -38,18 +38,18 @@ class LoginController extends Controller
     		if($user->user_type === 'ADMIN'){
     			return redirect('/admin');
     		}else if($user->user_type === 'DOCTOR'){
-                return redirect('/admin'); //test
+                return redirect('/'); //test
             }else if($user->user_type === 'PMANAGER'){
-                return redirect('/admin'); //test
+                return redirect('/'); //test
             }else if($user->user_type === 'PATIENT'){
-                return redirect('/patients'); //test
+                return redirect('/'); //test
             }
 
 
 
         }else{
     		  return view('login', [
-    			'wrongPassword' => 'Invalid password given'
+    			'wrongPassword' => 'Incorrect Password'
 			]);
     	}
 
