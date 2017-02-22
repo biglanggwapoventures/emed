@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('firstname');
             $table->string('middle_initial');
             $table->string('lastname');
-            $table->string('sex')->nullable();
+            $table->string('sex');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->enum('user_type', [
@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('address');
             $table->string('contact_number');
+            $table->date('birthdate');
             $table->rememberToken();
             $table->timestamps();
         });
