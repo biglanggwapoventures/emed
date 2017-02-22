@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             'contact_number' => "09993647047",
             'user_type' => "ADMIN",
             'email' => "mdag_03@yahoo.com",
+            'address' => 'LA',
+            'birthdate'=> '',
             'password' => bcrypt('secret'),
         ]);
         // $this->call(UsersTableSeeder::class);

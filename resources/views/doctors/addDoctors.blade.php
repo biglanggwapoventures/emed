@@ -5,9 +5,9 @@
  <div class="container-fluid">
     	<div class="row">
     		<div class="col-md-9 col-md-offset-1">
-    			<div class="panel panel-default">
+    			<div class="panel panel-default"> 
 			    	<div class="panel-heading">
-			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Doctor Registration</h4>
+			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Doctor Registration</h4>
 			    	</div>
 					<div class="panel-body">
 						<form action="{{route ('doctors.store')}}" method=POST>
@@ -28,6 +28,7 @@
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('middle_initial') ? 'has-error' : '' }}">
 										<label class="control-label">Middle Name</label>
+										<span style="color: red">*</span>
 										<input type="text" name="middle_initial" class="form-control">
 										@if($errors->has('middle_initial'))
 											<span class="help-block">{{ $errors->first('middle_initial') }}</span>
@@ -50,7 +51,6 @@
 								<div class="col-md-4">
                                <div class="form-group">
                                <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                               <span style="color: red">*</span>
                                <input  maxlength="100" name="birthdate" type="date"  class="form-control" style="width: 275px"/>
                                 </div>
                                  </div>
@@ -82,7 +82,7 @@
 
 							<div class="row">
 								
-								<div class="col-md-5">
+								<div class="col-md-6">
 									<div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
 										<label class="control-label">Home Address</label>
 										<span style="color: red">*</span>
@@ -126,7 +126,7 @@
 								
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
-										<label class="control-label">PTR</label>
+										<label class="control-label">PTR Number</label>
 										<span style="color: red">*</span>
 										<input type="text" name="ptrc" class="form-control">
 										@if($errors->has('ptr'))
@@ -136,7 +136,7 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
-										<label class="control-label">PRC</label>
+										<label class="control-label">PRC Number</label>
 										<span style="color: red">*</span>
 										<input type="text" name="prc" class="form-control">
 										@if($errors->has('prc'))
@@ -182,7 +182,7 @@
 								</div>
 								
 							</div>
-							<h4>Others</h4>
+							<h4>Consultation</h4>
 							<hr class="third">
 							<div class="row">
 							<div class="col-md-4">
@@ -207,7 +207,7 @@
 							
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('consultation_hours') ? 'has-error' : '' }}">
-										<label class="control-label">Consultation hours</label>
+										<label class="control-label">Clinic hours</label>
 										<input type="text" name="consultation_hours" class="form-control">
 										@if($errors->has('consultation_hours'))
 											<span class="help-block">{{ $errors->first('consultation_hours') }}</span>
@@ -218,7 +218,6 @@
 								
 							</div>
 							
-
 							<button type="submit" class="btn btn-primary">Register</button>
 						</form>
 					</div>
