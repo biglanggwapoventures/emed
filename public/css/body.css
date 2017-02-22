@@ -281,6 +281,11 @@ ul li ul.dropdown-menu li{
     position: relative;
 }
 
+.navbar-nav {
+    float: right;
+    margin: 0;
+}
+
 /* Forms */
 
 .row-bod {
@@ -296,5 +301,17 @@ ul li ul.dropdown-menu li{
     background-color: #ebebeb;
     border-color: #ddd;
 }
+
+/* About Us, Contact Us and FAQs */
+
+.page{
+    background-color: white;
+    padding-bottom: 5%;
+    width: 70%;
+    margin: auto;
+    border-radius: 20px;
+
+}
+
 
 
