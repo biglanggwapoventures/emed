@@ -206,16 +206,14 @@
 								</div>
 							
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('consultation_hours') ? 'has-error' : '' }}">
+									<div class="form-group {{ $errors->has('clinic_hours') ? 'has-error' : '' }}">
 										<label class="control-label">Clinic hours</label>
-										<input type="text" name="consultation_hours" class="form-control">
-										@if($errors->has('consultation_hours'))
-											<span class="help-block">{{ $errors->first('consultation_hours') }}</span>
+										<input type="text" name="clinic_hours" class="form-control">
+										@if($errors->has('clinic_hours'))
+											<span class="help-block">{{ $errors->first('clinic_hours') }}</span>
 										@endif
 									</div>
 								</div>
-								
-								
 							</div>
 							
 							<button type="submit" class="btn btn-primary">Register</button>

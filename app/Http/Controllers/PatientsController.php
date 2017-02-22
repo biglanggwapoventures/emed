@@ -30,7 +30,7 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        return view('patients.patientForm');
+        return view('patients.patient-form');
     }
 
     /**

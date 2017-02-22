@@ -30,7 +30,7 @@ class ManagersController extends Controller
      */
     public function create()
     {
-         return view('managers.managerForm');
+         return view('managers.manager-form');
     }
 
     /**

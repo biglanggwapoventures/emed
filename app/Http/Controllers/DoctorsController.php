@@ -33,7 +33,7 @@ class DoctorsController extends Controller
     public function create()
     {
         //
-        return view('doctors.addDoctors');
+        return view('doctors.doctor-form');
     }
 
     /**
