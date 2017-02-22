@@ -55,6 +55,7 @@
                                @if($errors->has('birthdate'))
 											<span class="help-block">{{ $errors->first('birthdate') }}</span>
 										@endif
+										
                                 </div>
                                 
                                  </div>
@@ -115,7 +116,7 @@
 									<div class="form-group {{ $errors->has('bloodtype') ? 'has-error' : '' }}">
 										<label class="control-label">Blood type</label>
 										<span style="color: red">*</span>
-										{!! Form::text('bloodtype', $data->userInfo->bloodtype, ['class' => 'form-control']) !!}
+										{!! Form::text('bloodtype', $data->bloodtype, ['class' => 'form-control']) !!}
 										@if($errors->has('bloodtype'))
 											<span class="help-block">{{ $errors->first('bloodtype') }}</span>
 										@endif
@@ -126,7 +127,7 @@
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('nationality') ? 'has-error' : '' }}">
 										<label class="control-label">Nationality</label>
-										{!! Form::text('nationality', $data->userInfo->natonality, ['class' => 'form-control']) !!}
+										{!! Form::text('nationality', $data->natonality, ['class' => 'form-control']) !!}
 										@if($errors->has('nationality'))
 											<span class="help-block">{{ $errors->first('nationality') }}</span>
 										@endif
@@ -167,7 +168,7 @@
 									<div class="form-group {{ $errors->has('econtact') ? 'has-error' : '' }}">
 										<label class="control-label">Name</label>
 										<span style="color: red">*</span>
-										{!! Form::text('econtact', $data->userInfo->econtact, ['class' => 'form-control']) !!}
+										{!! Form::text('econtact', $data->econtact, ['class' => 'form-control']) !!}
 										@if($errors->has('econtact'))
 											<span class="help-block">{{ $errors->first('econtact') }}</span>
 										@endif
@@ -195,14 +196,14 @@
 									<div class="form-group {{ $errors->has('enumber') ? 'has-error' : '' }}">
 										<label class="control-label">Contact Number</label>
 										<span style="color: red">*</span>
-										{!! Form::text('enumber', $data->userInfo->enumber, ['class' => 'form-control']) !!}
+										{!! Form::text('enumber', $data->enumber, ['class' => 'form-control']) !!}
 										@if($errors->has('enumber'))
 											<span class="help-block">{{ $errors->first('enumber') }}</span>
 										@endif
 									</div>
 								</div>
 								</div>
-							<button type="submit" class="btn btn-primary">Register</button>
+							<button type="submit" class="btn btn-primary">Update</button>
 							{!! Form::close() !!}
 						</form>
 					</div>

@@ -16,11 +16,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       
 
-
+<!-- 
       <ul class="nav navbar-nav">
         <li><a href="{{ route('doctors.index') }}">Doctors</a></li>
         <li><a href="{{ route('managers.index') }}">Pharmacy Managers</a></li>
-      </ul>
+      </ul> -->
       
 
       <ul class="nav navbar-nav-user">

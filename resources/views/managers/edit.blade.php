@@ -67,6 +67,9 @@
                                <div class="form-group">
                                <label class="control-label">Birthdate <span style="color: red">*</span></label>
                                <input  maxlength="100" name="birthdate" type="date"  class="form-control" style="width: 275px"/>
+                               @if($errors->has('Birthdate'))
+											<span class="help-block">{{ $errors->first('birthdate') }}</span>
+										@endif
                                 </div>
                                  </div>
                                  <div class="col-md-4">
@@ -114,7 +117,7 @@
 					    			<div class="col-md-4">
 					    				<div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
 					    				<label class="control-label">License</label>
-					    				{!! Form::text('license', $data->userInfo->license, ['class' => 'form-control']) !!}
+					    				{!! Form::text('license', $data->license, ['class' => 'form-control']) !!}
 					    				@if($errors->has('license'))
 					    					<span class="help-block">{{ $errors->first('license') }}</span>
 					    				@endif
@@ -162,7 +165,7 @@
 			    				@endif
 			    				</div>-->
 			    				
-								<button type="submit" class="btn btn-primary">Register</button>
+								<button type="submit" class="btn btn-primary">Update</button>
 								{!! Form::close() !!}
 								</form>
 			    				</div>
