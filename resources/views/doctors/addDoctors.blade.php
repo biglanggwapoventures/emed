@@ -127,6 +127,7 @@
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
 										<label class="control-label">PTR</label>
+										<span style="color: red">*</span>
 										<input type="text" name="ptrc" class="form-control">
 										@if($errors->has('ptr'))
 											<span class="help-block">{{ $errors->first('ptr') }}</span>
@@ -181,7 +182,8 @@
 								</div>
 								
 							</div>
-
+							<h4>Others</h4>
+							<hr class="third">
 							<div class="row">
 							<div class="col-md-4">
 									<div class="form-group {{ $errors->has('clinic') ? 'has-error' : '' }}">

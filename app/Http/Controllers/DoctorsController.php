@@ -75,7 +75,8 @@ class DoctorsController extends Controller
             'consultation_hours' => $request->consultation_hours,
             'ptr' => $request->ptr,
             'prc' => $request->prc,
-            's2' => $request->s2
+            's2' => $request->s2,
+            'title' => $request->title
         ]);
 
        return redirect()->route('doctors.index');
@@ -126,7 +127,8 @@ class DoctorsController extends Controller
             'consultation_hours' => $request->consultation_hours,
             'ptr' => $request->ptr,
             'prc' => $request->prc,
-            's2' => $request->s2
+            's2' => $request->s2,
+            'title' => $request ->title
         ]));
         $doctor->save();
 

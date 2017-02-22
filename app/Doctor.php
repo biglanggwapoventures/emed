@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
 	protected $fillable = [
-		'specialization','clinic','clinic_address','consultation_hours','ptr','prc','s2'
+		'specialization','clinic','clinic_address','consultation_hours','ptr','prc','s2','title'
 	];
 
 	public function userInfo()

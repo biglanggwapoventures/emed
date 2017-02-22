@@ -23,6 +23,7 @@ class CreateDoctorsTable extends Migration
             $table->string('ptr');
             $table->string('prc');
             $table->string('s2');
+            $table->string('title');
             $table->timestamps();
 
 
