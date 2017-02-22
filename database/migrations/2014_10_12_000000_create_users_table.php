@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
                 'ADMIN', 'DOCTOR', 'PMANAGER', 'PATIENT','PHARMA','SECRETARY'
             ]);
             $table->string('password');
-            $table->string('adddress');
+            $table->string('address');
             $table->string('contact_number');
             $table->rememberToken();
             $table->timestamps();
