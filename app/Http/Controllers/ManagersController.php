@@ -45,17 +45,30 @@ class ManagersController extends Controller
         $this->validate($request, [
                 'firstname' => 'required',
                 'lastname' => 'required',
+                'middle_initial' => 'required',
                 'username' => 'required|unique:users',
-                'drugstore' => 'required'
+                'drugstore' => 'required',
+                'drugstore_address' => 'required',
+                'license' => 'required',
+                'email' => 'required',
+                'contact_number' => 'required' 
+                //'birthdate' => 'required'
             ], [
                 'firstname.required' => 'Please enter your first name.',
+                'middle_initial.required' => 'Please enter your middle initial.',
                 'lastname.required' => 'Please enter your last name.',
                 'username.required' => 'Please enter your username.',
                 'drugstore.required' => 'Please enter your drusgtore.',
+                'drugstore_address.required' => 'Please enter your drusgtore address.',
+                'license.required' => 'Please enter your license.',
+                'email.required' => 'Please enter your email.',
+                'contact_number.required' => 'Please enter your contact number.'
+                //'birthdate.required' => 'Please enter your birthdate.'
+
            ]);
 
         // get fields for user table
-        $input = $request->only(['username', 'firstname', 'lastname']);
+        $input = $request->only(['username', 'firstname', 'lastname', 'middle_initial','email','contact_number','sex']);
         // verify if username exists
         $credentials = $request->only(['username']);
 
@@ -68,7 +81,9 @@ class ManagersController extends Controller
 
         // save to DB (managers)       
         $user->manager()->create([
-            'drugstore' => $request->drugstore
+            'drugstore' => $request->drugstore,
+            'drugstore_address' => $request->drugstore_address,
+            'license' => $request->license
         ]);
 
        return redirect()->route('managers.index');
