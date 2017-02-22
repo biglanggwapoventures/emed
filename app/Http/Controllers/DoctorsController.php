@@ -125,9 +125,6 @@ class DoctorsController extends Controller
             'clinic' => $request->clinic,
             'clinic_address'=> $request->clinic_address,
             'consultation_hours' => $request->consultation_hours,
-            'ptr' => $request->ptr,
-            'prc' => $request->prc,
-            's2' => $request->s2,
             'title' => $request ->title
         ]));
         $doctor->save();
@@ -140,7 +137,10 @@ class DoctorsController extends Controller
             'middle_initial',
             'contact_number',
             'sex',
-            'email'
+            'email',
+            'birthdate',
+            'address',
+
         ]));
         $user->save();
         
