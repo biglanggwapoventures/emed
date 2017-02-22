@@ -14,8 +14,7 @@
 			<table class="table">
 				<thead>
 					<tr class="active">
-						<th>Firstname</th>
-						<th>Lastname</th>
+						<th>Name</th>
 						<th>Specialization</th>
 						<th>License</th>
 						<th></th>
@@ -24,7 +23,7 @@
 				<tbody>
 					@forelse($items AS $i)
 						<tr>
-							<td>{{ $i->userInfo->firstname }}</td>
+							<td>{{ $i->userInfo->fullname() }}</td>
 							<td>{{ $i->userInfo->lastname }}</td>
 							<td>{{ $i->specialization }}</td>
 							<td>{{ $i->license }}</td>
