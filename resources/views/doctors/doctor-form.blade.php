@@ -175,7 +175,7 @@
 										<label class="control-label">Title</label>
 										<span style="color: red">*</span>
 										<input type="text" name="title" class="form-control" placeholder="eg. MD, MS, GP, OB/GYN">
-										@if($errors->has('specialization'))
+										@if($errors->has('tite'))
 											<span class="help-block">{{ $errors->first('title') }}</span>
 										@endif
 									</div>
