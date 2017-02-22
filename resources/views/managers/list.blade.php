@@ -3,7 +3,7 @@
 @section('body')
 
 <div class="container">
-	<div class="row">
+	<div class="row-bod">
 		<div class="col-md-12">
 			<div class="page-header">
 				<h1>Pharmacy Manager</h1>
