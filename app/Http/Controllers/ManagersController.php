@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PharmacyManager;
+use App\Http\Requests\ManagerRequest;
 use App\User;
 use Auth;
 
@@ -39,36 +40,21 @@ class ManagersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ManagerRequest $request)
     {
-         // validate input
-        $this->validate($request, [
-                'firstname' => 'required',
-                'lastname' => 'required',
-                'middle_initial' => 'required',
-                'username' => 'required|unique:users',
-                'drugstore' => 'required',
-                'drugstore_address' => 'required',
-                'license' => 'required',
-                'email' => 'required',
-                'contact_number' => 'required' 
-                //'birthdate' => 'required'
-            ], [
-                'firstname.required' => 'Please enter your first name.',
-                'middle_initial.required' => 'Please enter your middle initial.',
-                'lastname.required' => 'Please enter your last name.',
-                'username.required' => 'Please enter your username.',
-                'drugstore.required' => 'Please enter your drusgtore.',
-                'drugstore_address.required' => 'Please enter your drusgtore address.',
-                'license.required' => 'Please enter your license.',
-                'email.required' => 'Please enter your email.',
-                'contact_number.required' => 'Please enter your contact number.'
-                //'birthdate.required' => 'Please enter your birthdate.'
-
-           ]);
 
         // get fields for user table
-        $input = $request->only(['username', 'firstname', 'lastname', 'middle_initial','email','contact_number','sex']);
+       $input = $request->only([
+            'username', 
+            'firstname', 
+            'lastname',
+            'middle_initial',
+            'contact_number',
+            'birthdate',
+            'sex',
+            'email',
+            'address'
+        ]);
         // verify if username exists
         $credentials = $request->only(['username']);
 

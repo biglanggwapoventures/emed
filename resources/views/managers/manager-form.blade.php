@@ -7,7 +7,7 @@
     		<div class="col-md-9 col-md-offset-1">
     			<div class="panel panel-default">
 			    	<div class="panel-heading">
-			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Register</h4>
+			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Pharmacy Registration</h4>
 			    	</div>
 			    		<div class="panel-body">
 			    			<form action="{{route ('managers.store')}}" method=POST>
@@ -73,11 +73,22 @@
 			    						<div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">
 					    				<label class="control-label">Contact No.</label>
 					    				<input type="text" name="contact_number" class="form-control">
-					    				@if($errors->has('email'))
+					    				@if($errors->has('contact_number'))
 					    					<span class="help-block">{{ $errors->first('contact_number') }}</span>
 					    				@endif
 					    				</div>
 					    			</div>
+
+					    		<div class="col-md-4">
+									<div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+										<label class="control-label">Home Address</label>
+										<span style="color: red">*</span>
+										<input type="text" name="address" class="form-control">
+										@if($errors->has('address'))
+											<span class="help-block">{{ $errors->first('address') }}</span>
+										@endif
+									</div>
+								</div>
 					    		</div>
 					    		<h4>Account Information</h4>
 							<hr class="third">
