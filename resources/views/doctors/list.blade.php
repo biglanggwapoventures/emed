@@ -23,7 +23,7 @@
 				<tbody>
 					@forelse($items AS $i)
 						<tr>
-							<td>{{ $i->userInfo->fullname() }}</td>
+							<td>{{ $i->userInfo->fullname() }}, {{ $i->title}} </td>
 							<td>{{ $i->specialization }}</td>
 							<td>{{ $i->license }}</td>
 							<td>
