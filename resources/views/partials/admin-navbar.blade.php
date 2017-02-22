@@ -24,9 +24,9 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav-user">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
+          <a href="#">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
