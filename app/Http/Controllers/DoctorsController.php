@@ -74,6 +74,8 @@ class DoctorsController extends Controller
             'clinic_address'=> $request->clinic_address,
             'consultation_hours' => $request->consultation_hours,
             'ptr' => $request->ptr
+            'prc' => $request->prc
+            's2' => $request->s2
         ]);
 
        return redirect()->route('doctors.index');
