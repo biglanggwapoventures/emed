@@ -1,9 +1,7 @@
 <nav class="navbar navbar-default">
-<<<<<<< HEAD
 <div onclick="location.href='http://localhost:8000/login'" class="logo"> </div>
-=======
 <div onclick="location.href='/'" class="logo"> </div>
->>>>>>> origin/master
+
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
