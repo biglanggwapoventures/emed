@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'LA',
             'birthdate'=> '',
             'password' => bcrypt('secret'),
+            'address' => "liloan"
         ]);
         // $this->call(UsersTableSeeder::class);
     }
