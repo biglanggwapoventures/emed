@@ -233,6 +233,14 @@ label.form-invalid:after {
     font-weight: bold;
 }
 
+.btn-primary {
+    color: #fff;
+    margin-left: 5px;
+    margin-top: 8px;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
 
 /* User drop down*/
 
@@ -302,16 +310,6 @@ ul li ul.dropdown-menu li{
     border-color: #ddd;
 }
 
-/* About Us, Contact Us and FAQs */
-
-.page{
-    background-color: white;
-    padding-bottom: 5%;
-    width: 70%;
-    margin: auto;
-    border-radius: 20px;
-
-}
 
 
 
