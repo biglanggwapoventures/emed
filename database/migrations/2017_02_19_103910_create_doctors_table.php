@@ -21,7 +21,7 @@ class CreateDoctorsTable extends Migration
             $table->string('clinic_address');
             $table->string('specialization');
             $table->string('consultation_hours');
-            $table->string('ptrc');
+            $table->string('ptr');
             $table->timestamps();
 
 

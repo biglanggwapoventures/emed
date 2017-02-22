@@ -22,9 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->enum('user_type', [
-                'ADMIN', 'DOCTOR', 'PMANAGER', 'PATIENT'
+                'ADMIN', 'DOCTOR', 'PMANAGER', 'PATIENT','PHARMA','SECRETARY'
             ]);
             $table->string('password');
+            $table->string('adddress');
             $table->string('contact_number');
             $table->rememberToken();
             $table->timestamps();

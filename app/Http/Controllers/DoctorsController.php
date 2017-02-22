@@ -52,7 +52,8 @@ class DoctorsController extends Controller
             'middle_initial',
             'contact_number',
             'sex',
-            'email'
+            'email',
+            'address'
         ]);
         // verify if username exists
         $credentials = $request->only(['username']);
@@ -72,7 +73,7 @@ class DoctorsController extends Controller
             'clinic' => $request->clinic,
             'clinic_address'=> $request->clinic_address,
             'consultation_hours' => $request->consultation_hours,
-            'ptrc' => $request->ptrc
+            'ptr' => $request->ptr
         ]);
 
        return redirect()->route('doctors.index');
