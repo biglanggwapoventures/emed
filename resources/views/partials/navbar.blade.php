@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-<div onclick="location.href='http://www.facebook.com'" class="logo"> </div>
+<div onclick="location.href='/'" class="logo"> </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -32,10 +32,7 @@
           </ul>
         </li> -->
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-         <li><a href="{{ url('/login') }}"><i class="glyphicon glyphicon-user"></i> Login</a></li>
-        
-      </ul>
+      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
