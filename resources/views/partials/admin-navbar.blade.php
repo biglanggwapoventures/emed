@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-<div onclick="location.href='http://www.facebook.com'" class="logo"> </div>
+<div onclick="location.href='/'" class="logo"> </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -18,12 +18,7 @@
         <li><a href="{{ route('doctors.index') }}">Doctors</a></li>
         <li><a href="{{ route('managers.index') }}">Pharmacy Managers</a></li>
       </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+      
       <ul class="nav navbar-nav-user">
         <li class="dropdown">
           <a href="#">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
