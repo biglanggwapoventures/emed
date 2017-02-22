@@ -82,13 +82,28 @@
 
 							<div class="row">
 								
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
 										<label class="control-label">Home Address</label>
 										<span style="color: red">*</span>
 										<input type="text" name="address" class="form-control">
 										@if($errors->has('address'))
 											<span class="help-block">{{ $errors->first('address') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('civilstatus') ? 'has-error' : '' }}">
+										<label class="control-label">Civil Status</label>
+										<span style="color: red">*</span>
+										<select class="form-control" name="civilstatus">
+											<option>Single</option>
+											<option>Married</option>
+											<option>Widowed</option>
+											<option>Separated</option>
+										</select>
+										@if($errors->has('civilstatus'))
+											<span class="help-block">{{ $errors->first('civilstatus') }}</span>
 										@endif
 									</div>
 								</div>
@@ -120,104 +135,7 @@
 									</div>
 								</div>
 								</div>
-								<h4>Licenses</h4>
-							    <hr class="third">
-								<div class="row">
 								
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
-										<label class="control-label">PTR Number</label>
-										<span style="color: red">*</span>
-										<input type="text" name="ptrc" class="form-control">
-										@if($errors->has('ptr'))
-											<span class="help-block">{{ $errors->first('ptr') }}</span>
-										@endif
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
-										<label class="control-label">PRC Number</label>
-										<span style="color: red">*</span>
-										<input type="text" name="prc" class="form-control">
-										@if($errors->has('prc'))
-											<span class="help-block">{{ $errors->first('prc') }}</span>
-										@endif
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('s2') ? 'has-error' : '' }}">
-										<label class="control-label">S2 Number</label>
-										<input type="text" name="s2" class="form-control">
-										@if($errors->has('s2'))
-											<span class="help-block">{{ $errors->first('s2') }}</span>
-										@endif
-									</div>
-								</div>
-							</div>
-
-							<h4>Specialty</h4>
-							<hr class="third">
-							<div class="row">
-								
-
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('specialization') ? 'has-error' : '' }}">
-										<label class="control-label">Specialization</label>
-										<span style="color: red">*</span>
-										<input type="text" name="specialization" class="form-control">
-										@if($errors->has('specialization'))
-											<span class="help-block">{{ $errors->first('specialization') }}</span>
-										@endif
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-										<label class="control-label">Title</label>
-										<span style="color: red">*</span>
-										<input type="text" name="title" class="form-control" placeholder="eg. MD, MS, GP, OB/GYN">
-										@if($errors->has('specialization'))
-											<span class="help-block">{{ $errors->first('title') }}</span>
-										@endif
-									</div>
-								</div>
-								
-							</div>
-							<h4>Consultation</h4>
-							<hr class="third">
-							<div class="row">
-							<div class="col-md-4">
-									<div class="form-group {{ $errors->has('clinic') ? 'has-error' : '' }}">
-										<label class="control-label">Clinic</label>
-										<span style="color: red">*</span>
-										<input type="text" name="clinic" class="form-control">
-										@if($errors->has('clinic'))
-											<span class="help-block">{{ $errors->first('clinic') }}</span>
-										@endif
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('clinic_address') ? 'has-error' : '' }}">
-										<label class="control-label">Clinic Address</label>
-										<input type="text" name="clinic_address" class="form-control">
-										@if($errors->has('clinic_address'))
-											<span class="help-block">{{ $errors->first('clinic_address') }}</span>
-										@endif
-									</div>
-								</div>
-							
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('consultation_hours') ? 'has-error' : '' }}">
-										<label class="control-label">Clinic hours</label>
-										<input type="text" name="consultation_hours" class="form-control">
-										@if($errors->has('consultation_hours'))
-											<span class="help-block">{{ $errors->first('consultation_hours') }}</span>
-										@endif
-									</div>
-								</div>
-								
-								
-							</div>
-							
 							<button type="submit" class="btn btn-primary">Register</button>
 						</form>
 					</div>
