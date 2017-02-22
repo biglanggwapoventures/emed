@@ -3,7 +3,7 @@ html {
 }
 body {
 	height: 100%;
-    background: url("./../images/Background.png") center center no-repeat;
+    background: url("./../images/Background-2.jpg") center center no-repeat;
     background-size: cover;
     /*background-repeat: no-repeat;*/
 }
@@ -281,7 +281,7 @@ ul li ul.dropdown-menu li{
 
 /* Forms */
 
-.row {
+.row-bod {
     margin-right: -15px;
     margin-left: -15px;
     margin-top: 7%;
