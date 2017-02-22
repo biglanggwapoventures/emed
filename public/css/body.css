@@ -237,6 +237,7 @@ label.form-invalid:after {
     color: #fff;
     margin-left: 5px;
     margin-top: 8px;
+    margin-bottom: 7px;
     background-color: #337ab7;
     border-color: #2e6da4;
 }
@@ -309,6 +310,21 @@ ul li ul.dropdown-menu li{
     background-color: #ebebeb;
     border-color: #ddd;
 }
+
+h1{
+    font-family: Raleway;
+}
+
+/* Tables */
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+.table {
+    background-color: #e7e7e7 
+}
+
 
 
 

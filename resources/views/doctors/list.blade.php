@@ -6,7 +6,7 @@
 	<div class="row-bod">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h2>Doctors</h2>
+				<h1>DOCTORS</h1>
 			</div>
 			<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>
 			<form class="navbar-form navbar-right">

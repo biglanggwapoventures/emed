@@ -6,7 +6,7 @@
 	<div class="row-bod">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1>Pharmacy Manager</h1>
+				<h1>PHARMACY MANAGER</h1>
 			</div>
 
 
@@ -49,7 +49,7 @@
 					@empty
 						<tr>
 
-							<td colspan="4" class="text-center">No pharmacy managers recored</td>
+							<td colspan="4" class="text-center">No pharmacy managers recorded</td>
 						</tr>
 					@endforelse
 				</tbody>
