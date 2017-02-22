@@ -22,6 +22,7 @@ Route::get('/login', 'LoginController@showLoginPage')->middleware('guest');
 Route::get('/logout', 'LogoutController');
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
+Route::get('/faq', 'OtherController@faq');
 
 Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
 

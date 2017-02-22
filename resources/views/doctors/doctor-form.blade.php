@@ -226,6 +226,24 @@
 </div>
 
 
+@endsection_hours, ['class' => 'form-control']) !!}
+										@if($errors->has('clinic_hours'))
+											<span class="help-block">{{ $errors->first('clinic_hours') }}</span>
+										@endif
+									</div>
+								</div>
+							</div>
+							
+							<button type="submit" class="btn btn-primary">Register</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 @endsection
 
 

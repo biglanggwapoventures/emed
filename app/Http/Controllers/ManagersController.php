@@ -94,7 +94,9 @@ class ManagersController extends Controller
      */
     public function edit($id)
     {
-        //
+         return view('managers.edit', [
+            'data' => PharmacyManager::with('userInfo')->where('id', $id)->first()
+        ]);
     }
 
     /**
@@ -104,9 +106,33 @@ class ManagersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ManagerRequest $request, $id)
     {
-        //
+         $manager = PharmacyManager::find($id);
+        $manager->fill($request->only([
+            'license' => $request->license,
+            'drugstore' => $request->clinic,
+            'drugstore_address'=> $request->clinic_address,
+        ]));
+        $manager->save();
+
+        $user = User::find($manager->user_id);
+        $user->fill($request->only([
+            'username', 
+            'firstname', 
+            'lastname',
+            'middle_initial',
+            'contact_number',
+            'sex',
+            'email',
+            'birthdate',
+            'address',
+
+        ]));
+        $user->save();
+        
+
+       return redirect()->route('managers.index');
     }
 
     /**

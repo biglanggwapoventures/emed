@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\Http\Requests\PatientRequest;
 use App\User;
 use Auth;
 
@@ -100,7 +101,9 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-        //
+         return view('patients.edit', [
+            'data' => Patient::with('userInfo')->where('id', $id)->first()
+        ]);
     }
 
     /**
@@ -110,9 +113,36 @@ class PatientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PatientRequest $request, $id)
     {
-        //
+       $patient = Patient::find($id);
+        $patient->fill($request->only([
+            'bloodtype' => $request->bloodtype,
+            'nationality' => $request->nationality,
+            'civilstatus'=> $request->civilstatus,
+            'erelationship' => $request->erelationship,
+            'econtact'=> $request->econtact,
+            'enumber'=> $request->enumber
+        ]));
+        $patient->save();
+
+        $user = User::find($patient->user_id);
+        $user->fill($request->only([
+            'username', 
+            'firstname', 
+            'lastname',
+            'middle_initial',
+            'contact_number',
+            'sex',
+            'email',
+            'birthdate',
+            'address',
+
+        ]));
+        $user->save();
+        
+
+       return redirect()->route('patients.index');
     }
 
     /**

@@ -28,15 +28,13 @@
 							<td>{{ $i->bloodtype}}</td>
 							<td>
 							
-							
-								<form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+							<form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
 									{{ csrf_field() }}
 									{{ method_field('DELETE') }}
 									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-								</form>
-								
-									<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-									<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a>
+
+							
+									<a href="{{ route('patients.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
 								
 							</td>
 						</tr>

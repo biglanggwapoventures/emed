@@ -37,13 +37,13 @@
 									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 								</form>
 								<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-								<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a>
+								<!-- <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a> -->
 							</td>
 						</tr>
 					@empty
 						<tr>
 
-							<td colspan="4" class="text-center">No doctors recored</td>
+							<td colspan="4" class="text-center">No doctors recorded</td>
 						</tr>
 					@endforelse
 				</tbody>

@@ -18,5 +18,11 @@ class OtherController extends Controller
         return view('others.contactus');
     }
 
+        public function faq()
+    {
+        // potang ina mo
+        return view('others.faq');
+    }
+
     
 }
