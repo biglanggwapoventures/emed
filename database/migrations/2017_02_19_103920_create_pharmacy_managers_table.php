@@ -16,9 +16,9 @@ class CreatePharmacyManagersTable extends Migration
         Schema::create('pharmacy_managers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('license')->nullable();
+            $table->string('license');
             $table->string('drugstore');
-            $table->string('drugstore_address')->nullable();
+            $table->string('drugstore_address');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
