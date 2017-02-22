@@ -1,6 +1,4 @@
 <nav class="navbar navbar-default">
-<div onclick="location.href='/'" class="logo"> </div>
-<div onclick="location.href='http://localhost:8000/login'" class="logo"> </div>
 <div onclick="location.href='http://localhost:8000'" class="logo"> </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,8 +15,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ route('patients.index') }}">Patient</a></li>
-       
+        <li><a href="{{ route('doctors.index') }}">Doctors</a></li>
+        <!-- <li><a href="{{ route('managers.index') }}">Pharmacy Managers</a></li> -->
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -27,7 +25,7 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
 
-       <ul class="nav navbar-nav-user">
+      <ul class="nav navbar-nav-user">
         <li class="dropdown">
           <a href="#">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
@@ -35,26 +33,18 @@
             <li class="divider"></li>
             <li><a href="#">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="#">Doctors<span class="badge pull-right"> 42 </span></a></li>
+            <li><a href="{{ url('/doctors') }}">Doctors<span class="badge pull-right"> 42 </span></a></li>
             <li class="divider"></li>
             <li><a href="#">Prescriptions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">History and Diagnosis<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>
         </li>
       </ul>
 
-     <!--  <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="{{ url('/logout') }}">Logout</a></li>
-            </ul>
-          </li> -->
-        
-      </ul>
+     
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav> 
