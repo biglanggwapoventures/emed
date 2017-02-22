@@ -124,7 +124,7 @@ class DoctorsController extends Controller
             'specialization' => $request->specialization,
             'clinic' => $request->clinic,
             'clinic_address'=> $request->clinic_address,
-            'consultation_hours' => $request->consultation_hours,
+            'clinic_hours' => $request->clinic_hours,
             'ptr' => $request->ptr,
             'prc' => $request->prc,
             's2' => $request->s2,
@@ -144,7 +144,6 @@ class DoctorsController extends Controller
         ]));
         $user->save();
         
-
        return redirect()->route('doctors.index');
     }
 
