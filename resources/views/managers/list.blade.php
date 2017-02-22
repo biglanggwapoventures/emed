@@ -16,7 +16,9 @@
 					<tr class="active">
 						<th>Firstname</th>
 						<th>Lastname</th>
+						<th>License</th>
 						<th>Drugstore</th>
+
 						<th></th>
 					</tr>
 				</thead>
@@ -25,7 +27,9 @@
 						<tr>
 							<td>{{ $i->userInfo->firstname }}</td>
 							<td>{{ $i->userInfo->lastname }}</td>
+							<td>{{ $i->license}}</td>
 							<td>{{ $i->drugstore}}</td>
+
 							<td>
 							<div class="row">
 							<div class="col-md-2">
@@ -35,6 +39,7 @@
 									<button type="submit" class="btn btn-danger">Delete</button>
 
 								</form></div>
+							
 								<div class="col-md-2">
 								<form>
 									<button type="submit" class="btn btn-success">Edit</button>
