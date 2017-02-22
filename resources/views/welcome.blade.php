@@ -9,7 +9,6 @@
     @if(Auth::check())
         @if(Auth::user()->user_type === 'ADMIN')
             @include('partials.admin-navbar')  
-           
         @elseif(Auth::user()->user_type === 'DOCTOR')   
             @include('partials.doctor-navbar')
 

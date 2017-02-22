@@ -9,7 +9,7 @@ class AdminController extends Controller
 	public function showHomepage()
 	{
 		// potang ina mo
-		return view('admin.homepage');
+		return view('admin.adminhome');
 	}
 
 	

@@ -2,4 +2,8 @@
 
 
 @section('body')
+HELLO
+
 @endsection
+
+HELLO
