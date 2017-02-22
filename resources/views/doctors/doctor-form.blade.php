@@ -19,7 +19,7 @@
 									<div class="form-group {{ $errors->has('firstname') ? 'has-error' : '' }}">
 										<label class="control-label">First Name</label>
 										<span style="color: red">*</span>
-										{!! Form::text('firstname', 'kuhkj', ['class' => 'form-control']) !!}
+										<input type="text" name="firstname" class="form-control">
 										@if($errors->has('firstname'))
 											<span class="help-block">{{ $errors->first('firstname') }}</span>
 										@endif
@@ -29,7 +29,7 @@
 									<div class="form-group {{ $errors->has('middle_initial') ? 'has-error' : '' }}">
 										<label class="control-label">Middle Name</label>
 										<span style="color: red">*</span>
-											{!! Form::text('middle_initial', 'k', ['class' => 'form-control']) !!}<!-- <input type="text" name="middle_initial" class="form-control"> -->
+										<input type="text" name="middle_initial" class="form-control">
 										@if($errors->has('middle_initial'))
 											<span class="help-block">{{ $errors->first('middle_initial') }}</span>
 										@endif
@@ -39,7 +39,7 @@
 									<div class="form-group {{ $errors->has('lastname') ? 'has-error' : '' }}">
 										<label class="control-label">Last Name</label>
 										<span style="color: red">*</span>
-											{!! Form::text('lastname', 'kuhkj', ['class' => 'form-control']) !!}<!-- <input type="text" name="lastname" class="form-control"> -->
+										<input type="text" name="lastname" class="form-control">
 										@if($errors->has('lastname'))
 											<span class="help-block">{{ $errors->first('lastname') }}</span>
 										@endif
