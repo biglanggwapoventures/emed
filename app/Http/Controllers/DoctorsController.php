@@ -73,8 +73,8 @@ class DoctorsController extends Controller
             'clinic' => $request->clinic,
             'clinic_address'=> $request->clinic_address,
             'consultation_hours' => $request->consultation_hours,
-            'ptr' => $request->ptr
-            'prc' => $request->prc
+            'ptr' => $request->ptr,
+            'prc' => $request->prc,
             's2' => $request->s2
         ]);
 
@@ -121,11 +121,12 @@ class DoctorsController extends Controller
         $doctor = Doctor::find($id);
         $doctor->fill($request->only([
             'specialization' => $request->specialization,
-            'license' => $request->license,
             'clinic' => $request->clinic,
             'clinic_address'=> $request->clinic_address,
             'consultation_hours' => $request->consultation_hours,
-            'ptrc' => $request->ptrc
+            'ptr' => $request->ptr,
+            'prc' => $request->prc,
+            's2' => $request->s2
         ]));
         $doctor->save();
 

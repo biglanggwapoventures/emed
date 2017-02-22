@@ -125,12 +125,11 @@
 								<div class="row">
 								
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
-										<label class="control-label">License</label>
-										<span style="color: red">*</span>
-										<input type="text" name="license" class="form-control">
-										@if($errors->has('license'))
-											<span class="help-block">{{ $errors->first('license') }}</span>
+									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
+										<label class="control-label">PTR</label>
+										<input type="text" name="ptrc" class="form-control">
+										@if($errors->has('ptr'))
+											<span class="help-block">{{ $errors->first('ptr') }}</span>
 										@endif
 									</div>
 								</div>
@@ -155,19 +154,11 @@
 								</div>
 							</div>
 
-							<h4>Professional Info</h4>
+							<h4>Specialty</h4>
 							<hr class="third">
 							<div class="row">
 								
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('clinic') ? 'has-error' : '' }}">
-										<label class="control-label">Clinic</label>
-										<input type="text" name="clinic" class="form-control">
-										@if($errors->has('clinic'))
-											<span class="help-block">{{ $errors->first('clinic') }}</span>
-										@endif
-									</div>
-								</div>
+
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('specialization') ? 'has-error' : '' }}">
 										<label class="control-label">Specialization</label>
@@ -175,6 +166,30 @@
 										<input type="text" name="specialization" class="form-control">
 										@if($errors->has('specialization'))
 											<span class="help-block">{{ $errors->first('specialization') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+										<label class="control-label">Title</label>
+										<span style="color: red">*</span>
+										<input type="text" name="title" class="form-control" placeholder="eg. MD, MS, GP, OB/GYN">
+										@if($errors->has('specialization'))
+											<span class="help-block">{{ $errors->first('title') }}</span>
+										@endif
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="row">
+							<div class="col-md-4">
+									<div class="form-group {{ $errors->has('clinic') ? 'has-error' : '' }}">
+										<label class="control-label">Clinic</label>
+										<span style="color: red">*</span>
+										<input type="text" name="clinic" class="form-control">
+										@if($errors->has('clinic'))
+											<span class="help-block">{{ $errors->first('clinic') }}</span>
 										@endif
 									</div>
 								</div>
@@ -187,9 +202,7 @@
 										@endif
 									</div>
 								</div>
-							</div>
-
-							<div class="row">
+							
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('consultation_hours') ? 'has-error' : '' }}">
 										<label class="control-label">Consultation hours</label>
@@ -203,17 +216,6 @@
 								
 							</div>
 							
-							<div class="row">
-								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
-										<label class="control-label">PTR</label>
-										<input type="text" name="ptrc" class="form-control">
-										@if($errors->has('ptr'))
-											<span class="help-block">{{ $errors->first('ptr') }}</span>
-										@endif
-									</div>
-								</div>
-							</div>
 
 							<button type="submit" class="btn btn-primary">Register</button>
 						</form>
