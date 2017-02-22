@@ -31,9 +31,10 @@
 								<form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
 									{{ csrf_field() }}
 									{{ method_field('DELETE') }}
-									<button type="submit" class="btn btn-danger">Delete</button>
+									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 								</form>
-								<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info">Edit</a>
+								<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+								<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a>
 							</td>
 						</tr>
 					@empty
