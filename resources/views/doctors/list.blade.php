@@ -10,7 +10,7 @@
 			</div>
 
 
-			<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}">Add new doctor</a>
+			<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span></a>
 			<table class="table">
 				<thead>
 					<tr class="active">
@@ -24,7 +24,6 @@
 					@forelse($items AS $i)
 						<tr>
 							<td>{{ $i->userInfo->fullname() }}</td>
-							<td>{{ $i->userInfo->lastname }}</td>
 							<td>{{ $i->specialization }}</td>
 							<td>{{ $i->license }}</td>
 							<td>
