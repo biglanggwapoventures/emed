@@ -57,17 +57,17 @@
 											<option>Married</option>
 											<option>Separated</option>
 											<option>Widowed</option>
-										</select> @if($errors->has('sex'))
-                                    <span class="help-block">{{ $errors->first('sex') }}</span> @endif
+										</select> @if($errors->has('civilstatus'))
+                                    <span class="help-block">{{ $errors->first('civilstatus') }}</span> @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">
-                                    <label class="control-label">Contact Number</label>
+                                <div class="form-group {{ $errors->has('nationality') ? 'has-error' : '' }}">
+                                    <label class="control-label">Nationality</label>
                                     <span style="color: red">*</span>
 
-                                    <input type="text" name="contact_number" class="form-control"> @if($errors->has('contact_number'))
-                                    <span class="help-block">{{ $errors->first('contact_number') }}</span> @endif
+                                    <input type="text" name="nationality" class="form-control"> @if($errors->has('nationality'))
+                                    <span class="help-block">{{ $errors->first('nationality') }}</span> @endif
                                 </div>
                             </div>
                         </div>
