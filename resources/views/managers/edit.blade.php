@@ -136,7 +136,7 @@
 					    			<div class="col-md-4">
 					    				<div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
 					    				<label class="control-label">Drugstore</label>
-					    				{!! Form::text('drugstore', $data->userInfo->drugstore, ['class' => 'form-control']) !!}
+					    				{!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control']) !!}
 					    				@if($errors->has('drugstore'))
 					    					<span class="help-block">{{ $errors->first('drugstore') }}</span>
 					    				@endif
@@ -146,7 +146,7 @@
 					    			<div class="col-md-4">
 					    				<div class="form-group {{ $errors->has('drugstore_address') ? 'has-error' : '' }}">
 					    				<label class="control-label">Drugstore Address</label>
-					    				{!! Form::text('drugstore_address', $data->userInfo->drugstore_address, ['class' => 'form-control']) !!}
+					    				{!! Form::text('drugstore_address', $data->drugstore_address, ['class' => 'form-control']) !!}
 					    				@if($errors->has('drugstore_address'))
 					    					<span class="help-block">{{ $errors->first('drugstore_address') }}</span>
 					    				@endif

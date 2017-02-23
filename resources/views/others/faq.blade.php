@@ -12,7 +12,7 @@
 		<div class="row-bod">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h4>Frequently Asked Questions</h4>
+					<h1>Frequently Asked Questions</h1>
 				</div>
 
 				<h5><strong>What is your system about?</strong></h5>

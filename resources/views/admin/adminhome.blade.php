@@ -10,7 +10,11 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Welcome Admin </h4>
 			    	</div>
 					<div class="panel-body">
-					
+					<ol class="breadcrumb">
+  <li><a href="#">Profile</a></li>
+  <li><a href="#">Library</a></li>
+  <li class="active">Data</li>
+</ol>
 							
 					</div>
 					</div>
