@@ -10,6 +10,7 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor:  <span class="text-success"> {{ $data->userInfo->fullname() }}</span></h4>
 			    	</div>
 					<div class="panel-body">
+						
 						 {!! Form::open(['url' => route('doctors.update', ['id' => $data->id]), 'method' => 'PUT']) !!}
 							{!! Form::hidden('user_id', $data->userInfo->id) !!}
 							<div class="row">
@@ -50,6 +51,9 @@
                                <div class="form-group">
                                <label class="control-label">Birthdate <span style="color: red">*</span></label>
                                <input  maxlength="100" name="birthdate" type="date"  class="form-control" style="width: 275px"/>
+                               @if($errors->has('birthdate'))
+											<span class="help-block">{{ $errors->first('birthdate') }}</span>
+										@endif
                                 </div>
                                  </div>
                                  <div class="col-md-4">
@@ -128,7 +132,7 @@
 									<div class="form-group {{ $errors->has('specialization') ? 'has-error' : '' }}">
 										<label class="control-label">Specialization</label>
 										<span style="color: red">*</span>
-							   			{!! Form::text('specialization', $data->userInfo->specialization, ['class' => 'form-control']) !!}
+							   			{!! Form::text('specialization', $data->specialization, ['class' => 'form-control']) !!}
 										@if($errors->has('specialization'))
 											<span class="help-block">{{ $errors->first('specialization') }}</span>
 										@endif
@@ -138,7 +142,7 @@
 									<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 										<label class="control-label">Title</label>
 										<span style="color: red">*</span>
-										{!! Form::text('title', $data->userInfo->title, ['class' => 'form-control']) !!}
+										{!! Form::text('title', $data->title, ['class' => 'form-control']) !!}
 										@if($errors->has('title'))
 											<span class="help-block">{{ $errors->first('title') }}</span>
 										@endif
@@ -153,7 +157,7 @@
 									<div class="form-group {{ $errors->has('clinic') ? 'has-error' : '' }}">
 										<label class="control-label">Clinic</label>
 										<span style="color: red">*</span>
-										{!! Form::text('clinic', $data->userInfo->clinic, ['class' => 'form-control']) !!}
+										{!! Form::text('clinic', $data->clinic, ['class' => 'form-control']) !!}
 										@if($errors->has('clinic'))
 											<span class="help-block">{{ $errors->first('clinic') }}</span>
 										@endif
@@ -162,7 +166,7 @@
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('clinic_address') ? 'has-error' : '' }}">
 										<label class="control-label">Clinic Address</label>
-										{!! Form::text('clinic_address', $data->userInfo->clinic_address, ['class' => 'form-control']) !!}
+										{!! Form::text('clinic_address', $data->clinic_address, ['class' => 'form-control']) !!}
 										@if($errors->has('clinic_address'))
 											<span class="help-block">{{ $errors->first('clinic_address') }}</span>
 										@endif
@@ -172,14 +176,47 @@
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('clinic_hours') ? 'has-error' : '' }}">
 										<label class="control-label">Clinic hours</label>
-										{!! Form::text('clinic_hours', $data->userInfo->clinic_hours, ['class' => 'form-control']) !!}
+										{!! Form::text('clinic_hours', $data->clinic_hours, ['class' => 'form-control']) !!}
 										@if($errors->has('clinic_hours'))
 											<span class="help-block">{{ $errors->first('clinic_hours') }}</span>
 										@endif
 									</div>
 								</div>
 							</div>
-							
+							<h4>Licenses</h4>
+							    <hr class="third">
+								<div class="row">
+
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
+										<label class="control-label">PRC License Number</label>
+										<span style="color: red">*</span>
+										{!! Form::text('prc', $data->prc, ['class' => 'form-control']) !!}
+										@if($errors->has('prc'))
+											<span class="help-block">{{ $errors->first('prc') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
+										<label class="control-label">PTR Number</label>
+										<span style="color: red">*</span>
+										{!! Form::text('ptr', $data->ptr, ['class' => 'form-control']) !!}
+										@if($errors->has('ptr'))
+											<span class="help-block">{{ $errors->first('ptr') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('s2') ? 'has-error' : '' }}">
+										<label class="control-label">S2 Number</label>
+										{!! Form::text('s2', $data->s2, ['class' => 'form-control']) !!}
+										@if($errors->has('s2'))
+											<span class="help-block">{{ $errors->first('s2') }}</span>
+										@endif
+									</div>
+								</div>
+							</div>
 							<button type="submit" class="btn btn-primary">Update</button>
 							{!! Form::close() !!}
 						</form>

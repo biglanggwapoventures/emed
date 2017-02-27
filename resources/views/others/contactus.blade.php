@@ -12,7 +12,7 @@
 		<div class="row-bod">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h4>How can we help you?</h4>
+					<h1>How can we help you?</h1>
 				</div>
 
 				<h5>Address: Nasipit, Talamban Cebu City 6000</h5>

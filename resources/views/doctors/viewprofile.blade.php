@@ -7,15 +7,11 @@
 <div class="col-md-9 col-md-offset-1">
     			<div class="panel panel-default"> 
 			    	<div class="panel-heading">
-			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Welcome Admin </h4>
+			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Welcome Doctor </h4>
 			    	</div>
 					<div class="panel-body">
-					<ol class="breadcrumb">
-  <li><a href="#">Profile</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
-</ol>
-							
+					
+							HELLO
 					</div>
 					</div>
 					</div>

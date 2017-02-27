@@ -209,6 +209,7 @@
 									<div class="form-group {{ $errors->has('clinic_hours') ? 'has-error' : '' }}">
 										<label class="control-label">Clinic hours</label>
 										<input type="text" name="clinic_hours" class="form-control">
+
 										@if($errors->has('clinic_hours'))
 											<span class="help-block">{{ $errors->first('clinic_hours') }}</span>
 										@endif
@@ -224,6 +225,7 @@
 		</div>
 	</div>
 </div>
+
 
 
 @endsection
