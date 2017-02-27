@@ -16,6 +16,22 @@ class DoctorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // public function dispData()
+    // {
+    //     $doc = Doctor::with('userInfo')->get();
+    //     // dd($items);
+    //     return view('doctors.doctor-home', [
+    //         'doc' => $doc
+    //     ]);
+    // }
+
+    public function showHomepage()
+    {
+        
+        return view('doctors.doctor-home');
+    }
+
     public function index()
     {
         $items = Doctor::with('userInfo')->get();
@@ -25,6 +41,7 @@ class DoctorsController extends Controller
         ]);
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -139,7 +156,7 @@ class DoctorsController extends Controller
             'sex',
             'email',
             'birthdate',
-            'address',
+            'address'
 
         ]));
         $user->save();

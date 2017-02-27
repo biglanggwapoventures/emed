@@ -38,7 +38,7 @@ class LoginController extends Controller
     		if($user->user_type === 'ADMIN'){
     			return redirect('/admin');
     		}else if($user->user_type === 'DOCTOR'){
-                return redirect('/'); //test
+                return redirect('/doctor-home'); //test
             }else if($user->user_type === 'PMANAGER'){
                 return redirect('/'); //test
             }else if($user->user_type === 'PATIENT'){
