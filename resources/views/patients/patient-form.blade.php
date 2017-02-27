@@ -1,6 +1,6 @@
 @extends('welcome')
-@section('body')
 
+@section('body')
 
  <div class="container-fluid">
     	<div class="row-bod">

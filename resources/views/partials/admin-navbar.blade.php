@@ -26,8 +26,8 @@
             <li class="divider"></li>
             <li><a href="{{ route('doctors.index') }}">Doctors<span class="badge pull-right"> 42 </span></a></li>
             <li class="divider"></li>
-            <!-- <li><a href="{{ route('patients.index') }}">Patients<span class="glyphicon glyphicon-paperclip pull-right"></span></a></li>
-            <li class="divider"></li> -->
+            <li><a href="{{ route('patients.index') }}">Patients<span class="glyphicon glyphicon-paperclip pull-right"></span></a></li>
+            <li class="divider"></li>
             <li><a href="#">Secretary<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="#">Pharmacist<span class="glyphicon glyphicon-thumbs-up pull-right"></span></a></li>

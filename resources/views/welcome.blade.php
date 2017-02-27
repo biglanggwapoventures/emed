@@ -12,7 +12,6 @@
            
         @elseif(Auth::user()->user_type === 'DOCTOR')   
             @include('partials.doctor-navbar')
-            @include('doctors.doctor-index')
 
         @elseif(Auth::user()->user_type === 'PATIENT')   
             @include('partials.patient-navbar')   
