@@ -15,6 +15,11 @@ class PatientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function showHomepage()
+    {
+        
+        return view('patients.patient-home');
+    }
     public function index()
     {
         $items = Patient::with('userInfo')->get();
@@ -75,7 +80,8 @@ class PatientsController extends Controller
             'civilstatus'=> $request->civilstatus,
             'bloodtype'=> $request->bloodtype,
             'enumber'=> $request->enumber,
-            'nationality'=> $request->nationality
+            'nationality'=> $request->nationality,
+            'occupation'=> $request->occupation
 
         ]);
 

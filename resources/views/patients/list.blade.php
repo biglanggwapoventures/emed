@@ -11,9 +11,21 @@
 
  @if(Auth::check())
         @if(Auth::user()->user_type === 'ADMIN')
-            <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">no</a>
-        @elseif(Auth::user()->user_type === 'DOCTOR')   
-         <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a>
+            <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
+        @elseif(Auth::user()->user_type === 'DOCTOR')  
+         <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a> 
+        <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
+        
  			
         @elseif(Auth::user()->user_type === 'PATIENT')   
             @include('partials.patient-navbar')   
@@ -23,7 +35,12 @@
 
         @endif
     @else
-      <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">other task</a>  
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      </form> 
     @endif
 
 			

@@ -133,6 +133,15 @@
 										@endif
 									</div>
 								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('occupation') ? 'has-error' : '' }}">
+										<label class="control-label">occupation</label>
+										{!! Form::text('occupation', $data->occupation, ['class' => 'form-control']) !!}
+										@if($errors->has('occupation'))
+											<span class="help-block">{{ $errors->first('occupation') }}</span>
+										@endif
+									</div>
+								</div>
 								
 							</div>
 							<h4>Account Information</h4>
