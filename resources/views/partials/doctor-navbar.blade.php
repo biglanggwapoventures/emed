@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-<div onclick="location.href='/'" class="logo"> </div>
+<div onclick="location.href='/doctor-home'" class="logo"> </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/') }}">eMED</a>
+      <a class="navbar-brand" href="{{ url('/doctor-home') }}">eMED</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -25,8 +25,6 @@
             <li><a href="{{ route('patients.index') }}">Patients<span class="badge pull-right"> 42 </span></a></li>
             <li class="divider"></li>
             <li><a href="#">Prescriptions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="{{ route('patients.index') }}">Patients<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>

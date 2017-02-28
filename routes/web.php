@@ -20,12 +20,11 @@ Route::get('/login', 'LoginController@showLoginPage')->middleware('guest');
 
 // log out user
 Route::get('/logout', 'LogoutController');
+Route::get('/doctor-home', 'DoctorsController@showHomepage');
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
-
 Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
-
 //process login data
 Route::post('/login', 'LoginController@doLogin');
 
