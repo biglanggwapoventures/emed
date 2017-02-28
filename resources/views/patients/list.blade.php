@@ -9,8 +9,24 @@
 				<h1>PATIENTS</h1>
 			</div>
 
+ @if(Auth::check())
+        @if(Auth::user()->user_type === 'ADMIN')
+            <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">no</a>
+        @elseif(Auth::user()->user_type === 'DOCTOR')   
+         <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a>
+ 			
+        @elseif(Auth::user()->user_type === 'PATIENT')   
+            @include('partials.patient-navbar')   
 
-			<a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a>
+        @elseif(Auth::user()->user_type === 'PMANAGER')   
+            @include('partials.manager-navbar')        
+
+        @endif
+    @else
+      <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">other task</a>  
+    @endif
+
+			
 			<table class="table">
 				<thead>
 					<tr class="active">
