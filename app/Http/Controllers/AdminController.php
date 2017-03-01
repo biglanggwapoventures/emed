@@ -9,7 +9,9 @@ use App\Doctor;
 
 class AdminController extends Controller
 {
-	public function showHomepage()
+
+
+	public function index()
 	{
 		$items = DB::select('select * from users');
 		return view('admin.adminhome', [
@@ -17,7 +19,7 @@ class AdminController extends Controller
         ]);
 	}
 
-	public function editDoc()
+	public function edit($id)
 	{
 		return view('admin.edit-doc', [
 			'data' => Doctor::with('userInfo')->where('id', $id)->first()
