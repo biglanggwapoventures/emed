@@ -51,6 +51,14 @@ class User extends Authenticatable
     {
          return $this->hasOne('App\Patient');
     }
+     public function secretary()
+    {
+         return $this->hasOne('App\Secretary');
+    }
+     public function pharma()
+    {
+         return $this->hasOne('App\Pharma');
+    }
 
     public function fullname()
     {
@@ -60,5 +68,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->user_type === 'ADMIN';
+    }
+
+    public function isDoctor()
+    {
+        return $this->user_type === 'DOCTOR';
     }
 }

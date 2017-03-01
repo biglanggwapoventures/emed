@@ -18,7 +18,13 @@
             @include('partials.patient-navbar')   
 
         @elseif(Auth::user()->user_type === 'PMANAGER')   
-            @include('partials.manager-navbar')        
+            @include('partials.manager-navbar') 
+
+         @elseif(Auth::user()->user_type === 'SECRETARY')   
+            @include('partials.secretary-navbar')   
+
+         @elseif(Auth::user()->user_type === 'PHARMA')   
+            @include('partials.pharma-navbar')   
 
         @endif
     @else

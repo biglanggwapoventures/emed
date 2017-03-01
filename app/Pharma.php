@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Secretary extends Model
+class Pharma extends Model
 {
- protected $fillable = [
-		'attainment'
+      protected $fillable = [
+		'drugstore','drugstore_address','license'
 	];
 
 	public function userInfo()
 	{
 		return $this->belongsTo('App\User', 'user_id');
 	}
+}
 }

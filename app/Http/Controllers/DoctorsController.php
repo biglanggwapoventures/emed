@@ -20,10 +20,10 @@ class DoctorsController extends Controller
     public function showHomepage()
     {
 
-        $items = Doctor::with('userInfo')->get();
+        $docs = Doctor::with('userInfo')->get();
         // dd($items);
         return view('doctors.doctor-home', [
-            'items' => $items
+            'docs' => $docs
         ]);
 
            
