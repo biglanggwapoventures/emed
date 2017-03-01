@@ -78,6 +78,10 @@
 										@endif
 									</div>
 								</div>
+
+								
+
+
 							</div>
 
 							<div class="row">
@@ -109,14 +113,25 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('bloodtype') ? 'has-error' : '' }}">
-										<label class="control-label">Blood type</label>
+										<label class="control-label">Bloodtype</label>
 										<span style="color: red">*</span>
-										<input type="text" name="bloodtype" class="form-control">
+										<select class="form-control" name="bloodtype">
+											<option>A+</option>
+											<option>A-</option>
+											<option>B+</option>
+											<option>B-</option>
+											<option>AB+</option>
+											<option>A-</option>
+											<option>O+</option>
+											<option>O-</option>
+											<option>Unknown</option>
+										</select>
 										@if($errors->has('bloodtype'))
 											<span class="help-block">{{ $errors->first('bloodtype') }}</span>
 										@endif
 									</div>
 								</div>
+							
 							</div>
 							<div class="row">
 								<div class="col-md-4">
@@ -128,8 +143,20 @@
 										@endif
 									</div>
 								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('occupation') ? 'has-error' : '' }}">
+										<label class="control-label">Occupation</label>
+										<span style="color: red">*</span>
+
+										<input type="text" name="occupation" class="form-control">
+										@if($errors->has('occupation'))
+											<span class="help-block">{{ $errors->first('occupation') }}</span>
+										@endif
+									</div>
+								</div>
 								
 							</div>
+
 							<h4>Account Information</h4>
 							<hr class="third">
 							

@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/') }}">eMED</a>
+      <a class="navbar-brand" href="{{ url('/admin') }}">eMED</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,8 +33,8 @@
             <li class="divider"></li>
             <li><a href="{{ route('doctors.index') }}">Doctors<span class="badge pull-right"> 42 </span></a></li>
             <li class="divider"></li>
-            <!-- <li><a href="{{ route('patients.index') }}">Patients<span class="glyphicon glyphicon-paperclip pull-right"></span></a></li>
-            <li class="divider"></li> -->
+            <li><a href="{{ route('patients.index') }}">Patients<span class="glyphicon glyphicon-paperclip pull-right"></span></a></li>
+            <li class="divider"></li>
             <li><a href="#">Secretary<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="#">Pharmacist<span class="glyphicon glyphicon-thumbs-up pull-right"></span></a></li>

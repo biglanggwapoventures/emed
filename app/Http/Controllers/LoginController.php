@@ -35,10 +35,14 @@ class LoginController extends Controller
     	if(Auth::attempt($credentials)){
 
     		$user = Auth::user();
-    		if($user->user_type === 'ADMIN'){
+    		if($user->user_type === 'ADMIN')
+            {
     			return redirect('/admin');
-    		}else if($user->user_type === 'DOCTOR'){
+    		}
+            else if($user->user_type === 'DOCTOR')
+            {
                 return redirect('/doctor-home'); //test
+
             }else if($user->user_type === 'PMANAGER'){
                 return redirect('/pmanager-home'); //test
             }else if($user->user_type === 'PATIENT'){
@@ -46,6 +50,14 @@ class LoginController extends Controller
                 return redirect('/patient-home'); //test
             }else if($user->user_type === 'SECRETARY'){
                 return redirect('/secretary-home'); //test
+
+            }
+                else if($user->user_type === 'PMANAGER')
+            {
+                return redirect('/'); //test
+            }else if($user->user_type === 'PATIENT'){
+
+                return redirect('/patient-home'); //test
             }
 
 

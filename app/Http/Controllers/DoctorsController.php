@@ -28,7 +28,7 @@ class DoctorsController extends Controller
 
     public function showHomepage()
     {
-        
+        // $user = Auth::user();
         return view('doctors.doctor-home');
     }
 

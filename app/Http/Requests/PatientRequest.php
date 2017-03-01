@@ -42,6 +42,7 @@ class PatientRequest extends FormRequest
             'econtact' => 'required',
             'civilstatus' => 'required',
             'nationality' => 'required',
+            'occupation' => 'required'
         ];
 
         if($this->isMethod('post')){
@@ -74,7 +75,8 @@ class PatientRequest extends FormRequest
             'civilstatus.required' => 'Please enter your civilstatus.',
             'econtact.required' => 'Please enter your emergency contact.',
             'erelationship.required' => 'Please enter your relationship with emergency contact.',
-            'enumber.required' => 'Please enter your Emergency person contact number.'
+            'enumber.required' => 'Please enter your Emergency person contact number.',
+            'occupation.required' => 'Please enter your occupation.'
         ];
     }
 }

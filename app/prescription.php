@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model
+class prescription extends Model
 {
-	protected $fillable = [
-		'enumber','bloodtype','erelationship','econtact','nationality','civilstatus','occupation'
+    protected $fillable = [
+		'brandname','genericname','quantity','dosage','frequency','start','end','pnotes'
 	];
 
 	public function userInfo()
