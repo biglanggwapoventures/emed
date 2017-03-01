@@ -8,14 +8,14 @@
 			  <li class="active"><a data-toggle="tab" href="#users">Users</a></li>
 			  <li><a data-toggle="tab" href="#register">Register</a></li>
 			</ul>
-
+			{{ csrf_field() }}
 			<div class="tab-content">
 			  <div id="users" class="tab-pane fade in active">
 			    <table class="table">
 					<thead>
 						<tr class="active">
-							<th>First Name</th>
 							<th>Last Name</th>
+							<th>First Name</th>
 							<th>Username</th>
 							<th>User Type</th>
 							<th>Manage</th>
@@ -23,9 +23,10 @@
 					</thead>
 					<tbody>
 						@forelse($items AS $i)
+							@if($i->user_type != "ADMIN")
 							<tr>
-								<td>{{ $i->firstname }}</td>
 								<td>{{ $i->lastname }}</td>
+								<td>{{ $i->firstname }}</td>
 								<td>{{ $i->username }}</td>
 								<td>{{ $i->user_type }}</td>
 								<td>
@@ -34,9 +35,12 @@
 										{{ method_field('DELETE') }}
 										<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 									</form>
-									<a href="{{ route('patients.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+									@if($i->user_type != "PATIENT" AND  $i->user_type != "PHARMA")
+										<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+									@endif
 								</td>
 							</tr>
+							@endif
 						@empty
 							<tr>
 
