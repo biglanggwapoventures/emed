@@ -25,6 +25,7 @@ Route::get('/pmanager-home', 'ManagersController@showHomepage');
 Route::get('/pharmacists', 'ManagersController@phlist');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
+Route::get('/doctor-home', 'DoctorsController@showHomepage');
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
