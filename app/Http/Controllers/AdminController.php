@@ -21,8 +21,6 @@ class AdminController extends Controller
 
 	public function edit($id)
 	{
-		return view('admin.edit-doc', [
-			'data' => Doctor::with('userInfo')->where('id', $id)->first()
-		]);
+		return view('doctors.edit');
 	}
 }

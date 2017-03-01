@@ -312,6 +312,14 @@ ul li ul.dropdown-menu li{
     border-color: #ddd;
 }
 
+<<<<<<< HEAD
+h2{
+    font-family: Candara;
+
+}
+
+=======
+>>>>>>> origin/master
 /* Tables */
 
 tr:nth-child(even) {
@@ -322,7 +330,46 @@ tr:nth-child(even) {
     background-color: #e7e7e7 
 }
 
+/* Images */
 
+.container-about {
+  position: relative;
+  width: 50%;
+}
 
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #000;
+  border-radius: 8px;
+}
+
+.container-about:hover .overlay {
+  opacity: 0.8;
+}
+
+.text {
+  color: white;
+  font-size: 17px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
 
 
