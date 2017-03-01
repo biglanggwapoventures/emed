@@ -35,6 +35,8 @@ class DoctorsController extends Controller
             'items' => $items
         ]);
 
+      
+
     }
 
     public function index()
