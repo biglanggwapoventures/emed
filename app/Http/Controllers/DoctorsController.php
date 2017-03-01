@@ -28,8 +28,13 @@ class DoctorsController extends Controller
 
     public function showHomepage()
     {
-        
-        return view('doctors.doctor-home');
+
+        $items = Doctor::with('userInfo')->get();
+        // dd($items);
+        return view('doctors.doctor-home', [
+            'items' => $items
+        ]);
+
     }
 
     public function index()
@@ -109,6 +114,7 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
+
         
     }
 
