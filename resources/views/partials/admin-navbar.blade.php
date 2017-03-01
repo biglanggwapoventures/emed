@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/') }}">eMED</a>
+      <a class="navbar-brand" href="{{ url('/admin') }}">eMED</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -25,7 +25,7 @@
 
       <ul class="nav navbar-nav-user">
         <li class="dropdown">
-          <a href="#">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
+          <a href="/admin">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>

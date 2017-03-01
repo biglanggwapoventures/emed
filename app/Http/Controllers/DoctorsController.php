@@ -17,15 +17,6 @@ class DoctorsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function dispData()
-    // {
-    //     $doc = Doctor::with('userInfo')->get();
-    //     // dd($items);
-    //     return view('doctors.doctor-home', [
-    //         'doc' => $doc
-    //     ]);
-    // }
-
     public function showHomepage()
     {
 
@@ -35,8 +26,7 @@ class DoctorsController extends Controller
             'items' => $items
         ]);
 
-      
-
+           
     }
 
     public function index()

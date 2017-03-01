@@ -18,16 +18,20 @@ Route::get('/', function () {
 
 //show login page
 Route::get('/login', 'LoginController@showLoginPage')->middleware('guest');
+Route::get('/admin', 'AdminController@editDoc' );
 
 // log out user
 Route::get('/logout', 'LogoutController');
 Route::get('/doctor-home', 'DoctorsController@showHomepage');
+Route::get('/pmanager-home', 'ManagersController@showHomepage');
+Route::get('/pharmacists', 'ManagersController@phlist');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
 Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
+
 //process login data
 Route::post('/login', 'LoginController@doLogin');
 

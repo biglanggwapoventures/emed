@@ -10,11 +10,11 @@
 			</div>
 			<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>
 			<form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-      </form>
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+		    </form>
 			<table class="table">
 				<thead>
 					<tr class="active">
@@ -42,7 +42,6 @@
 						</tr>
 					@empty
 						<tr>
-
 							<td colspan="4" class="text-center">No doctors recorded</td>
 						</tr>
 					@endforelse
