@@ -6,6 +6,7 @@ body {
     background: url("./../images/Background-2.png") center center no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    font-family: ''Open Sans', sans-serif';
     /*background-repeat: no-repeat;*/
 }
 
@@ -278,7 +279,7 @@ ul li ul.dropdown-menu li{
     background-color: #f8f8f8;
     border-color: #e7e7e7;
     z-index: 10;
-    /*position: fixed;*/
+    position: fixed;
     width: 100%;
 }
 
@@ -311,11 +312,14 @@ ul li ul.dropdown-menu li{
     border-color: #ddd;
 }
 
+<<<<<<< HEAD
 h2{
     font-family: Candara;
 
 }
 
+=======
+>>>>>>> origin/master
 /* Tables */
 
 tr:nth-child(even) {

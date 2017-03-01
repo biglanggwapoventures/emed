@@ -57,7 +57,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        User::edit($id);
+        return redirect()->back();
     }
 
     /**
@@ -70,6 +71,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+       
     }
 
     /**

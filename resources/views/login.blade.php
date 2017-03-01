@@ -30,8 +30,8 @@
 			    				@endif
 			    			</div>
                         <div class="form-group login-group-checkbox">
-                            <input type="checkbox" id="lg_remember" name="lg_remember">
-                            <label for="lg_remember">remember</label>
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">remember</label>
                         </div>
                     </div>
                     <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>

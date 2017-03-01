@@ -4,6 +4,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
 </head>
 <body>
     @if(Auth::check())
@@ -17,7 +18,13 @@
             @include('partials.patient-navbar')   
 
         @elseif(Auth::user()->user_type === 'PMANAGER')   
-            @include('partials.manager-navbar')        
+            @include('partials.manager-navbar') 
+
+         @elseif(Auth::user()->user_type === 'SECRETARY')   
+            @include('partials.secretary-navbar')   
+
+         @elseif(Auth::user()->user_type === 'PHARMA')   
+            @include('partials.pharma-navbar')   
 
         @endif
     @else
@@ -57,7 +64,7 @@
                     <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
                 </div>
                 <div class="etc-login-form">
-                    <p>forgot your password? <a href="#">click here</a></p>
+                    <p>forgot your password? <a href="#">Click here</a></p>
                 </div>
             </form>
         </div>

@@ -17,19 +17,16 @@ class DoctorsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function dispData()
-    // {
-    //     $doc = Doctor::with('userInfo')->get();
-    //     // dd($items);
-    //     return view('doctors.doctor-home', [
-    //         'doc' => $doc
-    //     ]);
-    // }
-
     public function showHomepage()
     {
-        
-        return view('doctors.doctor-home');
+
+        $docs = Doctor::with('userInfo')->get();
+        // dd($items);
+        return view('doctors.doctor-home', [
+            'docs' => $docs
+        ]);
+
+           
     }
 
     public function index()
@@ -109,6 +106,7 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
+
         
     }
 

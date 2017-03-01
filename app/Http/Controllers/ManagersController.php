@@ -24,6 +24,11 @@ class ManagersController extends Controller
         ]);
     }
 
+    public function showHomepage()
+    {
+        return view('managers.pmanager-home');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,6 +37,15 @@ class ManagersController extends Controller
     public function create()
     {
          return view('managers.manager-form');
+    }
+
+     public function phlist()
+    {
+        $items = PharmacyManager::with('userInfo')->get();
+        // dd($items);
+        return view('pharmacists.list', [
+            'items' => $items
+        ]);
     }
 
     /**

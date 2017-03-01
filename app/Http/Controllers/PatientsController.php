@@ -19,6 +19,7 @@ class PatientsController extends Controller
     {
         
         return view('patients.patient-home');
+    
     }
     
     public function index()
