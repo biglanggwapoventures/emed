@@ -21,6 +21,8 @@ Route::get('/login', 'LoginController@showLoginPage')->middleware('guest');
 // log out user
 Route::get('/logout', 'LogoutController');
 Route::get('/doctor-home', 'DoctorsController@showHomepage');
+Route::get('/pmanager-home', 'ManagersController@showHomepage');
+Route::get('/pharmacists', 'ManagersController@phlist');
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
