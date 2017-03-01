@@ -40,4 +40,6 @@ Route::resource('admin', 'AdminController');
 Route::resource('users', 'UsersController');
 Route::resource('managers', 'ManagersController');
 Route::resource('patients', 'PatientsController');
+Route::resource('secretary', 'SecretaryController');
+// Route::resource('pharmacists', 'PharmaController');
 
