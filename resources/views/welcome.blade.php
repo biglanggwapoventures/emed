@@ -58,7 +58,7 @@
                     <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
                 </div>
                 <div class="etc-login-form">
-                    <p>forgot your password? <a href="#">click here</a></p>
+                    <p>forgot your password? <a href="#">Click here</a></p>
                 </div>
             </form>
         </div>
