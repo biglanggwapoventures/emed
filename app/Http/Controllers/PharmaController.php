@@ -113,7 +113,7 @@ class PharmaController extends Controller
     public function edit($id)
     {
          return view('pharmacists.edit', [
-            'data' => Pharma::with('userInfo')->where('id', $id)->first()
+            'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
         ]);
     }
 

@@ -39,8 +39,10 @@
 										{{ method_field('DELETE') }}
 										<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 									</form>
-									@if($i->user_type != "PATIENT" AND  $i->user_type != "PHARMA" AND $i->user_type != "SECRETARY")
+									@if($i->user_type === "DOCTOR")
 										<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+									@elseif($i->user_type === "PMANAGER")
+										<a href="{{ route('managers.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
 									@endif
 								</td>
 							</tr>
