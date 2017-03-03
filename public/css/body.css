@@ -312,14 +312,17 @@ ul li ul.dropdown-menu li{
     border-color: #ddd;
 }
 
-<<<<<<< HEAD
+.panel-info {
+    margin-top: 100px; 
+    width: 900px;
+    margin-left: -120px;
+}
+
 h2{
     font-family: Candara;
 
 }
 
-=======
->>>>>>> origin/master
 /* Tables */
 
 tr:nth-child(even) {
@@ -327,7 +330,11 @@ tr:nth-child(even) {
 }
 
 .table {
-    background-color: #e7e7e7 
+    background-color: #e7e7e7; 
+}
+
+.table.table-user-information td{
+    background-color: white;
 }
 
 /* Images */
