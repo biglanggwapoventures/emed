@@ -3,42 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\DoctorRequest;
-use Validator;
-use App\Doctor;
+use App\Pharma;
+use App\Http\Requests\PharmaRequest;
 use App\User;
 use Auth;
 
-class DoctorsController extends Controller
+class PharmaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function showHomepage()
-    {
-
-        $docs = Doctor::with('userInfo')->get();
-        // dd($items);
-        return view('doctors.doctor-home', [
-            'docs' => $docs
-        ]);
-
-           
-    }
-
     public function index()
     {
-        $items = Doctor::with('userInfo')->get();
+        $items = Pharma::with('userInfo')->get();
         // dd($items);
-        return view('doctors.list', [
+        return view('pharmacists.list', [
             'items' => $items
         ]);
     }
 
-    
+    public function showHomepage()
+    {
+        return view('pharmacists.pharma-home');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,8 +36,16 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        //
-        return view('doctors.doctor-form');
+         return view('pharmacists.pharma-form');
+    }
+
+     public function phlist()
+    {
+        $items = Pharma::with('userInfo')->get();
+        // dd($items);
+        return view('pharmacists.pharma-home', [
+            'items' => $items
+        ]);
     }
 
     /**
@@ -56,10 +54,11 @@ class DoctorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DoctorRequest $request)
+    public function store(PharmaRequest $request)
     {
+
         // get fields for user table
-        $input = $request->only([
+       $input = $request->only([
             'username', 
             'firstname', 
             'lastname',
@@ -73,30 +72,22 @@ class DoctorsController extends Controller
         // verify if username exists
         $credentials = $request->only(['username']);
 
-
         // assign password: default is firstname+lastname lowercase
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
-        $input['user_type'] = 'DOCTOR';
+        $input['user_type'] = 'PHARMA';
         //save to DB (users)
         $user = User::create($input);
 
-        // save to DB (doctors)       
-        $user->doctor()->create([
-            'specialization' => $request->specialization,
-            'clinic' => $request->clinic,
-            'clinic_address'=> $request->clinic_address,
-            'clinic_hours' => $request->clinic_hours,
-            'ptr' => $request->ptr,
-            'prc' => $request->prc,
-            's2' => $request->s2,
-            'title' => $request->title
+        // save to DB (managers)       
+        $user->pharma()->create([
+            'drugstore' => $request->drugstore,
+            'drugstore_address' => $request->drugstore_address,
+            'license' => $request->license
         ]);
 
-       return redirect()->route('doctors.index');
+       return redirect()->route('pharmacists.index');
     }
-
-
 
     /**
      * Display the specified resource.
@@ -106,8 +97,7 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
-
-        
+        //
     }
 
     /**
@@ -118,8 +108,8 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {
-        return view('doctors.edit', [
-            'data' => Doctor::with('userInfo')->where('id', $id)->first()
+         return view('pharmacists.edit', [
+            'data' => Pharma::with('userInfo')->where('id', $id)->first()
         ]);
     }
 
@@ -130,21 +120,17 @@ class DoctorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DoctorRequest $request, $id)
+    public function update(PharmaRequest $request, $id)
     {
-        // get fields for user table
-
-        $doctor = Doctor::find($id);
-        $doctor->fill($request->only([
-            'specialization' => $request->specialization,
-            'clinic' => $request->clinic,
-            'clinic_address'=> $request->clinic_address,
-            'consultation_hours' => $request->consultation_hours,
-            'title' => $request ->title
+         $pharma = Pharma::find($id);
+        $pharma->fill($request->only([
+            'license' => $request->license,
+            'drugstore' => $request->clinic,
+            'drugstore_address'=> $request->clinic_address,
         ]));
-        $doctor->save();
+        $pharma->save();
 
-        $user = User::find($doctor->user_id);
+        $user = User::find($pharma->user_id);
         $user->fill($request->only([
             'username', 
             'firstname', 
@@ -154,17 +140,14 @@ class DoctorsController extends Controller
             'sex',
             'email',
             'birthdate',
-            'address'
+            'address',
 
         ]));
         $user->save();
         
 
-       return redirect()->route('doctors.index');
+       return redirect()->route('pharmacists.index');
     }
-
-
-    
 
     /**
      * Remove the specified resource from storage.
@@ -174,7 +157,6 @@ class DoctorsController extends Controller
      */
     public function destroy($id)
     {
-        // User::de($id)->delete();
-        // return redirect()->route('doctors.index');
+        //
     }
 }

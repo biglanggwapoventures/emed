@@ -26,7 +26,9 @@ class ManagersController extends Controller
 
     public function showHomepage()
     {
+
         $items = PharmacyManager::with('userInfo')->get();
+        // dd($items);
         return view('managers.pmanager-home', [
             'items' => $items
         ]);
@@ -112,7 +114,7 @@ class ManagersController extends Controller
     public function edit($id)
     {
          return view('managers.edit', [
-            'data' => PharmacyManager::with('userInfo')->where('user_id', $id)->first()
+            'data' => PharmacyManager::with('userInfo')->where('id', $id)->first()
         ]);
     }
 
