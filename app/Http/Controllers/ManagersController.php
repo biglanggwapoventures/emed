@@ -26,7 +26,10 @@ class ManagersController extends Controller
 
     public function showHomepage()
     {
-        return view('managers.pmanager-home');
+        $items = PharmacyManager::with('userInfo')->get();
+        return view('managers.pmanager-home', [
+            'items' => $items
+        ]);
     }
 
     /**
