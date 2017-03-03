@@ -3,12 +3,16 @@
 @section('body')
 <div class="container-fluid">
 	<div class="row-bod">
+					
 		<div class="col-md-9 col-md-offset-1">
-			<ul class="nav nav-tabs">
-			  <li class="active"><a data-toggle="tab" href="#users">Users</a></li>
-			  <li><a data-toggle="tab" href="#register">Register</a></li>
-			</ul>
+
+			<h4 class="pull-left"><span class="glyphicon glyphicon-user"></span>Users</a></h4>
+
+				<a class="btn btn-primary pull-right" href="{{ route('managers.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacy Manager</a>
+				<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>	
+			
 			{{ csrf_field() }}
+
 			<div class="tab-content">
 			  <div id="users" class="tab-pane fade in active">
 			    <table class="table">
@@ -48,10 +52,7 @@
 						@endforelse
 					</tbody>
 				</table>
-			  </div>
-			  <div id="register" class="tab-pane fade">
-			    <p>Some content in menu 1.</p>
-			  </div>
+			  </div> 
 			</div>
 		</div>
 	</div>

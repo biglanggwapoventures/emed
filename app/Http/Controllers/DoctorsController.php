@@ -93,7 +93,7 @@ class DoctorsController extends Controller
             'title' => $request->title
         ]);
 
-       return redirect()->route('doctors.index');
+       return redirect()->route('admin.index');
     }
 
 
