@@ -35,9 +35,9 @@
 									{{ csrf_field() }}
 									{{ method_field('DELETE') }}
 									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+									<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
 								</form>
-								<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-								<!-- <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a> -->
+								
 							</td>
 						</tr>
 					@empty
