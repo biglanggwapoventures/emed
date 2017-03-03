@@ -60,6 +60,10 @@ class LoginController extends Controller
                 return redirect('/patient-home'); //test
             }
 
+            else if($user->user_type === 'PHARMA'){
+
+                return redirect('/pharmacists-home');
+
 
 
         }else{
@@ -70,3 +74,5 @@ class LoginController extends Controller
 
     }
 }
+}
+

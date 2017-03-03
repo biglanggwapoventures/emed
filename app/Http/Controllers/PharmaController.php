@@ -26,7 +26,11 @@ class PharmaController extends Controller
 
     public function showHomepage()
     {
-        return view('pharmacists.pharma-home');
+        $items = Pharma::with('userInfo')->get();
+        // dd($items);
+        return view('pharmacists.pharma-home', [
+            'items' => $items
+            ]);
     }
 
     /**

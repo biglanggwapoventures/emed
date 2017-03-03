@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-<div onclick="location.href='/doctor-home'" class="logo"> </div>
+<div onclick="location.href='/secretary'" class="logo"> </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">

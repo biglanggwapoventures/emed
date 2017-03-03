@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-<div onclick="location.href='/doctor-home'" class="logo"> </div>
+<div onclick="location.href='/pharmacists-home'" class="logo"> </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav-user">
         <li class="dropdown">
-          <a href="/doctor-home">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
+          <a href="/pharmacists-home">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
