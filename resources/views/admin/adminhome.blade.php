@@ -35,7 +35,7 @@
 										{{ method_field('DELETE') }}
 										<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 									</form>
-									@if($i->user_type != "PATIENT" AND  $i->user_type != "PHARMA")
+									@if($i->user_type != "PATIENT" AND  $i->user_type != "PHARMA" AND $i->user_type != "SECRETARY")
 										<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
 									@endif
 								</td>
@@ -43,8 +43,7 @@
 							@endif
 						@empty
 							<tr>
-
-								<td colspan="4" class="text-center">No doctors recorded</td>
+								<td colspan="4" class="text-center">No users recorded</td>
 							</tr>
 						@endforelse
 					</tbody>

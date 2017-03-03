@@ -112,7 +112,7 @@ class SecretaryController extends Controller
     public function edit($id)
     {
         return view('secretary.edit', [
-            'data' => Secretary::with('userInfo')->where('id', $id)->first()
+            'data' => Secretary::with('userInfo')->where('user_id', $id)->first()
         ]);
     }
 

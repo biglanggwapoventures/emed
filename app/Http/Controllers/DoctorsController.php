@@ -119,7 +119,7 @@ class DoctorsController extends Controller
     public function edit($id)
     {
         return view('doctors.edit', [
-            'data' => Doctor::with('userInfo')->where('id', $id)->first()
+            'data' => Doctor::with('userInfo')->where('user_id', $id)->first()
         ]);
     }
 
