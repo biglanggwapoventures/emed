@@ -91,7 +91,7 @@ class ManagersController extends Controller
             'license' => $request->license
         ]);
 
-       return redirect()->route('managers.index');
+       return redirect()->route('admin.index');
     }
 
     /**
@@ -151,7 +151,7 @@ class ManagersController extends Controller
         $user->save();
         
 
-       return redirect()->route('managers.index');
+       return redirect()->route('admin.index');
     }
 
     /**

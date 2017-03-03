@@ -137,33 +137,33 @@ class DoctorsController extends Controller
         $doctor = Doctor::find($id);
         $doctor->fill($request->only([
             'specialization' => $request->specialization,
+            'title' => $request->title,
             'clinic' => $request->clinic,
             'clinic_address'=> $request->clinic_address,
-            'consultation_hours' => $request->consultation_hours,
-            'title' => $request ->title
+            'clinic_hours' => $request->clinic_hours,
+            'prc' => $request->prc,
+            'ptr' => $request->ptr,
+            's2' => $request >s2
         ]));
+
         $doctor->save();
 
         $user = User::find($doctor->user_id);
         $user->fill($request->only([
-            'username', 
             'firstname', 
-            'lastname',
             'middle_initial',
-            'contact_number',
-            'sex',
-            'email',
+            'lastname',
             'birthdate',
-            'address'
-
+            'sex',
+            'contact_number',
+            'address',
+            'username', 
+            'email',
         ]));
         $user->save();
         
-
-       return redirect()->route('doctors.index');
+       return redirect()->route('admin.index');
     }
-
-
     
 
     /**
