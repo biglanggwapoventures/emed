@@ -143,7 +143,7 @@ class DoctorsController extends Controller
             'clinic_hours' => $request->clinic_hours,
             'prc' => $request->prc,
             'ptr' => $request->ptr,
-            's2' => $request >s2
+            's2' => $request->s2
         ]));
 
         $doctor->save();
