@@ -20,6 +20,7 @@
 							<b>Fullname:</b> {{ Auth::user()->fullname() }} <br>
 							<b>Username:</b> {{ Auth::user()->username }} &nbsp <b>Email Address</b> {{Auth::user()->email}}<br>
 							<b>Contact number</b> {{Auth::user()->contact_number}}<br>
+              <b>Gender</b> {{Auth::user()->sex}}<br>
 
     </div>
     <div id="menu1" class="tab-pane fade">
