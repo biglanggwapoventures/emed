@@ -13,10 +13,12 @@ class AdminController extends Controller
 
 	public function index()
 	{
-		$items = DB::select('select * from users');
-		return view('admin.adminhome', [
-            'items' => $items
-        ]);
+		// $items = DB::select('select * from users');
+		// return view('admin.adminhome', [
+  //           'items' => $items
+  //       ]);
+		$items = DB::table('users')->paginate(7);
+    	return view('admin.adminhome',compact('items'));
 	}
 
 	// public function edit($id)
