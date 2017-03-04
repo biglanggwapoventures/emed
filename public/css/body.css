@@ -305,11 +305,13 @@ ul li ul.dropdown-menu li{
 }
 
 /* Headings */
-
-.panel-default>.panel-heading {
-    color: #333;
-    background-color: #ebebeb;
-    border-color: #ddd;
+.panel-info>.panel-heading {
+    color: #0e0e0e;
+    background-color: #e2e1e2;
+    border-color: #000000;
+}
+.panel-info {
+    border-color: #e2e1e2;
 }
 
 .panel-info {
