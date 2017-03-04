@@ -76,5 +76,5 @@
 	</div>
 </div>
 
-
+<center>{{ $items->links('vendor.pagination.custom') }}</center>
 @endsection
