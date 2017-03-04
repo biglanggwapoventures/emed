@@ -49,7 +49,7 @@
 							@endif
 						@empty
 							<tr>
-								<td colspan="4" class="text-center">No users recorded</td>
+								<td colspan="4" class="text-center">No users recorded!</td>
 							</tr>
 						@endforelse
 					</tbody>
