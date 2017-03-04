@@ -18,7 +18,8 @@
 			    <table class="table">
 					<thead>
 						<tr class="active">
-							<th>Name</th>
+							<th>Last Name</th>
+							<th>First Name</th>
 							<th>Username</th>
 							<th>User Type</th>
 							<th>Manage</th>
@@ -28,7 +29,8 @@
 						@forelse($items AS $i)
 							@if($i->user_type != "ADMIN")
 							<tr>
-								<td>{{ $i->fullname() }}</td>
+								<td>{{ $i->lastname }}</td>
+								<td>{{ $i->firstname }}</td>
 								<td>{{ $i->username }}</td>
 								<td>{{ $i->user_type }}</td>
 								<td>
@@ -58,6 +60,5 @@
 	</div>
 </div>
 
-<center>{{ $items->links('vendor.pagination.custom') }}</center>
 
 @endsection
