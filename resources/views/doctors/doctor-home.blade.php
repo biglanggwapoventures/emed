@@ -51,7 +51,7 @@
                         <td>{{ $d->clinic }}</td>
                       </tr>
                       <tr>
-                        <td>Clinic Address:</td>
+                        <td><b>Clinic Address:</b> &nbsp &nbsp &nbsp  {{ $d->clinic_address }}</td>
                         <td>{{ $d->clinic_address }}</td>
                       </tr>
                            <tr>
