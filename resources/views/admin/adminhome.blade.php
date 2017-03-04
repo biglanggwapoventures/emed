@@ -18,8 +18,7 @@
 			    <table class="table">
 					<thead>
 						<tr class="active">
-							<th>Last Name</th>
-							<th>First Name</th>
+							<th>Name</th>
 							<th>Username</th>
 							<th>User Type</th>
 							<th>Manage</th>
@@ -29,8 +28,7 @@
 						@forelse($items AS $i)
 							@if($i->user_type != "ADMIN")
 							<tr>
-								<td>{{ $i->lastname }}</td>
-								<td>{{ $i->firstname }}</td>
+								<td>{{ $i->fullname() }}</td>
 								<td>{{ $i->username }}</td>
 								<td>{{ $i->user_type }}</td>
 								<td>
