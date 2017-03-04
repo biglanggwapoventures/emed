@@ -8,6 +8,22 @@
 
 			<h4 class="pull-left"><span class="glyphicon glyphicon-user"></span>Users</a></h4>
 
+				<div class="col-md-6">
+					{!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!}
+						<div class="input-group custom-search-form">
+							<input type="text" name="search" class="form-control" placeholder="Search ...">
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default-sm">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					{!! Form::select('users',['DOCTOR','PMANAGER','PATIENT','PHARMACIST','SECRETARY']) !!}
+					{!! Form::close() !!}
+				</div>
+
+				
+
 				<a class="btn btn-primary pull-right" href="{{ route('managers.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacy Manager</a>
 				<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>	
 			
@@ -49,7 +65,7 @@
 							@endif
 						@empty
 							<tr>
-								<td colspan="4" class="text-center">No users recorded</td>
+								<td colspan="4" class="text-center">No users recorded!</td>
 							</tr>
 						@endforelse
 					</tbody>
@@ -61,5 +77,4 @@
 </div>
 
 <center>{{ $items->links('vendor.pagination.custom') }}</center>
-
 @endsection
