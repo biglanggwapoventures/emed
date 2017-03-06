@@ -20,7 +20,7 @@ class DoctorsController extends Controller
     public function showHomepage()
     {
 
-        $docs = Doctor::with('userInfo')->get();
+        $docs = Auth::user()->doctor;
         // dd($items);
         return view('doctors.doctor-home', [
             'docs' => $docs
@@ -48,6 +48,12 @@ class DoctorsController extends Controller
     {
         //
         return view('doctors.doctor-form');
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        //
+        
     }
 
     /**

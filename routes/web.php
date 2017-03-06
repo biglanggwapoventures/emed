@@ -33,6 +33,8 @@ Route::get('/faq', 'OtherController@faq');
 Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
 Route::get('/edit-doc', 'AdminController@editDoc');
 
+Route::post('doctor-home', 'DoctorsController@updateAvatar');
+
 //process login data
 Route::post('/login', 'LoginController@doLogin');
 
@@ -45,4 +47,6 @@ Route::resource('secretary', 'SecretaryController');
 
 Route::resource('pharmacists', 'PharmaController');
 // Route::resource('pharmacists', 'PharmaController');
+
+Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')->name('upload.dp');
 

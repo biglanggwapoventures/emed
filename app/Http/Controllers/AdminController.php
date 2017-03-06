@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Http\Request;
 
 // use App\Doctor;
 
@@ -12,7 +11,7 @@ class AdminController extends Controller
 {
 
 
-	public function index()
+	public function index(Request $request)
 	{
 		// $items = DB::select('select * from users');
 		// return view('admin.adminhome', [
@@ -23,9 +22,22 @@ class AdminController extends Controller
     	//return view('admin.adminhome',compact('items'));
 
  
- 		$search = \Request::get('search');
-        $items = User::where('lastname','like','%'.$search.'%')->orderBy('id')->paginate(7);
-        return view('admin.adminhome',compact('items'));
+ 		$search =  $request->input('search');
+ 		$type = $request->input('user_type');
+
+ 		$items = User::select();
+ 		if(trim($search)){
+ 			$items->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+ 		}
+ 		if(in_array($type, ['DOCTOR','PMANAGER','PATIENT','PHARMA','SECRETARY'])){
+ 			$items->whereUserType($type);
+ 		}
+
+        // $items = User::where('lastname','like','%'.$search.'%')->orWhere('firstname', 'like', '%'.$search.'%');
+        // $final = User::where('user_type','like','%'.$categ.'%')->orderBy('id')->paginate(7);
+        return view('admin.adminhome', [
+        	'items' => $items->paginate(7)
+    	]);
 	}
 
 	// public function edit($id)

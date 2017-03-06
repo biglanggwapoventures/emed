@@ -6,57 +6,57 @@
    
           <div class="panel panel-info" >
             <div class="panel-heading">
-              <h4 class="panel-title"><h2>Dr. {{ Auth::user()->fullname() }}</h2></h4>
+              <h4 class="panel-title"><h2>Dr. {{ $docs->userInfo->fullname() }}</h2></h4>
             </div>
-             {{ csrf_field() }}
             <div class="panel-body">
-            @forelse($docs AS $d)
-            @if($d->userInfo->username === Auth::user()->username)
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{ "storage/{$docs->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+                {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                  <label>Update Profile Image</label>
+                  <input type="file" name="avatar">
+                  <input type="submit" class="btn btn-sm btn-primary">
+                {!! Form::close() !!}
+
+                </div>
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td><b>Username:</b> &nbsp &nbsp &nbsp{{ $d->userInfo->username }}</td>
-                        <td><b>Specialization:</b>  &nbsp &nbsp &nbsp{{ $d->specialization }}</td>
+                        <td><b>Username:</b> &nbsp &nbsp &nbsp{{ $docs->userInfo->username }}</td>
+                        <td><b>Specialization:</b>  &nbsp &nbsp &nbsp{{ $docs->specialization }}</td>
                       </tr>
                       <tr>
-                        <td><b>Date of Birth:</b> &nbsp &nbsp &nbsp {{ $d->userInfo->birthdate }}</td>
-                        <td>{{ $d->specialization }}</td>
+                        <td><b>Date of Birth:</b> &nbsp &nbsp &nbsp</td>
+                        <td> {{ $docs->userInfo->birthdate }}</td>
                       </tr>
                       <tr>
-                        <td><b>Gender</b>&nbsp &nbsp &nbsp{{ $d->userInfo->sex}} </td>
-                        <td>{{ $d->userInfo->birthdate }}</td>
+                        <td><b>Gender</b>&nbsp &nbsp &nbsp{{ $docs->userInfo->sex}} </td>
+                        <td>{{ $docs->userInfo->birthdate }}</td>
                       </tr>
                    
                          <tr>
-                             <tr>
-                        <td>Gender</td>
-                        <td>{{ $d->userInfo->sex}}</td>
-                      </tr>
                         <tr>
                         <td>Home Address</td>
-                        <td>{{ $d->userInfo->address }}</td>
+                        <td>{{ $docs->userInfo->address }}</td>
                       </tr>
                       <tr>
                         <td>Email</td>
-                        <td>{{ $d->userInfo->email }}</td>
+                        <td>{{ $docs->userInfo->email }}</td>
                       </tr>
                         <td>Phone Number</td>
-                        <td>1{{ $d->userInfo->contact_number }}<br>
+                        <td>1{{ $docs->userInfo->contact_number }}<br>
                         </td>
                          <tr>
                         <td>Clinic</td>
-                        <td>{{ $d->clinic }}</td>
+                        <td>{{ $docs->clinic }}</td>
                       </tr>
                       <tr>
-                        <td><b>Clinic Address:</b> &nbsp &nbsp &nbsp  {{ $d->clinic_address }}</td>
-                        <td>{{ $d->clinic_address }}</td>
+                        <td><b>Clinic Address:</b></td>
+                        <td>{{ $docs->clinic_address }}</td>
                       </tr>
                            <tr>
                         <td>Clinic Hours:</td>
-                        <td>{{ $d->clinic_hours }}</td>
+                        <td>{{ $docs->clinic_hours }}</td>
                       </tr>
                       </tr>
                      
@@ -64,47 +64,19 @@
                   </table>
                   
                   
-                  <a href="#" class="btn btn-primary pull-right">Secretaries</a>
+                  <a href="#" class="btn btn-primary pull-right">Consultation Calendar</a>
                   <a href="#" class="btn btn-primary pull-right">Search Patients</a>
                 </div>
               </div>
             </div>
                  <div class="panel-footer">
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
+                        <span class="pull-right" style="margin-top: 8px;">
                             <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                             <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
                     </div>
-            @endif
-					@empty
-						<p>There are no users yet!</p>
-					@endforelse
           </div>
         </div>
-
-<!-- <div class="container-fluid">
-	<div class="row-bod">		
-		<div class="col-md-9 col-md-offset-1">
-    		<div class="panel panel-default"> 
-			   	<div class="panel-heading">
-		    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Welcome Dr. {{ Auth::user()->fullname() }} </h4>
-			    </div>
-			    {{ csrf_field() }}
-			    <div class="panel-body">
-			    	@forelse($docs AS $d)
-			    		@if($d->userInfo->username === Auth::user()->username)
-					    	<h2><strong>{{ $d->userInfo->fullname() }} </h2></strong><br>
-					    	<strong>Specialization:</strong>{{ $d->specialization }} <br>
-					    	<strong>Clinic:</strong>{{ $d->clinic }} <br>
-					    @endif
-					@empty
-						<p>There are no users yet!</p>
-					@endforelse
-			    </div>
-			</div>
-		</div>
-	</div>
-</div> -->
 
 @endsection

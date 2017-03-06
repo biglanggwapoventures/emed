@@ -18,8 +18,6 @@
         <li class="dropdown">
           <a href="/doctor-home">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-            <li class="divider"></li>
             <li><a href="{{ url('/doctor-home') }}">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="{{ route('patients.index') }}">Patients<span class="badge pull-right"> 42 </span></a></li>

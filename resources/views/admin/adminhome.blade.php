@@ -10,15 +10,16 @@
 
 				<div class="col-md-6">
 					{!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!}
+						{!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
 						<div class="input-group custom-search-form">
-							<input type="text" name="search" class="form-control" placeholder="Search ...">
+							{!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
 							<span class="input-group-btn">
 								<button type="submit" class="btn btn-default-sm">
 									<i class="glyphicon glyphicon-search"></i>
 								</button>
 							</span>
 						</div>
-					{!! Form::select('users',['DOCTOR','PMANAGER','PATIENT','PHARMACIST','SECRETARY']) !!}
+					
 					{!! Form::close() !!}
 				</div>
 

@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'sex',
         'address',
-        'birthdate'
+        'birthdate',
+        'avatar'
     ];
 
     /**
@@ -74,4 +75,5 @@ class User extends Authenticatable
     {
         return $this->user_type === 'DOCTOR';
     }
+
 }
