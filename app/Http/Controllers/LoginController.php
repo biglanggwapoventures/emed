@@ -44,17 +44,22 @@ class LoginController extends Controller
                 return redirect('/doctor-home'); //test
 
             }else if($user->user_type === 'PMANAGER'){
+
                 return redirect('/pmanager-home'); //test
+
             }else if($user->user_type === 'PATIENT'){
 
                 return redirect('/patient-home'); //test
+
             }else if($user->user_type === 'SECRETARY'){
+
                 return redirect('/secretary-home'); //test
 
             }
                 else if($user->user_type === 'PMANAGER')
             {
                 return redirect('/'); //test
+
             }else if($user->user_type === 'PATIENT'){
 
                 return redirect('/patient-home'); //test
@@ -64,15 +69,13 @@ class LoginController extends Controller
 
                 return redirect('/pharmacists-home');
 
-
-
-        }else{
+        }}else{
     		  return view('login', [
     			'wrongPassword' => 'Incorrect Password'
 			]);
     	}
 
-    }
+    
 }
 }
 
