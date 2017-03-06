@@ -10,15 +10,9 @@
 @include('partials.navbar')
 
 	<center>
-	<div class="container">
-		<div class="row-bod">
-			<div class="col-md-12">
-				<div class="page-header">
-					<h2>ABOUT US</h2>
-				</div>
+			<div class="page-header">
+				<h2>ABOUT US</h2>
 			</div>
-		</div>
-	</div>
 
 	<div class="container-about">	
 				<img src = "images/KAC.jpg" alt="Avatar" class="image">

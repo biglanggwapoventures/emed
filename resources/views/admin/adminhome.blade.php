@@ -7,7 +7,6 @@
 		<div class="col-md-9 col-md-offset-1">
 
 			<h4 class="pull-left"><span class="glyphicon glyphicon-user"></span>Users</a></h4>
-
 				<div class="col-md-6">
 					{!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!}
 						{!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
@@ -22,9 +21,6 @@
 					
 					{!! Form::close() !!}
 				</div>
-
-				
-
 				<a class="btn btn-primary pull-right" href="{{ route('managers.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacy Manager</a>
 				<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>	
 			
@@ -66,7 +62,7 @@
 							@endif
 						@empty
 							<tr>
-								<td colspan="4" class="text-center">No users recorded!</td>
+								<td colspan="4" class="text-center">No users recorded</td>
 							</tr>
 						@endforelse
 					</tbody>
@@ -78,4 +74,5 @@
 </div>
 
 <center>{{ $items->links('vendor.pagination.custom') }}</center>
+
 @endsection

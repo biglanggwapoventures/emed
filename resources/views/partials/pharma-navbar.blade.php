@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/pharmacists-home') }}">eMED</a>
+      <a class="navbar-brand" href="{{ url('/doctor-home') }}">eMED</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

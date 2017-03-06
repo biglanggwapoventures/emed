@@ -7,6 +7,7 @@ use App\Http\Requests\DoctorRequest;
 use Validator;
 use App\Doctor;
 use App\User;
+use App\Patient;
 use Auth;
 
 class DoctorsController extends Controller

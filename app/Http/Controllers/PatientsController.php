@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\Http\Requests\PatientRequest;
 use App\User;
+use App\Doctor;
+// use Illuminate\Support\Facades\DB;
 use Auth;
 
 class PatientsController extends Controller
@@ -26,10 +28,9 @@ class PatientsController extends Controller
     
     public function index()
     {
-        $items = Patient::with('userInfo')->get();
-        // dd($items);
+        $patients = Auth::user()->doctor->patients()->get();
         return view('patients.list', [
-            'items' => $items
+            'patients' => $patients
         ]);
     }
 
@@ -56,16 +57,30 @@ class PatientsController extends Controller
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'username' => 'required|unique:users',
-                'address' => 'required'
+                'address' => 'required',
+                'birthdate' => 'required|date'
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'lastname.required' => 'Please enter your last name.',
                 'username.required' => 'Please enter your username.',
-                'address.required' => 'Please enter your drusgtore.',
+                'address.required' => 'Please enter your address.',
            ]);
 
         // get fields for user table
-        $input = $request->only(['username', 'firstname', 'lastname','address','middle_initial','birthdate','gender','contact_number','address','email','sex']);
+        $input = $request->only([
+            'username', 
+            'firstname', 
+            'lastname',
+            'address',
+            'middle_initial',
+            'birthdate',
+            'gender',
+            'contact_number',
+            'address',
+            'email',
+            'sex'   
+        ]);
+
         // verify if username exists
         $credentials = $request->only(['username']);
 
@@ -77,7 +92,7 @@ class PatientsController extends Controller
         $user = User::create($input);
 
         // save to DB      
-        $user->patient()->create([
+        $patient = $user->patient()->create([
             'bloodtype' => $request->bloodtype,
             'econtact'=> $request ->econtact,
             'erelationship'=> $request->erelationship,
@@ -88,6 +103,8 @@ class PatientsController extends Controller
             'occupation'=> $request->occupation
 
         ]);
+
+       $patient->doctors()->attach(Auth::user()->doctor->id);
 
        return redirect()->route('patients.index');
     }
