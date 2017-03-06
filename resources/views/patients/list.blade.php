@@ -17,6 +17,7 @@
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
+<!--         @elseif(Auth::user()->user_type === 'DOCTOR')   -->
          <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a> 
         <form class="navbar-form navbar-right">
         <div class="form-group">
@@ -25,13 +26,22 @@
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
         
+<!--  			
+        @elseif(Auth::user()->user_type === 'PATIENT')   
+            @include('partials.patient-navbar')   
 
+        @elseif(Auth::user()->user_type === 'PMANAGER')   
+            @include('partials.manager-navbar')        
+
+        @endif -->
+<!--     @else -->
       <form class="navbar-form navbar-right">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form> 
+<!--     @endif -->
 
 			<table class="table">
 				<thead>
