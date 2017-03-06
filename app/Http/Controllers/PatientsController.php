@@ -17,8 +17,10 @@ class PatientsController extends Controller
      */
     public function showHomepage()
     {
-        
-        return view('patients.patient-home');
+        $items = Auth::user()->patient;
+        return view('patients.patient-home', [
+            'items' => $items
+        ]);
     
     }
     

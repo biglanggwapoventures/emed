@@ -10,7 +10,19 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor:  <span class="text-success"> {{ $data->userInfo->fullname() }}</span></h4>
 			    	</div>
 					<div class="panel-body">
-						
+					<div class="col-md-9" style="margin-left: 40%"">
+					<img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+                {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                <br>
+                <div class="fileUpload btn btn-sm btn-default" style="margin-left: -8px;">
+    				<span>Choose File</span>
+    					<input type="file" class="upload" name="avatar" />
+				</div>
+                  <!-- <input type="file" name="avatar"> -->
+                  <input type="submit" class="btn btn-sm btn-primary">
+                  <br><br>
+                {!! Form::close() !!}
+					</div>	
 						 {!! Form::open(['url' => route('doctors.update', ['id' => $data->id]), 'method' => 'PUT']) !!}
 							{!! Form::hidden('user_id', $data->userInfo->id) !!}
 							<div class="row">

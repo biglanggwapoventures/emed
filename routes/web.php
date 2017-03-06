@@ -27,14 +27,14 @@ Route::get('/pharmacists-home', 'PharmaController@showHomepage');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
 Route::get('/doctor-home', 'DoctorsController@showHomepage');
+
+/* LANDING PAGE */
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
+
 Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
-Route::get('/edit-doc', 'AdminController@editDoc');
-
-Route::post('doctor-home', 'DoctorsController@updateAvatar');
-
+// Route::get('/edit-doc', 'AdminController@editDoc');
 //process login data
 Route::post('/login', 'LoginController@doLogin');
 

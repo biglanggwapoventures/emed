@@ -50,12 +50,6 @@ class DoctorsController extends Controller
         return view('doctors.doctor-form');
     }
 
-    public function updateAvatar(Request $request)
-    {
-        //
-        
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -128,6 +122,7 @@ class DoctorsController extends Controller
             'data' => Doctor::with('userInfo')->where('user_id', $id)->first()
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
