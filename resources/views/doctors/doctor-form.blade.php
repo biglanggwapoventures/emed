@@ -162,7 +162,7 @@
 
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('specialization') ? 'has-error' : '' }}">
-										<label class="control-label">Specialization</label>
+										<label class="control-label">Specialization...</label>
 										<span style="color: red">*</span>
 										<input type="text" name="specialization" class="form-control">
 										@if($errors->has('specialization'))
