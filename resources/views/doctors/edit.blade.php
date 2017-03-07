@@ -1,4 +1,4 @@
-@extends('welcome')
+.@extends('welcome')
 
 @section('body')
 
@@ -195,6 +195,8 @@
 									</div>
 								</div>
 							</div>
+							@if(Auth::check())
+      							  @if(Auth::user()->user_type === 'ADMIN') 
 							<h4>Licenses</h4>
 							    <hr class="third">
 								<div class="row">
@@ -229,6 +231,45 @@
 									</div>
 								</div>
 							</div>
+
+							 @elseif(Auth::user()->user_type === 'DOCTOR') 
+							 	<div class="row">
+
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
+										<label class="control-label">PRC License Number</label>
+										<span style="color: red">*</span>
+										{!! Form::text('prc', $data->prc, ['class' => 'form-control','readonly' => 'true']) !!}
+										@if($errors->has('prc'))
+											<span class="help-block">{{ $errors->first('prc') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
+										<label class="control-label">PTR Number</label>
+										<span style="color: red">*</span>
+										{!! Form::text('ptr', $data->ptr, ['class' => 'form-control', 'readonly' => 'true']) !!}
+										@if($errors->has('ptr'))
+											<span class="help-block">{{ $errors->first('ptr') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('s2') ? 'has-error' : '' }}">
+										<label class="control-label">S2 Number</label>
+										{!! Form::text('s2', $data->s2, ['class' => 'form-control','readonly' => 'true']) !!}
+										@if($errors->has('s2'))
+											<span class="help-block">{{ $errors->first('s2') }}</span>
+										@endif
+									</div>
+								</div>
+							</div>
+							  @endif
+
+							  @else
+
+							   @endif
 							<button type="submit" class="btn btn-primary">Update</button>
 							{!! Form::close() !!}
 						</form>
