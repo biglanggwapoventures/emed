@@ -118,10 +118,13 @@ class DoctorsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        return view('doctors.edit', [
+    {   
+            return view('doctors.edit', [
             'data' => Doctor::with('userInfo')->where('user_id', $id)->first()
         ]);
+        
+
+        
     }
 
 
@@ -164,8 +167,12 @@ class DoctorsController extends Controller
         ]));
         $user->save();
         
-       return redirect()->route('admin.index');
-    }
+        $docs = Auth::user()->doctor;
+        if(Auth::user()->user_type === "DOCTOR")
+            return redirect('/doctor-home');
+        else 
+            return redirect()->route('admin.index');
+}
     
 
     /**

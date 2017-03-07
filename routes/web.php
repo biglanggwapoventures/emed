@@ -26,7 +26,7 @@ Route::get('/pharmacists', 'ManagersController@phlist');
 Route::get('/pharmacists-home', 'PharmaController@showHomepage')->middleware('auth');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
-Route::get('/doctor-home', 'DoctorsController@showHomepage');
+// Route::get('/doctor-home', 'DoctorsController@showHomepage');
 
 /* LANDING PAGE */
 Route::get('/patient-home', 'PatientsController@showHomepage')->middleware('auth');
@@ -46,7 +46,6 @@ Route::resource('users', 'UsersController');
 Route::resource('managers', 'ManagersController');
 Route::resource('patients', 'PatientsController');
 Route::resource('secretary', 'SecretaryController');
-
 Route::resource('pharmacists', 'PharmaController');
 // Route::resource('pharmacists', 'PharmaController');
 

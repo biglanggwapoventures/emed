@@ -84,17 +84,16 @@
 									        id="favoritesModalLabel">{{ $i->fullname() }}</h4>
 									      </div>
 									      <div class="modal-body">
-									        <p>
 									        <table class="table table-user-information">
 						                    <tbody>
 						                      <tr>
-						                        <td><b>Username:</b>{{ $i->username }}</td>
+						                        <td><b>Username:</b>&#09;{{ $i->username }}</td>
 						                      </tr>
 						                      <tr>
-						                        <td><b>Date of Birth:</b>{{ $i->birthdate }}</td>
+						                        <td><b>Date of Birth:</b>&#09;{{ $i->birthdate }}</td>
 						                      </tr>
 						                      <tr>
-						                        <td><b>Gender</b>{{ $i->sex}} </td>
+						                        <td><b>Gender:</b>&#09;{{ $i->sex}} </td>
 						                      </tr>
 						                   
 						                         <tr>
@@ -102,20 +101,14 @@
 						                        <td><b>Home Address:</b>&#09;{{ $i->address }}</td>
 						                      </tr>
 						                      <tr>
-						                        <td>Email:{{ $i->email }}</td>
+						                        <td><b>Email:</b>&#09;{{ $i->email }}</td>
 						                      </tr>
-						                        <td>Phone Number:{{ $i->contact_number }}<br>
+						                        <td><b>Phone Number:</b>&#09;{{ $i->contact_number }}<br>
 						                        </td>
-						                      <tr>
-						                        <td><b>Clinic Address:</b>{{ $i->clinic_address }}</td>
-						                      </tr>
 						                      </tr>
 						                     
 						                    </tbody>
 						                  </table>
-									        <b><span id="fav-title">The Sun Also Rises</span></b> 
-									        to your favorites list.
-									        </p>
 									      </div>
 									      <div class="modal-footer">
 									      	<span class="pull-right">
