@@ -16,7 +16,14 @@ class DoctorRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->isAdmin();
+        if(Auth::user()->user_type === 'ADMIN')
+        {
+            return Auth::user()->isAdmin();
+        }
+        else if(Auth::user()->user_type === 'DOCTOR')
+        {
+            return Auth::user()->isDoctor();
+        }
     }
 
     /**
