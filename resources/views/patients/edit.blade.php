@@ -12,19 +12,18 @@
 					<div class="panel-body">
 					<label>Update Profile Image</label>
 					@if(Auth::check())
-      							  @if(Auth::user()->user_type === 'DOCTOR') 
+      				@if(Auth::user()->user_type === 'DOCTOR') 
+
 					<img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
 					{!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-					 <input type="file" name="avatar">
-                  <input type="submit" class="btn btn-sm btn-primary">
-					  @elseif(Auth::user()->user_type === 'PATIENT') 
-					 <img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+					<input type="file" name="avatar">
+                  	<input type="submit" class="btn btn-sm btn-primary">
+					@elseif(Auth::user()->user_type === 'PATIENT') 
+					<img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
 					
-					 @endif
-
-							  @else
-
-							   @endif
+					@endif
+					@else
+					@endif
                   
                  
                 {!! Form::close() !!}

@@ -1,4 +1,4 @@
-.@extends('welcome')
+@extends('welcome')
 
 @section('body')
 
@@ -12,7 +12,7 @@
 					<div class="panel-body"
 					<div class="col-md-9" style="margin-left: 40%"">
 					<img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'readonly' => 'true','enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
                 <br>
                 <div class="fileUpload btn btn-sm btn-default" style="margin-left: -8px;">
     				<span>Choose File</span>
@@ -23,6 +23,7 @@
                   <br><br>
                 {!! Form::close() !!}
 					</div>	
+					<div style="margin: 15px;">
 						 {!! Form::open(['url' => route('doctors.update', ['id' => $data->id]), 'method' => 'PUT']) !!}
 							{!! Form::hidden('user_id', $data->userInfo->id) !!}
 							<div class="row">
@@ -273,6 +274,7 @@
 							<button type="submit" class="btn btn-primary">Update</button>
 							{!! Form::close() !!}
 						</form>
+						</div>
 					</div>
 				</div>
 			</div>
