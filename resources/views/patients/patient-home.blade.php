@@ -15,20 +15,21 @@
 
   <div class="tab-content">
     <div id="profile" class="tab-pane fade in active">
-      <strong>Personal Info</strong><a href="#" class="btn btn-info  pull-right"><span class="glyphicon glyphicon-edit"></a><br>
+      <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a><br>
 							<hr class="third">
-              <div class="col-md-3 patprof">
-							<b>Fullname:</b> {{ Auth::user()->fullname() }} <br>
-							<b>Username:</b> {{ Auth::user()->username }} &nbsp <b>Email Address</b> {{Auth::user()->email}}<br>
-							<b>Contact number</b> {{Auth::user()->contact_number}}<br>
-              <b>Gender</b> {{Auth::user()->sex}}<br><br><br>
-              </div>
+             
               <img alt="User Pic" src="{{ "storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                 {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                   <label>Update Profile Image</label>
                   <input type="file" name="avatar">
                   <input type="submit" class="btn btn-sm btn-primary">
                 {!! Form::close() !!}
+                 <div class="col-md-3 patprof">
+              <b>Fullname:</b> {{ Auth::user()->fullname() }} <br>
+              <b>Username:</b> {{ Auth::user()->username }} &nbsp <b>Email Address</b> {{Auth::user()->email}}<br>
+              <b>Contact number</b> {{Auth::user()->contact_number}}<br>
+              <b>Gender</b> {{Auth::user()->sex}}<br><br><br>
+              </div>
 
     </div>
     <div id="menu1" class="tab-pane fade">
