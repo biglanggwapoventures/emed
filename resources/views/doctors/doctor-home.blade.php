@@ -17,55 +17,57 @@
                   <input type="submit" class="btn btn-sm btn-primary">
                 {!! Form::close() !!}
  -->
+
                 </div>
                 <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">
+                  <table class="table table-user-information" >
                     <tbody>
                       <tr>
                         <td><b>Username:</b> &nbsp &nbsp &nbsp{{ $docs->userInfo->username }}</td>
-                        <td><b>Specialization:</b>  &nbsp &nbsp &nbsp{{ $docs->specialization }}</td>
+
+                        <td><b>Email:</b>  &nbsp &nbsp &nbsp{{$docs->userInfo->email}}</td>
                       </tr>
+
                       <tr>
-                        <td><b>Date of Birth:</b> &nbsp &nbsp &nbsp</td>
-                        <td> {{ $docs->userInfo->birthdate }}</td>
+                        <td><b>Date of Birth:</b> &nbsp &nbsp &nbsp {{ $docs->userInfo->birthdate }}</td>
+                        <td> <b>Gender:</b>{{ $docs->userInfo->sex }}</td>
                       </tr>
+                       <tr>
+                        <td><b>Phone Number:</b> {{ $docs->userInfo->contact_number }}</td>
+                        <td><b>Specialization:</b> {{ $docs->specialization }}</td>
+                        </td>
+                        </tr>
                       <tr>
-                        <td><b>Gender</b>&nbsp &nbsp &nbsp{{ $docs->userInfo->sex}} </td>
-                        <td>{{ $docs->userInfo->birthdate }}</td>
-                      </tr>
-                   
-                         <tr>
-                        <tr>
-                        <td>Home Address</td>
+                        <td><b>Home Address:</b></td>
                         <td>{{ $docs->userInfo->address }}</td>
                       </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td>{{ $docs->userInfo->email }}</td>
-                      </tr>
-                        <td>Phone Number</td>
-                        <td>1{{ $docs->userInfo->contact_number }}<br>
-                        </td>
+                  
+                     
                          <tr>
-                        <td>Clinic</td>
-                        <td>{{ $docs->clinic }}</td>
+                        <td><b>Clinic:</b></td>
+                        <td>{{ $docs->clinic}}</td>
                       </tr>
+                      
                       <tr>
                         <td><b>Clinic Address:</b></td>
                         <td>{{ $docs->clinic_address }}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Clinic:</b>{{ $docs->clinic }}</td>
+                        <td><b>Clinic Hours:</b>{{ $docs->clinic_hours }}</td>
                       </tr>
                            <tr>
                         <td>Clinic Hours:</td>
                         <td>{{ $docs->clinic_hours }}</td>
                       </tr>
-                      </tr>
+                    
                      
                     </tbody>
                   </table>
                   
                   
                   <a href="#" class="btn btn-primary pull-right">Consultation Calendar</a>
-                  <a href="#" class="btn btn-primary pull-right">Search Patients</a>
+                  <a  href="{{ route('patients.index') }}" class="btn btn-primary pull-right">Search Patients</a>
                 </div>
               </div>
             </div>
@@ -78,5 +80,17 @@
                     </div>
           </div>
         </div>
+         <style type="text/css">
+   
+   table {
+    border-collapse: collapse;
+}
+
+/* remove padding */
+td, th {
+    padding: 0;
+}
+
+ </style>
 
 @endsection
