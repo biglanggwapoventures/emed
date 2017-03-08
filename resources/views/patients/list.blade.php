@@ -65,6 +65,7 @@
 									{{ method_field('DELETE') }}
 									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 									<a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+									<a href="#" class="btn btn-warning">View Patient</a>
 								</form>
 							</td>
 						</tr>
