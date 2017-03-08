@@ -52,12 +52,75 @@
 										{{ method_field('DELETE') }}
 										<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 									</form>
+
 									@if($i->user_type === "DOCTOR")
 										<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
 									@elseif($i->user_type === "PMANAGER")
 										<a href="{{ route('managers.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+									@else
+										<button type="button" class="btn btn-info" disabled><span class="glyphicon glyphicon-edit"></button>
 									@endif
-									<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-warning"><span class="glyphicon glyphicon-info-sign"></a>
+
+										
+									<button 
+											   type="button" 
+											   class="btn btn-warning btn-default-sm" 
+											   data-toggle="modal" 
+											   data-target="#infoModal_{{ $i->id }}">
+											  <span class="glyphicon glyphicon-info-sign">
+										</button>
+
+										<div class="modal fade" id="infoModal_{{ $i->id }}" 
+									     tabindex="-1" role="dialog" 
+									     aria-labelledby="favoritesModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" 
+									          data-dismiss="modal" 
+									          aria-label="Close">
+									          <span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" 
+									        id="favoritesModalLabel">{{ $i->fullname() }}</h4>
+									      </div>
+									      <div class="modal-body">
+									        <table class="table table-user-information">
+						                    <tbody>
+						                      <tr>
+						                        <td><b>Username:</b>&#09;{{ $i->username }}</td>
+						                      </tr>
+						                      <tr>
+						                        <td><b>Date of Birth:</b>&#09;{{ $i->birthdate }}</td>
+						                      </tr>
+						                      <tr>
+						                        <td><b>Gender:</b>&#09;{{ $i->sex}} </td>
+						                      </tr>
+						                   
+						                         <tr>
+						                        <tr>
+						                        <td><b>Home Address:</b>&#09;{{ $i->address }}</td>
+						                      </tr>
+						                      <tr>
+						                        <td><b>Email:</b>&#09;{{ $i->email }}</td>
+						                      </tr>
+						                        <td><b>Phone Number:</b>&#09;{{ $i->contact_number }}<br>
+						                        </td>
+						                      </tr>
+						                     
+						                    </tbody>
+						                  </table>
+									      </div>
+									      <div class="modal-footer">
+									      	<span class="pull-right">
+									        <button type="button" 
+									           class="btn btn-default" 
+									           data-dismiss="modal">Close</button>
+									        </span>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+
 								</td>
 							</tr>
 							@endif
@@ -73,6 +136,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 <center>{{ $items->links('vendor.pagination.custom') }}</center>
 
