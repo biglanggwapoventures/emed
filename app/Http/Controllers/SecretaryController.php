@@ -86,7 +86,11 @@ class SecretaryController extends Controller
             'attainment' => $request->attainment
         ]);
 
-       return redirect()->route('doctors.index');
+        
+       if(Auth::user()->user_type === "DOCTOR")
+            return redirect('/doctor-home');
+        else 
+            return redirect()->route('admin.index');
     }
 
 

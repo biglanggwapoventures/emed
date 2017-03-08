@@ -14,11 +14,11 @@ class CreateSecretariesTable extends Migration
     public function up()
     {
         Schema::create('secretaries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id');     
             $table->unsignedInteger('user_id');
             $table->string('attainment');
-            
+            $table->timestamps();
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
