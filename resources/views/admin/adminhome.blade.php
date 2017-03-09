@@ -85,6 +85,7 @@
 									      </div>
 									      <div class="modal-body">
 									        <table class="table table-user-information">
+									        <center><img alt="User Pic" src="{{ "storage/{$i->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
 						                    <tbody>
 						                      <tr>
 						                        <td><b>Username:</b>&#09;{{ $i->username }}</td>
