@@ -408,3 +408,8 @@ tr:nth-child(even) {
     background-color: #e2e1e2;
     border-color: #e2e1e2;
 }
+
+td, th {
+    padding: 0;
+    background-color: mintcream;
+}
