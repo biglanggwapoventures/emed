@@ -28,10 +28,28 @@ class PatientsController extends Controller
     
     public function index()
     {
-        $patients = Auth::user()->doctor->patients()->get();
+       // $patients = Auth::user()->doctor->patients()->get();
+        $user = Auth::user();
+        if($user->user_type === 'DOCTOR'){
+
+             $patients = Auth::user()->doctor->patients()->paginate(6);
+
         return view('patients.list', [
             'patients' => $patients
+            ]);
+        
+        }
+
+        else{
+
+             $items = Auth::user()->patient;
+        return view('patients.patient-home', [
+            'items' => $items
         ]);
+        
+
+        }
+      
     }
 
     /**
@@ -117,7 +135,10 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
-        //
+        $items = Patient::find($id);
+        return view('patients.patient-home', [
+            'items' => $items
+        ]);
     }
 
     /**

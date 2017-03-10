@@ -36,7 +36,7 @@
         @endif -->
 <!--     @else -->
       <form class="navbar-form navbar-right">
-        <div class="form-group">
+         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
@@ -65,9 +65,7 @@
 									{{ method_field('DELETE') }}
 									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 									<a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-									<a href="{{ route('patients.show', ['id' => $patient->id]) }}" type="button" class="btn btn-warning btn-default-sm">
-									<span class="glyphicon glyphicon-info-sign"></a>
-									<a href="#" class="btn btn-warning">View Patient</a>
+									<a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-warning">View Patient</a>
 								</form>
 							</td>
 						</tr>
@@ -82,5 +80,7 @@
 		</div>
 	</div>
 </div>
+<center>{{ $patients->links('vendor.pagination.custom') }}</center>
+<!-- {{ $patients->appends(Request::except('page'))->links() }}  -->
 
 @endsection
