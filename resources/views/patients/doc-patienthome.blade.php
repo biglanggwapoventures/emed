@@ -12,20 +12,11 @@
 
   <div class="tab-content">
     <div id="profile" class="tab-pane fade in active">
-      <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a><br>
+      <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a><br>
               <hr class="third">
              
-              <img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
-                  {!! Form::hidden('id', $data->userInfo->id) !!}
-                <br>
-                <div class="fileUpload btn btn-sm btn-default" style="margin-left: -8px;">
-            <span>Choose File</span>
-              <input type="file" class="upload" name="avatar" />
-        </div>
-                  <input type="submit" class="btn btn-sm btn-primary">
-                  <br><br>
-                {!! Form::close() !!}
+              <img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+              <br><br>
 
                  <div class="col-md-3 patprof">
                  

@@ -36,3 +36,10 @@ class AdminController extends Controller
 	// 	]);
 	// }
 }
+
+
+
+        //      $patients = Auth::user()->doctor->patients()->paginate(6);
+        // return view('patients.list', [
+        //     'patients' => $patients
+        //     ]);
