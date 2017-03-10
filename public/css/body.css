@@ -403,3 +403,13 @@ tr:nth-child(even) {
     filter: alpha(opacity=0);
 }
 
+.panel-info>.panel-heading {
+    color: #000000;
+    background-color: #e2e1e2;
+    border-color: #e2e1e2;
+}
+
+td, th {
+    padding: 0;
+    background-color: mintcream;
+}

@@ -67,6 +67,7 @@
 									<a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
 									<a href="{{ route('patients.show', ['id' => $patient->id]) }}" type="button" class="btn btn-warning btn-default-sm">
 									<span class="glyphicon glyphicon-info-sign"></a>
+									<a href="#" class="btn btn-warning">View Patient</a>
 								</form>
 							</td>
 						</tr>

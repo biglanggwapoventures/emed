@@ -14,10 +14,10 @@ class FileUploadController extends Controller
 		]);
 
 		$path = $request->file('avatar')->store(
-		    'avatars/'.$request->user()->id, 'public'
+		    'avatars/'.$request->id, 'public'
 		);
 
-		$user = Auth::user();
+		$user = Auth::user()->find($request->id);
 
 		$user->avatar = $path;
 		$user->save();

@@ -13,6 +13,8 @@
 					<div class="col-md-9" style="margin-left: 40%"">
 					<img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                 {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'readonly' => 'true','enctype' => 'multipart/form-data']) !!}
+                	{!! Form::hidden('id', $data->userInfo->id) !!}
                 <br>
                 <div class="fileUpload btn btn-sm btn-default" style="margin-left: -8px;">
     				<span>Choose File</span>
