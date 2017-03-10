@@ -7,13 +7,12 @@
     		<div class="col-md-9 col-md-offset-1">
     			<div class="panel panel-default"> 
 			    	<div class="panel-heading">
-			    		<h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor:  <span class="text-success"> {{ $data->userInfo->fullname() }}</span></h4>
+			    		<h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor:  <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
 			    	</div>
 					<div class="panel-body"
 					<div class="col-md-9" style="margin-left: 40%"">
 					<img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                 {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
-                {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'readonly' => 'true','enctype' => 'multipart/form-data']) !!}
                 	{!! Form::hidden('id', $data->userInfo->id) !!}
                 <br>
                 <div class="fileUpload btn btn-sm btn-default" style="margin-left: -8px;">
