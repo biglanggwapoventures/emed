@@ -22,6 +22,6 @@ class Doctor extends Model
 
 	public function secretaries()
 	{
-		 return $this->hasMany('App\Secretary', 'id');
+		 return $this->hasMany('App\Secretary', 'doctor_id');
 	}
 }

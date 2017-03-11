@@ -16,10 +16,12 @@ class CreateSecretariesTable extends Migration
         Schema::create('secretaries', function (Blueprint $table) {
             $table->increments('id');     
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('doctor_id');
             $table->string('attainment');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
         });
     }
 

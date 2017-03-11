@@ -17,7 +17,7 @@ class Secretary extends Model
 
 	public function doctor()
 	{
-		 return $this->belongsTo('App\Doctor', 'id');
+		 return $this->belongsTo('App\Doctor', 'doctor_id');
 	}
 
 }
