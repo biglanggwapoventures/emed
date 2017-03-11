@@ -49,7 +49,15 @@ class DoctorRequest extends FormRequest
             'title' => 'required',
             'clinic' => 'required',
             'clinic_address' => 'required',
-            'clinic_hours' => 'required'
+            'clinic_hours' => 'required',
+            'med_school' => 'required',
+            'med_school_year' => 'required',
+            'residency' => 'required',
+            'residency_year' => 'required',
+            'training' => 'required',
+            'training_year' => 'required',
+            'subspecialty' => 'required',
+            'affiliations' => 'required'
         ];
 
         if($this->isMethod('post')){
@@ -83,7 +91,15 @@ class DoctorRequest extends FormRequest
             'title.required' => 'Please enter your title.',
             'clinic.required' => 'Please enter your clinic name.',
             'clinic_address.required' => 'Please enter your clinic address.',
-            'clinic_hours.required' => 'Please enter your clinic hours.'
+            'clinic_hours.required' => 'Please enter your clinic hours.',
+            'med_school.required' => 'Please enter your med school.',
+            'med_school_year.required' => 'Please enter your med school year.',
+            'residency.required' => 'Please enter your residency.',
+            'residency_year.required' => 'Please enter your residency year.',
+            'training.required' => 'Please enter your training.',
+            'training_year.required' => 'Please enter your training year.',
+            'affiliations.required' => 'Please enter your affiliations.'
+
         ];
     }
 }

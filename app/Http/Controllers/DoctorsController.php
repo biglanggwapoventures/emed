@@ -91,9 +91,19 @@ class DoctorsController extends Controller
             'ptr' => $request->ptr,
             'prc' => $request->prc,
             's2' => $request->s2,
-            'title' => $request->title
+            'title' => $request->title,
+            'subspecialty' => json_encode($request->subspecialty),
+            'affiliations' => json_encode($request->affiliations),
+            'med_school' => $request->med_school,
+            'med_school_year' => $request->med_school_year,
+            'residency' => $request->residency,
+            'residency_year' => $request->residency_year,
+            'training' => $request->training,
+            'training_year' => $request->training_year,
+
         ]);
 
+       // $user ['subspecialty'] = json_encode($input['subspecialty']);
        return redirect()->route('admin.index');
     }
 
@@ -148,7 +158,8 @@ class DoctorsController extends Controller
             'clinic_hours' => $request->clinic_hours,
             'prc' => $request->prc,
             'ptr' => $request->ptr,
-            's2' => $request->s2
+            's2' => $request->s2,
+             'subspecialty' => $request->subspecialty
         ]));
 
         $doctor->save();

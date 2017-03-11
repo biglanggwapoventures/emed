@@ -10,7 +10,7 @@
 				<div class="col-md-6">
 					{!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!}
 						{!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
-						<div class="input-group custom-search-form">
+						<div class="input-group custom-search-form pull-right">
 							{!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
 							<span class="input-group-btn">
 								<button type="submit" class="btn btn-default-sm">

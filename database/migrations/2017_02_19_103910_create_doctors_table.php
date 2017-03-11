@@ -24,6 +24,14 @@ class CreateDoctorsTable extends Migration
             $table->string('prc');
             $table->string('s2');
             $table->string('title');
+            $table->string('med_school');
+            $table->string('med_school_year');
+            $table->string('residency');
+            $table->string('residency_year');
+            $table->string('training');
+            $table->string('training_year');
+            $table->string('affiliations');
+            $table->string('subspecialty');
             $table->timestamps();
 
 

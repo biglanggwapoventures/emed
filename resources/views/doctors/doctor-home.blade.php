@@ -37,6 +37,18 @@
                         <td><b>Specialization:</b> {{ $docs->specialization }}</td>
                         </td>
                         </tr>
+                        <tr>
+                      <td>
+                        
+                        
+                                <p><strong>Subspecialty: </strong>
+                             
+                      </td>
+                      <td>
+                        
+                        <?= implode(', ', json_decode($docs['subspecialty'], true) ?: [])?><br></p>
+                      </td>
+                    </tr>
                       <tr>
                         <td><b>Home Address:</b></td>
                         <td>{{ $docs->userInfo->address }}</td>
@@ -60,7 +72,46 @@
                         <td>Clinic Hours:</td>
                         <td>{{ $docs->clinic_hours }}</td>
                       </tr>
+                      <!-- medschool -->
+                       <tr>
+                        <td><b>Med School:</b></td>
+                        <td>{{ $docs->med_school }}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Med School year:</td>
+                        <td>{{ $docs->med_school_year }}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Residency:</td>
+                        <td>{{ $docs->residency }}</td>
+                      </tr>
+                           <tr>
+                        <td>Residency Year:</td>
+                        <td>{{ $docs->residency_year }}</td>
+                      </tr>
+                      <tr>
+                        <td>Training:</td>
+                        <td>{{ $docs->training }}</td>
+                      </tr>
+                      <tr>
+                        <td>Training Year:</td>
+                        <td>{{ $docs->training_year }}</td>
+                      </tr>
+                      <!-- med school end -->
+
                     
+                      <tr>
+                      <td>
+                        
+                        
+                                <p><strong>Affiliations and Organizations: </strong>
+                             
+                      </td>
+                      <td>
+                        
+                        <?= implode(', ', json_decode($docs['affiliations'], true) ?: [])?><br></p>
+                      </td>
+                    </tr>
                      
                     </tbody>
                   </table>
