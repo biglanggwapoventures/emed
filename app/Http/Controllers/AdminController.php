@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-// im a slut
 
 	public function index(Request $request)
 	{
@@ -27,6 +26,7 @@ class AdminController extends Controller
         return view('admin.adminhome', [
         	'items' => $items->paginate(7)
     	]);
+
 	}
 
 	// public function edit($id)
@@ -36,3 +36,10 @@ class AdminController extends Controller
 	// 	]);
 	// }
 }
+
+
+
+        //      $patients = Auth::user()->doctor->patients()->paginate(6);
+        // return view('patients.list', [
+        //     'patients' => $patients
+        //     ]);
