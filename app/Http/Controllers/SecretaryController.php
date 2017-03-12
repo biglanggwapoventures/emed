@@ -7,6 +7,7 @@ use App\Http\Requests\SecretaryRequest;
 use Validator;
 use App\Secretary;
 use App\User;
+use App\Doctor;
 use Auth;
 
 class SecretaryController extends Controller
@@ -82,9 +83,12 @@ class SecretaryController extends Controller
         $user = User::create($input);
 
         // save to DB (doctors)       
-        $user->secretary()->create([
-            'attainment' => $request->attainment
-        ]);
+        $secretary = [
+            'attainment' => $request->attainment,
+            'user_id' => $user->id
+        ];
+
+        Auth::user()->doctor->secretaries()->create($secretary);
 
         
        if(Auth::user()->user_type === "DOCTOR")

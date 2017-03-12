@@ -7,7 +7,6 @@ use App\Patient;
 use App\Http\Requests\PatientRequest;
 use App\User;
 use App\Doctor;
-// use Illuminate\Support\Facades\DB;
 use Auth;
 
 class PatientsController extends Controller
@@ -31,25 +30,17 @@ class PatientsController extends Controller
        // $patients = Auth::user()->doctor->patients()->get();
         $user = Auth::user();
         if($user->user_type === 'DOCTOR'){
-
              $patients = Auth::user()->doctor->patients()->paginate(6);
-
-        return view('patients.list', [
-            'patients' => $patients
+            return view('patients.list', [
+                'patients' => $patients
             ]);
-        
         }
-
         else{
-
-             $items = Auth::user()->patient;
-        return view('patients.patient-home', [
-            'items' => $items
-        ]);
-        
-
+        $items = Auth::user()->patient;
+            return view('patients.patient-home', [
+                'items' => $items
+            ]);
         }
-      
     }
 
     /**
@@ -76,7 +67,8 @@ class PatientsController extends Controller
                 'lastname' => 'required',
                 'username' => 'required|unique:users',
                 'address' => 'required',
-                'birthdate' => 'required|date'
+                'birthdate' => 'required|date',
+                'avatar' => 'image|max:2048'
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'lastname.required' => 'Please enter your last name.',
@@ -119,10 +111,17 @@ class PatientsController extends Controller
             'enumber'=> $request->enumber,
             'nationality'=> $request->nationality,
             'occupation'=> $request->occupation
-
         ]);
 
-       $patient->doctors()->attach(Auth::user()->doctor->id);
+        // connect patient to doctor
+        $patient->doctors()->attach(Auth::user()->doctor->id);
+
+        // save patient's profile picture
+        $path = $request->file('avatar')->store(
+            'avatars/'.$user->id, 'public'
+        );
+        $user->avatar = $path;
+        $user->save();
 
        return redirect()->route('patients.index');
     }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Secretary extends Model
 {
  protected $fillable = [
-		'attainment'
+		'attainment', 'user_id'
 	];
 
 	public function userInfo()
