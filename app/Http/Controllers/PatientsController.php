@@ -25,45 +25,29 @@ class PatientsController extends Controller
     
     }
     
-    public function index(Request $request)
+    public function index()
     {
-// WENNA I COMBINE SA AKO
-        // $search =  $request->input('search');
-        // $patients = Auth::user()->doctor->patients();
-                
-        // if(trim($search)){
-        //     $patients->whereHas('userInfo', function($q) USE($search){
-        //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-        //     });
-        // }
-
-        // return view('patients.list', [
-        //     'patients' => $patients->paginate(7)
-        //     ]);
-
-         $user = Auth::user();
+       // $patients = Auth::user()->doctor->patients()->get();
+        $user = Auth::user();
         if($user->user_type === 'DOCTOR'){
-
-             $patients = Auth::user()->doctor->patients()->paginate(6);
-
-        return view('patients.list', [
-            'patients' => $patients
+            $patients = Auth::user()->doctor->patients()->paginate(6);
+            return view('patients.list', [
+                'patients' => $patients
             ]);
-        
         }
-
+        else if($user->user_type === 'SECRETARY'){
+            $patients = Auth::user()->secretary->doctor->patients()->paginate(6);
+            return view('patients.list', [
+                'patients' => $patients
+            ]);
+        }
         else{
-
-             $items = Auth::user()->patient;
-        return view('patients.patient-home', [
-            'items' => $items
-        ]);
-        
-
+        $items = Auth::user()->patient;
+            return view('patients.patient-home', [
+                'items' => $items
+            ]);
         }
-
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -136,7 +120,7 @@ class PatientsController extends Controller
         ]);
 
         // connect patient to doctor
-        $patient->doctors()->attach(Auth::user()->doctor->id);
+        $patient->doctors()->attach(Auth::user()->secretary->doctor->id);
 
         // save patient's profile picture
         $path = $request->file('avatar')->store(

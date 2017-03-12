@@ -64,8 +64,7 @@ class LoginController extends Controller
     			'wrongPassword' => 'Incorrect Password'
 			]);
     	}
-
+        }
     }
-}
 }
 
