@@ -10,22 +10,13 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Medical Notes</h4>
 			    	</div>
 					<div class="panel-body">
-						<form action="{{route ('doctors.store')}}" method=POST>
-							{{ csrf_field() }}
+						{!! Form::open(['url' => route ('consultations.store'), 'method' => 'POST']) !!}
 							<h4>Vitals</h4>
 							<hr class="third">
 							
 							<div class="row">
 							  <div class="col-md-4">
-									<div class="form-group {{ $errors->has('weight') ? 'has-error' : '' }}">
-										<label class="control-label">Weight</label>
-										<span style="color: red">*</span>
-
-										<input type="text" name="weight" class="form-control">
-										@if($errors->has('weight'))
-											<span class="help-block">{{ $errors->first('weight') }}</span>
-										@endif
-									</div>
+							  		{!! Form::bsText('weight', 'Weight') !!}
 								</div>
 								
                                  <div class="col-md-4">
