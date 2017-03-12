@@ -16,7 +16,9 @@ class CreateMedicalHistoriesTable extends Migration
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->unsignedInteger('user_id');
+            // $table->unsignedInteger('user_id');
+            $table->unsignedInteger('patient_id');
+            $table->unsignedInteger('doctor_id');
             $table->string('weight');
             $table->string('height');
             $table->string('bloodpressure');
@@ -32,10 +34,9 @@ class CreateMedicalHistoriesTable extends Migration
             $table->string('notes');
             $table->string('chiefcomplaints');
             $table->string('medications');
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('doctor_id')->references('id')->on('doctors');
 
-           
-            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -19,7 +19,8 @@ class MedicalHistoryController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('consultations.patient-notes');
     }
 
     /**
@@ -40,7 +41,30 @@ class MedicalHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $user = User::create($input);
+
+        // save to DB (doctors)       
+        $user->patient()->create([
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'bloodpressure'=> $request->bloodpressure,
+            'temperature' => $request->temperature,
+            'pulserate' => $request->pulserate,
+            'resprate' => $request->resprate,
+            'patientnote' => $request->patientnote,
+            'allergyname' => $request->allergyname,
+            'allergyquestion' => $request->allergyquestion,
+            'pastsakit' => $request->pastsakit,
+            'immunization' => $request->immunization,
+            'surgeryprocedure' => $request->surgeryprocedure,
+            'notes' => $request->notes,
+            'chiefcomplaints' => $request->chiefcomplaints,
+            'medications' => $request->medications
+
+        ]);
+
+       // $user ['subspecialty'] = json_encode($input['subspecialty']);
+       return redirect()->route('admin.index');
     }
 
     /**

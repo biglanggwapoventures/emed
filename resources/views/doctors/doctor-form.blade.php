@@ -362,16 +362,22 @@
                     <hr class="third">
                     <div class="row">
                     <div class="col-md-8">
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('med_school') ? 'has-error' : '' }}">
                             <label class="control-label">Medical School</label>
                             <input  maxlength="100" type="text" name="med_school"  class="form-control"/>
+                            @if($errors->has('med_school'))
+											<span class="help-block">{{ $errors->first('med_school') }}</span>
+							@endif
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('med_school_year') ? 'has-error' : '' }}">
                             <label class="control-label">Year Completed</label>
                             <input  maxlength="100" type="text" name="med_school_year"  class="form-control"/>
+                            @if($errors->has('med_school_year'))
+							<span class="help-block">{{ $errors->first('med_school_year') }}</span>
+							@endif
                         </div>
                     </div>
                 </div>
@@ -380,32 +386,44 @@
                 <div class="row">
                 
                     <div class="col-md-8">
-                        <div class="form-group">
+                         <div class="form-group {{ $errors->has('residency') ? 'has-error' : '' }}">
                             <label class="control-label">Residency</label>
                             <input  maxlength="100" type="text" name="residency"  class="form-control"/>
                         </div>
+                        @if($errors->has('residency'))
+											<span class="help-block">{{ $errors->first('residency') }}</span>
+						@endif
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group">
+                        < <div class="form-group {{ $errors->has('residency_year') ? 'has-error' : '' }}">
                             <label class="control-label">Year Completed</label>
                             <input  maxlength="100" type="text" name="residency_year"  class="form-control"/>
+                            @if($errors->has('residency_year'))
+											<span class="help-block">{{ $errors->first('residency_year') }}</span>
+						@endif
                         </div>
                     </div>
                      </div>
 
                     <div class="row">
                     <div class="col-md-8">
-                        <div class="form-group">
+                         <div class="form-group {{ $errors->has('med_school') ? 'has-error' : '' }}">
                             <label class="control-label">Fellowship Training</label>
                             <input  maxlength="100" type="text" name="training"  class="form-control"/>
+                            @if($errors->has('med_school'))
+											<span class="help-block">{{ $errors->first('med_school') }}</span>
+						@endif
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('training_year') ? 'has-error' : '' }}">
                             <label class="control-label">Year Completed</label>
                             <input  maxlength="100" type="text" name="training_year"  class="form-control"/>
+                             @if($errors->has('training_year'))
+											<span class="help-block">{{ $errors->first('training_year') }}</span>
+						@endif
                         </div>
                     </div>
                    </div>
@@ -416,6 +434,7 @@
                     <hr class="third">
 
                     <div class="col-md-6">
+                    <div class="form-group {{ $errors->has('affiliations') ? 'has-error' : '' }}">
                         <table data-tag="affil">
                             <tbody>
                                 <tr>
@@ -426,7 +445,7 @@
                         </table>
                         <button data-target="affil" data-click="new-line" type="button" class="btn btn-sm btn-primary btn-create" style="margin-top: 10px"><em class="glyphicon glyphicon-plus" style="margin-right: 5px"></em>Add new line</button>
                     </div>
-
+</div>
 							</div> <!-- end sa panelbody -->
 							
 							<button type="submit" class="btn btn-primary">Register</button>

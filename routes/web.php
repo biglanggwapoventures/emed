@@ -48,6 +48,7 @@ Route::resource('managers', 'ManagersController');
 Route::resource('patients', 'PatientsController');
 Route::resource('secretary', 'SecretaryController');
 Route::resource('pharmacists', 'PharmaController');
+Route::resource('consultations', 'MedicalHistoryController');
 // Route::resource('pharmacists', 'PharmaController');
 
 Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')->name('upload.dp');

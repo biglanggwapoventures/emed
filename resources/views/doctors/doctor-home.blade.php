@@ -23,43 +23,36 @@
                   <table class="table table-user-information" >
                     <tbody>
                       <tr>
-                        <td><b>Username:</b> &nbsp &nbsp &nbsp{{ $docs->userInfo->username }}</td>
-
-                        <td><b>Email:</b>  &nbsp &nbsp &nbsp{{$docs->userInfo->email}}</td>
+                        <td><b>Username:</b> &nbsp  {{ $docs->userInfo->username }}</td>
+                        <td><b>Email:</b>  &nbsp {{$docs->userInfo->email}}</td>
                       </tr>
 
                       <tr>
-                        <td><b>Date of Birth:</b> &nbsp &nbsp &nbsp {{ $docs->userInfo->birthdate }}</td>
-                        <td> <b>Gender:</b>{{ $docs->userInfo->sex }}</td>
+                        <td><b>Date of Birth:</b> &nbsp {{ $docs->userInfo->birthdate }}</td>
+                        <td> <b>Gender:</b> &nbsp {{ $docs->userInfo->sex }}</td>
                       </tr>
                        <tr>
-                        <td><b>Phone Number:</b> {{ $docs->userInfo->contact_number }}</td>
-                        <td><b>Specialization:</b> {{ $docs->specialization }}</td>
+                        <td><b>Phone Number:</b> &nbsp  {{ $docs->userInfo->contact_number }}</td>
+                        <td><b>Specialization:</b>  &nbsp  {{ $docs->specialization }}</td>
                         </td>
                         </tr>
                         <tr>
+                        <td><b>Home Address:</b></td>
                       <td>
                         
                         
                                 <p><strong>Subspecialty: </strong>
                              
                       </td>
-                      <td>
-                        
-                        <?= implode(', ', json_decode($docs['subspecialty'], true) ?: [])?><br></p>
-                      </td>
+                      
+                      
                     </tr>
                       <tr>
-                        <td><b>Home Address:</b></td>
                         <td>{{ $docs->userInfo->address }}</td>
-                      </tr>
-                  
-                     
-                         <tr>
-                        <td><b>Clinic:</b></td>
-                        <td>{{ $docs->clinic}}</td>
-                      </tr>
                       
+                      <td><p><?= implode(',<br> ', json_decode($docs['subspecialty'], true) ?: [])?><br></p></td>
+                      </tr>
+                   
                       <tr>
                         <td><b>Clinic Address:</b></td>
                         <td>{{ $docs->clinic_address }}</td>
@@ -68,33 +61,33 @@
                         <td><b>Clinic:</b>{{ $docs->clinic }}</td>
                         <td><b>Clinic Hours:</b>{{ $docs->clinic_hours }}</td>
                       </tr>
-                           <tr>
-                        <td>Clinic Hours:</td>
-                        <td>{{ $docs->clinic_hours }}</td>
-                      </tr>
+                         
                       <!-- medschool -->
                        <tr>
                         <td><b>Med School:</b></td>
-                        <td>{{ $docs->med_school }}</td>
+                       <td><b>Med School year:</td>
                       </tr>
                       <tr>
-                        <td><b>Med School year:</td>
+                        
+                         <td>{{ $docs->med_school }}</td>
                         <td>{{ $docs->med_school_year }}</td>
                       </tr>
                       <tr>
-                        <td><b>Residency:</td>
-                        <td>{{ $docs->residency }}</td>
+                        <td><b>Residency:</b></td>
+                         <td><b>Residency Year:</b></td>
                       </tr>
                            <tr>
-                        <td>Residency Year:</td>
+                           <td>{{ $docs->residency }}</td>
+                       
                         <td>{{ $docs->residency_year }}</td>
                       </tr>
                       <tr>
-                        <td>Training:</td>
-                        <td>{{ $docs->training }}</td>
+                        <td><b>Training:</b></td>
+                       <td><b>Training Year:</b></td>
                       </tr>
                       <tr>
-                        <td>Training Year:</td>
+                        <td>{{ $docs->training }}</td>
+                       
                         <td>{{ $docs->training_year }}</td>
                       </tr>
                       <!-- med school end -->
@@ -109,7 +102,7 @@
                       </td>
                       <td>
                         
-                        <?= implode(', ', json_decode($docs['affiliations'], true) ?: [])?><br></p>
+                        <?= implode(',<br> ', json_decode($docs['affiliations'], true) ?: [])?><br></p>
                       </td>
                     </tr>
                      
