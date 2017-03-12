@@ -64,7 +64,7 @@ class MedicalHistoryController extends Controller
         ]);
 
        // $user ['subspecialty'] = json_encode($input['subspecialty']);
-       return redirect()->route('admin.index');
+       return redirect()->route('patients.index');
     }
 
     /**

@@ -68,7 +68,9 @@ class ManagerRequest extends FormRequest
             'email.required' => 'Please enter your email.',
             'drugstore.required' => 'Please enter your drusgtore.',
             'drugstore_address.required' => 'Please enter your drusgtore address.',
-            'license.required' => 'Please enter your license.'
+            'license.required' => 'Please enter your license.',
+            'email.unique' => 'Email already taken',
+             'username.unique' => 'Taken username.'
         ];
     }
 

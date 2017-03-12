@@ -76,7 +76,9 @@ class PatientRequest extends FormRequest
             'econtact.required' => 'Please enter your emergency contact.',
             'erelationship.required' => 'Please enter your relationship with emergency contact.',
             'enumber.required' => 'Please enter your Emergency person contact number.',
-            'occupation.required' => 'Please enter your occupation.'
+            'occupation.required' => 'Please enter your occupation.',
+            'email.unique' => 'Email already taken',
+             'username.unique' => 'Taken username.'
         ];
     }
 }

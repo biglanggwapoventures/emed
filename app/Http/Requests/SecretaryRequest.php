@@ -64,7 +64,9 @@ class SecretaryRequest extends FormRequest
             'contact_number.required' => 'Please enter your contact number.',
             'address.required' => 'Please enter your home address.',
             'username.required' => 'Please enter your username.',
-            'email.required' => 'Please enter your email.'
+            'email.required' => 'Please enter your email.',
+            'email.unique' => 'Email already taken',
+             'username.unique' => 'Taken username.'
             
         ];
     }

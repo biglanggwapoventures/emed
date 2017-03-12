@@ -35,7 +35,7 @@ class PharmaRequest extends FormRequest
             'contact_number' => 'required',
             'address' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required:unique:users',
+            'email' => 'required|unique:users',
             'drugstore' => 'required',
             'drugstore_address' => 'required',
             'license' => 'required',
@@ -68,7 +68,9 @@ class PharmaRequest extends FormRequest
             'email.required' => 'Please enter your email.',
             'drugstore.required' => 'Please enter your drusgtore.',
             'drugstore_address.required' => 'Please enter your drusgtore address.',
-            'license.required' => 'Please enter your license.'
+            'license.required' => 'Please enter your license.',
+            'email.unique' => 'Email already taken',
+             'username.unique' => 'Taken username.'
         ];
     }
 
