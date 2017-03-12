@@ -16,12 +16,14 @@ class CreatePharmasTable extends Migration
         Schema::create('pharmas', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('manager_id');
             $table->string('license');
             $table->string('drugstore');
             $table->string('drugstore_address');
             $table->timestamps();
            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('manager_id')->references('id')->on('pharmacy_managers')->onDelete('cascade');
         });
     }
 

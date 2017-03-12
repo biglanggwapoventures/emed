@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Pharma extends Model
 {
       protected $fillable = [
-		'drugstore','drugstore_address','license'
+		'drugstore','drugstore_address','license', 'user_id'
 	];
 
 	public function userInfo()
 	{
 		return $this->belongsTo('App\User', 'user_id');
+	}
+
+	public function manager()
+	{
+		return $this->belongsTo('App\PharmacyManager', 'manager_id');
 	}
 }
 

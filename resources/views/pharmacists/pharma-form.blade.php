@@ -12,7 +12,10 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Pharmacy Registration </h4>
 			    	</div>
 			    		<div class="panel-body">
-			    			<form action="{{route ('pharmacists.store')}}" method=POST>
+			    			<form action="{{route ('pharmacists.store')}}" method="POST" enctype="multipart/form-data">
+			    				<img alt="User Pic" src="{{ "/storage/default.jpg" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+								<input type="file" class="upload" name="avatar">
+
 			    				{{ csrf_field() }}
 
 			    				<h4>Personal Information</h4>

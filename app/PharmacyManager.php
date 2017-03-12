@@ -14,4 +14,9 @@ class PharmacyManager extends Model
 	{
 		return $this->belongsTo('App\User', 'user_id');
 	}
+
+	public function pharmacists()
+	{
+		return $this->hasMany('App\Pharma', 'manager_id');
+	}
 }

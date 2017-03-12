@@ -74,7 +74,6 @@ class SecretaryController extends Controller
         // verify if username exists
         $credentials = $request->only(['username']);
 
-
         // assign password: default is firstname+lastname lowercase
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
@@ -82,7 +81,7 @@ class SecretaryController extends Controller
         //save to DB (users)
         $user = User::create($input);
 
-        // save to DB (doctors)       
+        // save to DB (secretaries)       
         $secretary = [
             'attainment' => $request->attainment,
             'user_id' => $user->id
@@ -91,10 +90,10 @@ class SecretaryController extends Controller
         Auth::user()->doctor->secretaries()->create($secretary);
 
         
-       if(Auth::user()->user_type === "DOCTOR")
+       // if(Auth::user()->user_type === "DOCTOR")
             return redirect('/doctor-home');
-        else 
-            return redirect()->route('admin.index');
+        // else 
+        //     return redirect()->route('admin.index');
     }
 
 
