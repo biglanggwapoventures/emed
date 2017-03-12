@@ -66,7 +66,7 @@
 								</div>
 
 							</div>
-							<h4>Vitals</h4>
+							<h4>Stuff</h4>
 							<hr class="third">
 							
 							<div class="row">
@@ -165,7 +165,7 @@
 
 
 
-                 <h4>Education and Training</h4>
+                 <h4>Others</h4>
                     <hr class="third">
                     <div class="row">
                     <div class="col-md-8">
