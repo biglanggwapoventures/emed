@@ -47,6 +47,7 @@ class PatientsController extends Controller
                 'items' => $items
             ]);
         }
+
     }
 
     /**

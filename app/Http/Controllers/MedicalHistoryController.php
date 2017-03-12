@@ -41,30 +41,41 @@ class MedicalHistoryController extends Controller
      */
     public function store(Request $request)
     {
-       $user = User::create($input);
 
-        // save to DB (doctors)       
-        $user->patient()->create([
-            'weight' => $request->weight,
-            'height' => $request->height,
-            'bloodpressure'=> $request->bloodpressure,
-            'temperature' => $request->temperature,
-            'pulserate' => $request->pulserate,
-            'resprate' => $request->resprate,
-            'patientnote' => $request->patientnote,
-            'allergyname' => $request->allergyname,
-            'allergyquestion' => $request->allergyquestion,
-            'pastsakit' => $request->pastsakit,
-            'immunization' => $request->immunization,
-            'surgeryprocedure' => $request->surgeryprocedure,
-            'notes' => $request->notes,
-            'chiefcomplaints' => $request->chiefcomplaints,
-            'medications' => $request->medications
+        $patientId = $request->input('patient_id');
 
-        ]);
+        $rules = [
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric',
+            'bloodpressure' => 'required',
+            'temperature' => 'required|numeric',
+            'pulserate' => 'present',
+            'resprate' => 'present',
+            'patientnote' => 'present',
+            'allergyquestion' => 'required|in:Y,N',
+            'allergyname' => 'present|required_if:allergyquestion,Y',
+            'pastsakit' => 'present',
+            'immunization' => 'present',
+            'surgeryprocedure' => 'present',
+            'notes' => 'required',
+            'chiefcomplaints' => 'required',            
+            'medications' => 'required'
+        ];
 
-       // $user ['subspecialty'] = json_encode($input['subspecialty']);
-       return redirect()->route('patients.index');
+        $this->validate($request, $rules);
+
+        $data = $request->only(array_keys($rules));
+        $data['patient_id'] = $patientId;
+
+        Auth::user()->doctor->consultations()->create($data); 
+
+        return redirect()
+            ->intended(route('patients.show', ['id' => $patientId]))
+            ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'New consultation has been saved successfully!'
+            ]);
+        
     }
 
     /**

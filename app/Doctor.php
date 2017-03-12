@@ -25,4 +25,9 @@ class Doctor extends Model
 		 return $this->hasMany('App\Secretary', 'doctor_id');
 	}
 
+	public function consultations()
+	{
+		return $this->hasMany('App\MedicalHistory', 'doctor_id');
+	}
+
 }
