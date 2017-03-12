@@ -63,7 +63,6 @@ class PharmaController extends Controller
      */
     public function store(PharmaRequest $request)
     {
-
         // get fields for user table
        $input = $request->only([
             'username', 
@@ -86,12 +85,22 @@ class PharmaController extends Controller
         //save to DB (users)
         $user = User::create($input);
 
-        // save to DB (managers)       
-        $user->pharma()->create([
+        // save to DB (pharmas)       
+        $pharmacist = [
             'drugstore' => $request->drugstore,
             'drugstore_address' => $request->drugstore_address,
-            'license' => $request->license
-        ]);
+            'license' => $request->license,
+            'user_id' => $user->id
+        ];
+
+        Auth::user()->manager->pharmacists()->create($pharmacist);
+
+        // save pharmacist's profile picture
+        $path = $request->file('avatar')->store(
+            'avatars/'.$user->id, 'public'
+        );
+        $user->avatar = $path;
+        $user->save();
 
        return redirect()->route('pharmacists.index');
     }
@@ -129,7 +138,7 @@ class PharmaController extends Controller
      */
     public function update(PharmaRequest $request, $id)
     {
-         $pharma = Pharma::find($id);
+        $pharma = Pharma::find($id);
         $pharma->fill($request->only([
             'license' => $request->license,
             'drugstore' => $request->clinic,
@@ -151,7 +160,6 @@ class PharmaController extends Controller
 
         ]));
         $user->save();
-        
 
        return redirect()->route('pharmacists.index');
     }
