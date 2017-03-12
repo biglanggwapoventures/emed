@@ -9,39 +9,27 @@
 				<h1>PATIENTS</h1>
 			</div>
 
-<!--  @if(Auth::check())
-        @if(Auth::user()->user_type === 'ADMIN') -->
-            <form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-      </form>
-<!--         @elseif(Auth::user()->user_type === 'DOCTOR')   -->
+        <div class="col-md-6">
+        		{!! Form::open(['method'=>'GET','url'=>'patients','class'=>'navbar-form navbar-left','role'=>'search']) !!}
+						<div class="input-group custom-search-form">
+							{!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default-sm">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+				{!! Form::close() !!}
+		</div>
+
          <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a> 
-        <form class="navbar-form navbar-right">
+       <!-- <form class="navbar-form navbar-right">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
-        
-<!--  			
-        @elseif(Auth::user()->user_type === 'PATIENT')   
-            @include('partials.patient-navbar')   
-
-        @elseif(Auth::user()->user_type === 'PMANAGER')   
-            @include('partials.manager-navbar')        
-
-        @endif -->
-<!--     @else -->
-      <form class="navbar-form navbar-right">
-         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-      </form> 
-<!--     @endif -->
+        -->
 
 			<table class="table">
 				<thead>

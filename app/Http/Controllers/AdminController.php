@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-// im a slut
 
 	public function index(Request $request)
 	{
