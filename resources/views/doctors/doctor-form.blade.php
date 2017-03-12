@@ -10,48 +10,29 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Doctor Registration </h4>
 			    	</div>
 					<div class="panel-body">
-						<form action="{{route ('doctors.store')}}" method=POST>
-							{{ csrf_field() }}
+							{!! Form::open(['url' => route ('doctors.store'), 'method' => 'POST']) !!}
 							<h4>Personal Information</h4>
 							<hr class="third">
 							<div class="row">
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('firstname') ? 'has-error' : '' }}">
-										<label class="control-label">First Name</label>
-										<span style="color: red">*</span>
-										<input type="text" name="firstname" class="form-control">
-										@if($errors->has('firstname'))
-											<span class="help-block">{{ $errors->first('firstname') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('firstname', 'Firstname') !!}
 								</div>
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('middle_initial') ? 'has-error' : '' }}">
-										<label class="control-label">Middle Initial</label>
-										<span style="color: red">*</span>
-										<input type="text" name="middle_initial" class="form-control">
-										@if($errors->has('middle_initial'))
-											<span class="help-block">{{ $errors->first('middle_initial') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('middle_initial', 'Middle Initial') !!}
 								</div>
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('lastname') ? 'has-error' : '' }}">
-										<label class="control-label">Last Name</label>
-										<span style="color: red">*</span>
-										<input type="text" name="lastname" class="form-control">
-										@if($errors->has('lastname'))
-											<span class="help-block">{{ $errors->first('lastname') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('lastname', 'Lastname') !!}
 								</div>
 								
 							</div>
 							<div class="row">
 								<div class="col-md-4">
-                               <div class="form-group">
+                               <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
                                <label class="control-label">Birthdate <span style="color: red">*</span></label>
                                <input  maxlength="100" name="birthdate" type="date"  class="form-control" style="width: 275px"/>
+                               @if($errors->has('sex'))
+											<span class="help-block">{{ $errors->first('patients') }}</span>
+										@endif
                                 </div>
                                  </div>
                                  <div class="col-md-4">
@@ -69,29 +50,14 @@
 									</div>
 								</div>
 									<div class="col-md-4">
-									<div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">
-										<label class="control-label">Contact Number</label>
-										<span style="color: red">*</span>
-
-										<input type="text" name="contact_number" class="form-control">
-										@if($errors->has('contact_number'))
-											<span class="help-block">{{ $errors->first('contact_number') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('contact_number', 'Contact Number') !!}
 								</div>
 							</div>
 
 							<div class="row">
 								
 								<div class="col-md-6">
-									<div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
-										<label class="control-label">Home Address</label>
-										<span style="color: red">*</span>
-										<input type="text" name="address" class="form-control">
-										@if($errors->has('address'))
-											<span class="help-block">{{ $errors->first('address') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('address', 'Home Address') !!}
 								</div>
 
 							</div>
@@ -101,24 +67,10 @@
 							<div class="row">
 
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
-										<label class="control-label">Username</label>
-										<span style="color: red">*</span>
-										<input type="text" name="username" class="form-control">
-										@if($errors->has('username'))
-											<span class="help-block">{{ $errors->first('username') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('username', 'Username') !!}
 								</div>
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-										<label class="control-label">Email Address</label>
-										<span style="color: red">*</span>
-										<input type="text" name="email" class="form-control">
-										@if($errors->has('email'))
-											<span class="help-block">{{ $errors->first('email') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('email', 'Email') !!}
 								</div>
 								</div>
 								<h4>Licenses</h4>
@@ -126,33 +78,13 @@
 								<div class="row">
 
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
-										<label class="control-label">PRC License Number</label>
-										<span style="color: red">*</span>
-										<input type="text" name="prc" class="form-control">
-										@if($errors->has('prc'))
-											<span class="help-block">{{ $errors->first('prc') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('prc', 'PRC license Number') !!}
 								</div>
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
-										<label class="control-label">PTR Number</label>
-										<span style="color: red">*</span>
-										<input type="text" name="ptr" class="form-control">
-										@if($errors->has('ptr'))
-											<span class="help-block">{{ $errors->first('ptr') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('ptr', 'PTR Number') !!}
 								</div>
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('s2') ? 'has-error' : '' }}">
-										<label class="control-label">S2 Number</label>
-										<input type="text" name="s2" class="form-control">
-										@if($errors->has('s2'))
-											<span class="help-block">{{ $errors->first('s2') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('s2', 'S2 Number') !!}
 								</div>
 							</div>
 
@@ -252,106 +184,19 @@
                     </div>
                     </div>
 
-                 <!--    <div class="col-md-4">
-                    <label class="control-label">Subspecialty</label>
-                        <table data-tag="subspec">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                    	<select class="form-control" name="subspecialty[]" id='groups'>
-											<option value="" selected disabled>ENT Subs</option>
-											<option data-group='ENT'>Head and Neck Surgery</option>
-											<option data-group='ENT'>Otology</option>
-											<option data-group='ENT'>Neurotology</option>
-											<option data-group='ENT'>Thyroid and Parathoid Surgery</option>
-											<option data-group='ENT'>Rhinology</option>
-											<option data-group='ENT'>Facial Plastic Surgery</option>
-											<option data-group='ENT'>Paediatrics</option>
-											<option data-group='ENT'>Laryngology</option>
-										</select>
-										</td>
-                                    <td><a  data-click="remove-line" style="margin-bottom: 10px" class="btn btn-danger btn-sm"><em class="glyphicon glyphicon-remove"></em></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button data-target="subspec" data-click="new-line" type="button" class="btn btn-sm btn-primary btn-create" style="margin-top: 10px"><em class="glyphicon glyphicon-plus" style="margin-right: 5px"></em>Add new line</button>
-                    </div> -->
-
-               <!--       <div class="col-md-4">
-                    <label class="control-label">Subspecialty</label>
-                        <table data-tag="subspec">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                    	<select class="form-control" name="subspecialty[]" id='groups'>
-											<option value="" selected disabled>Pediatric Subs</option>
-											<option data-group='Pediatrics'>Academic Generalist</option>
-											<option data-group='Pediatrics'>Adolescent Medicine</option>
-											<option data-group='Pediatrics'>Allergy and Immunology</option>
- 											<option data-group='Pediatrics'>Child Abuse</option>
-											<option data-group='Pediatrics'>Critical Care</option>
-											<option data-group='Pediatrics'>Dermatology</option>
-											<option data-group='Pediatrics'>Developmental and Behavioral</option>
-											<option data-group='Pediatrics'>Emergency Medicine</option><option>Endocrinology</option>
-											<option data-group='Pediatrics'>Gastroenterology</option>
-											<option data-group='Pediatrics'>Hematology-Oncology</option>
-											<option data-group='Pediatrics'>Hospitalist</option>
-											<option data-group='Pediatrics'>Infectious Diseases</option>
-											<option data-group='Pediatrics'>Neonatology</option>
-											<option data-group='Pediatrics'>Nephrology</option>
-											<option data-group='Pediatrics'>Neurology</option>
-											<option data-group='Pediatrics'>Pulmonary Medicine</option>
-											<option data-group='Pediatrics'>Rheumatology</option>
-										</select>
-										</td>
-                                    <td><a  data-click="remove-line" style="margin-bottom: 10px" class="btn btn-danger btn-sm"><em class="glyphicon glyphicon-remove"></em></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button data-target="subspec" data-click="new-line" type="button" class="btn btn-sm btn-primary btn-create" style="margin-top: 10px"><em class="glyphicon glyphicon-plus" style="margin-right: 5px"></em>Add new line</button>
-                    </div> -->
-
                 
-
-								
-								<!--  -->
-
-
-								
-
-						
 							<h4>Consultation</h4>
 							<hr class="third">
 							<div class="row">
 							<div class="col-md-4">
-									<div class="form-group {{ $errors->has('clinic') ? 'has-error' : '' }}">
-										<label class="control-label">Clinic</label>
-										<span style="color: red">*</span>
-										<input type="text" name="clinic" class="form-control">
-										@if($errors->has('clinic'))
-											<span class="help-block">{{ $errors->first('clinic') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('clinic', 'Clinic') !!}
 								</div>
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('clinic_address') ? 'has-error' : '' }}">
-										<label class="control-label">Clinic Address</label>
-										<input type="text" name="clinic_address" class="form-control">
-										@if($errors->has('clinic_address'))
-											<span class="help-block">{{ $errors->first('clinic_address') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('clinic_address', 'Clinic Address:') !!}
 								</div>
 							
 								<div class="col-md-4">
-									<div class="form-group {{ $errors->has('clinic_hours') ? 'has-error' : '' }}">
-										<label class="control-label">Clinic hours</label>
-										<input type="text" name="clinic_hours" class="form-control">
-
-										@if($errors->has('clinic_hours'))
-											<span class="help-block">{{ $errors->first('clinic_hours') }}</span>
-										@endif
-									</div>
+									{!! Form::bsText('clinic_hours', 'Clinic Hours:') !!}
 								</div>
 							</div>
 <!-- trainging -->
@@ -362,23 +207,11 @@
                     <hr class="third">
                     <div class="row">
                     <div class="col-md-8">
-                        <div class="form-group {{ $errors->has('med_school') ? 'has-error' : '' }}">
-                            <label class="control-label">Medical School</label>
-                            <input  maxlength="100" type="text" name="med_school"  class="form-control"/>
-                            @if($errors->has('med_school'))
-											<span class="help-block">{{ $errors->first('med_school') }}</span>
-							@endif
-                        </div>
+                        {!! Form::bsText('med_school', 'Medical School') !!}
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group {{ $errors->has('med_school_year') ? 'has-error' : '' }}">
-                            <label class="control-label">Year Completed</label>
-                            <input  maxlength="100" type="text" name="med_school_year"  class="form-control"/>
-                            @if($errors->has('med_school_year'))
-							<span class="help-block">{{ $errors->first('med_school_year') }}</span>
-							@endif
-                        </div>
+                        {!! Form::bsText('med_school_year', 'Year Completed') !!}
                     </div>
                 </div>
               
@@ -386,45 +219,21 @@
                 <div class="row">
                 
                     <div class="col-md-8">
-                         <div class="form-group {{ $errors->has('residency') ? 'has-error' : '' }}">
-                            <label class="control-label">Residency</label>
-                            <input  maxlength="100" type="text" name="residency"  class="form-control"/>
-                        </div>
-                        @if($errors->has('residency'))
-											<span class="help-block">{{ $errors->first('residency') }}</span>
-						@endif
+                         {!! Form::bsText('residency', 'Residency') !!}
                     </div>
 
                     <div class="col-md-4">
-                        < <div class="form-group {{ $errors->has('residency_year') ? 'has-error' : '' }}">
-                            <label class="control-label">Year Completed</label>
-                            <input  maxlength="100" type="text" name="residency_year"  class="form-control"/>
-                            @if($errors->has('residency_year'))
-											<span class="help-block">{{ $errors->first('residency_year') }}</span>
-						@endif
-                        </div>
+                         {!! Form::bsText('residency_year', 'Year Completed') !!}
                     </div>
                      </div>
 
                     <div class="row">
                     <div class="col-md-8">
-                         <div class="form-group {{ $errors->has('med_school') ? 'has-error' : '' }}">
-                            <label class="control-label">Fellowship Training</label>
-                            <input  maxlength="100" type="text" name="training"  class="form-control"/>
-                            @if($errors->has('med_school'))
-											<span class="help-block">{{ $errors->first('med_school') }}</span>
-						@endif
-                        </div>
+                        {!! Form::bsText('training', 'Fellowship Training') !!}
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group {{ $errors->has('training_year') ? 'has-error' : '' }}">
-                            <label class="control-label">Year Completed</label>
-                            <input  maxlength="100" type="text" name="training_year"  class="form-control"/>
-                             @if($errors->has('training_year'))
-											<span class="help-block">{{ $errors->first('training_year') }}</span>
-						@endif
-                        </div>
+                      {!! Form::bsText('training_year', 'Year completed') !!}
                     </div>
                    </div>
                <!-- Closing div for Education and Training -->
