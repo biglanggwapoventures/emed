@@ -37,22 +37,6 @@
                 <h3>Headache and shit stuff lyk dat</h3>
                 <p>Mother fuvkcing peacce of shit fvk y u no commit.</p>
             </div>
-            <!--  -->
-            <div id="menu2" class="tab-pane fade">
-                <h3>Consuulttion</h3>
-                <a href="{{ route('consultations.index') }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"> Consultation</a><br>
-
-                <table class="table">
-                    <thead>
-                        <tr class="active">
-                            <th>Consultation Date</th>
-                            <th>Clinic</th>
-                            <th>Chief Complaints</th>
-                            <th>Manage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-    </div>
     <div id="menu1" class="tab-pane fade">
       <h3>Headache and shit stuff lyk dat</h3>
        <p>Mother fuvkcing peacce of shit fvk y u no commit.</p>
