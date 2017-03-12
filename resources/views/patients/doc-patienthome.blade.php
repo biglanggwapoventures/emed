@@ -2,6 +2,15 @@
 
 @section('body')
 <div class="container-fluid"><br><br><br>
+@if(session('ACTION_RESULT'))
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+        {{ session('ACTION_RESULT')['message'] }}
+      </div>
+    </div>
+  </div>
+@endif
 <div class="container">
         <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#profile">Consultation</a></li>
@@ -34,7 +43,7 @@
     <!--  -->
     <div id="menu2" class="tab-pane fade">
       <h3>Consuulttion</h3>
-       <a href="{{ route('consultations.index') }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"> Consultation</a><br>
+       <a href="{{ route('consultations.index', ['patient_id' =>  $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Consultation</a><br>
   
       <table class="table">
         <thead>

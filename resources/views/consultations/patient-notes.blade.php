@@ -10,7 +10,7 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Medical Notes</h4>
 			    	</div>
 					<div class="panel-body">
-						{!! Form::open(['url' => route ('consultations.store'), 'method' => 'POST']) !!}
+						{!! Form::open(['url' => route('consultations.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
 							<h4>Vitals</h4>
 							<hr class="third">
 							
@@ -20,17 +20,17 @@
 								</div>
 								
                                  <div class="col-md-4">
-									{!! Form::bsText('weight', 'Height') !!}
+									{!! Form::bsText('height', 'Height') !!}
 								</div>
 								 <div class="col-md-4">
-									{!! Form::bsText('bloodpressure', 'Bloodpressure') !!}
+									{!! Form::bsText('bloodpressure', 'Blood Pressure') !!}
 								</div>
 							</div>
 
 							<div class="row">
 								
 								<div class="col-md-6">
-									{!! Form::bsText('temperature', 'Temeprature') !!}
+									{!! Form::bsText('temperature', 'Temeperature') !!}
 								</div>
 
 							</div>
@@ -39,24 +39,25 @@
 							
 							<div class="row">
 
-								<div class="col-md-4">
-									{!! Form::bsText('pulserate', 'Pulserate') !!}
-								</div>
-								<div class="col-md-4">
-									{!! Form::bsText('resprate', 'Respiratory rate') !!}
-								</div>
+									<div class="col-md-4">
+										{!! Form::bsText('pulserate', 'Pulse Rate') !!}
+									</div>
+									<div class="col-md-4">
+										{!! Form::bsText('resprate', 'Respiratory Rate') !!}
+									</div>
+
+
+									<div class="col-md-4">
+										{!! Form::bsText('patientnote', 'Patient Notes') !!}
+									</div>
 								</div>
 								
 								<div class="row">
-
-								<div class="col-md-4">
-									{!! Form::bsText('patientnote', 'Patient Note') !!}
+								<div class="col-md-3 text-center">
+									{!! Form::bsRadio('allergyquestion', 'Do you have allergies?', ['Y' => 'Yes', 'N' => 'No']) !!}
 								</div>
 								<div class="col-md-4">
-									{!! Form::bsText('allergyname', 'Allergyname') !!}
-								</div>
-								<div class="col-md-4">
-									{!! Form::bsText('allergyquestion', 'Do you have allergies?') !!}
+									{!! Form::bsText('allergyname', 'Allergy Name') !!}
 								</div>
 							</div>
 
@@ -65,7 +66,7 @@
 							<hr class="third">
 							<div class="row">
 							<div class="col-md-4">
-									{!! Form::bsText('pastsakit', 'Past disease') !!}
+									{!! Form::bsText('pastsakit', 'Past Disease') !!}
 								</div>
 								<div class="col-md-4">
 									{!! Form::bsText('immunization', 'Immunizations') !!}
@@ -104,7 +105,7 @@
 							</div> <!-- end sa panelbody -->
 							
 							<button type="submit" class="btn btn-primary">Register</button>
-						</form>
+						{!! Form::close() !!}
 					</div>
 				</div>
 			</div>
