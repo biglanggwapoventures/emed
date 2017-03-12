@@ -9,7 +9,7 @@
 			    	<div class="panel-heading">
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor:  <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
 			    	</div>
-					<div class="panel-body"
+					<div class="panel-body">
 					<div class="col-md-9" style="margin-left: 40%"">
 					<img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                 {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
@@ -146,7 +146,7 @@
 									<div class="form-group {{ $errors->has('specialization') ? 'has-error' : '' }}">
 										<label class="control-label">Specialization</label>
 										<span style="color: red">*</span>
-							   			{!! Form::text('specialization', $data->specialization, ['class' => 'form-control']) !!}
+							   			{!! Form::text('specialization', $data->specialization, ['class' => 'form-control','readonly' => 'true']) !!}
 										@if($errors->has('specialization'))
 											<span class="help-block">{{ $errors->first('specialization') }}</span>
 										@endif
@@ -156,13 +156,22 @@
 									<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 										<label class="control-label">Title</label>
 										<span style="color: red">*</span>
-										{!! Form::text('title', $data->title, ['class' => 'form-control']) !!}
+										{!! Form::text('title', $data->title, ['class' => 'form-control','readonly' => 'true']) !!}
 										@if($errors->has('title'))
 											<span class="help-block">{{ $errors->first('title') }}</span>
 										@endif
 									</div>
 								</div>
-								
+								<div class="col-md-4">
+									<div class="form-group {{ $errors->has('subspecialty') ? 'has-error' : '' }}">
+										<label class="control-label">Sub Specialty</label>
+										<span style="color: red">*</span>
+							   			{!! Form::text('subspecialty', $data->subspecialty, ['class' => 'form-control','readonly' => 'true']) !!}
+										@if($errors->has('subspecialty'))
+											<span class="help-block">{{ $errors->first('subspecialty') }}</span>
+										@endif
+									</div>
+								</div>
 							</div>
 							<h4>Consultation</h4>
 							<hr class="third">

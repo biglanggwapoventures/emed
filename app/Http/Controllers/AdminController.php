@@ -26,6 +26,7 @@ class AdminController extends Controller
         return view('admin.adminhome', [
         	'items' => $items->paginate(7)
     	]);
+
 	}
 
 	// public function edit($id)

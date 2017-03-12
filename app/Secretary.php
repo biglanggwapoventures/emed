@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Secretary extends Model
 {
  protected $fillable = [
-		'attainment'
+		'attainment', 'user_id'
 	];
 
 	public function userInfo()
@@ -17,7 +17,7 @@ class Secretary extends Model
 
 	public function doctor()
 	{
-		 return $this->belongsTo('App\Doctor', 'id');
+		 return $this->belongsTo('App\Doctor', 'doctor_id');
 	}
 
 }

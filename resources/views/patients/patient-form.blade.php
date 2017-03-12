@@ -10,7 +10,10 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Patient Registration</h4>
 			    	</div>
 					<div class="panel-body">
-						<form action="{{route ('patients.store')}}" method=POST>
+						<form action="{{route ('patients.store')}}" method="POST" enctype="multipart/form-data">
+							<img alt="User Pic" src="{{ "/storage/default.jpg" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+							<input type="file" class="upload" name="avatar">
+
 							{{ csrf_field() }}
 							<h4>Personal Information</h4>
 							<hr class="third">
@@ -27,7 +30,7 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group {{ $errors->has('middle_initial') ? 'has-error' : '' }}">
-										<label class="control-label">Middle Name</label>
+										<label class="control-label">Middle Initial</label>
 										<span style="color: red">*</span>
 										<input type="text" name="middle_initial" class="form-control">
 										@if($errors->has('middle_initial'))
@@ -59,6 +62,7 @@
 										<label class="control-label">Gender</label>
 										<span style="color: red">*</span>
 										<select class="form-control" name="sex">
+										<option value="" selected disabled>Select</option>
 											<option>Male</option>
 											<option>Female</option>
 										</select>
@@ -101,6 +105,7 @@
 										<label class="control-label">Civil Status</label>
 										<span style="color: red">*</span>
 										<select class="form-control" name="civilstatus">
+										<option value="" selected disabled>Select</option>
 											<option>Single</option>
 											<option>Married</option>
 											<option>Widowed</option>
@@ -116,6 +121,7 @@
 										<label class="control-label">Bloodtype</label>
 										<span style="color: red">*</span>
 										<select class="form-control" name="bloodtype">
+										<option value="" selected disabled>Select</option>
 											<option>A+</option>
 											<option>A-</option>
 											<option>B+</option>

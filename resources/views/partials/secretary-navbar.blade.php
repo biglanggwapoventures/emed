@@ -16,13 +16,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav-user">
         <li class="dropdown">
-          <a href="/doctor-home">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
+          <a href="/secretary-home">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="{{ url('/secretary-home') }}">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-            <li class="divider"></li>
-           <li><a href="{{ route('doctors.create') }}">Add Patient<span class="glyphicon glyphicon-heart pull-right"></span></a></li> 
+            <li><a href="{{ route('patients.create' )}}">Add Patient<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
           <li><a href="/secretary">Tap RFID<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
@@ -30,16 +28,6 @@
           </ul>
         </li>
       </ul>
-
-     <!--  <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="{{ url('/logout') }}">Logout</a></li>
-            </ul>
-          </li> -->
         
       </ul>
     </div><!-- /.navbar-collapse -->

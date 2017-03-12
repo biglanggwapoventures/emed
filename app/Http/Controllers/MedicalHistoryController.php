@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\DoctorRequest;
+use Validator;
+use App\Doctor;
+use App\User;
+use App\Patient;
+use Auth;
 
 class MedicalHistoryController extends Controller
 {

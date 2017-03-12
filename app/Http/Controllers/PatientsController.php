@@ -7,7 +7,6 @@ use App\Patient;
 use App\Http\Requests\PatientRequest;
 use App\User;
 use App\Doctor;
-// use Illuminate\Support\Facades\DB;
 use Auth;
 
 class PatientsController extends Controller
@@ -42,7 +41,6 @@ class PatientsController extends Controller
             'patients' => $patients->paginate(7)
             ]);
 
-      
     }
 
 
@@ -70,7 +68,8 @@ class PatientsController extends Controller
                 'lastname' => 'required',
                 'username' => 'required|unique:users',
                 'address' => 'required',
-                'birthdate' => 'required|date'
+                'birthdate' => 'required|date',
+                'avatar' => 'image|max:2048'
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'lastname.required' => 'Please enter your last name.',
@@ -113,10 +112,17 @@ class PatientsController extends Controller
             'enumber'=> $request->enumber,
             'nationality'=> $request->nationality,
             'occupation'=> $request->occupation
-
         ]);
 
-       $patient->doctors()->attach(Auth::user()->doctor->id);
+        // connect patient to doctor
+        $patient->doctors()->attach(Auth::user()->doctor->id);
+
+        // save patient's profile picture
+        $path = $request->file('avatar')->store(
+            'avatars/'.$user->id, 'public'
+        );
+        $user->avatar = $path;
+        $user->save();
 
        return redirect()->route('patients.index');
     }

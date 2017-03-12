@@ -2,12 +2,14 @@
 
 @section('body')
 
+
+
  <div class="container-fluid">
     	<div class="row-bod">
     		<div class="col-md-9 col-md-offset-1">
     			<div class="panel panel-default">
 			    	<div class="panel-heading">
-			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Pharmacy Registration</h4>
+			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Pharmacy Registration </h4>
 			    	</div>
 			    		<div class="panel-body">
 			    			<form action="{{route ('pharmacists.store')}}" method=POST>
@@ -127,26 +129,22 @@
 			    				<h4>Account Information</h4>
 							<hr class="third">
 			    				<div class="row">
-
-			    					
-
-					    			<div class="col-md-4">
+									<div class="col-md-4">
 					    				<div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-					    				<label class="control-label">Drugstore</label>
-					    				<input type="text" name="drugstore" class="form-control">
-					    				@if($errors->has('drugstore'))
-					    					<span class="help-block">{{ $errors->first('drugstore') }}</span>
-					    				@endif
+					    				<label class="control-label">Drugstore</label>									{!! Form::text('drugstore', $pman->drugstore, ['class' => 'form-control','readonly' => 'true']) !!}
+										@if($errors->has('drugstore'))
+										<span class="help-block">{{ $errors->first('drugstore') }}</span>
+										@endif
 					    				</div>
 					    			</div>
 
 					    			<div class="col-md-4">
 					    				<div class="form-group {{ $errors->has('drugstore_address') ? 'has-error' : '' }}">
 					    				<label class="control-label">Drugstore Address</label>
-					    				<input type="text" name="drugstore_address" class="form-control">
-					    				@if($errors->has('drugstore_address'))
-					    					<span class="help-block">{{ $errors->first('drugstore_address') }}</span>
-					    				@endif
+					    				{!! Form::text('drugstore_address', $pman->drugstore_address, ['class' => 'form-control','readonly' => 'true']) !!}
+										@if($errors->has('drugstore_address'))
+										<span class="help-block">{{ $errors->first('drugstore_address') }}</span>
+										@endif
 					    				</div>
 					    			</div>
 					    		</div>

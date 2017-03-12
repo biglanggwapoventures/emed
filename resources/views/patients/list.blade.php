@@ -23,19 +23,12 @@
 		</div>
 
          <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a> 
-       <!-- <form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-      </form>
-        -->
 
 			<table class="table">
 				<thead>
 					<tr class="active">
-						<th>Name</th>
-						<th>Username</th>
+						<th>Last Name</th>
+						<th>First Name</th>
 						<th>Bloodtype</th>
 						<th>Manage</th>
 					</tr>
@@ -44,8 +37,8 @@
 				
 					@forelse($patients AS $patient)
 						<tr>
-							<td>{{ $patient->userInfo->fullname() }}</td>
-							<td>{{ $patient->userInfo->username }}</td>
+							<td>{{ $patient->userInfo->lastname }}</td>
+							<td>{{ $patient->userInfo->firstname }}</td>
 							<td>{{ $patient->bloodtype }}</td>
 							<td>	
 								<form action="{{ route('users.destroy', ['id' => $patient->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">

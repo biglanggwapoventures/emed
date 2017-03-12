@@ -40,7 +40,10 @@ class PharmaController extends Controller
      */
     public function create()
     {
-         return view('pharmacists.pharma-form');
+        $pman = Auth::user()->manager;
+         return view('pharmacists.pharma-form', [
+            'pman' => $pman
+        ]);
     }
 
      public function phlist()
