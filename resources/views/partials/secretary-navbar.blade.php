@@ -22,7 +22,7 @@
             <li class="divider"></li>
             <li><a href="{{ url('/secretary-home') }}">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="{{ route('patients.index') }}">Prescription<span class="badge pull-right"> 42 </span></a></li>
+           <li><a href="{{ route('doctors.create') }}">Add Patient<span class="glyphicon glyphicon-heart pull-right"></span></a></li> 
             <li class="divider"></li>
           <li><a href="/secretary">Tap RFID<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
