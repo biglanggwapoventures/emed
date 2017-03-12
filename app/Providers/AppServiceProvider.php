@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Form::component('bsText', 'components.form.text', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
+        Form::component('bsRadio', 'components.form.radio', ['name', 'label' => null, 'options', 'selected' => null]);
     }
 
     /**
