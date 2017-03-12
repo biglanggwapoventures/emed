@@ -16,7 +16,7 @@
 							
 							<div class="row">
 							  <div class="col-md-4">
-							  		{!! Form::bsText('weight', 'Weight') !!}
+							  		{!! Form::bsText('weight', 'Weight',null,['placeholder'=> 'kgs']) !!}
 								</div>
 								
                                  <div class="col-md-4">

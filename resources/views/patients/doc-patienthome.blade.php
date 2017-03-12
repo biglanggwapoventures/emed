@@ -58,8 +58,9 @@
         <tbody>
         
          
+                    @forelse($items AS $a)
             <tr>
-              <td>9/9/2017</td>
+              <td>{{ $items->created_at }}</td>
               <td>Over there</td>
               <td>Back ache</td>
               <td>  
@@ -71,27 +72,12 @@
               </td>
             </tr>
        
-            <tr>
-              <td colspan="4" class="text-center">No Consultation History</td>
-            </tr>
+            @empty
+                    <tr>
+                        <td colspan="4" class="text-center">No patients recorded</td>
+                    </tr>
+                    @endforelse
       
-
-                        <tr>
-                            <td>9/9/2017</td>
-                            <td>Over there</td>
-                            <td>Back ache</td>
-                            <td>
-
-                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                                <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                                <a href="#" class="btn btn-warning">View Prescription</a>
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="4" class="text-center">No Consultation History</td>
-                        </tr>
 
 
                     </tbody>
