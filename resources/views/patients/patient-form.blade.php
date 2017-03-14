@@ -20,7 +20,7 @@
                 	@endif
                  {!! Form::open(['url' => route ('patients.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                     
-                        <img alt="User Pic" src="{{ " /storage/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+                        <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                         <input type="file" class="upload" name="avatar"> 
                         <h4>Personal Information</h4>
                         <hr class="third">

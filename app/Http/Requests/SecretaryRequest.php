@@ -66,8 +66,7 @@ class SecretaryRequest extends FormRequest
             'username.required' => 'Please enter your username.',
             'email.required' => 'Please enter your email.',
             'email.unique' => 'Email already taken',
-             'username.unique' => 'Taken username.'
-            
+            'username.unique' => 'Taken username.'
         ];
     }
 }

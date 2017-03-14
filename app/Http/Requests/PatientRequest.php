@@ -42,7 +42,8 @@ class PatientRequest extends FormRequest
             'econtact' => 'required',
             'civilstatus' => 'required',
             'nationality' => 'required',
-            'occupation' => 'required'
+            'occupation' => 'required',
+            'avatar' => 'required|image|max:2048'
         ];
 
         if($this->isMethod('post')){
@@ -78,7 +79,8 @@ class PatientRequest extends FormRequest
             'enumber.required' => 'Please enter your Emergency person contact number.',
             'occupation.required' => 'Please enter your occupation.',
             'email.unique' => 'Email already taken',
-             'username.unique' => 'Taken username.'
+            'username.unique' => 'Taken username.',
+            'avatar.required' => 'Please select profile picture.'
         ];
     }
 }
