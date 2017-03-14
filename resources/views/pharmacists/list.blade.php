@@ -6,7 +6,7 @@
             <div class="page-header">
                 <h1>PHARMACISTS</h1>
             </div>
-            <a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacist</a>
+            <a class="btn btn-primary pull-right" href="{{ route('pharmacists.create') }}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacist</a>
             <form class="navbar-form navbar-right">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">

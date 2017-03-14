@@ -121,7 +121,10 @@ class PatientsController extends Controller
         ]);
 
         // connect patient to doctor
-        $patient->doctors()->attach(Auth::user()->secretary->doctor->id);
+        if(Auth::user()->user_type === 'DOCTOR')
+            $patient->doctors()->attach(Auth::user()->doctor->id);
+        else
+            $patient->doctors()->attach(Auth::user()->secretary->doctor->id);
 
         // save patient's profile picture
         $path = $request->file('avatar')->store(
