@@ -21,9 +21,9 @@
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="#">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li><a href="{{ url('/pmanager-home')}}">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="{{ route('pharmacists.create') }}">Add Pharmacists<span class="badge pull-right"> 42 </span></a></li>
+            <li><a href="{{ url('/pharmacists')}}">View Pharmacists<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="#">Transactions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
