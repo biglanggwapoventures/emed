@@ -8,7 +8,12 @@
             </div>
 
             <div class="col-md-6">
+            @if(Auth::user()->user_type === 'DOCTOR')
                 {!! Form::open(['method'=>'GET','url'=>'patients','class'=>'navbar-form navbar-left','role'=>'search']) !!}
+                
+            @elseif(Auth::user()->user_type === 'SECRETARY')
+                {!! Form::open(['method'=>'GET','url'=>'secretary','class'=>'navbar-form navbar-left','role'=>'search']) !!}
+            
                 <div class="input-group custom-search-form">
                     {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
                     <span class="input-group-btn">
@@ -18,6 +23,7 @@
 							</span>
                 </div>
                 {!! Form::close() !!}
+            @endif
             </div>
 
             <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a>
@@ -39,12 +45,28 @@
                         <td>{{ $patient->userInfo->firstname }}</td>
                         <td>{{ $patient->bloodtype }}</td>
                         <td>
+
+                           
+                            
                             <form action="{{ route('users.destroy', ['id' => $patient->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                 {{ csrf_field() }} {{ method_field('DELETE') }}
+
+                                @if(Auth::user()->user_type === "DOCTOR")
                                 <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                @elseif(Auth::user()->user_type === "SECRETARY")
+                                <button type="submit" class="btn btn-danger" disabled><span class="glyphicon glyphicon-trash"></button>
+                                @endif
+                           
+
                                 <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+
+                                @if(Auth::user()->user_type === "DOCTOR")
                                 <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-warning">View Patient</a>
-                            </form>
+                                @elseif(Auth::user()->user_type === "SECRETARY")
+                                <button type="button" class="btn btn-warning" disabled>View Patient</button>
+                                @endif
+                             </form>
+                                                        
                         </td>
                     </tr>
                     @empty

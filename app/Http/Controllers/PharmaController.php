@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pharma;
+use App\PharmacyManager;
 use App\Http\Requests\PharmaRequest;
 use App\User;
 use Auth;
@@ -15,10 +16,12 @@ class PharmaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Pharma::with('userInfo')->get();
-        // dd($items);
+        $search =  $request->input('search');
+        $items = Pharma::where('drugstore', Auth::user()->manager->drugstore)->get();
+
+
         return view('pharmacists.list', [
             'items' => $items
         ]);
