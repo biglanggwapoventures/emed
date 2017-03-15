@@ -53,7 +53,10 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        return view('patients.patient-form');
+        $item = Auth::user()->where('username', 'mdag')->get();
+        return view('patients.patient-form', [
+                'item' => $item
+            ]);
     }
 
     /**
@@ -72,12 +75,13 @@ class PatientsController extends Controller
                 'username' => 'required|unique:users',
                 'address' => 'required',
                 'birthdate' => 'required|date',
-                'avatar' => 'image|max:2048'
+                'avatar' => 'required|image|max:2048'
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'lastname.required' => 'Please enter your last name.',
                 'username.required' => 'Please enter your username.',
                 'address.required' => 'Please enter your address.',
+                'avatar.required' => 'Please select profile picture to upload.'
            ]);
 
         // get fields for user table
@@ -92,7 +96,7 @@ class PatientsController extends Controller
             'contact_number',
             'address',
             'email',
-            'sex'   
+            'sex'
         ]);
 
         // verify if username exists
