@@ -43,8 +43,8 @@
     </div>
     <!--  -->
     <div id="menu2" class="tab-pane fade">
-      <h3>Consuultation</h3>
-       <a href="{{ route('consultations.create', ['patient_id' =>  $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Consultation</a><br>
+      <h3>Consuulttion</h3>
+       <a href="{{ route('consultations.index', ['patient_id' =>  $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Consultation</a><br>
   
       <table class="table">
         <thead>
@@ -58,11 +58,11 @@
         <tbody>
         
          
-                    @forelse($items AS $i)
+                    @forelse($items AS $a)
             <tr>
               <td>{{ $items->created_at }}</td>
               <td>Over there</td>
-              <td>{{ $items->userInfo->firstname }}</td>
+              <td>{{ $items->chiefcomplaints }}</td>
               <td>  
               
                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>

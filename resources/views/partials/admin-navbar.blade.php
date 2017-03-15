@@ -24,8 +24,8 @@
       
 
       <ul class="nav navbar-nav-user">
-       <li class="dropdown" style="width: 100%;">
-          <a href="/admin"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+        <li class="dropdown">
+          <a href="/admin">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
 
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
