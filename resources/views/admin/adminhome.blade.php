@@ -102,7 +102,7 @@
 						                        <td><b>Home Address:</b>&#09;{{ $i->address }}</td>
 						                      </tr>
 						                      <tr>
-						                        <td><b>Emails:</b>&#09;{{ $i->email }}</td>
+						                        <td><b>Email:</b>&#09;{{ $i->email }}</td>
 						                      </tr>
 						                        <td><b>Phone Number:</b>&#09;{{ $i->contact_number }}<br>
 						                        </td>

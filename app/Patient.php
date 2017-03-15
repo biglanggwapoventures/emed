@@ -19,4 +19,9 @@ class Patient extends Model
 	{
 		return $this->belongsToMany('App\Doctor', 'doctor_patient', 'patient_id', 'doctor_id');
 	}
+
+	public function medicalHistory()
+	{
+		return $this->belongsTo('App\MedicalHistory', 'patient_id');
+	}
 }
