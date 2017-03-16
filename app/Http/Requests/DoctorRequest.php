@@ -60,15 +60,7 @@ class DoctorRequest extends FormRequest
             'affiliations' => 'required'
         ];
 
-        if($this->isMethod('post')){
-            $rules['username'] = 'required:unique:users';
-        }else{
-            // dd($this->route('doctor'));
-            $rules['username'] = [
-                'required',
-                 Rule::unique('users')->ignore($this->input('user_id'))
-            ];
-        }
+        
 
         return $rules;
     }

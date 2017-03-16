@@ -173,6 +173,58 @@
                                             <span class="help-block">{{ $errors->first('s2') }}</span> @endif
                                         </div>
                                     </div>
+                                    <h4>Education and Training</h4>
+                    <hr class="third">
+                    <div class="row">
+                        <div class="col-md-8">
+                            {!! Form::bsText('med_school', 'Medical School') !!}
+                        </div>
+
+                        <div class="col-md-4">
+                            {!! Form::bsText('med_school_year', 'Year Completed') !!}
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            {!! Form::bsText('residency', 'Residency') !!}
+                        </div>
+
+                        <div class="col-md-4">
+                            {!! Form::bsText('residency_year', 'Year Completed') !!}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            {!! Form::bsText('training', 'Fellowship Training') !!}
+                        </div>
+
+                        <div class="col-md-4">
+                            {!! Form::bsText('training_year', 'Year completed') !!}
+                        </div>
+                    </div>
+                    <!-- Closing div for Education and Training -->
+                    <!-- end -->
+
+                    <h4>Affiliations and Medical Organizations</h4>
+                    <hr class="third">
+
+                    <div class="col-md-6">
+                        <div class="form-group {{ $errors->has('affiliations') ? 'has-error' : '' }}">
+                            <table data-tag="affil">
+                                <tbody>
+                                    <tr>
+                                        <td><input maxlength="100" type="text" name="affiliations[]" class="form-control" style="width: 375px; margin-right: 10px; margin-bottom: 10px" /></td>
+                                        <td><a data-click="remove-line" style="margin-bottom: 10px" class="btn btn-danger btn-sm"><em class="glyphicon glyphicon-remove"></em></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button data-target="affil" data-click="new-line" type="button" class="btn btn-sm btn-primary btn-create" style="margin-top: 10px"><em class="glyphicon glyphicon-plus" style="margin-right: 5px"></em>Add new line</button>
+                        </div>
+                    </div>
                                 </div>
                                 @elseif(Auth::user()->user_type === 'DOCTOR')
                                 <div class="row">
@@ -196,7 +248,10 @@
                                             <span class="help-block">{{ $errors->first('s2') }}</span> @endif
                                         </div>
                                     </div>
+
                                 </div>
+
+
                                 @endif 
                             @endif
                         <button type="submit" class="btn btn-primary">Update</button> 
