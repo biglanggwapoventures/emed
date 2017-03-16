@@ -148,10 +148,20 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
-        $items = Patient::find($id);
-        return view('patients.patient-home', [
-            'items' => $items
-        ]);
+        if(Auth::user()->user_type === 'DOCTOR')
+        {
+            $patients = Patient::find($id);
+            return view('patients.doc-patienthome', [
+                'patients' => $patients
+            ]);
+        }
+        else if(Auth::user()->user_type === 'PATIENT')
+        {
+            $items = Patient::find($id);
+            return view('patients.patient-home', [
+                'items' => $items
+            ]);
+        }
     }
 
     /**
