@@ -61,14 +61,6 @@
                       <td>{{ $a->doctor->clinic_address }}</td>
                       <td>  
 
-                          <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
-                          {{ csrf_field() }}
-                          {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                          </form>
-
-                          <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-
                           <button 
                           type="button" 
                           class="btn btn-warning btn-default-sm" 
