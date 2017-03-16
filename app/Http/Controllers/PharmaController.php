@@ -66,7 +66,6 @@ class PharmaController extends Controller
      */
     public function store(PharmaRequest $request)
     {
-        // get fields for user table
        $input = $request->only([
             'username', 
             'firstname', 

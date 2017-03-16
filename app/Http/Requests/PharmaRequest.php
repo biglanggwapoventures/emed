@@ -39,17 +39,8 @@ class PharmaRequest extends FormRequest
             'drugstore' => 'required',
             'drugstore_address' => 'required',
             'license' => 'required',
+            'avatar' => 'required|image|max:2048'
         ];
-
-        if($this->isMethod('post')){
-            $rules['username'] = 'required:unique:users';
-        }else{
-            // dd($this->route('doctor'));
-            $rules['username'] = [
-                'required',
-                 Rule::unique('users')->ignore($this->input('user_id'))
-            ];
-        }
 
         return $rules;
     }
@@ -70,7 +61,8 @@ class PharmaRequest extends FormRequest
             'drugstore_address.required' => 'Please enter your drusgtore address.',
             'license.required' => 'Please enter your license.',
             'email.unique' => 'Email already taken',
-             'username.unique' => 'Taken username.'
+            'username.unique' => 'Taken username.',
+            'avatar.required' => 'Please select profile picture.'
         ];
     }
 

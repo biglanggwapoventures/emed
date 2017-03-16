@@ -11,8 +11,10 @@
                 </div>
                 <div class="panel-body">
                 {!! Form::open(['url' => route ('pharmacists.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+
+                        @if($errors->has('avatar')) <div class="alert alert-danger">{{ $errors->first('avatar') }}</div> @endif
                         <img alt="User Pic" src="{{ " /storage/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                        <input type="file" class="upload" name="avatar"> {{ csrf_field() }}
+                        <input type="file" class="upload" name="avatar">
 
                         <h4>Personal Information</h4>
                         <hr class="third">

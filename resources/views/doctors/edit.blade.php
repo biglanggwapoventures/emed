@@ -5,6 +5,9 @@
         <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                @if($errors->count())
+                    {{ json_encode($errors->all()) }}
+                @endif
                     <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
                 </div>
                 <div class="panel-body">
