@@ -5,6 +5,7 @@
         <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                {{ json_encode($errors->all()) }}
                     <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
                 </div>
                 <div class="panel-body">
@@ -269,6 +270,63 @@
                                             <span class="help-block">{{ $errors->first('s2') }}</span> @endif
                                         </div>
                                     </div>
+                                    <hr class="third">
+                    <div class="row">
+                        <div class="col-md-8">
+                            {!! Form::bsText('med_school', 'Medical School', $data->med_school) !!}
+                        </div>
+
+                        <div class="col-md-4">
+                            {!! Form::bsText('med_school_year', 'Year Completed', $data->med_school_year) !!}
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            {!! Form::bsText('residency', 'Residency', $data->residency) !!}
+                        </div>
+
+                        <div class="col-md-4">
+                            {!! Form::bsText('residency_year', 'Year Completed', $data->residency_year) !!}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            {!! Form::bsText('training', 'Fellowship Training', $data->training) !!}
+                        </div>
+
+                        <div class="col-md-4">
+                            {!! Form::bsText('training_year', 'Year completed', $data->training_year) !!}
+                        </div>
+                    </div>
+                    <!-- Closing div for Education and Training -->
+                    <!-- end -->
+
+                    <h4>Affiliations and Medical Organizations</h4>
+                    <hr class="third">
+
+                    <div class="col-md-6">
+                        <div class="form-group {{ $errors->has('affiliations') ? 'has-error' : '' }}">
+                            <table data-tag="affil" class="table table-condensed">
+                                <tbody>
+                                @foreach($data->affiliations AS $af)
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="affiliations[]" value="{{ $af }}" class="form-control">
+                                        </td>
+                                        <td>
+                                            <a data-click="remove-line" style="margin-bottom: 10px" class="btn btn-danger btn-sm"><em class="glyphicon glyphicon-remove"></em></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <button data-target="affil" data-click="new-line" type="button" class="btn btn-sm btn-primary btn-create" style="margin-top: 10px"><em class="glyphicon glyphicon-plus" style="margin-right: 5px"></em>Add new line</button>
+                        </div>
+                    </div>
 
                                 </div>
 

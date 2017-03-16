@@ -46,7 +46,7 @@
                                 <th>Name</th>
                                 <th>Specialization</th>
                                 <th>Address</th>
-                                <th>Manage</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,12 +56,58 @@
                                 <td>{{ $item->specialization }}</td>
                                 <td>{{ $item->clinic_address }}</td>
                                 <td>
-                                    <form action="{{ route('users.destroy', ['id' => $items->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
-                                        {{ csrf_field() }} {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                                        <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                                        <a href="{{ route('doctors.show', ['id' => $items->id]) }}" class="btn btn-warning">View Doctor</a>
-                                    </form>
+                                    <button 
+                                               type="button" 
+                                               class="btn btn-warning btn-default-sm" 
+                                               data-toggle="modal" 
+                                               data-target="#infoModal_{{ $item->id }}">
+                                              <span class="glyphicon glyphicon-info-sign">
+                                    </button>
+                                    <div class="modal fade" id="infoModal_{{ $item->id }}" 
+                                         tabindex="-1" role="dialog" 
+                                         aria-labelledby="favoritesModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" 
+                                              data-dismiss="modal" 
+                                              aria-label="Close">
+                                              <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" 
+                                            id="favoritesModalLabel">{{ $item->userInfo->fullname() }}, {{ $item->title }}</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <table class="table table-user-information">
+                                            <center><img alt="User Pic" src="{{ "storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                                            <tbody>
+                                              <tr>
+                                                <td><b>Clinic:</b>&#09;{{ $item->clinic }}, {{ $item->clinic_address }}</td>
+                                              </tr>
+                                              <tr>
+                                                <td><b>Gender:</b>&#09;{{ $item->userInfo->sex}} </td>
+                                              </tr>
+                                           
+                                                 <tr>
+                                                <tr>
+                                                <td><b>Clinic Hours:</b>&#09;{{ $item->clinic_hours }}</td>
+                                              </tr>
+                                              <tr>
+                                                <td><b>Email:</b>&#09;{{ $item->userInfo->email }}</td>
+                                              </tr>
+                                                <td><b>Phone Number:</b>&#09;{{ $item->userInfo->contact_number }}<br>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td><b>PRC License:</b>&#09;{{ $item->prc }}<br>
+                                                </td>
+                                              </tr>
+                                             
+                                            </tbody>
+                                          </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                             @empty
