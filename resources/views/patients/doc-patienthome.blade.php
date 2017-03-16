@@ -60,7 +60,13 @@
                       <td>{{ $a->doctor->userInfo->fullname() }}</td>
                       <td>{{ $a->doctor->clinic_address }}</td>
                       <td>  
-                          <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+
+                          <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                          </form>
+
                           <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
 
                           <button 
@@ -88,28 +94,28 @@
                               <table class="table table-user-information">
                                 <tbody>
                                   <tr>
-                                    <td><b>Weight:</b>&#09;{{ $patients->userInfo->weight }}</td>
+                                    <td><b>Weight:</b>&#09;{{ $a->weight }}</td>
                                   </tr>
                                   <tr>
-                                    <td><b>Height:</b>&#09;{{ $patients->height }}</td>
+                                    <td><b>Height:</b>&#09;{{ $a->height }}</td>
                                   </tr>
                                   <tr>
-                                    <td><b>Blood Pressure:</b>&#09;{{ $patients->sex}} </td>
+                                    <td><b>Blood Pressure:</b>&#09;{{ $a->bloodpressure}} </td>
                                   </tr>
                                
                                      <tr>
                                     <tr>
-                                    <td><b>Temperature:</b>&#09;{{ $patients->address }}</td>
+                                    <td><b>Temperature:</b>&#09;{{ $a->temperature }}</td>
                                   </tr>
                                   <tr>
-                                    <td><b>Pulse Rate:</b>&#09;{{ $patients->email }}</td>
+                                    <td><b>Pulse Rate:</b>&#09;{{ $a->pulserate }}</td>
                                   </tr>
-                                    <td><b>Respiratory Rate:</b>&#09;{{ $patients->contact_number }}<br>
+                                    <td><b>Respiratory Rate:</b>&#09;{{ $a->resprate }}<br>
                                     </td>
                                      <tr>
-                                    <td><b>Chief Complaints:</b>&#09;{{ $patients->email }}</td>
+                                    <td><b>Chief Complaints:</b>&#09;{{ $a->chiefcomplaints }}</td>
                                   </tr>
-                                    <td><b>Notes:</b>&#09;{{ $patients->email }}</td>
+                                    <td><b>Notes:</b>&#09;{{ $a->notes }}</td>
                                   </tr>
                                  
                                 </tbody>
