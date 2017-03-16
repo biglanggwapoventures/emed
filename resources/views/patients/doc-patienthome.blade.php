@@ -13,9 +13,9 @@
   
   <div class="container">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#profile">Consultation</a></li>
-            <li><a data-toggle="tab" href="#menu1">General Info</a></li>
-            <li><a data-toggle="tab" href="#menu2">Vitals</a></li>
+            <li class="active"><a data-toggle="tab" href="#profile">General Info</a></li>
+            <li><a data-toggle="tab" href="#menu1">Medical Profile</a></li>
+            <li><a data-toggle="tab" href="#menu2">Consultations</a></li>
             <li><a data-toggle="tab" href="#menu3">Prescriptions</a></li>
         </ul>
 
@@ -54,20 +54,83 @@
                   </tr>
                 </thead>
                 <tbody>
-                @forelse($patients->doctors AS $a)
+                @forelse($patients->consultations AS $a)
                     <tr>
                       <td>{{ $a->created_at }}</td>
-                      <td>{{ $a->userInfo->fullname() }}</td>
-                      <td>{{ $a->clinic_address }}</td>
+                      <td>{{ $a->doctor->userInfo->fullname() }}</td>
+                      <td>{{ $a->doctor->clinic_address }}</td>
                       <td>  
                           <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                           <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                          <a href="#" class="btn btn-warning">View </a>
+
+                          <button 
+                          type="button" 
+                          class="btn btn-warning btn-default-sm" 
+                          data-toggle="modal" 
+                          data-target="#infoModal_{{ $patients->id }}">
+                          <span class="glyphicon glyphicon-info-sign">
+                          </button>
+
+                          <div class="modal fade" id="infoModal_{{ $patients->id }}" 
+                          tabindex="-1" role="dialog" 
+                          aria-labelledby="favoritesModalLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" 
+                                  data-dismiss="modal" 
+                                  aria-label="Close">
+                                  <span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" 
+                                  id="favoritesModalLabel">{{ $patients->userInfo->fullname() }}</h4>
+                                </div>
+                            <div class="modal-body">
+                              <table class="table table-user-information">
+                                <tbody>
+                                  <tr>
+                                    <td><b>Weight:</b>&#09;{{ $patients->userInfo->weight }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Height:</b>&#09;{{ $patients->height }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Blood Pressure:</b>&#09;{{ $patients->sex}} </td>
+                                  </tr>
+                               
+                                     <tr>
+                                    <tr>
+                                    <td><b>Temperature:</b>&#09;{{ $patients->address }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Pulse Rate:</b>&#09;{{ $patients->email }}</td>
+                                  </tr>
+                                    <td><b>Respiratory Rate:</b>&#09;{{ $patients->contact_number }}<br>
+                                    </td>
+                                     <tr>
+                                    <td><b>Chief Complaints:</b>&#09;{{ $patients->email }}</td>
+                                  </tr>
+                                    <td><b>Notes:</b>&#09;{{ $patients->email }}</td>
+                                  </tr>
+                                 
+                                </tbody>
+                              </table>
+                            </div>
+                           <div class="modal-footer">
+                            <span class="pull-right">
+                            <button type="button" 
+                             class="btn btn-default" 
+                             data-dismiss="modal">Close</button>
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                       </td>
                     </tr>
                     @empty
                         <tr>
-                          <td colspan="4" class="text-center">No patients recorded</td>
+                          <td colspan="4" class="text-center">No consultations recorded</td>
                         </tr>
                 @endforelse
                 </tbody>
