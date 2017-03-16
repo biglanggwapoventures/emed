@@ -25,9 +25,9 @@ class CreatePrescriptionsTable extends Migration
             $table->string('dosage');
             $table->unsignedInteger('user_id');
              $table->unsignedInteger('patient_id');
-            $table->unsignedInteger('doctor_id');
+            $table->unsignedInteger('consultation_id');
              $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('consultation_id')->references('id')->on('prescriptions');
            
             
            
