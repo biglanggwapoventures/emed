@@ -42,7 +42,14 @@ class PatientRequest extends FormRequest
             'econtact' => 'required',
             'civilstatus' => 'required',
             'nationality' => 'required',
-            'occupation' => 'required'
+            'occupation' => 'required',
+            'allergyname' => 'present',
+            'allergyquestion' => 'present',
+            'allergyname' => 'present',
+            'past_disease' => 'present',
+            'past_surgery' => 'present',
+            'family_history' => 'present',
+            'immunization' => 'present'
         ];
 
         if($this->isMethod('post')){
@@ -78,7 +85,8 @@ class PatientRequest extends FormRequest
             'enumber.required' => 'Please enter your Emergency person contact number.',
             'occupation.required' => 'Please enter your occupation.',
             'email.unique' => 'Email already taken',
-            'username.unique' => 'Taken username.'
+            'username.unique' => 'Taken username.',
+            
         ];
     }
 }

@@ -27,9 +27,17 @@ class CreateMedicalHistoriesTable extends Migration
             $table->string('resprate')->nullable();
             $table->string('notes');
             $table->string('chiefcomplaints');
-            
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('doctor_id')->references('id')->on('doctors');
+
+
+            $table->string('allergyquestion')->nullable();
+            $table->string('allergyname')->nullable();
+            $table->string('past_surgery')->nullable();
+            $table->string('immunization')->nullable();
+            $table->string('past_disease')->nullable();
+            $table->string('family_history')->nullable();
+
 
         });
     }
