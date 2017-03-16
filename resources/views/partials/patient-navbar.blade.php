@@ -19,14 +19,10 @@
         <!-- <li><a href="{{ route('managers.index') }}">Pharmacy Managers</a></li> -->
       </ul>
       <ul class="nav navbar-nav-user">
-        <li class="dropdown">
-          <a href="#">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
+        <li class="dropdown" style="width: 100%;">
+          <a href="{{ url('/patient-home') }}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url('/doctors') }}">My Doctors<span class="badge pull-right"> 1 </span></a></li>
             <li class="divider"></li>
             <li><a href="#">Prescriptions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
