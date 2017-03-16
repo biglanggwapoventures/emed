@@ -25,15 +25,9 @@ class CreateMedicalHistoriesTable extends Migration
             $table->string('temperature');
             $table->string('pulserate')->nullable();
             $table->string('resprate')->nullable();
-            $table->string('patientnote')->nullable();
-            $table->string('allergyname')->nullable();
-            $table->string('allergyquestion');
-            $table->string('pastsakit')->nullable();
-            $table->string('immunization')->nullable();
-            $table->string('surgeryprocedure')->nullable();
             $table->string('notes');
             $table->string('chiefcomplaints');
-            $table->string('medications');
+            
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('doctor_id')->references('id')->on('doctors');
 
