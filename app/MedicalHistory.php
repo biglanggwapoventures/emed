@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MedicalHistory extends Model
 {
     protected $fillable = [
-		'chiefcomplaints','weight','height','bloodpressure','temperature','pulserate','resprate','medications','notes','prescription','allergyname','allergyquestion','pastsakit','immunization','surgeryprocedure','patient_id','doctor_id'
+		'chiefcomplaints','weight','height','bloodpressure','temperature','pulserate','resprate','notes','patient_id','doctor_id'
 	];
 
 	public function userInfo()

@@ -19,27 +19,28 @@
 								</div>
 								
                                  <div class="col-md-4">
-									{!! Form::bsText('height', 'Height') !!}
+									{!! Form::bsText('height', 'Height',null,['placeholder'=> 'cm']) !!}
 								</div>
 								 <div class="col-md-4">
-									{!! Form::bsText('bloodpressure', 'Blood Pressure') !!}
+									{!! Form::bsText('bloodpressure', 'Blood Pressure',null,['placeholder'=> 'mmHg']) !!}
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-6">
-									{!! Form::bsText('temperature', 'Temeperature') !!}
+									{!! Form::bsText('temperature', 'Temperature',null,['placeholder'=> '°C']) !!}
 								</div>
 							</div>
 							<h4>Stuff</h4>
 							<hr class="third">
 							<div class="row">
 									<div class="col-md-4">
-										{!! Form::bsText('pulserate', 'Pulse Rate') !!}
+										{!! Form::bsText('pulserate', 'Pulse Rate',null,['placeholder'=> 'BPM']) !!}
 									</div>
 									<div class="col-md-4">
-										{!! Form::bsText('resprate', 'Respiratory Rate') !!}
+										{!! Form::bsText('resprate', 'Respiratory Rate',null,['placeholder'=> 'CPM']) !!}
 									</div>
+
 									<div class="col-md-4">
 										{!! Form::bsText('patientnote', 'Patient Notes') !!}
 									</div>
@@ -86,6 +87,39 @@
 							</div> <!-- end sa panelbody -->			
 							<button type="submit" class="btn btn-primary">Register</button>
 							{!! Form::close() !!}
+
+
+</div>
+									
+								
+							
+<!-- trainging -->
+
+
+
+                 <h4>Consultation</h4>
+                    <hr class="third">
+                    <div class="row">
+
+                    <div class="col-md-8">
+                        {!! Form::bsText('chiefcomplaints', 'Chief Complaints') !!}
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-md-8">
+                    <strong>Notes:</strong>
+                     {{ Form::textarea('notes', null, ['size' => '80x7'])}}
+                    </div>
+
+                    
+                </div>
+
+							</div> <!-- end sa panelbody -->
+							&nbsp &nbsp
+							<button type="submit" class="btn btn-primary">Submit</button>
+						{!! Form::close() !!}
+
 					</div>
 				</div>
 			</div>

@@ -25,4 +25,8 @@ class Patient extends Model
 		return $this->hasMany('App\MedicalHistory', 'patient_id');
 	}
 
+	public function medicalHistory()
+	{
+		return $this->belongsTo('App\MedicalHistory', 'patient_id');
+	}
 }

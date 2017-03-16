@@ -12,6 +12,7 @@
                     <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
                     <input type="file" name="avatar">
                     <input type="submit" class="btn btn-sm btn-primary"> @elseif(Auth::user()->user_type === 'PATIENT')
+                    @elseif(Auth::user()->user_type === 'SECRETARY')
                     <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"> @endif @endif {!! Form::close() !!} {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
                     <h4>Personal Information</h4>
                     <hr class="third">

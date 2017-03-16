@@ -16,14 +16,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
      
       <ul class="nav navbar-nav-user">
-        <li class="dropdown">
-          <a href="{{ url('/pmanager-home') }}">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
+        <li class="dropdown" style="width: 100%;">
+          <a href="{{ url('/pmanager-home') }}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="#">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li><a href="{{ url('/pmanager-home')}}">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="{{ route('pharmacists.create') }}">Add Pharmacists<span class="badge pull-right"> 42 </span></a></li>
+            <li><a href="{{ url('/pharmacists')}}">View Pharmacists<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="#">Transactions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>

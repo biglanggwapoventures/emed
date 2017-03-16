@@ -132,10 +132,7 @@ class DoctorsController extends Controller
             return view('doctors.edit', [
             'data' => Doctor::with('userInfo')->where('user_id', $id)->first()
         ]);
-        
-
-        
-    }
+      }
 
 
     /**
@@ -178,7 +175,7 @@ class DoctorsController extends Controller
         ]));
         $user->save();
         
-        $docs = Auth::user()->doctor;
+        // $docs = Auth::user()->doctor;
         if(Auth::user()->user_type === "DOCTOR")
             return redirect('/doctor-home');
         else 

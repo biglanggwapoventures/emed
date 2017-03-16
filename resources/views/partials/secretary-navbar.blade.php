@@ -15,14 +15,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav-user">
-        <li class="dropdown">
-          <a href="/secretary-home">{{ Auth::user()->username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
+       <li class="dropdown" style="width: 100%;">
+          <a href="{{ url('/pharma-home') }}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="{{ route('patients.create' )}}">Add Patient<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li><a href="{{ route('patients.index') }}">View Patient<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
-          <li><a href="/secretary">Tap RFID<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li><a href="/secretary">Tap RFID<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>

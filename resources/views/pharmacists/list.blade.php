@@ -6,13 +6,22 @@
             <div class="page-header">
                 <h1>PHARMACISTS</h1>
             </div>
-            <a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacist</a>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+
+            <div class="col-md-6">
+                {!! Form::open(['method'=>'GET','url'=>'pharmacists','class'=>'navbar-form navbar-left','role'=>'search']) !!}
+                <div class="input-group custom-search-form">
+                    {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
+                    <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default-sm">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
                 </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            </form>
+                {!! Form::close() !!}
+            </div>
+
+            <a class="btn btn-primary pull-right" href="{{ route('pharmacists.create') }}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacist</a>
+
             <table class="table">
                 <thead>
                     <tr class="active">

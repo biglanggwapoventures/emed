@@ -7,6 +7,7 @@ use App\Patient;
 use App\Http\Requests\PatientRequest;
 use App\User;
 use App\Doctor;
+use App\Secretary;
 use Auth;
 
 class PatientsController extends Controller
@@ -25,29 +26,37 @@ class PatientsController extends Controller
     
     }
     
-    public function index()
+    public function index(Request $request)
     {
-       // $patients = Auth::user()->doctor->patients()->get();
+
         $user = Auth::user();
-        if($user->user_type === 'DOCTOR'){
-            $patients = Auth::user()->doctor->patients()->paginate(6);
+        
+        //$patientsec = Auth::user()->secretary->doctor->patients();
+        $search =  $request->input('search');
+       
+         
+        /*if(trim($search)){
+            $patients->whereHas('userInfo', function($q) USE($search){
+                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+            });
+        }*/
+
+        if($user->user_type === "DOCTOR"){
+            $patients = Auth::user()->doctor->patients();
+
             return view('patients.list', [
-                'patients' => $patients
-            ]);
-        }
-        else if($user->user_type === 'SECRETARY'){
-            $patients = Auth::user()->secretary->doctor->patients()->paginate(6);
-            return view('patients.list', [
-                'patients' => $patients
-            ]);
-        }
-        else{
-        $items = Auth::user()->patient;
-            return view('patients.patient-home', [
-                'items' => $items
+                'patients' => $patients->paginate(6)
             ]);
         }
 
+        else if($user->user_type === "SECRETARY"){
+            $patients = Auth::user()->secretary->doctor->patients();
+
+
+            return view('patients.list', [
+                'patients' => $patients->paginate(6)
+            ]);
+        }
     }
 
     /**
@@ -71,6 +80,7 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
+
         // validate input
         $this->validate($request, [
                 'firstname' => 'required',
@@ -137,7 +147,16 @@ class PatientsController extends Controller
         $user->avatar = $path;
         $user->save();
 
-       return redirect()->route('patients.index');
+        if(Auth::user()->user_type === "DOCTOR")
+        {
+            return redirect()->route('patients.index');
+        }
+
+        else if(Auth::user()->user_type === "SECRETARY")
+        {
+            return redirect()->route('secretary.index');
+        }
+       
     }
 
     /**
@@ -213,7 +232,23 @@ class PatientsController extends Controller
         $user->save();
         
 
-       return redirect()->route('patients.index');
+       if(Auth::user()->user_type === "DOCTOR")
+        {
+            return redirect()->route('patients.index');
+        }
+
+        else if(Auth::user()->user_type === "SECRETARY")
+        {
+            return redirect()->route('secretary.index');
+        }
+
+        else if(Auth::user()->user_type === "PATIENT")
+        {
+            $items = Patient::find($id);
+        return view('patients.patient-home', [
+            'items' => $items
+        ]);
+        }
     }
 
     /**
