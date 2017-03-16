@@ -35,11 +35,6 @@
                 </div>
 
             </div>
-            <div id="menu1" class="tab-pane fade">
-                <h3>Headache and shit stuff lyk dat</h3>
-                <p>Mother fuvkcing peacce of shit fvk y u no commit.</p>
-            </div>
-<<<<<<< HEAD
     
             <div id="menu1" class="tab-pane fade">
               <h3>Headache and shit stuff lyk dat</h3>
@@ -53,55 +48,17 @@
                 <thead>
                   <tr class="active">
                     <th>Consultation Date</th>
+                    <th>Doctor</th>
                     <th>Clinic</th>
-                    <th>Chief Complaints</th>
                     <th>Manage</th>
                   </tr>
                 </thead>
                 <tbody>
-                @forelse($patients AS $a)
-=======
-    <div id="menu1" class="tab-pane fade">
-      <h3>Headache and shit stuff lyk dat</h3>
-       <p>Mother fuvkcing peacce of shit fvk y u no commit.</p>
-    </div>
-    <!--  -->
-    <div id="menu2" class="tab-pane fade">
-      <h3>Consuultation</h3>
-       <a href="{{ route('consultations.create', ['patient_id' =>  $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Consultation</a><br>
-  
-      <table class="table">
-        <thead>
-          <tr class="active">
-            <th>Consultation Date</th>
-            <th>Clinic</th>
-            <th>Chief Complaints</th>
-            <th>Manage</th>
-          </tr>
-        </thead>
-        <tbody>
-        
-         
-                    @forelse($items AS $i)
-            <tr>
-              <td>{{ $items->created_at }}</td>
-              <td>Over there</td>
-              <td>{{ $items->userInfo->firstname }}</td>
-              <td>  
-              
-                   <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                  <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                  <a href="#" class="btn btn-warning">View </a>
-             
-              </td>
-            </tr>
-       
-            @empty
->>>>>>> origin/master
+                @forelse($patients->doctors AS $a)
                     <tr>
-                      <td>{{ $patients->created_at }}</td>
-                      <td>{{ $patients->userInfo->lastname }}</td>
-                      <td>{{ $patients->userInfo->firstname }}</td>
+                      <td>{{ $a->created_at }}</td>
+                      <td>{{ $a->userInfo->fullname() }}</td>
+                      <td>{{ $a->clinic_address }}</td>
                       <td>  
                           <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                           <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
