@@ -59,6 +59,12 @@ class DoctorRequest extends FormRequest
             'subspecialty' => 'required',
             'affiliations' => 'required'
         ];
+        // dd($this->route("doctor"));
+        if($this->route("doctor"))
+        {
+            $user_id = \App\Doctor::find($this->route("doctor"))->user_id;
+            $rules['username'] = 'required|unique:users,username,'.$user_id;
+        }
 
         
 

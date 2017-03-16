@@ -5,10 +5,11 @@
         <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Secretary Registration</h4>
+                    <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update Secretary</h4>
                 </div>
                 <div class="panel-body">
-                    <form action="{{route ('secretary.store')}}" method=POST>
+                    {!! Form::open(['url' => route('secretary.update', ['id' => $data->id]), 'method' => 'PUT']) !!}
+                        {!! Form::hidden('user_id', $data->userInfo->id) !!}
                         {{ csrf_field() }}
 
                         <h4>Personal Information</h4>
@@ -17,7 +18,7 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('firstname') ? 'has-error' : '' }}">
                                     <label class="control-label">First Name</label>
-                                    <input type="text" name="firstname" class="form-control"> @if($errors->has('firstname'))
+                                    {!! Form::text('firstname', $data->userInfo->firstname, ['class' => 'form-control']) !!} @if($errors->has('firstname'))
                                     <span class="help-block">{{ $errors->first('firstname') }}</span> @endif
                                 </div>
                             </div>
@@ -26,7 +27,7 @@
                                 <div class="form-group {{ $errors->has('middle_initial') ? 'has-error' : '' }}">
                                     <label class="control-label">Middle Initial</label>
                                     <span style="color: red">*</span>
-                                    <input type="text" name="middle_initial" class="form-control"> @if($errors->has('middle_initial'))
+                                    {!! Form::text('middle_initial', $data->userInfo->middle_initial, ['class' => 'form-control']) !!} @if($errors->has('middle_initial'))
                                     <span class="help-block">{{ $errors->first('middle_initial') }}</span> @endif
                                 </div>
                             </div>
@@ -34,7 +35,7 @@
                                 <div class="form-group {{ $errors->has('lastname') ? 'has-error' : '' }}">
                                     <label class="control-label">Last Name</label>
                                     <span style="color: red">*</span>
-                                    <input type="text" name="lastname" class="form-control"> @if($errors->has('lastname'))
+                                    {!! Form::text('lastname', $data->userInfo->lastname, ['class' => 'form-control']) !!} @if($errors->has('lastname'))
                                     <span class="help-block">{{ $errors->first('lastname') }}</span> @endif
                                 </div>
                             </div>
@@ -56,13 +57,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" />
+                                    {!! Form::date('birthdate', $data->userInfo->birthdate, ['class' => 'form-control'], ['maxlength' => 100]) !!}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">
                                     <label class="control-label">Contact No.</label>
-                                    <input type="text" name="contact_number" class="form-control"> @if($errors->has('contact_number'))
+                                    {!! Form::text('contact_number', $data->userInfo->contact_number, ['class' => 'form-control']) !!} @if($errors->has('contact_number'))
                                     <span class="help-block">{{ $errors->first('contact_number') }}</span> @endif
                                 </div>
                             </div>
@@ -71,7 +72,7 @@
                                 <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                                     <label class="control-label">Home Address</label>
                                     <span style="color: red">*</span>
-                                    <input type="text" name="address" class="form-control"> @if($errors->has('address'))
+                                    {!! Form::text('address', $data->userInfo->address, ['class' => 'form-control']) !!} @if($errors->has('address'))
                                     <span class="help-block">{{ $errors->first('address') }}</span> @endif
                                 </div>
                             </div>
@@ -82,14 +83,14 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
                                     <label class="control-label">Username</label>
-                                    <input type="text" name="username" class="form-control"> @if($errors->has('username'))
+                                    {!! Form::text('username', $data->userInfo->username, ['class' => 'form-control']) !!} @if($errors->has('username'))
                                     <span class="help-block">{{ $errors->first('username') }}</span> @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                                     <label class="control-label">Email</label>
-                                    <input type="text" name="email" class="form-control"> @if($errors->has('email'))
+                                    {!! Form::text('email', $data->userInfo->email, ['class' => 'form-control']) !!} @if($errors->has('email'))
                                     <span class="help-block">{{ $errors->first('email') }}</span> @endif
                                 </div>
                             </div>
@@ -107,12 +108,12 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('attainment') ? 'has-error' : '' }}">
                                     <label class="control-label">Attainment</label>
-                                    <input type="text" name="attainment" class="form-control"> @if($errors->has('attainment'))
+                                    {!! Form::text('attainment', $data->attainment, ['class' => 'form-control']) !!} @if($errors->has('attainment'))
                                     <span class="help-block">{{ $errors->first('attainment') }}</span> @endif
                                 </div>
                             </div>
 
-                            <!-- <div class="col-md-4">
+                           <!--  <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
                                     <label class="control-label">License</label>
                                     <input type="text" name="license" class="form-control"> @if($errors->has('license'))
@@ -132,7 +133,8 @@
                   @endif
                   </div>-->
 
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        {!! Form::close() !!}
                 </div>
             </div>
         </div>

@@ -128,11 +128,11 @@ class ManagersController extends Controller
     public function update(ManagerRequest $request, $id)
     {
          $manager = PharmacyManager::find($id);
-        $manager->fill($request->only([
+        $manager->fill([
             'license' => $request->license,
             'drugstore' => $request->clinic,
             'drugstore_address'=> $request->clinic_address,
-        ]));
+        ]);
         $manager->save();
 
         $user = User::find($manager->user_id);

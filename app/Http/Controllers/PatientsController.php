@@ -206,14 +206,14 @@ class PatientsController extends Controller
     public function update(PatientRequest $request, $id)
     {
        $patient = Patient::find($id);
-        $patient->fill($request->only([
+        $patient->fill([
             'bloodtype' => $request->bloodtype,
             'nationality' => $request->nationality,
             'civilstatus'=> $request->civilstatus,
             'erelationship' => $request->erelationship,
             'econtact'=> $request->econtact,
             'enumber'=> $request->enumber
-        ]));
+        ]);
         $patient->save();
 
         $user = User::find($patient->user_id);

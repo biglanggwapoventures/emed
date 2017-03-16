@@ -131,7 +131,7 @@ class SecretaryController extends Controller
     public function edit($id)
     {
         return view('secretary.edit', [
-            'data' => Secretary::with('userInfo')->where('user_id', $id)->first()
+            'data' => Secretary::with('userInfo')->where('id', $id)->first()
         ]);
     }
 
@@ -148,9 +148,9 @@ class SecretaryController extends Controller
 
         $secretary = Secretary::find($id);
         $secretary->fill($request->only([
-            'secretary' => $request->secretary
+            'attainment' => $request->attainment
         ]));
-        $doctor->save();
+        $secretary->save();
 
         $user = User::find($secretary->user_id);
         $user->fill($request->only([
@@ -168,7 +168,7 @@ class SecretaryController extends Controller
         $user->save();
         
 
-       return redirect()->route('doctors.index');
+       return redirect()->route('secretary.index');
     }
 
 

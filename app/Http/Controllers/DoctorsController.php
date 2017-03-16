@@ -92,8 +92,8 @@ class DoctorsController extends Controller
             'prc' => $request->prc,
             's2' => $request->s2,
             'title' => $request->title,
-            'subspecialty' => json_encode($request->subspecialty),
-            'affiliations' => json_encode($request->affiliations),
+            'subspecialty' => $request->subspecialty,
+            'affiliations' => $request->affiliations,
             'med_school' => $request->med_school,
             'med_school_year' => $request->med_school_year,
             'residency' => $request->residency,
@@ -145,9 +145,10 @@ class DoctorsController extends Controller
     public function update(DoctorRequest $request, $id)
     {
         // get fields for user table
+        // dd($request->all());
 
         $doctor = Doctor::find($id);
-        $doctor->fill($request->only([
+        $doctor->fill([
             'specialization' => $request->specialization,
             'title' => $request->title,
             'clinic' => $request->clinic,
@@ -156,8 +157,9 @@ class DoctorsController extends Controller
             'prc' => $request->prc,
             'ptr' => $request->ptr,
             's2' => $request->s2,
-             'subspecialty' => $request->subspecialty
-        ]));
+            'subspecialty' => $request->input('subspecialty'),
+            'affiliations' => $request->input('affiliations')
+        ]);
 
         $doctor->save();
 
