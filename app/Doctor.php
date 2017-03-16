@@ -10,6 +10,11 @@ class Doctor extends Model
 		'specialization','clinic','clinic_address','clinic_hours','ptr','prc','s2','title','subspecialty','med_school','med_school_year','residency','residency_year','training','training_year','affiliations'
 	];
 
+	protected $casts = [
+		'affiliations' => "array",
+		'subspecialty' => "array"
+	];
+
 	public function userInfo()
 	{
 		return $this->belongsTo('App\User', 'user_id');

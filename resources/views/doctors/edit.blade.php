@@ -5,9 +5,6 @@
         <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                @if($errors->count())
-                    {{ json_encode($errors->all()) }}
-                @endif
                     <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
                 </div>
                 <div class="panel-body">
@@ -116,11 +113,26 @@
                                         <span class="help-block">{{ $errors->first('title') }}</span> @endif
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group {{ $errors->has('subspecialty') ? 'has-error' : '' }}">
-                                        <label class="control-label">Sub Specialty</label>
-                                        <span style="color: red">*</span> {!! Form::text('subspecialty', $data->subspecialty, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('subspecialty'))
-                                        <span class="help-block">{{ $errors->first('subspecialty') }}</span> @endif
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->has('affiliations') ? 'has-error' : '' }}">
+                                        <label class="control-label">Subspecialty</label>
+                                        <table data-tag="affil" class="table table-condensed">
+                                            <tbody>
+                                            @foreach($data->subspecialty AS $af)
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" name="subspecialty[]" value="{{ $af }}" class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <a data-click="remove-line" style="margin-bottom: 10px" class="btn btn-danger btn-sm"><em class="glyphicon glyphicon-remove"></em></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                        <button data-target="affil" data-click="new-line" type="button" class="btn btn-sm btn-primary btn-create" style="margin-top: 10px"><em class="glyphicon glyphicon-plus" style="margin-right: 5px"></em>Add new line</button>
                                     </div>
                                 </div>
                             </div>
@@ -177,11 +189,11 @@
                     <hr class="third">
                     <div class="row">
                         <div class="col-md-8">
-                            {!! Form::bsText('med_school', 'Medical School') !!}
+                            {!! Form::bsText('med_school', 'Medical School', $data->med_school) !!}
                         </div>
 
                         <div class="col-md-4">
-                            {!! Form::bsText('med_school_year', 'Year Completed') !!}
+                            {!! Form::bsText('med_school_year', 'Year Completed', $data->med_school_year) !!}
                         </div>
                     </div>
 
@@ -189,21 +201,21 @@
                     <div class="row">
 
                         <div class="col-md-8">
-                            {!! Form::bsText('residency', 'Residency') !!}
+                            {!! Form::bsText('residency', 'Residency', $data->residency) !!}
                         </div>
 
                         <div class="col-md-4">
-                            {!! Form::bsText('residency_year', 'Year Completed') !!}
+                            {!! Form::bsText('residency_year', 'Year Completed', $data->residency_year) !!}
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-8">
-                            {!! Form::bsText('training', 'Fellowship Training') !!}
+                            {!! Form::bsText('training', 'Fellowship Training', $data->training) !!}
                         </div>
 
                         <div class="col-md-4">
-                            {!! Form::bsText('training_year', 'Year completed') !!}
+                            {!! Form::bsText('training_year', 'Year completed', $data->training_year) !!}
                         </div>
                     </div>
                     <!-- Closing div for Education and Training -->
@@ -214,12 +226,18 @@
 
                     <div class="col-md-6">
                         <div class="form-group {{ $errors->has('affiliations') ? 'has-error' : '' }}">
-                            <table data-tag="affil">
+                            <table data-tag="affil" class="table table-condensed">
                                 <tbody>
+                                @foreach($data->affiliations AS $af)
                                     <tr>
-                                        <td><input maxlength="100" type="text" name="affiliations[]" class="form-control" style="width: 375px; margin-right: 10px; margin-bottom: 10px" /></td>
-                                        <td><a data-click="remove-line" style="margin-bottom: 10px" class="btn btn-danger btn-sm"><em class="glyphicon glyphicon-remove"></em></a></td>
+                                        <td>
+                                            <input type="text" name="affiliations[]" value="{{ $af }}" class="form-control">
+                                        </td>
+                                        <td>
+                                            <a data-click="remove-line" style="margin-bottom: 10px" class="btn btn-danger btn-sm"><em class="glyphicon glyphicon-remove"></em></a>
+                                        </td>
                                     </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <button data-target="affil" data-click="new-line" type="button" class="btn btn-sm btn-primary btn-create" style="margin-top: 10px"><em class="glyphicon glyphicon-plus" style="margin-right: 5px"></em>Add new line</button>
@@ -231,8 +249,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
                                             <label class="control-label">PRC License Number</label>
-                                            <span style="color: red">*</span> {!! Form::text('prc', $data->prc, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('prc'))
-                                            <span class="help-block">{{ $errors->first('prc') }}</span> @endif
+                                            <span style="color: red">*</span>
+                                             {!! Form::text('prc', $data->prc, ['class' => 'form-control','readonly' => 'true']) !!} 
+                                             @if($errors->has('prc'))
+                                                <span class="help-block">{{ $errors->first('prc') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-4">
