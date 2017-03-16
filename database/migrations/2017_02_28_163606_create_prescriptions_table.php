@@ -16,18 +16,21 @@ class CreatePrescriptionsTable extends Migration
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('brandname');
+            $table->string('brand');
             $table->string('genericname');
             $table->integer('quantity');
             $table->string('frequency');
             $table->date('start');
             $table->date('end');
-            $table->string('pnotes');
             $table->string('dosage');
             $table->unsignedInteger('user_id');
+             $table->unsignedInteger('patient_id');
+            $table->unsignedInteger('doctor_id');
+             $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('doctor_id')->references('id')->on('doctors');
            
             
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+           
         });
     }
 

@@ -51,5 +51,6 @@ Route::resource('pharmacists', 'PharmaController');
 Route::resource('consultations', 'MedicalHistoryController');
 Route::resource('prescription', 'PrescriptionController');
 
-Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')->name('upload.dp');
+// Route::resource('pharmacists', 'PharmaController');
 
+Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')->name('upload.dp');
