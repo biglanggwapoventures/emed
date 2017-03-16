@@ -7,6 +7,7 @@ use App\Patient;
 use App\Http\Requests\PatientRequest;
 use App\User;
 use App\Doctor;
+use App\Secretary;
 use Auth;
 
 class PatientsController extends Controller
@@ -28,22 +29,34 @@ class PatientsController extends Controller
     public function index(Request $request)
     {
 
-        //$user = Auth::user();
-        $patients = Auth::user()->doctor->patients();
+        $user = Auth::user();
+        
         //$patientsec = Auth::user()->secretary->doctor->patients();
         $search =  $request->input('search');
        
          
-        if(trim($search)){
+        /*if(trim($search)){
             $patients->whereHas('userInfo', function($q) USE($search){
                 $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
             });
-        }
+        }*/
+
+        if($user->user_type === "DOCTOR"){
+            $patients = Auth::user()->doctor->patients();
 
             return view('patients.list', [
                 'patients' => $patients->paginate(6)
             ]);
+        }
 
+        else if($user->user_type === "SECRETARY"){
+            $patients = Auth::user()->secretary->doctor->patients();
+
+
+            return view('patients.list', [
+                'patients' => $patients->paginate(6)
+            ]);
+        }
     }
 
     /**

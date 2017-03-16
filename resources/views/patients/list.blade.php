@@ -8,11 +8,8 @@
             </div>
 
             <div class="col-md-6">
-            @if(Auth::user()->user_type === 'DOCTOR')
+
                 {!! Form::open(['method'=>'GET','url'=>'patients','class'=>'navbar-form navbar-left','role'=>'search']) !!}
-                
-            @elseif(Auth::user()->user_type === 'SECRETARY')
-                {!! Form::open(['method'=>'GET','url'=>'secretary','class'=>'navbar-form navbar-left','role'=>'search']) !!}
             
                 <div class="input-group custom-search-form">
                     {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
@@ -23,7 +20,7 @@
 							</span>
                 </div>
                 {!! Form::close() !!}
-            @endif
+            
             </div>
 
             <a class="btn btn-primary pull-right" href="{{ route('patients.create')}}">Add new patient</a>

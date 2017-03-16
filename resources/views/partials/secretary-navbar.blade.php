@@ -20,7 +20,7 @@
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="{{ route('secretary.index') }}">View Patient<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li><a href="{{ route('patients.index') }}">View Patient<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="/secretary">Tap RFID<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>

@@ -51,15 +51,15 @@ class MedicalHistoryController extends Controller
             'temperature' => 'required|numeric',
             'pulserate' => 'present',
             'resprate' => 'present',
-            'patientnote' => 'present',
-            'allergyquestion' => 'required|in:Y,N',
-            'allergyname' => 'present|required_if:allergyquestion,Y',
-            'pastsakit' => 'present',
-            'immunization' => 'present',
-            'surgeryprocedure' => 'present',
+            // 'allergyquestion' => 'required|in:Y,N',
+            // 'allergyname' => 'present|required_if:allergyquestion,Y',
+            // 'pastsakit' => 'present',
+            // 'immunization' => 'present',
+            // 'surgeryprocedure' => 'present',
             'notes' => 'required',
-            'chiefcomplaints' => 'required',            
-            'medications' => 'required'
+            'chiefcomplaints' => 'required'
+            // ,            
+            // 'medications' => 'required'
         ];
 
         $this->validate($request, $rules);

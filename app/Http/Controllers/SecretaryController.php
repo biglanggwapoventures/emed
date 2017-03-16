@@ -32,9 +32,11 @@ class SecretaryController extends Controller
 
     public function index(Request $request)
     {
+
+        $items = Auth::user()->doctor->secretaries()->get();
  
         $search =  $request->input('search');
-        $patients = Auth::user()->secretary->doctor->patients();
+        /*$patients = Auth::user()->secretary->doctor->patients();
         
        
          
@@ -42,10 +44,10 @@ class SecretaryController extends Controller
             $patients->whereHas('userInfo', function($q) USE($search){
                 $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
             });
-        }
+        }*/
 
-            return view('patients.list', [
-                'patients' => $patients->paginate(6)
+            return view('secretary.list', [
+                'items' => $items
             ]);
     }
 

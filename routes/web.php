@@ -49,6 +49,7 @@ Route::resource('patients', 'PatientsController');
 Route::resource('secretary', 'SecretaryController');
 Route::resource('pharmacists', 'PharmaController');
 Route::resource('consultations', 'MedicalHistoryController');
+Route::resource('prescription', 'PrescriptionController');
 
 Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')->name('upload.dp');
 
