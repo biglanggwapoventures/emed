@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-<div onclick="location.href='/secretary'" class="logo"> </div>
+<div onclick="location.href='/secretary-home'" class="logo"> </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -9,14 +9,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/doctor-home') }}">eMED</a>
+      <a class="navbar-brand" href="{{ url('/') }}">eMED</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav-user">
        <li class="dropdown" style="width: 100%;">
-          <a href="{{ url('/pharma-home') }}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+          <a href="{{ url('/secretary-home') }}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
