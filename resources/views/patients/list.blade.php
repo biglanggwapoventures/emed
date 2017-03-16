@@ -56,8 +56,7 @@
                            
 
                                 <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                                <a href="{{ route('consultations.show', ['id' => $patient->id]) }}" class="btn btn-warning">View Patient</a>
-                            </form>
+ 
 
                                 @if(Auth::user()->user_type === "DOCTOR")
                                 <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-warning">View Patient</a>
