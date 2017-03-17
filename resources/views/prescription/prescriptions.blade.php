@@ -13,7 +13,7 @@
 			    		<h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Medical Notes</h4>
 			    	</div>
 					<div class="panel-body  ">
-						{!! Form::open(['url' => route('consultations.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
+						{!! Form::open(['url' => route('prescription.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
 													
 								
 							
@@ -96,7 +96,7 @@
 			    	Flintsones<br>
 			    	Adderall<br>
 					<div class="panel-body  ">
-						{!! Form::open(['url' => route('consultations.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
+						{!! Form::open(['url' => route('prescription.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
 													
 								
 							

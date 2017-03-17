@@ -80,12 +80,6 @@
                       <td>{{ $a->doctor->clinic_address }}</td>
                       <td>  
 
-                         <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
-                          {{ csrf_field() }}
-                          {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                          </form>
-
                               <a href="{{ route('prescription.index', ['patient_id' => $patients->id]) }}"  class="btn btn-info"><span class="glyphicon glyphicon-plus">prescription</a>
                               
                           <button 
