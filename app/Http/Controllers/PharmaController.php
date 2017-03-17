@@ -141,11 +141,11 @@ class PharmaController extends Controller
     public function update(PharmaRequest $request, $id)
     {
         $pharma = Pharma::find($id);
-        $pharma->fill($request->only([
+        $pharma->fill([
             'license' => $request->license,
             'drugstore' => $request->clinic,
             'drugstore_address'=> $request->clinic_address,
-        ]));
+        ]);
         $pharma->save();
 
         $user = User::find($pharma->user_id);

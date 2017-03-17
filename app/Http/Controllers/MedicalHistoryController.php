@@ -8,6 +8,7 @@ use Validator;
 use App\Doctor;
 use App\User;
 use App\Patient;
+use App\MedicalHistory;
 use Auth;
 
 class MedicalHistoryController extends Controller
@@ -121,5 +122,7 @@ class MedicalHistoryController extends Controller
     public function destroy($id)
     {
         //
+        MedicalHistory::destroy($id);
+        return redirect()->back();
     }
 }

@@ -46,7 +46,7 @@
 
                                 <td>
                                     <p>
-                                        <?= implode(',<br> ', json_decode($docs['subspecialty'], true) ?: [])?><br></p>
+                                        {{ implode(',<br> ', $docs->subspecialty) }}<br></p>
                                 </td>
                             </tr>
 
@@ -99,7 +99,7 @@
                                 </td>
                                 <td>
 
-                                    <?= implode(',<br> ', json_decode($docs['affiliations'], true) ?: [])?><br></p>
+                                    {{implode(',<br> ', $docs->affiliations) }} <br></p>
                                 </td>
                             </tr>
 

@@ -50,23 +50,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($items AS $item)
+                            @forelse($items->doctors AS $item)
                             <tr>
-                                <td>{{ $items->firstname }}</td>
-                                <td>{{ $items->userInfo->firstname }}</td>
-                                <td>{{ $items->bloodtype }}</td>
+                                <td>{{ $item->userInfo->firstname }}</td>
+                                <td>{{ $item->specialization }}</td>
+                                <td>{{ $item->clinic_address }}</td>
                                 <td>
                                     <form action="{{ route('users.destroy', ['id' => $items->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                         {{ csrf_field() }} {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                                         <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                                        <a href="{{ route('patients.show', ['id' => $items->id]) }}" class="btn btn-warning">View Patient</a>
+                                        <a href="{{ route('doctors.show', ['id' => $items->id]) }}" class="btn btn-warning">View Doctor</a>
                                     </form>
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4" class="text-center">No patients recorded</td>
+                                <td colspan="4" class="text-center">No doctors recorded</td>
                             </tr>
                             @endforelse
                         </tbody>

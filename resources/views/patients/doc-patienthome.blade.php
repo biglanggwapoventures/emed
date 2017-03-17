@@ -13,9 +13,9 @@
   
   <div class="container">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#profile">Consultation</a></li>
-            <li><a data-toggle="tab" href="#menu1">General Info</a></li>
-            <li><a data-toggle="tab" href="#menu2">Vitals</a></li>
+            <li class="active"><a data-toggle="tab" href="#profile">General Info</a></li>
+            <li><a data-toggle="tab" href="#menu1">Medical Profile</a></li>
+            <li><a data-toggle="tab" href="#menu2">Consultations</a></li>
             <li><a data-toggle="tab" href="#menu3">Prescriptions</a></li>
         </ul>
 
@@ -35,11 +35,6 @@
                 </div>
 
             </div>
-            <div id="menu1" class="tab-pane fade">
-                <h3>Headache and shit stuff lyk dat</h3>
-                <p>Mother fuvkcing peacce of shit fvk y u no commit.</p>
-            </div>
-<<<<<<< HEAD
     
             <div id="menu1" class="tab-pane fade">
               <h3>Headache and shit stuff lyk dat</h3>
@@ -53,64 +48,95 @@
                 <thead>
                   <tr class="active">
                     <th>Consultation Date</th>
+                    <th>Doctor</th>
                     <th>Clinic</th>
-                    <th>Chief Complaints</th>
                     <th>Manage</th>
                   </tr>
                 </thead>
                 <tbody>
-                @forelse($patients AS $a)
-=======
-    <div id="menu1" class="tab-pane fade">
-      <h3>Headache and shit stuff lyk dat</h3>
-       <p>Mother fuvkcing peacce of shit fvk y u no commit.</p>
-    </div>
-    <!--  -->
-    <div id="menu2" class="tab-pane fade">
-      <h3>Consuultation</h3>
-       <a href="{{ route('consultations.create', ['patient_id' =>  $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Consultation</a><br>
-  
-      <table class="table">
-        <thead>
-          <tr class="active">
-            <th>Consultation Date</th>
-            <th>Clinic</th>
-            <th>Chief Complaints</th>
-            <th>Manage</th>
-          </tr>
-        </thead>
-        <tbody>
-        
-         
-                    @forelse($items AS $i)
-            <tr>
-              <td>{{ $items->created_at }}</td>
-              <td>Over there</td>
-              <td>{{ $items->userInfo->firstname }}</td>
-              <td>  
-              
-                   <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                  <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                  <a href="#" class="btn btn-warning">View </a>
-             
-              </td>
-            </tr>
-       
-            @empty
->>>>>>> origin/master
+                @forelse($patients->consultations AS $a)
                     <tr>
-                      <td>{{ $patients->created_at }}</td>
-                      <td>{{ $patients->userInfo->lastname }}</td>
-                      <td>{{ $patients->userInfo->firstname }}</td>
+                      <td>{{ $a->created_at }}</td>
+                      <td>{{ $a->doctor->userInfo->fullname() }}</td>
+                      <td>{{ $a->doctor->clinic_address }}</td>
                       <td>  
-                          <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+
+                          <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                          </form>
+
                           <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                          <a href="#" class="btn btn-warning">View </a>
+
+                          <button 
+                          type="button" 
+                          class="btn btn-warning btn-default-sm" 
+                          data-toggle="modal" 
+                          data-target="#infoModal_{{ $patients->id }}">
+                          <span class="glyphicon glyphicon-info-sign">
+                          </button>
+
+                          <div class="modal fade" id="infoModal_{{ $patients->id }}" 
+                          tabindex="-1" role="dialog" 
+                          aria-labelledby="favoritesModalLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" 
+                                  data-dismiss="modal" 
+                                  aria-label="Close">
+                                  <span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" 
+                                  id="favoritesModalLabel">{{ $patients->userInfo->fullname() }}</h4>
+                                </div>
+                            <div class="modal-body">
+                              <table class="table table-user-information">
+                                <tbody>
+                                  <tr>
+                                    <td><b>Weight:</b>&#09;{{ $a->weight }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Height:</b>&#09;{{ $a->height }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Blood Pressure:</b>&#09;{{ $a->bloodpressure}} </td>
+                                  </tr>
+                               
+                                     <tr>
+                                    <tr>
+                                    <td><b>Temperature:</b>&#09;{{ $a->temperature }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Pulse Rate:</b>&#09;{{ $a->pulserate }}</td>
+                                  </tr>
+                                    <td><b>Respiratory Rate:</b>&#09;{{ $a->resprate }}<br>
+                                    </td>
+                                     <tr>
+                                    <td><b>Chief Complaints:</b>&#09;{{ $a->chiefcomplaints }}</td>
+                                  </tr>
+                                    <td><b>Notes:</b>&#09;{{ $a->notes }}</td>
+                                  </tr>
+                                 
+                                </tbody>
+                              </table>
+                            </div>
+                           <div class="modal-footer">
+                            <span class="pull-right">
+                            <button type="button" 
+                             class="btn btn-default" 
+                             data-dismiss="modal">Close</button>
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                       </td>
                     </tr>
                     @empty
                         <tr>
-                          <td colspan="4" class="text-center">No patients recorded</td>
+                          <td colspan="4" class="text-center">No consultations recorded</td>
                         </tr>
                 @endforelse
                 </tbody>
