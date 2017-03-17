@@ -38,8 +38,7 @@ class PharmaRequest extends FormRequest
             'email' => 'required|unique:users',
             'drugstore' => 'required',
             'drugstore_address' => 'required',
-            'license' => 'required',
-            'avatar' => 'required|image|max:2048'
+            'license' => 'required'
         ];
 
         return $rules;
@@ -61,8 +60,7 @@ class PharmaRequest extends FormRequest
             'drugstore_address.required' => 'Please enter your drusgtore address.',
             'license.required' => 'Please enter your license.',
             'email.unique' => 'Email already taken',
-            'username.unique' => 'Taken username.',
-            'avatar.required' => 'Please select profile picture.'
+            'username.unique' => 'Taken username.'
         ];
     }
 

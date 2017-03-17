@@ -32,13 +32,32 @@
                     <b>Email Address:</b> {{$patients->userInfo->email}}<br>
                     <b>Contact number:</b> {{ $patients->userInfo->contact_number}}<br>
                     <b>Gender:</b> {{ $patients->userInfo->sex }}<br><br><br>
+
+                     <b>Occupation:</b> {{ $patients->occupation }} <br>
+                    <b>Bloodtype:</b> {{ $patients->bloodtype }} <br>  
+                    <b>Nationality:</b> {{$patients->nationality}}<br>
+                    <b>Civil Status:</b> {{ $patients->civilstatus}}<br>
+                    <b>Emergency Contact:</b> {{ $patients->econtact }}<br>
+                    <b>Relationship:</b> {{ $patients->erelationship }}<br>
+                     <b>Contact number:</b> {{ $patients->enumber }}<br>
+                    
                 </div>
 
             </div>
     
             <div id="menu1" class="tab-pane fade">
-              <h3>Headache and shit stuff lyk dat</h3>
-               <p>Mother fuvkcing peacce of shit fvk y u no commit.</p>
+
+            <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a><br>
+              <b>Allergy question:</b> {{ $patients->allergyquestion }} <br>
+                    <b>What:</b> {{ $patients->allergyname }} <br>  
+                    <b>Disease History:</b> {{$patients->past_disease}}<br>
+                    <b>Surgery History:</b> {{ $patients->past_surgery}}<br>
+                    <b>Immunization:</b> {{ $patients->immunization }}<br><br><br>
+                     <b>Family History:</b> {{ $patients->family_history }}<br><br><br>
+
+
+
+
             </div>
    
             <div id="menu2" class="tab-pane fade">
@@ -61,14 +80,14 @@
                       <td>{{ $a->doctor->clinic_address }}</td>
                       <td>  
 
-                          <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                         <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                           </form>
 
                               <a href="{{ route('prescription.index', ['patient_id' => $patients->id]) }}"  class="btn btn-info"><span class="glyphicon glyphicon-plus">prescription</a>
-
+                              
                           <button 
                           type="button" 
                           class="btn btn-warning btn-default-sm" 

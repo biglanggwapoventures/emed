@@ -131,6 +131,13 @@ class PatientsController extends Controller
             'bloodtype'=> $request->bloodtype,
             'enumber'=> $request->enumber,
             'nationality'=> $request->nationality,
+            'occupation'=> $request->occupation,
+            'allergyquestion'=> $request ->allergyquestion,
+            'allergyname'=> $request->allergyname,
+            'civilstatus'=> $request->civilstatus,
+            'bloodtype'=> $request->bloodtype,
+            'enumber'=> $request->enumber,
+            'nationality'=> $request->nationality,
             'occupation'=> $request->occupation
         ]);
 
@@ -154,7 +161,7 @@ class PatientsController extends Controller
 
         else if(Auth::user()->user_type === "SECRETARY")
         {
-            return redirect()->route('secretary.index');
+            return redirect()->route('patients.index');
         }
        
     }
@@ -212,7 +219,13 @@ class PatientsController extends Controller
             'civilstatus'=> $request->civilstatus,
             'erelationship' => $request->erelationship,
             'econtact'=> $request->econtact,
-            'enumber'=> $request->enumber
+            'enumber'=> $request->enumber,
+             'allergyname' => $request->allergyname,
+            'allergyquestion' => $request->allergyquestion,
+            'past_disease'=> $request->past_disease,
+            'past_surgery' => $request->past_surgery,
+            'immunization'=> $request->immunization,
+            'family_history'=> $request->family_history
         ]);
         $patient->save();
 
