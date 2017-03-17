@@ -32,6 +32,14 @@
                         <b>Username:</b> {{ $items->userInfo->username }} &nbsp <b>Email Address</b> {{Auth::user()->email}}<br>
                         <b>Contact number</b> {{ $items->userInfo->contact_number}}<br>
                         <b>Gender</b> {{ $items->userInfo->sex }}<br><br><br>
+
+                        <b>Occupation:</b> {{ $items->occupation }} <br>
+                    <b>Bloodtype:</b> {{ $items->bloodtype }} <br>  
+                    <b>Nationality:</b> {{$items->nationality}}<br>
+                    <b>Civil Status:</b> {{ $items->civilstatus}}<br>
+                    <b>Emergency Contact:</b> {{ $items->econtact }}<br>
+                    <b>Relationship:</b> {{ $items->erelationship }}<br>
+                     <b>Contact number:</b> {{ $items->enumber }}<br>
                     </div>
 
                 </div>
@@ -119,9 +127,12 @@
                     </table>
                 </div>
                 <div id="menu3" class="tab-pane fade">
-                    <h3>Menu 3</h3>
-                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    <p>{{ $items->age }} years</p>
+                     <b>Allergy question:</b> {{ $items->allergyquestion }} <br>
+                    <b>What:</b> {{ $items->allergyname }} <br>  
+                    <b>Disease History:</b> {{$items->past_disease}}<br>
+                    <b>Surgery History:</b> {{ $items->past_surgery}}<br>
+                    <b>Immunization:</b> {{ $items->immunization }}<br><br><br>
+                     <b>Family History:</b> {{ $items->family_history }}<br><br><br>
                 </div>
             </div>
 
