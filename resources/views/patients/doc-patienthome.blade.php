@@ -73,11 +73,11 @@
                           type="button" 
                           class="btn btn-warning btn-default-sm" 
                           data-toggle="modal" 
-                          data-target="#infoModal_{{ $patients->id }}">
+                          data-target="#infoModal_{{ $a->id }}">
                           <span class="glyphicon glyphicon-info-sign">
                           </button>
 
-                          <div class="modal fade" id="infoModal_{{ $patients->id }}" 
+                          <div class="modal fade" id="infoModal_{{ $a->id }}" 
                           tabindex="-1" role="dialog" 
                           aria-labelledby="favoritesModalLabel">
                             <div class="modal-dialog" role="document">
