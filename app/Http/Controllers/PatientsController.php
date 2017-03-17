@@ -161,7 +161,7 @@ class PatientsController extends Controller
 
         else if(Auth::user()->user_type === "SECRETARY")
         {
-            return redirect()->route('secretary.index');
+            return redirect()->route('patients.index');
         }
        
     }
