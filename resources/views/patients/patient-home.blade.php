@@ -127,6 +127,8 @@
                     </table>
                 </div>
                 <div id="menu3" class="tab-pane fade">
+
+                  <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
                      <b>Allergy question:</b> {{ $items->allergyquestion }} <br>
                     <b>What:</b> {{ $items->allergyname }} <br>  
                     <b>Disease History:</b> {{$items->past_disease}}<br>

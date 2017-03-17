@@ -175,9 +175,11 @@
                     <hr class="third">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group {{ $errors->has('allergyquestion') ? 'has-error' : '' }}">
-                                <label class="control-label">Do you have allergies?</label>
-                                <span style="color: red">*</span> {!! Form::text('allergyquestion', $data->allergyquestion, ['class' => 'form-control']) !!} @if($errors->has('allergyquestion'))
+                         <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
+                         Do you have allergies?
+                          {{ Form::radio('allergyquestion', 'Y',false) }} Yes
+                            {{ Form::radio('allergyquestion', 'N',false) }} No
+                              @if($errors->has('allergyquestion'))
                                 <span class="help-block">{{ $errors->first('allergyquestion') }}</span> @endif
                             </div>
                         </div>
