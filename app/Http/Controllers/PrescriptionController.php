@@ -45,14 +45,13 @@ class PrescriptionController extends Controller
         $patientId = $request->input('patient_id');
 
         $rules = [
-            
             'genericname' => 'required',
             'brand' => 'present',
             'quantity' => 'required',
             'dosage' => 'required',
+            'frequency' => 'required',
             'start' => 'present',
-            'end' => 'present',
-            'frequency' => 'required'
+            'end' => 'present'
         ];
 
         $this->validate($request, $rules);
@@ -60,7 +59,7 @@ class PrescriptionController extends Controller
         $data = $request->only(array_keys($rules));
         $data['patient_id'] = $patientId;
 
-        Auth::user()->doctor->prescription()->create($data); 
+        Auth::user()->patient->prescriptions()->create($data); 
 
         return redirect()
             ->intended(route('patients.show', ['id' => $patientId]))
@@ -68,7 +67,6 @@ class PrescriptionController extends Controller
                 'type' => 'success', 
                 'message' => 'New prescription has been saved successfully!'
             ]);
-        
     }
 
     /**

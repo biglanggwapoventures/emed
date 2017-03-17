@@ -181,7 +181,7 @@ class PatientsController extends Controller
                 'patients' => $patients
             ]);
         }
-        else if(Auth::user()->user_type === 'PATIENT')
+        else if(Auth::user()->user_type === 'PATIENT' || Auth::user()->user_type === 'SECRETARY')
         {
             $items = Patient::find($id);
             return view('patients.patient-home', [

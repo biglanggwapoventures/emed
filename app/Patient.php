@@ -25,8 +25,8 @@ class Patient extends Model
 		return $this->hasMany('App\MedicalHistory', 'patient_id');
 	}
 
-	public function medicalHistory()
+	public function prescriptions()
 	{
-		return $this->belongsTo('App\MedicalHistory', 'patient_id');
+		return $this->hasMany('App\Prescription', 'patient_id');
 	}
 }

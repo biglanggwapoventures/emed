@@ -7,13 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Prescription extends Model
 {
     protected $fillable = [
-		'brand','genericname','quantity','dosage','frequency','start','end'
+		'brand','genericname','quantity','dosage','frequency','start','end','doctor_id'
 	];
-
-	public function userInfo()
-	{
-		return $this->belongsTo('App\User', 'user_id');
-	}
 
 	public function patient()
 	{
@@ -23,5 +18,10 @@ class Prescription extends Model
 	public function doctor()
 	{
 		return $this->belongsTo('App\Doctor', 'doctor_id');
+	}
+
+	public function consultation()
+	{
+		return $this->belongsTo('App\MedicalHistory', 'consultation_id');
 	}
 }
