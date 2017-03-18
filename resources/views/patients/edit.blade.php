@@ -176,7 +176,7 @@
                     <div class="row">
                         <div class="col-md-4">
                          <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}" >
-                         Do you have allergies?
+                          Do you have allergies?
                           {{ Form::radio('allergyquestion', 'Y',false) }} Yes
                             {{ Form::radio('allergyquestion', 'N',false) }} No
                               @if($errors->has('allergyquestion'))
