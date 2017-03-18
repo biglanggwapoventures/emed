@@ -3,7 +3,7 @@
 @section('body')
     <div class="container-fluid">
 
-     <div class="text-center loginpage">
+     <div class="text-center loginpage" style="color: #346677;">
         <div class="login-logo">login</div>
         <!-- Main Form -->
         <div class="login-form-1">
