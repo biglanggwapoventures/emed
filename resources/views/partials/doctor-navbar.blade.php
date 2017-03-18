@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav-user">
         <li class="dropdown" style="width: 100%;">
-          <a href="/doctor-home"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+          <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('/doctor-home') }}">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>

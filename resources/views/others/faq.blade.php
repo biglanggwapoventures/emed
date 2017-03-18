@@ -15,7 +15,8 @@
 		<div class="row-bod">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h2>Frequently Asked Questions</h2>
+					<h2 style="color: #202098;"><center>Frequently Asked Questions</center></h2>
+					<br><br>
 				</div>
 
 				<div class="panel-group" id="accordion">

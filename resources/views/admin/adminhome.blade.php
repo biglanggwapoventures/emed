@@ -151,6 +151,10 @@
     background-color: whitesmoke;
     border-radius: 14px;
 }
+
+thead{
+	background-color: blue;
+}
 </style>
 
 @endsection

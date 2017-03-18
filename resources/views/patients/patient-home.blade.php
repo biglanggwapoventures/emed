@@ -276,8 +276,8 @@
       </section>
     </div>
 
-    <style type="text/css">
-      .img-circle {
+<style type="text/css">
+.img-circle {
     border-radius: 50%;
     margin-left: 30px;
     margin-top: 30px;
