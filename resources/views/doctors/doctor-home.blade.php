@@ -5,101 +5,93 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <h2>Dr. {{ $docs->userInfo->fullname() }}</h2>
+               <h2> <i class="fa fa-user-md" aria-hidden="true"></i>&nbsp  Dr.{{ $docs->userInfo->fullname() }}</h2>
             </h4>
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{ " storage/{$docs->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{ " storage/{$docs->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"><br>
+                <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}"  class="btn btn-info btn-sm ">Edit Picture</a>
                 </div>
                 <div class=" col-md-9 col-lg-9 ">
                     <table class="table table-user-information">
                         <tbody>
+                        <tr ><b><h3>Personal information</h3></tr></b></tr>
                             <tr>
-                                <td><b>Username:</b> &nbsp {{ $docs->userInfo->username }}</td>
-                                <td><b>Email:</b> &nbsp {{$docs->userInfo->email}}</td>
+                                <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username:</b> <br> {{ $docs->userInfo->username }}</td>
+                                <td><span class="glyphicon glyphicon-envelope"></span> <b>Email:</b> <br> {{$docs->userInfo->email}}</td>
                             </tr>
 
                             <tr>
-                                <td><b>Date of Birth:</b> &nbsp {{ $docs->userInfo->birthdate }}</td>
-                                <td> <b>Gender:</b> &nbsp {{ $docs->userInfo->sex }}</td>
+                                <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth:</b><br> {{ $docs->userInfo->birthdate }}</td>
+                                <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender:</b> <br>{{ $docs->userInfo->sex }}</td>
                             </tr>
                             <tr>
-                                <td><b>Phone Number:</b> &nbsp {{ $docs->userInfo->contact_number }}</td>
-                                <td><b>Specialization:</b> &nbsp {{ $docs->specialization }}</td>
-                                </td>
-                            </tr>
+                                <td><span class="glyphicon glyphicon-phone"></span> <b>Phone Number:</b> <br> {{ $docs->userInfo->contact_number }}</td>
+                                <td><i class="fa fa-user-md" aria-hidden="true"></i></span> <b>Specialization:</b> <br> {{ $docs->specialization }}</td>
+                          </tr>
                             <tr>
-                                <td><b>Home Address:</b></td>
-                                <td>
+                                <td><span class="glyphicon glyphicon-home"></span> <b>Home Address:</b><br>{{ $docs->userInfo->address }}</td>
+                                <td> <i class="fa fa-stethoscope" aria-hidden="true"></i> <strong>Subspecialty: </strong><br>
+                                        {{ implode(',<br> ', $docs->subspecialty) }}<br>
 
-
-                                    <p><strong>Subspecialty: </strong>
-
-                                </td>
-
-
-                            </tr>
-                            <tr>
-                                <td>{{ $docs->userInfo->address }}</td>
-
-                                <td>
-                                    <p>
-                                        {{ implode(',<br> ', $docs->subspecialty) }}<br></p>
                                 </td>
                             </tr>
 
+        
+
+                                <tr >
+                            <td>
+                            <b><h3>Clinic Information</h3></td>
+                            <td></td>
+                            </tr>  
                             <tr>
-                                <td><b>Clinic Address:</b></td>
-                                <td>{{ $docs->clinic_address }}</td>
+
+                                <td><i class="fa fa-hospital-o" aria-hidden="true"></i></span> <b>Clinic:</b><br>{{ $docs->clinic }}</td>
+                                <td><span class="glyphicon glyphicon-time"></span> &nbsp<b>Clinic Hours:</b><br>{{ $docs->clinic_hours }}</td>
                             </tr>
                             <tr>
-                                <td><b>Clinic:</b>{{ $docs->clinic }}</td>
-                                <td><b>Clinic Hours:</b>{{ $docs->clinic_hours }}</td>
+
+                                <td><i class="fa fa-h-square" aria-hidden="true"></i><b>Clinic Address:</b><br>{{ $docs->clinic_address }}</td>
+                                <td></td>
                             </tr>
+                          
+                            
 
                             <!-- medschool -->
-                            <tr>
-                                <td><b>Med School:</b></td>
-                                <td><b>Med School year:</td>
-                      </tr>
-                      <tr>
-                        
-                         <td>{{ $docs->med_school }}</td>
-                        <td>{{ $docs->med_school_year }}</td>
-                      </tr>
-                      <tr>
-                        <td><b>Residency:</b></td>
-                                <td><b>Residency Year:</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $docs->residency }}</td>
 
-                                <td>{{ $docs->residency_year }}</td>
-                            </tr>
+                            <tr >
+                            <td>
+                            <b><h3>Education information</h3></td>
+                            <td></td>
+                            </tr>                            
                             <tr>
-                                <td><b>Training:</b></td>
-                                <td><b>Training Year:</b></td>
+                                <td><span class="glyphicon glyphicon-education"></span> <b>Med School:</b><br>{{ $docs->med_school }}</td>
+                                <td><i class="fa fa-calendar" aria-hidden="true"></i> <b>Med School year:</b><br>{{ $docs->med_school_year }}</td>
+                      </tr>
+                     
+                      <tr>
+                        <td><i class="fa fa-building" aria-hidden="true"></i><b>Residency:</b><br>{{ $docs->residency }}</td>
+                                <td><b><i class="fa fa-calendar" aria-hidden="true"></i> Residency Year:</b><br>{{ $docs->residency_year }}</td>
                             </tr>
-                            <tr>
-                                <td>{{ $docs->training }}</td>
 
-                                <td>{{ $docs->training_year }}</td>
+                            <tr>
+                                <td><i class="fa fa-leanpub" aria-hidden="true"></i> <b>Training:</b><br>{{ $docs->training }}</td>
+                                <td><i class="fa fa-calendar" aria-hidden="true"></i> <b>Training Year:</b><br>{{$docs->training_year }}</td>
                             </tr>
+                          
                             <!-- med school end -->
 
 
                             <tr>
                                 <td>
-
-
-                                    <p><strong>Affiliations and Organizations: </strong>
+<i class="fa fa-sitemap" aria-hidden="true"></i>
+                                    <strong>Affiliations and Organizations: </strong> <br>{{implode(',<br> ', $docs->affiliations) }} <br>
 
                                 </td>
                                 <td>
 
-                                    {{implode(',<br> ', $docs->affiliations) }} <br></p>
+                                    
                                 </td>
                             </tr>
 
@@ -130,6 +122,12 @@
     td,
     th {
         padding: 0;
+    }
+    span{
+        color: #346677;
+    }
+    .fa{
+        color: #346677;
     }
 
 </style>

@@ -219,7 +219,7 @@ class PatientsController extends Controller
         {
              return view('patients.edit', [
             'data' => Patient::with('userInfo')->where('id', $id)->first()
-        ]). '#footer';
+        ]);
 
 
         }

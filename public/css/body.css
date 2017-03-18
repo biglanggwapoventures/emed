@@ -10,7 +10,6 @@ body {
     background-attachment: fixed;
     font-family: ''Open Sans', sans-serif';
     background-repeat: no-repeat;
-     /* background-color: #346677;*/
 
 }
 
@@ -234,7 +233,7 @@ label.form-invalid:after {
 .login-logo {
     padding: 1px 0;
     font-size: 25px;
-    color: #aaaaaa;
+    color: #346677;;
     font-weight: bold;
 }
 

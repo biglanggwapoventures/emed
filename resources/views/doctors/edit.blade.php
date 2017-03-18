@@ -4,16 +4,19 @@
     <div class="row-bod">
         <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-default">
+            <a href="{{ url('/doctor-home') }}"  class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-arrow-left pull-right"></span></a>
                 <div class="panel-heading">
-                {{ json_encode($errors->all()) }}
-                    <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
+
+               <!--  {{ json_encode($errors->all()) }} -->
+                    <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4> 
                 </div>
                 <div class="panel-body">
                     <div class="col-md-9" style="margin-left: 40%">
                         <img alt="User Pic" src="{{ "/storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive"> 
                             {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
-                        <input type="file" name="avatar">
+                        <input type="file" name="avatar" >
                         <input type="submit" class="btn btn-sm btn-primary">
+                         
                         {!! Form::close() !!}
                     </div>
                     <div style="margin: 15px; ">
@@ -157,7 +160,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group {{ $errors->has('clinic_hours') ? 'has-error' : '' }}">
                                         <label class="control-label">Clinic hours</label> {!! Form::text('clinic_hours', $data->clinic_hours, ['class' => 'form-control']) !!} @if($errors->has('clinic_hours'))
-                                        <span class="help-block">{{ $errors->first('clinic_hours') }}</span> @endif
+                                             <span class="help-block">{{ $errors->first('clinic_hours') }}</span>  @endif
                                     </div>
                                 </div>
                             </div>

@@ -23,9 +23,13 @@
       </ul> -->
       
 
-     
-            <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+      <ul class="nav navbar-nav-user">
+       <li class="dropdown" style="width: 100%;">
+          <a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-out"></span></a>
 
+      
+        </li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav> 

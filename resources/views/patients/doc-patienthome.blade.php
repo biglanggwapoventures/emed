@@ -16,13 +16,13 @@
       <label for="tab1"><i class="fa fa-code"></i><span>Profile</span></label>
 
       <input id="tab2" type="radio" name="tabs">
-      <label for="tab2"><i class="fa fa-pencil-square-o"></i><span>Medical Profile</span></label>
+      <label for="tab2"><i class="fa fa-drivers-license-o"></i><span>Medical Profile</span></label>
 
       <input id="tab3" type="radio" name="tabs">
-      <label for="tab3"><i class="fa fa-bar-chart-o"></i><span>Prescriptions</span></label>
+      <label for="tab3"><i class="fa fa-pencil"></i><span>Prescriptions</span></label>
 
       <input id="tab4" type="radio" name="tabs">
-      <label for="tab4"><i class="fa fa-folder-open-o"></i><span>Doctors</span></label>
+      <label for="tab4"><i class="fa fa-user-md"></i><span>Doctors</span></label>
 
       <input id="tab5" type="radio" name="tabs">
       <label for="tab5"><i class="fa fa-envelope-o"></i><span>Consultation</span></label>
@@ -36,22 +36,43 @@
          <img alt="User Pic" src="{{ " /storage/{$patients->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
       </div>
       <div class="right">
-                            
-                    <p class="name">{{ $patients->userInfo->fullname() }} </p><br>
-                   <p class="email" > {{$patients->userInfo->email}}</p><br>
-                   <p class="address"></b> {{ $patients->userInfo->address }}</p><br> 
-                    <b>Username:</b> {{ $patients->userInfo->username }} &nbsp &nbsp
-                    <b>Contact number:</b> {{ $patients->userInfo->contact_number}}<br>
-                    <b>Gender:</b> {{ $patients->userInfo->sex }}<br>
+               <table class="table table-user-information">
+                        <tbody>
+                        <tr>
+                          
+                          <td> <p class="name">{{ $patients->userInfo->fullname() }} </p><br>
+                          <p class="email" > <i class="fa fa-envelope"></i> &nbsp {{$patients->userInfo->email}}</p><br>
+                   <p class="address"></b><i class="fa fa-home"></i> &nbsp {{ $patients->userInfo->address }}</p><br> 
+                          </td>
+                          <td></td><td></td>
+                        </tr>
+     <tr>
+                                <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username</b> <br>  {{ $patients->userInfo->username }} </td>
+                                <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$patients->userInfo->email}}</td>
+                                <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth</b><br> {{ $patients->userInfo->birthdate }}</td>
+                            </tr>
 
-                     <b>Occupation:</b> {{ $patients->occupation }} <br>
-                    <b>Bloodtype:</b> {{ $patients->bloodtype }} <br>  
-                    <b>Nationality:</b> {{$patients->nationality}}<br>
-                    <b>Civil Status:</b> {{ $patients->civilstatus}}<br>
-                    <b>Emergency Contact:</b> {{ $patients->econtact }}<br>
-                    <b>Relationship:</b> {{ $patients->erelationship }}<br>
-                     <b>Contact number:</b> {{ $patients->enumber }}<br>
-      </div>
+                            <tr>
+                               <td><span class="glyphicon glyphicon-tint"></span> <b>Bloodtype</b> <br> {{ $patients->bloodtype }}</td>
+                                <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender</b> <br>{{ $patients->userInfo->sex }}</td>
+                                <td><span class="glyphicon glyphicon-phone"></span> <b>Phone Number</b> <br> {{ $patients->userInfo->contact_number }}</td>
+                            </tr>
+                            <tr>
+                               <td><i class="fa fa-gavel" aria-hidden="true"></i><b>Civil Status</b> <br> {{ $patients->civilstatus }}</td>
+                               <td><span class="glyphicon glyphicon-briefcase"></span> <b>Occuptation</b><br>{{ $patients->occupation }}</td>
+                                  <td><span class="glyphicon glyphicon-flag"></span> <b>Nationality</b><br>{{ $patients->nationality }}</td>
+                          </tr>
+                           
+        
+
+                               
+                            
+
+                            <!-- medschool -->
+
+
+                        </tbody>
+                    </table>
         
                 
                 
@@ -60,18 +81,53 @@
      
       </section>
 
-      <section id="content2" class="tab-content">
+     <section id="content2" class="tab-content">
         <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
-        <h3>Medical Info</h3>
+
+        
+
             <div class="medicalinfo">
   <br>
-              <b>Allergy question:</b> {{ $patients->allergyquestion }} <br>
-                    <b>Allergic to:</b> <br>{{ $patients->allergyname }} <br>  
-                    <b>Disease History:</b> {{$patients->past_disease}}<br>
-                    <b>Surgery History:</b> {{ $patients->past_surgery}}<br>
-                    <b>Immunization:</b> {{ $patients->immunization }}<br><br><br>
-                     <b>Family History:</b> {{ $patients->family_history }}<br><br><br>
-</div>
+    <table class="table table-user-information">
+                        <tbody>
+
+                        <tr>
+                          <td><h3 class="pull-left">Medical Info</h3></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+  <tr>
+    <td><i class="fa fa-question" aria-hidden="true"></i> <b>Do you have allergies? Y/N :</b><br>&nbsp {{ $patients->allergyquestion }} </td>
+    <td><i class="fa fa-bug" aria-hidden="true"></i> <b>Allergic to:</b> <br>{{ $patients->allergyname }}  </td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td><i class="fa fa-wheelchair" aria-hidden="true"></i> <b>Past Diseases :</b><br>&nbsp {{$patients->past_disease}} </td>
+    <td><i class="fa fa-heart" aria-hidden="true"></i> <b>Past Surgeries:</b> <br> {{ $patients->past_surgery}} </td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td><i class="fa fa-plus-square" aria-hidden="true"></i> <b>Immunizations :</b><br>&nbsp{{ $patients->immunization }}</td>
+    <td><i class="fa fa-user-circle-o" aria-hidden="true"></i> <b>Family History:</b> <br>{{ $patients->family_history }} </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>  <h3 class="pull-left">Incase of Emergency</h3></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+                               <td><span class="glyphicon glyphicon-user"></span> <b>Contact</b> <br> {{ $patients->econtact }}</td>
+                               <td><i class="fa fa-phone" aria-hidden="true"></i> <b>Contact Number</b><br>{{ $patients->enumber }}</td>
+                                  <td><i class="fa fa-gratipay" aria-hidden="true"></i></span> <b>Relationship</b><br>{{ $patients->erelationship }}</td>
+                          </tr>
+             
+
+
+                        </tbody>
+                    </table>
 
       </section>
 
@@ -215,13 +271,13 @@
 
   background-color: white;
   width: 220px;
-  height: 380px;
+  height: 360px;
 }
 
 .right {
     background-color: white;
-    width: 600px;
-    height: 357px;
+    width: 750px;
+    height: 360px;
     margin-left: 229px;
     margin-top: -358px;
 }
@@ -357,7 +413,7 @@ label .fa {
 
 body {
     font-family: sans-serif;
-    background: #346677;
+   /* background: #346677;*/
     color: #000;
 }
 
@@ -368,6 +424,11 @@ body {
     color: #000;
     border-bottom: 2px solid #f0f0f0;
 }
+
+ td{
+  width: 8%;
+ }
+    
 
     </style>
     
