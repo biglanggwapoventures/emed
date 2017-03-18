@@ -55,9 +55,9 @@
                                 <label class="control-label">Gender</label>
                                 <span style="color: red">*</span>
                                 <select class="form-control" name="sex">
-											<option>Male</option>
-											<option>Female</option>
-										</select> @if($errors->has('sex'))
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select> @if($errors->has('sex'))
                                 <span class="help-block">{{ $errors->first('sex') }}</span> @endif
                             </div>
                         </div>
@@ -84,11 +84,11 @@
                                 <label class="control-label">Civil Status</label>
                                 <span style="color: red">*</span>
                                 <select class="form-control" name="civilstatus">
-											<option>Single</option>
-											<option>Married</option>
-											<option>Widowed</option>
-											<option>Separated</option>
-										</select> @if($errors->has('civilstatus'))
+                                            <option>Single</option>
+                                            <option>Married</option>
+                                            <option>Widowed</option>
+                                            <option>Separated</option>
+                                        </select> @if($errors->has('civilstatus'))
                                 <span class="help-block">{{ $errors->first('civilstatus') }}</span> @endif
                             </div>
                         </div>
@@ -150,14 +150,14 @@
                                 <label class="control-label">Relationship</label>
                                 <span style="color: red">*</span>
                                 <select class="form-control" name="erelationship">
-											<option>Mother</option>
-											<option>Father</option>
-											<option>Sister</option>
-											<option>Brother</option>
-											<option>Cousin</option>
-											<option>Guardian</option>
-											<option>Others</option>
-										</select> @if($errors->has('erelationship'))
+                                            <option>Mother</option>
+                                            <option>Father</option>
+                                            <option>Sister</option>
+                                            <option>Brother</option>
+                                            <option>Cousin</option>
+                                            <option>Guardian</option>
+                                            <option>Others</option>
+                                        </select> @if($errors->has('erelationship'))
                                 <span class="help-block">{{ $errors->first('erelationship') }}</span> @endif
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                     <hr class="third">
                     <div class="row">
                         <div class="col-md-4">
-                         <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
+                         <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}" id="footer">
                          Do you have allergies?
                           {{ Form::radio('allergyquestion', 'Y',false) }} Yes
                             {{ Form::radio('allergyquestion', 'N',false) }} No

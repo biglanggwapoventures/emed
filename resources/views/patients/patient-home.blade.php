@@ -1,54 +1,105 @@
 @extends('welcome') @section('body')
+
 <div class="container-fluid"><br><br><br>
-    <div class="container">
+  @if(session('ACTION_RESULT'))
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+          {{ session('ACTION_RESULT')['message'] }}
+        </div>
+      </div>
+    </div>
+  @endif
+  
+ <div class="tab_container">
+       <input id="tab1" type="radio" name="tabs" checked>
+      <label for="tab1"><i class="fa fa-code"></i><span>Profile</span></label>
 
-        <!-- @if(Auth::check()) 
-            @if(Auth::user()->user_type === 'DOCTOR') -->
-               <!--  <h2>Patient: {{ $items->userInfo->fullname() }} </h2>
-                @include('patients.doc-patienthome')  -->
+      <input id="tab2" type="radio" name="tabs">
+      <label for="tab2"><i class="fa fa-pencil-square-o"></i><span>Medical Profile</span></label>
 
-            <!-- @elseif(Auth::user()->user_type === 'PATIENT') -->
-            <h2>Welcome {{ $items->userInfo->fullname() }} </h2>
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-                <li><a data-toggle="tab" href="#menu1">Prescription</a></li>
-                <li><a data-toggle="tab" href="#menu2">Doctors</a></li>
-                <li><a data-toggle="tab" href="#menu3">Medical Profile</a></li>
-            </ul>
+      <input id="tab3" type="radio" name="tabs">
+      <label for="tab3"><i class="fa fa-bar-chart-o"></i><span>Prescriptions</span></label>
 
-            <div class="tab-content">
-                <div id="profile" class="tab-pane fade in active">
-                    <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a><br>
-                    <hr class="third">
+      <input id="tab4" type="radio" name="tabs">
+      <label for="tab4"><i class="fa fa-folder-open-o"></i><span>Doctors</span></label>
 
-                    <img alt="User Pic" src="{{ " storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                    <!-- <label>Update Profile Image</label> -->
-                    <!--  <input type="file" name="avatar">
-                      <input type="submit" class="btn btn-sm btn-primary"> -->
+      <input id="tab5" type="radio" name="tabs">
+      <label for="tab5"><i class="fa fa-envelope-o"></i><span>Consultation</span></label>
+
+
+      <section id="content1" class="tab-content">
+
+         <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
+    <div class="row">
+      <div class="left">
+          <img alt="User Pic" src="{{ " storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                     {!! Form::close() !!}
-                    <br><br>
-                    <div class="col-md-3 patprof">
-                        <b>Fullname:</b> {{ $items->userInfo->fullname() }} <br>
-                        <b>Username:</b> {{ $items->userInfo->username }} &nbsp <b>Email Address</b> {{Auth::user()->email}}<br>
-                        <b>Contact number</b> {{ $items->userInfo->contact_number}}<br>
-                        <b>Gender</b> {{ $items->userInfo->sex }}<br><br><br>
+      </div>
+      <div class="right">
+                            
+                    <p class="name">{{ $items->userInfo->fullname() }}  </p><br>
+                   <p class="email" > {{$items->userInfo->email}}</p><br>
+                   <p class="address"></b> {{ $items->userInfo->address }}</p><br> 
+                    <b>Username:</b> {{ $items->userInfo->username }} &nbsp &nbsp
+                    <b>Contact number:</b> {{ $items->userInfo->contact_number}}<br>
+                    <b>Gender:</b> {{ $items->userInfo->sex }}<br>
 
-                        <b>Occupation:</b> {{ $items->occupation }} <br>
+                     <b>Occupation:</b> {{ $items->occupation }} <br>
                     <b>Bloodtype:</b> {{ $items->bloodtype }} <br>  
                     <b>Nationality:</b> {{$items->nationality}}<br>
                     <b>Civil Status:</b> {{ $items->civilstatus}}<br>
                     <b>Emergency Contact:</b> {{ $items->econtact }}<br>
                     <b>Relationship:</b> {{ $items->erelationship }}<br>
                      <b>Contact number:</b> {{ $items->enumber }}<br>
-                    </div>
+      </div>
+        
+                
+                
+                  
+</div>
+     
+      </section>
 
-                </div>
-                <div id="menu1" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                    <table class="table">
+      <section id="content2" class="tab-content">
+        <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
+        <h3>Medical Info</h3>
+            <div class="medicalinfo">
+  <br>
+             <span glyphicon glyphicon-edit"></a>
+                     <b>Allergy question:</b> {{ $items->allergyquestion }} <br>
+                    <b>What:</b> {{ $items->allergyname }} <br>  
+                    <b>Disease History:</b> {{$items->past_disease}}<br>
+                    <b>Surgery History:</b> {{ $items->past_surgery}}<br>
+                    <b>Immunization:</b> {{ $items->immunization }}<br><br><br>
+                     <b>Family History:</b> {{ $items->family_history }}<br><br><br>
+</div>
+
+      </section>
+
+      <section id="content3" class="tab-content">
+
+            <div class="panel panel-primary "> 
+                <div class="panel-heading">
+                    <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Prescriptions</h4>
+          </div>
+        
+      <div class="panel-body  ">
+            <div class="col-md-2 ">
+                         <img alt="User Pic" src="{{ " /images/rx.png " }}" style="width: 150px; height: 150px;">
+                      </div>
+                        Weeds<br>
+          Flintsones<br>
+          Adderall<br>
+            </div> <!-- end of panelbody -->
+            <button type="submit" class="btn btn-primary pull-right">View All prescription history</button>
+ 
+            </div>
+     
+      </section>
+
+      <section id="content4" class="tab-content">
+      <table class="table">
                         <thead>
                             <tr class="active">
                                 <th>Name</th>
@@ -63,6 +114,7 @@
                                 <td>{{ $item->userInfo->firstname }}</td>
                                 <td>{{ $item->specialization }}</td>
                                 <td>{{ $item->clinic_address }}</td>
+                                
                                 <td>
                                     <button 
                                                type="button" 
@@ -125,44 +177,286 @@
                             @endforelse
                         </tbody>
                     </table>
-                </div>
-                <div id="menu3" class="tab-pane fade">
+      </section>
 
-                  <a href="{{ route('patients.edit', ['id' => $items->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
-                     <b>Allergy question:</b> {{ $items->allergyquestion }} <br>
-                    <b>What:</b> {{ $items->allergyname }} <br>  
-                    <b>Disease History:</b> {{$items->past_disease}}<br>
-                    <b>Surgery History:</b> {{ $items->past_surgery}}<br>
-                    <b>Immunization:</b> {{ $items->immunization }}<br><br><br>
-                     <b>Family History:</b> {{ $items->family_history }}<br><br><br>
-                </div>
-            </div>
-
-
-        <!-- <div class="row-bod">
-    
-<div class="col-md-9 col-md-offset-1">
-          <div class="panel panel-default"> 
-            <div class="panel-heading">
-              <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Welcome  {{ Auth::user()->fullname() }} </h4>
-            </div>
-          <div class="panel-body">
+      <section id="content5" class="tab-content">
           
-              <strong>Personal Info</strong><a href="#" class="btn btn-info  pull-right"><span class="glyphicon glyphicon-edit"></a><br>
-              <hr class="third">
-              <b>Fullname:</b> {{ Auth::user()->fullname() }} <br>
-              <b>Username:</b> {{ Auth::user()->username }} &nbsp <b>Email Address</b> {{Auth::user()->email}}<br>
-              <b>Contact number</b> {{Auth::user()->contact_number}}<br>
+              <table class="table">
+                <thead>
+                  <tr class="active">
+                    <th>Consultation Date</th>
+                    <th>Doctor</th>
+                    <th>Clinic</th>
+                    <th>Manage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @forelse($items->consultations AS $a)
+                    <tr>
+                      <td>{{ $a->created_at }}</td>
+                      <td>{{ $a->doctor->userInfo->fullname() }}</td>
+                      <td>{{ $a->doctor->clinic }}</td>
+                      <td>  
 
-              
+                              
+                          <button 
+                          type="button" 
+                          class="btn btn-warning btn-default-sm" 
+                          data-toggle="modal" 
+                          data-target="#infoModals_{{ $items->id }}">
+                          <span class="glyphicon glyphicon-info-sign">
+                          </button>
+
+                          <div class="modal fade" id="infoModals_{{ $items->id }}" 
+                          tabindex="-1" role="dialog" 
+                          aria-labelledby="favoritesModalLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" 
+                                  data-dismiss="modal" 
+                                  aria-label="Close">
+                                  <span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" 
+                                  id="favoritesModalLabel">{{ $items->userInfo->fullname() }}</h4>
+                                </div>
+                            <div class="modal-body">
+                              <table class="table table-user-information">
+                                <tbody>
+                                  <tr>
+                                    <td><b>Weight:</b>&#09;{{ $a->weight }}   kgs</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Height:</b>&#09;{{ $a->height }}  cm</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Blood Pressure:</b>&#09;{{ $a->bloodpressure}}  mmHg</td>
+                                  </tr>
+                               
+                                     <tr>
+                                    <tr>
+                                    <td><b>Temperature:</b>&#09;{{ $a->temperature }}  C</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Pulse Rate:</b>&#09;{{ $a->pulserate }}  bpm</td>
+                                  </tr>
+                                    <td><b>Respiratory Rate:</b>&#09;{{ $a->resprate }}  cpm<br>
+                                    </td>
+                                     <tr>
+                                    <td><b>Chief Complaints:</b>&#09;<br>{{ $a->chiefcomplaints }}</td>
+                                  </tr>
+                                    <td><b>Notes:</b><br>{{ $a->notes }}</td>
+                                  </tr>
+                                 
+                                </tbody>
+                              </table>
+                            </div>
+                           <div class="modal-footer">
+                            <span class="pull-right">
+                            <button type="button" 
+                             class="btn btn-default" 
+                             data-dismiss="modal">Close</button>
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                      </td>
+                    </tr>
+                    @empty
+                        <tr>
+                          <td colspan="4" class="text-center">No consultations recorded</td>
+                        </tr>
+                @endforelse
+                </tbody>
+              </table>
+        
+
+      </section>
     </div>
-          </div>
-          </div> -->
+
+    <style type="text/css">
+      .img-circle {
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.medicalinfo{
+
+  margin-left: 60px;
+}
+.address{
+  font-size: 15px;
+   margin: -27px 0 10px;
+}
+.email{
+  font-size: 20px;
+}
+.name{
+
+  font-size: 30px;
+}
+.left{
+
+  background-color: white;
+  width: 220px;
+  height: 380px;
+}
+
+.right {
+    background-color: white;
+    width: 600px;
+    height: 357px;
+    margin-left: 229px;
+    margin-top: -358px;
+}
+      *,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
 
 
 
-        <!-- @endif @else @endif -->
-        <!-- <p>To make the tabs toggleable, add the data-toggle="tab" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p> -->
-    </div>
-</div>
+p {
+    margin: -35px 0 10px;
+}
+
+a {
+  color: #ccc;
+  text-decoration: none;
+  outline: none;
+}
+
+/*Fun begins*/
+.tab_container {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 10px;
+    position: relative;
+    margin-left: 22px;
+}
+
+input, section {
+  clear: both;
+  padding-top: 10px;
+  display: none;
+}
+
+label {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  width: 20%;
+  padding: 1.5em;
+  color: #757575;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5 {
+  display: block;
+  padding: 20px;
+  background: #fff;
+  color: #999;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.tab_container .tab-content p,
+.tab_container .tab-content h3 {
+  -webkit-animation: fadeInScale 0.7s ease-in-out;
+  -moz-animation: fadeInScale 0.7s ease-in-out;
+  animation: fadeInScale 0.7s ease-in-out;
+}
+.tab_container .tab-content h3  {
+  text-align: center;
+}
+
+.tab_container [id^="tab"]:checked + label {
+  background: #fff;
+  box-shadow: inset 0 3px #0CE;
+}
+
+.tab_container [id^="tab"]:checked + label .fa {
+  color: #0CE;
+}
+
+label .fa {
+  font-size: 1.3em;
+  margin: 0 0.4em 0 0;
+}
+
+/*Media query*/
+@media only screen and (max-width: 930px) {
+  label span {
+    font-size: 14px;
+  }
+  label .fa {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  label span {
+    display: none;
+  }
+
+  label .fa {
+    font-size: 16px;
+  }
+
+  .tab_container {
+    width: 98%;
+  }
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/*body {
+    font-family: sans-serif;
+    background: #346677;
+    color: #000;
+}
+*/
+#tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4, #tab5:checked ~ #content5 {
+    display: block;
+    padding: 20px;
+    background: #fff;
+    color: #000;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+    </style>
+    
 @endsection
