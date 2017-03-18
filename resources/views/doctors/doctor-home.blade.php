@@ -107,16 +107,16 @@
                     </table>
 
 
-                    <a href="#" class="btn btn-primary pull-right">Consultation Calendar</a>
+                    
                     <a href="{{ route('patients.index') }}" class="btn btn-primary pull-right">Search Patients</a>
                 </div>
             </div>
         </div>
         <div class="panel-footer">
-            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+            <a href="doctor-home" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-arrow-left"></i></a>
             <span class="pull-right" style="margin-top: 8px;">
                             <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                            
                         </span>
         </div>
     </div>

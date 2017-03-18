@@ -23,18 +23,9 @@
       </ul> -->
       
 
-      <ul class="nav navbar-nav-user">
-       <li class="dropdown" style="width: 100%;">
-          <a href="/admin"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-          <ul class="dropdown-menu">
-
-            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-            <li class="divider"></li>
+     
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
 
-          </ul>
-        </li>
-      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav> 
