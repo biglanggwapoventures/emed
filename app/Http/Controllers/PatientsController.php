@@ -181,7 +181,7 @@ class PatientsController extends Controller
                 'patients' => $patients
             ]);
         }
-        else if(Auth::user()->user_type === 'PATIENT' || Auth::user()->user_type === 'SECRETARY')
+        else if(Auth::user()->user_type === 'PATIENT')
         {
             $items = Patient::find($id);
             return view('patients.patient-home', [
@@ -198,9 +198,37 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-         return view('patients.edit', [
+
+
+       if(Auth::user()->user_type === "DOCTOR")
+        {
+             return view('patients.edit', [
             'data' => Patient::with('userInfo')->where('id', $id)->first()
         ]);
+
+       } 
+
+        else if(Auth::user()->user_type === "SECRETARY")
+        {
+              return view('patients.edit', [
+            'data' => Patient::with('userInfo')->where('id', $id)->first()
+        ]);
+        }
+        
+        else if(Auth::user()->user_type === "PATIENT")
+        {
+             return view('patients.edit', [
+            'data' => Patient::with('userInfo')->where('id', $id)->first()
+        ]);
+
+
+        }
+
+
+
+
+         // $url = URL::route('home') . '#footer';
+         // return Redirect::to($url);
     }
 
     /**

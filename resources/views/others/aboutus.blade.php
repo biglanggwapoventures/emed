@@ -9,9 +9,9 @@
 
 @include('partials.navbar')
 
-	<center>
-			<div class="page-header">
-				<h2>ABOUT US</h2>
+	<center><br><br><br><br>
+			<div class="page-header" style="margin: -20px 0 -20px; border-bottom: 0px solid #346677;">
+				<h2 style="color: #202098;">ABOUT US</h2><br>
 			</div>
 
 	<div class="container-about">	

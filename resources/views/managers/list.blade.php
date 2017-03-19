@@ -55,5 +55,13 @@
     </div>
 </div>
 
+<style type="text/css">
+    
+    .col-md-12 {
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 12px;
+}
+</style>
 
 @endsection

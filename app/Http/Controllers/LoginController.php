@@ -7,38 +7,38 @@ use Auth;
 
 class LoginController extends Controller
 {
-	// public function __construct()
-	// {
-	// 	$this->middleware()
-	// 	if(Auth::check()){
-	// 		return redirect('/');
-	// 	}	
-	// }
+    // public function __construct()
+    // {
+    //  $this->middleware()
+    //  if(Auth::check()){
+    //      return redirect('/');
+    //  }   
+    // }
 
 
     public function showLoginPage()
     {
-    	return view('login');
+        return view('login');
     }
 
     public function doLogin(Request $request)
     {
-    	$this->validate($request, [
-	        'username' => 'required|exists:users',
-	        'password' => 'required',
-	    ], [
-	    	'username.exists' => 'Your username is not registered!',
-	    	// 'username.required' => 'Ayaw i empty!'
-	    ]);
+        $this->validate($request, [
+            'username' => 'required|exists:users',
+            'password' => 'required',
+        ], [
+            'username.exists' => 'Your username is not registered!',
+            // 'username.required' => 'Ayaw i empty!'
+        ]);
 
-    	$credentials = $request->only(['username', 'password']);
-    	if(Auth::attempt($credentials)){
+        $credentials = $request->only(['username', 'password']);
+        if(Auth::attempt($credentials)){
 
-    		$user = Auth::user();
-    		if($user->user_type === 'ADMIN')
+            $user = Auth::user();
+            if($user->user_type === 'ADMIN')
             {
-    			return redirect('/admin');
-    		}
+                return redirect('/admin');
+            }
             else if($user->user_type === 'DOCTOR')
             {
                 return redirect('/doctor-home'); //test
@@ -59,12 +59,15 @@ class LoginController extends Controller
 
                 return redirect('/pharmacists-home');
 
-        }else{
-    		  return view('login', [
-    			'wrongPassword' => 'Incorrect Password'
-			]);
-    	}
         }
+ }
+
+        else{
+              return view('login', [
+                'wrongPassword' => 'Incorrect Password'
+            ]);
+        }
+       
     }
 }
 
