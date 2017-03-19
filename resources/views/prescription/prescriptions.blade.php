@@ -10,7 +10,9 @@
                     <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Medical Notes</h4>
                 </div>
                 <div class="panel-body ">
-				    {!! Form::open(['url' => route('prescription.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
+				    {!! Form::open(['url' => route('prescription.store'), 'method' => 'POST']) !!}
+                    {!! Form::hidden('patient_id', request()->input('patient_id')) !!}
+                    {!! Form::hidden('consultation_id', request()->input('consultation_id')) !!}
                     <div class="row ">
                         <div class="col-md-2 ">
                     	   <img alt="User Pic" src="{{ " /images/rx.png " }}" style="width: 150px; height: 150px;">
@@ -23,7 +25,7 @@
                                 </div>
                                 <div class="row col-md-offset-1 ">
                                     <div class="col-md-10">
-                                        {!! Form::bsText('brand', 'Brand Name', null) !!}
+                                        {!! Form::bsText('brand', 'Brand Name') !!}
                                     </div>
                                 </div>
               				<div class="row col-md-offset-1 ">
@@ -41,16 +43,10 @@
                             </div>
                             <div class="row col-md-offset-1 ">
                                 <div class="col-md-5 ">
-                                    <div class="form-group">
-                                        <label class="control-label">Start Date<span style="color: red">*</span></label>
-                                        <input maxlength="100" name="start" type="date" class="form-control" style="width: 170px" />
-                                    </div>
+                                     {!! Form::bsDate('start', 'Start Date', null, ['class' => 'form-control']) !!}
                                 </div> 
                                 <div class="col-md-5">
-                                    <div class="form-group ">
-                                        <label class="control-label">End date <span style="color: red">*</span></label>
-                                        <input maxlength="100" name="end" type="date" class="form-control " style="width: 170px" />
-                                    </div>
+                                    {!! Form::bsDate('end', 'End Date', null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                         </div>

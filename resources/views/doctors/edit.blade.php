@@ -6,9 +6,7 @@
             <div class="panel panel-default">
             <a href="{{ url('/doctor-home') }}"  class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-arrow-left pull-right"></span></a>
                 <div class="panel-heading">
-
-               <!--  {{ json_encode($errors->all()) }} -->
-                    <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4> 
+                    <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
                 </div>
                 <div class="panel-body">
                     <div class="col-md-9" style="margin-left: 40%">

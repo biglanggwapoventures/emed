@@ -35,4 +35,9 @@ class Doctor extends Model
 		return $this->hasMany('App\MedicalHistory', 'doctor_id');
 	}
 
+	public function prescriptions()
+	{
+		return $this->hasMany('App\Prescription', 'doctor_id');
+	}
+
 }
