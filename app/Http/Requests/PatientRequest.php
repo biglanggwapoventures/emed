@@ -35,7 +35,7 @@ class PatientRequest extends FormRequest
               'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required:unique:users',
+            'email' => 'required|unique:users',
             'bloodtype' => 'required',
             'enumber' => 'required',
             'erelationship' => 'required',
