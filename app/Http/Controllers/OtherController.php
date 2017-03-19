@@ -24,5 +24,7 @@ class OtherController extends Controller
         return view('others.faq');
     }
 
+   
+
     
 }

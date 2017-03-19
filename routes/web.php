@@ -27,6 +27,8 @@ Route::get('/pharmacists-home', 'PharmaController@showHomepage')->middleware('au
 Route::get('/secretary-home', 'SecretaryController@showHomepage');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
+
+
 // Route::get('/doctor-home', 'DoctorsController@showHomepage');
 
 /* LANDING PAGE */
@@ -35,6 +37,7 @@ Route::get('/doctor-home', 'DoctorsController@showHomepage')->middleware('auth')
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
+// Route::get('/ChangePass', 'OtherController@ChangePass');
 
 Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
 // Route::get('/edit-doc', 'AdminController@editDoc');
@@ -54,3 +57,7 @@ Route::resource('prescription', 'PrescriptionController');
 // Route::resource('pharmacists', 'PharmaController');
 
 Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')->name('upload.dp');
+
+Route::post('/ChangePass', 'PasswordChangeController@postUpdatePassword')->name('ChangePass');
+Route::get('/ChangePass', 'PasswordChangeController@showHomepage')->middleware('auth');
+

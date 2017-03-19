@@ -3,6 +3,7 @@
 <div class="container-fluid"><br><br><br>
   @if(session('ACTION_RESULT'))
     <div class="row">
+   
       <div class="col-md-6 col-md-offset-3">
         <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
           {{ session('ACTION_RESULT')['message'] }}
@@ -518,5 +519,12 @@ body {
     margin-left: 166px;
 }
     </style>
-    
+
+   <!--  <script type="text/javascript">
+      setTimeout(function() {
+   $("#alert").delay(3200).fadeOut(300)
+
+}
+    </script>
+     -->
 @endsection

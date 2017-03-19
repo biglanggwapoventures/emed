@@ -39,7 +39,7 @@ class DoctorRequest extends FormRequest
             'lastname' => 'required',
             'birthdate' => 'required',
             'sex' => 'required',
-            'contact_number' => 'required',
+            'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required:unique:users',
@@ -96,7 +96,9 @@ class DoctorRequest extends FormRequest
             'residency_year.required' => 'Please enter your residency year.',
             'training.required' => 'Please enter your training.',
             'training_year.required' => 'Please enter your training year.',
-            'affiliations.required' => 'Please enter your affiliations.'
+            'affiliations.required' => 'Please enter your affiliations.',
+            'contact_number.min' => 'Please enter valid contact number.'
+
 
         ];
     }

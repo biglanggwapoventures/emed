@@ -32,7 +32,7 @@ class PatientRequest extends FormRequest
             'lastname' => 'required',
             'birthdate' => 'required',
             'sex' => 'required',
-            'contact_number' => 'required',
+              'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required:unique:users',
@@ -90,7 +90,8 @@ class PatientRequest extends FormRequest
             'occupation.required' => 'Please enter your occupation.',
             'email.unique' => 'Email already taken',
             'username.unique' => 'Taken username.',
-            'allergyname.unique' => 'Input allergy name.'
+            'allergyname.unique' => 'Input allergy name.',
+            'contact_number.min' => 'Please enter valid contact number.'
             
         ];
     }

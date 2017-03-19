@@ -28,6 +28,8 @@
             <li class="divider"></li>
             <li><a href="#">Account Settings<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
+             <li><a href="{{ url('/ChangePass') }}"> Change Password <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>
         </li>

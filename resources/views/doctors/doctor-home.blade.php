@@ -1,12 +1,12 @@
 @extends('welcome') @section('body')
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-
-
+ 
     <div class="panel panel-info">
         <div class="panel-heading">
             <h4 class="panel-title">
                <h2> <i class="fa fa-user-md" aria-hidden="true"></i>&nbsp  Dr.{{ $docs->userInfo->fullname() }}</h2>
             </h4>
+           
         </div>
         <div class="panel-body">
             <div class="row">
@@ -16,6 +16,18 @@
                 <div class=" col-md-9 col-lg-9 ">
                     <table class="table table-user-information">
                         <tbody>
+                        <tr>
+                        @if(session('ACTION_RESULT'))
+                        <div class="row">
+                          <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                              {{ session('ACTION_RESULT')['message'] }}
+                            
+                            </div>
+                          </div>
+                        </div>
+                      @endif
+                        </tr>
                         <tr ><b><h3>Personal information</h3></tr></b></tr>
                             <tr>
                                 <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username:</b> <br> {{ $docs->userInfo->username }}</td>
