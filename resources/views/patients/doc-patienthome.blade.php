@@ -53,11 +53,7 @@
                     <b>Disease History:</b> {{$patients->past_disease}}<br>
                     <b>Surgery History:</b> {{ $patients->past_surgery}}<br>
                     <b>Immunization:</b> {{ $patients->immunization }}<br><br><br>
-                     <b>Family History:</b> {{ $patients->family_history }}<br><br><br>
-
-
-
-
+                    <b>Family History:</b> {{ $patients->family_history }}<br><br><br>
             </div>
    
             <div id="menu2" class="tab-pane fade">
@@ -86,7 +82,7 @@
                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                           </form>
 
-                              <a href="{{ route('prescription.index', ['patient_id' => $patients->id]) }}"  class="btn btn-info"><span class="glyphicon glyphicon-plus">prescription</a>
+                              <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}"  class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Prescription</a>
                               
                           <button 
                           type="button" 

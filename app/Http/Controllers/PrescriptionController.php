@@ -42,27 +42,29 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
 
-        $patientId = $request->input('patient_id');
-
         $rules = [
+            'patient_id' => 'required',
+            'consultation_id' => 'required',
             'genericname' => 'required',
             'brand' => 'present',
             'quantity' => 'required',
             'dosage' => 'required',
             'frequency' => 'required',
-            'start' => 'present',
-            'end' => 'present'
+            'start' => 'required|date_format:"Y-m-d"',
+            'end' => 'required|date_format:"Y-m-d"',
         ];
 
-        $this->validate($request, $rules);
+        $this->validate($request, $rules, [
+            'start.date_format' => 'The start date must be of format MM/DD/YYYY',
+            'end.date_format' => 'The end date must be of format MM/DD/YYYY'
+        ]);
 
         $data = $request->only(array_keys($rules));
-        $data['patient_id'] = $patientId;
 
-        Auth::user()->patient->prescriptions()->create($data); 
+        Auth::user()->doctor->prescriptions()->create($data); 
 
         return redirect()
-            ->intended(route('patients.show', ['id' => $patientId]))
+            ->intended(route('patients.show', ['id' => $data['patient_id']]))
             ->with('ACTION_RESULT', [
                 'type' => 'success', 
                 'message' => 'New prescription has been saved successfully!'
