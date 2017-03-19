@@ -18,10 +18,14 @@ class AppServiceProvider extends ServiceProvider
         Form::component('bsText', 'components.form.text', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
         Form::component('bsRadio', 'components.form.radio', ['name', 'label' => null, 'options', 'selected' => null]);
 
+
         // Validator::extend('current_password_match', function($attribute, $value, $parameters, $validator) {
         //     return Hash::check($value, Auth::user()->password);
         // });
         Validator::extend('current_password_match', 'App\Validators\PasswordMatch@check');
+
+        Form::component('bsDate', 'components.form.date', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
+
     }
 
     /**
