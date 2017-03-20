@@ -187,7 +187,7 @@
                         <tbody>
                             @forelse($patients->doctors AS $item)
                             <tr>
-                                <td>{{ $item->userInfo->firstname }}</td>
+                                <td>{{ $item->userInfo->fullname() }}</td>
                                 <td>{{ $item->specialization }}</td>
                                 <td>{{ $item->clinic_address }}</td>
                                 
@@ -539,6 +539,17 @@
             td {
                 width: 8%;
             }
+
+              .panel-primary {
+    border-color: #ffffff;
+    width: 969px;
+    margin-left: 59px;
+}
+
+.fix   {
+    width: 83%;
+    max-width: 100%;
+    margin-bottom:
 
         </style>
 
