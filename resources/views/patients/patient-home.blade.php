@@ -190,7 +190,7 @@
                         <tbody>
                             @forelse($items->doctors AS $item)
                             <tr>
-                                <td>{{ $item->userInfo->firstname }}</td>
+                                <td>{{ $item->userInfo->fullname()}}</td>
                                 <td>{{ $item->specialization }}</td>
                                 <td>{{ $item->clinic_address }}</td>
                                 
