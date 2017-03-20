@@ -144,9 +144,32 @@
             <div class="col-md-2 ">
                          <img alt="User Pic" src="{{ " /images/rx.png " }}" style="width: 150px; height: 150px;">
                       </div>
-                        Weeds<br>
-          Flintsones<br>
-          Adderall<br>
+                        <table class="fix">
+                        <thead>
+                          <tr class="active">
+                            <th>Generic Name</th>
+                            <th>Brand name</th>
+                            <th>Dosage</th>
+                            <th>Frequency</th>
+                            <th>Available</th>
+                            <th>Start</th>
+                              <th>end</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td> Potato </td>
+                            <td>Kush</td>
+                            <td>4mg</td>
+                            <td>5 pcs</td>
+                            <td>6</td>
+                            <td>ugma </td>
+                            <td>gahapom</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
             </div> <!-- end of panelbody -->
             <button type="submit" class="btn btn-primary pull-right">View All prescription history</button>
  
@@ -513,10 +536,16 @@ body {
  td{
   width: 8%;
  }
-    .panel-primary {
+   .panel-primary {
     border-color: #ffffff;
-    width: 750px;
-    margin-left: 166px;
+    width: 969px;
+    margin-left: 109px;
+}
+
+.fix   {
+    width: 83%;
+    max-width: 100%;
+    margin-bottom: 20px;
 }
     </style>
 

@@ -10,6 +10,15 @@
                     <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Medical Notes</h4>
                 </div>
                 <div class="panel-body ">
+@if(count($errors->all()))
+                        <div class="alert alert-danger">
+                            <ul class="list-unstyled">                              
+                                @foreach($errors->all() AS $err)
+                                    <li>{{ $err }}</li>
+                                @endforeach 
+                            </ul>
+                        </div>
+                    @endif
 				    {!! Form::open(['url' => route('prescription.store'), 'method' => 'POST']) !!}
                     {!! Form::hidden('patient_id', request()->input('patient_id')) !!}
                     {!! Form::hidden('consultation_id', request()->input('consultation_id')) !!}

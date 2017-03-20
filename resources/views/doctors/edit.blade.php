@@ -4,7 +4,7 @@
     <div class="row-bod">
         <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-default">
-            <a href="{{ url('/doctor-home') }}"  class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-arrow-left pull-right"></span></a>
+            <a href="{{ url('/doctor-home') }}"  class="btn btn-sm btn-primary pull-right">&nbsp Back to Profile<span class="glyphicon glyphicon-arrow-left pull-left"></span></a>
                 <div class="panel-heading">
                     <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update doctor: <span class="text-success"> {{ $data->userInfo->fullname() }} </span></h4>
                 </div>
