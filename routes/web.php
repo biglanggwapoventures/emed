@@ -27,6 +27,7 @@ Route::get('/pharmacists-home', 'PharmaController@showHomepage')->middleware('au
 Route::get('/secretary-home', 'SecretaryController@showHomepage');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
+Route::get('/pharma-transaction', 'ManagersController@transaction');
 
 
 // Route::get('/doctor-home', 'DoctorsController@showHomepage');
