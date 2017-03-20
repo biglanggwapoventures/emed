@@ -45,7 +45,7 @@
                             <tr>
                                 <td><span class="glyphicon glyphicon-home"></span> <b>Home Address:</b><br>{{ $docs->userInfo->address }}</td>
                                 <td> <i class="fa fa-stethoscope" aria-hidden="true"></i> <strong>Subspecialty: </strong><br>
-                                        {{ implode(',<br> ', $docs->subspecialty) }}<br>
+                                        {{ implode(', ', $docs->subspecialty) }}<br>
 
                                 </td>
                             </tr>
@@ -98,7 +98,7 @@
                             <tr>
                                 <td>
 <i class="fa fa-sitemap" aria-hidden="true"></i>
-                                    <strong>Affiliations and Organizations: </strong> <br>{{implode(',<br> ', $docs->affiliations) }} <br>
+                                    <strong>Affiliations and Organizations: </strong> <br>{{implode(',', $docs->affiliations) }} <br>
 
                                 </td>
                                 <td>
