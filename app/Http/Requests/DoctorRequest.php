@@ -42,7 +42,7 @@ class DoctorRequest extends FormRequest
             'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required:unique:users',
+            'email' => 'required|unique:users',
             'prc' => 'required',
             'ptr' => 'required',
             'specialization' => 'required',
@@ -64,6 +64,7 @@ class DoctorRequest extends FormRequest
         {
             $user_id = \App\Doctor::find($this->route("doctor"))->user_id;
             $rules['username'] = 'required|unique:users,username,'.$user_id;
+            $rules['email'] = 'required|unique:users,username,'.$user_id;
         }
 
         

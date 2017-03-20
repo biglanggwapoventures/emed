@@ -36,15 +36,20 @@ class SecretaryRequest extends FormRequest
             'contact_number' => 'required',
             'address' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required:unique:users'
+            'email' => 'required|unique:users'
             
         ];
 
         if($this->isMethod('post')){
             $rules['username'] = 'required:unique:users';
+            $rules['email'] = 'required:unique:users';
         }else{
             // dd($this->route('doctor'));
             $rules['username'] = [
+                'required',
+                 Rule::unique('users')->ignore($this->input('user_id'))
+            ];
+             $rules['email'] = [
                 'required',
                  Rule::unique('users')->ignore($this->input('user_id'))
             ];
