@@ -19,11 +19,16 @@ class PharmaController extends Controller
     public function index(Request $request)
     {
         $search =  $request->input('search');
-        $items = Pharma::where('drugstore', Auth::user()->manager->drugstore)->get();
+        $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
 
+        if(trim($search)){
+            $items->whereHas('userInfo', function($q) USE($search){
+                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+            });
+        }
 
         return view('pharmacists.list', [
-            'items' => $items
+            'items' => $items->paginate(6)
         ]);
     }
 
