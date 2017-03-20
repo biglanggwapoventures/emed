@@ -115,7 +115,7 @@
                                         <label class="control-label">Specialization</label>
                                 <span style="color: red">*</span>
                                 <select class="form-control" name="specialization" id='groups'>
-                                            <option value="" selected disabled>Please select</option>
+                                            <option value="" selected disabled>{{ $data->specialization }}</option>
                                             <option>Internal Medicine</option>
                                             <option>Pediatrics</option>
                                             <option>ENT</option>
@@ -133,9 +133,9 @@
                                    @foreach($data->subspecialty AS $fa)
                                     <tr>
                                         <td>
-                                            <select class="form-control" name="subspecialty[]" value="{{ $fa }}" id='sub_groups'>
-                                              <option data-group='SHOW' value='0'>-- Select Specialty first--</option>
-                                              <option data-group='Internal Medicine' selected disabled>IM Subs</option>
+                                            <select class="form-control" name="subspecialty[]" id='sub_groups'>
+                                            <option data-group='SHOW' value='0'>{{ $fa }}</option>
+                                            <option data-group='Internal Medicine' selected disabled>IM Subs</option>
                                             <option data-group='Internal Medicine'>Adolescent medicine</option>
                                             <option data-group='Internal Medicine'>Allergy, Asthma and Immunology</option>
                                             <option data-group='Internal Medicine'>Cardiology</option>
