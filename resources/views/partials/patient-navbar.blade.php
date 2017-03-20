@@ -22,12 +22,14 @@
         <li class="dropdown" style="width: 100%;">
           <a href="{{ url('/patient-home') }}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+            <li><a href=""{{ url('patient-home') }}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="#">Prescriptions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="#">History and Diagnosis<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li><a href="#">Account Settings<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
+             <li><a href="{{ url('/ChangePass') }}"> Change Password <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>
         </li>

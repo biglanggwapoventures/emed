@@ -142,4 +142,19 @@
 
 <center>{{ $items->links('vendor.pagination.custom') }}</center>
 
+
+<style type="text/css">
+	
+	
+.col-md-offset-1 {
+    margin-left: 8.33333333%;
+    background-color: whitesmoke;
+    border-radius: 14px;
+}
+
+thead{
+	background-color: blue;
+}
+</style>
+
 @endsection

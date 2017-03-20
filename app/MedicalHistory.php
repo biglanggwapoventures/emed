@@ -10,11 +10,6 @@ class MedicalHistory extends Model
 		'chiefcomplaints','weight','height','bloodpressure','temperature','pulserate','resprate','notes','patient_id','doctor_id'
 	];
 
-	public function userInfo()
-	{
-		return $this->belongsTo('App\User', 'user_id');
-	}
-
 	public function patient()
 	{
 		return $this->belongsTo('App\Patient', 'patient_id');
@@ -23,5 +18,10 @@ class MedicalHistory extends Model
 	public function doctor()
 	{
 		return $this->belongsTo('App\Doctor', 'doctor_id');
+	}
+
+	public function prescriptions()
+	{
+		return $this->hasMany('App\Prescription', 'consultation_id');
 	}
 }

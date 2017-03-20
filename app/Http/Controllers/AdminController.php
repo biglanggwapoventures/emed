@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Doctor;
 
 // use App\Doctor;
 
@@ -16,6 +17,7 @@ class AdminController extends Controller
  		$type = $request->input('user_type');
 
  		$items = User::select();
+
  		if(trim($search)){
  			$items->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
  		}

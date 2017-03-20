@@ -32,10 +32,10 @@ class PatientRequest extends FormRequest
             'lastname' => 'required',
             'birthdate' => 'required',
             'sex' => 'required',
-            'contact_number' => 'required',
+              'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required:unique:users',
+            'email' => 'required|unique:users',
             'bloodtype' => 'required',
             'enumber' => 'required',
             'erelationship' => 'required',
@@ -43,13 +43,17 @@ class PatientRequest extends FormRequest
             'civilstatus' => 'required',
             'nationality' => 'required',
             'occupation' => 'required',
-            'allergyname' => 'present',
-            'allergyquestion' => 'present',
-            'allergyname' => 'present',
+            'allergyname' => 'present|required_if:allergyquestion,Y',
+            'allergyquestion' => 'present|in:Y,N',
             'past_disease' => 'present',
             'past_surgery' => 'present',
             'family_history' => 'present',
             'immunization' => 'present'
+
+
+
+            // 'allergyquestion' => 'required|in:Y,N',
+            // 'allergyname' => 'present|required_if:allergyquestion,Y',
         ];
 
         if($this->isMethod('post')){
@@ -86,6 +90,8 @@ class PatientRequest extends FormRequest
             'occupation.required' => 'Please enter your occupation.',
             'email.unique' => 'Email already taken',
             'username.unique' => 'Taken username.',
+            'allergyname.unique' => 'Input allergy name.',
+            'contact_number.min' => 'Please enter valid contact number.'
             
         ];
     }

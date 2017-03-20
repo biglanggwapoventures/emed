@@ -6,7 +6,7 @@
             <div class="page-header">
                 <h1>PATIENTS</h1>
             </div>
-
+<br>
             <div class="col-md-6">
 
                 {!! Form::open(['method'=>'GET','url'=>'patients','class'=>'navbar-form navbar-left','role'=>'search']) !!}
@@ -14,10 +14,10 @@
                 <div class="input-group custom-search-form">
                     {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
                     <span class="input-group-btn">
-								<button type="submit" class="btn btn-default-sm">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
+                                <button type="submit" class="btn btn-default-sm">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
                 </div>
                 {!! Form::close() !!}
             
@@ -30,8 +30,12 @@
                     <tr class="active">
                         <th>Last Name</th>
                         <th>First Name</th>
-                        <th>Bloodtype</th>
+                        <th>Email</th>
+                          <th>Bloodtype</th>
+                            <th>Occupation</th>
+
                         <th>Manage</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +44,9 @@
                     <tr>
                         <td>{{ $patient->userInfo->lastname }}</td>
                         <td>{{ $patient->userInfo->firstname }}</td>
+                        <td>{{ $patient->userInfo->email }}</td>
                         <td>{{ $patient->bloodtype }}</td>
+                        <td>{{ $patient->occupation }}</td>
                         <td>
 
                            
@@ -73,11 +79,25 @@
                     @endforelse
 
                 </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<center>{{ $patients->links('vendor.pagination.custom') }}</center>
-<!-- {{ $patients->appends(Request::except('page'))->links() }}  -->
 
+            </table>
+            <!--   <center>{{ $patients->appends(Request::except('page'))->links() }} </center> -->
+            <a href="doctor-home" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-arrow-left"></i></a>
+        </div>
+
+    </div>
+     <center>{{ $patients->links('vendor.pagination.custom') }}</center>
+</div>
+
+
+
+
+<style type="text/css">
+    
+    .col-md-12 {
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 12px;
+}
+</style>
 @endsection

@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav-user">
         <li class="dropdown" style="width: 100%;">
-          <a href="/doctor-home"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+          <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('/doctor-home') }}">Profile<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
@@ -25,6 +25,8 @@
              <li><a href="{{ route('secretary.index') }}">Secretary<span class="badge pull-right"> 14 </span></a></li>
             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url('/ChangePass') }}"> ChangePassword <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>
         </li>
       </ul>

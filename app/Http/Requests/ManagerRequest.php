@@ -32,7 +32,7 @@ class ManagerRequest extends FormRequest
             'lastname' => 'required',
             'birthdate' => 'required',
             'sex' => 'required',
-            'contact_number' => 'required',
+            'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required:unique:users',
@@ -70,7 +70,8 @@ class ManagerRequest extends FormRequest
             'drugstore_address.required' => 'Please enter your drusgtore address.',
             'license.required' => 'Please enter your license.',
             'email.unique' => 'Email already taken',
-             'username.unique' => 'Taken username.'
+             'username.unique' => 'Taken username.',
+             'contact_number.min' => 'Please enter valid contact number.'
         ];
     }
 
