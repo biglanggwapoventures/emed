@@ -167,7 +167,7 @@
                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                           </form>
 
-                              <a href="{{ route('prescription.index', ['patient_id' => $patients->id]) }}"  class="btn btn-info"><span class="glyphicon glyphicon-plus">prescription</a>
+                              <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}"  class="btn btn-info"><span class="glyphicon glyphicon-plus">Prescription</a>
                               
                           <button 
                           type="button" 
