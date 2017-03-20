@@ -30,19 +30,17 @@ class PatientsController extends Controller
     {
 
         $user = Auth::user();
-        
-        //$patientsec = Auth::user()->secretary->doctor->patients();
         $search =  $request->input('search');
        
-         
-        /*if(trim($search)){
-            $patients->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
-        }*/
 
         if($user->user_type === "DOCTOR"){
             $patients = Auth::user()->doctor->patients();
+
+        if(trim($search)){
+            $patients->whereHas('userInfo', function($q) USE($search){
+                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+            });
+        }
 
             return view('patients.list', [
                 'patients' => $patients->paginate(6)
@@ -52,6 +50,11 @@ class PatientsController extends Controller
         else if($user->user_type === "SECRETARY"){
             $patients = Auth::user()->secretary->doctor->patients();
 
+        if(trim($search)){
+            $patients->whereHas('userInfo', function($q) USE($search){
+                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+            });
+        }
 
             return view('patients.list', [
                 'patients' => $patients->paginate(6)
@@ -181,7 +184,7 @@ class PatientsController extends Controller
                 'patients' => $patients
             ]);
         }
-        else if(Auth::user()->user_type === 'PATIENT')
+        else if(Auth::user()->user_type === 'PATIENT' || Auth::user()->user_type === 'SECRETARY')
         {
             $items = Patient::find($id);
             return view('patients.patient-home', [

@@ -7,14 +7,24 @@
                 <h1>SECRETARY</h1>
             </div>
 
+            <div class="col-md-6">
+
+                {!! Form::open(['method'=>'GET','url'=>'secretary','class'=>'navbar-form navbar-left','role'=>'search']) !!}
+            
+                <div class="input-group custom-search-form">
+                    {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
+                    <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default-sm">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                </div>
+                {!! Form::close() !!}
+            
+            </div>
 
             <a class="btn btn-primary pull-right" href="{{ route('secretary.create')}}">Add New Secretary</a>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            </form>
+            
             <table class="table">
                 <thead>
                     <tr class="active">

@@ -539,7 +539,7 @@ body {
    .panel-primary {
     border-color: #ffffff;
     width: 969px;
-    margin-left: 109px;
+    margin-left: 59px;
 }
 
 .fix   {
