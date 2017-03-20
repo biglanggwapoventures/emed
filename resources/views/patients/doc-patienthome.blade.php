@@ -160,18 +160,21 @@
                           </tr>
                         </thead>
                         <tbody>
+                        @forelse($patients->prescriptions AS $consultation)
                           <tr>
-                            <td> Potato </td>
-                            <td>Kush</td>
-                            <td>4mg</td>
-                            <td>5 pcs</td>
-                            <td>6</td>
-                            <td>ugma </td>
-                            <td>gahapom</td>
+                            <td>{{ $consultation->genericname }}</td>
+                            <td>{{ $consultation->brand }}</td>
+                            <td>{{ $consultation->dosage }}</td>
+                            <td>{{ $consultation->frequency }}</td>
+                            <td>{{ $consultation->quantity }}</td>
+                            <td>{{ $consultation->start }}</td>
+                            <td>{{ $consultation->end }}</td>
                           </tr>
+                          @empty
+                          @endforelse
                         </tbody>
                       </table>
-
+                      
         </section>
 
         <section id="content4" class="tab-content">
