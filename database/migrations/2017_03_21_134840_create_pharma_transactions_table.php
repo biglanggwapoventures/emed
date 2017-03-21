@@ -25,7 +25,7 @@ class CreatePharmaTransactionsTable extends Migration
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('pharma_id')->references('id')->on('pharmas');
         });
-     }
+    }
 
     /**
      * Reverse the migrations.
