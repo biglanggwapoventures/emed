@@ -147,25 +147,30 @@
                         <table class="fix">
                         <thead>
                           <tr class="active">
+                            <th>Doctor</th>
                             <th>Generic Name</th>
                             <th>Brand name</th>
                             <th>Dosage</th>
                             <th>Frequency</th>
                             <th>Available</th>
                             <th>Start</th>
-                              <th>end</th>
+                            <th>End</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @forelse($items->prescriptions AS $consultation)
                           <tr>
-                            <td> Potato </td>
-                            <td>Kush</td>
-                            <td>4mg</td>
-                            <td>5 pcs</td>
-                            <td>6</td>
-                            <td>ugma </td>
-                            <td>gahapom</td>
+                            <td>{{ $consultation->doctor->userInfo->fullname() }}</td>
+                            <td>{{ $consultation->genericname }}</td>
+                            <td>{{ $consultation->brand }}</td>
+                            <td>{{ $consultation->dosage }}</td>
+                            <td>{{ $consultation->frequency }}</td>
+                            <td>{{ $consultation->quantity }}</td>
+                            <td>{{ $consultation->start }}</td>
+                            <td>{{ $consultation->end }}</td>
                           </tr>
+                          @empty
+                          @endforelse
                         </tbody>
                       </table>
 
