@@ -3,40 +3,58 @@
 @section('body')
 
 <div class="container-fluid">
-	<table class="table">
+<table class="lefty pull-left">
                 <thead>
                   <tr class="active">
-                    <th>Generic Name</th>
-                    <th>Brand</th>
-                    <th>Dosage</th>
-                    <th>Quantity</th>
-                    <th>Manage</th>
+                    <th><br></th>
+                    <th></th>
+                    
                   </tr>
                 </thead>
                 <tbody>
                
                     <tr>
+                      <td><img alt="User Pic" src="/" style="width: 150px; height: 150px;" class="img-circle img-responsive"><br></td>
+                     <td>Name:<br> Nikki Gallego <br> Birthdate: 9/26/1994 <br> Age: 20</td>
+                    </tr>
+                </tbody>
+                
+              </table>
+	<table class="table">
+                <thead>
+                  <tr class="active">
+                  <th>Doctor</th>
+                    <th>Generic Name</th>
+                    <th>Brand Name</th>
+                    <th>Dosage</th>
+                    <th>Quantity</th>
+                    <th>Manage</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+               
+                    <tr>
+                    <td><div class="input-group spinner">
+                            Doctor
+                            </div>
+                        </div>
+</td>
                       <td>Generic Name</td>
                       <td>Brand</td>
                       <td>Dosage</td>
                       <td> Quantity</td>
                       <td>
                       	<div class="input-group spinner">
-    <input type="text" class="form-control" value="42">
-    <div class="input-group-btn-vertical">
-      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
-      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
-    </div>
-
-  </div>
-
+                            <input type="text" class="form-control" value="0">
+                            </div>
+                        </div>
                       </td>
                     </tr>
-                  
                 </tbody>
-                <button class="btn btn-default pull-right" type="button"><i class="fa fa-heart">Purchase</i></button>
+                
               </table>
-         
+         <button class="btn btn-success pull-right" type="button"><i class="fa fa-heart">Purchase</i></button>
 </div>
 <script type="text/javascript">
 	(function ($) {
@@ -88,9 +106,20 @@
   left: 4px;
 }
 .table {
-    width: 80%;
+    width: 73%;
     max-width: 80%;
     margin-top: 76px;
+    margin-left: 313px;
+}
+.lefty {
+    width: 27%;
+    margin-top: 79px;
+    margin-left: -56px;
+}
+
+.img-circle {
+    border-radius: 50%;
+    margin-left: 7px;
 }
 </style>
 
