@@ -49,11 +49,6 @@ class PatientRequest extends FormRequest
             'past_surgery' => 'present',
             'family_history' => 'present',
             'immunization' => 'present'
-
-
-
-            // 'allergyquestion' => 'required|in:Y,N',
-            // 'allergyname' => 'present|required_if:allergyquestion,Y',
         ];
 
         if($this->isMethod('post')){

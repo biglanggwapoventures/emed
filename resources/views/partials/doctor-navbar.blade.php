@@ -11,8 +11,6 @@
       </button>
       <a class="navbar-brand" href="{{ url('/doctor-home') }}">eMED</a>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav-user">
         <li class="dropdown" style="width: 100%;">

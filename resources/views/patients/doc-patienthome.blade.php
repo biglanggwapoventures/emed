@@ -38,7 +38,6 @@
                     <table class="table table-user-information">
                         <tbody>
                             <tr>
-
                                 <td>
                                     <p class="name">{{ $patients->userInfo->fullname() }} </p><br>
                                     <p class="email"> <i class="fa fa-envelope"></i> &nbsp {{$patients->userInfo->email}}</p><br>
