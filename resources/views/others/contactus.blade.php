@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Contact Us</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -12,36 +12,27 @@
 
 
 <aside class="profile-card">
-
   <header>
-
-    <!-- here’s the avatar -->
       <img src="./../images/Logo.png" style="width: 60%;" />
-
-    <!-- the username -->
-    <h1>Get in touch with <br><font style="color: blue;">E-med Services</font></h1>
-
-    <!-- and role or location -->
-    <h2>emedservices@gmail.com</h2>
-
+        <h1>Get in touch with <br>
+          <font style="color: blue;">E-med Services
+          </font>
+        </h1>
+          <h2>emedservices@gmail.com
+          </h2>
   </header>
-
-  <!-- bit of a bio; who are you? -->
   <div class="profile-bio">
-  <br>
-
-    <p><span class="glyphicon glyphicon-home"></span><br>Nasipit, Talamban Cebu City 6000<br>09993647047
-    </p>
-
+    <br><p><span class="glyphicon glyphicon-home">
+         </span><br>Nasipit, Talamban Cebu City 6000<br>09993647047
+        </p>
   </div>
-
 </aside>
-<!-- that’s all folks! -->
 
 <style type="text/css">
 html {
     height: 100%;
 }
+
 body {
   background: url("./../images/Background-2.png") center center no-repeat;
     background-size: 120% auto;
@@ -83,7 +74,7 @@ p {
     margin: 0px;
 }
 .profile-card {
-  background: #FFB300;
+  background: #2c69e6;
   width: 56px;
   height: 56px;
   position: absolute;
@@ -136,8 +127,8 @@ p {
     border: 4px solid #FFFFFF;
     -webkit-transform: scale(0);
     transform: scale(0);
-    background: -webkit-linear-gradient(top, #2196F3 0%, #2196F3 50%, #FFC107 50%, #FFC107 100%);
-    background: linear-gradient(#2196F3 0%, #2196F3 50%, #FFC107 50%, #FFC107 100%);
+    background: -webkit-linear-gradient(top, #2196F3 0%, #2196F3 50%, #2C69E6 50%, #2C69E6 100%);
+    background: linear-gradient(#2196F3 0%, #2196F3 50%, #2C69E6 50%, #2C69E6 100%);
     -webkit-border-radius: 50%;
     border-radius: 50%;
     -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -417,7 +408,7 @@ p {
 }
 @-webkit-keyframes moveUp {
     0% {
-        background: #FFB300;
+        background: #2c69e6;
         top: 100%;
     }
   50% {
@@ -430,7 +421,7 @@ p {
 }
 @keyframes moveUp {
     0% {
-        background: #FFB300;
+        background: #2c69e6;
         top: 100%;
     }
   50% {

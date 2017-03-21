@@ -11,25 +11,24 @@
       </button>
       <a class="navbar-brand" href="{{ url('/') }}">eMED</a>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
 
-        <!-- <li><a href="{{ route('managers.index') }}">Pharmacy Managers</a></li> -->
-      </ul>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav-user">
-        <li class="dropdown" style="width: 100%;">
-          <a href="{{ url('/patient-home') }}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ url('/ChangePass') }}">Change Pass<span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-             <li class="divider"></li>
+        <div class="btn-group" role="group">
+    <button type="button" class="btn btn-primary"><a href="{{ url('patient-home') }}" style="color: white; text-decoration: none;"> {{ $items->userInfo->fullname() }}</a></button>
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+    <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="{{ url('patient-home') }}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Prescriptions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>
-        </li>
       </ul>
-
-     
-    </div><!-- /.navbar-collapse -->
+      </div>
   </div><!-- /.container-fluid -->
 </nav> 
