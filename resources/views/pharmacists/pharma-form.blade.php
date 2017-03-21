@@ -38,6 +38,7 @@
                                     <label for="sel1">Select list:</label>
                                     <span style="color: red">*</span>
                                     <select class="form-control" name="sex">
+                                            <option value="" selected disabled>Select</option>
 								   			<option>Male</option>
 								    		<option>Female</option>
 								  		</select> @if($errors->has('sex'))

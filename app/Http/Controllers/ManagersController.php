@@ -15,6 +15,10 @@ class ManagersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function transaction(){
+
+        return view('pharmacists.pharma-transaction');
+    }
     public function index()
     {
         $items = PharmacyManager::with('userInfo')->get();
