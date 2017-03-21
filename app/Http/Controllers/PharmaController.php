@@ -102,13 +102,6 @@ class PharmaController extends Controller
 
         Auth::user()->manager->pharmacists()->create($pharmacist);
 
-        // save pharmacist's profile picture
-        $path = $request->file('avatar')->store(
-            'avatars/'.$user->id, 'public'
-        );
-        $user->avatar = $path;
-        $user->save();
-
        return redirect()->route('pharmacists.index');
     }
 
