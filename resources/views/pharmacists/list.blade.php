@@ -43,7 +43,7 @@
                                 <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                             </form>
 
-                                <a href="{{ route('pharmacists.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+                            <a href="{{ route('pharmacists.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
                         </td>
                     </tr>
                     @empty
@@ -102,12 +102,12 @@
 
 
 <style type="text/css">
-    
     .col-md-12 {
-    width: 100%;
-    background-color: whitesmoke;
-    border-radius: 12px;
-}
+        width: 100%;
+        background-color: whitesmoke;
+        border-radius: 12px;
+    }
+
 </style>
 
 @endsection

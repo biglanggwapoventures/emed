@@ -62,3 +62,5 @@ Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')-
 Route::post('/ChangePass', 'PasswordChangeController@postUpdatePassword')->name('ChangePass');
 Route::get('/ChangePass', 'PasswordChangeController@showHomepage')->middleware('auth');
 
+Route::post('/scan', 'RFIDController@scan');
+
