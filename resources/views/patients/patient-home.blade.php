@@ -1,6 +1,6 @@
-@extends('welcome') @section('body')
+s@extends('welcome') @section('body')
 
-<div class="container-fluid"><br><br><br>
+<div class="container-fluid">
   @if(session('ACTION_RESULT'))
     <div class="row">
    

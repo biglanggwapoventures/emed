@@ -82,9 +82,49 @@
 
 
     @yield('body')
-
+    <object id="webcard" type="application/x-webcard" width="0" height="0">
+        <param name="onload" value="pluginLoaded" />
+    </object>
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(pluginLoaded)
+        function pluginLoaded() {
+            console.log("asdasd")
+            window.webcard = document.getElementById("webcard");
+            if (webcard.attachEvent) {
+                webcard.attachEvent("oncardpresent", cardPresent);
+                webcard.attachEvent("oncardremoved", cardRemoved);
+            } else { 
+                webcard.addEventListener("cardpresent", cardPresent, false);
+                webcard.addEventListener("cardremoved", cardRemoved, false);
+            }
+        }
+
+        function cardPresent(reader) {
+            reader.connect(2); // 1-Exclusive, 2-Shared
+            var apdu = "FFCA000000";
+            var uid = reader.transcieve(apdu);
+            console.log(uid);
+            scan(uid);
+            reader.disconnect();
+        }
+
+        function cardRemoved(reader) {
+
+        }
+
+        function scan(uid){
+            $.post('{{ url("/scan") }}', {
+                uid: uid,
+                _token: '{{ csrf_token() }}'
+            }).done(function(res){
+                if(res.result){
+                    window.location.href = res.url;
+                }
+            })
+        }
+    </script>
     @stack('scripts')
     
 </body>
