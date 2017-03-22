@@ -9,17 +9,16 @@
                 </div>
                 {{ csrf_field() }}
                 <div class="panel-body">
-                @if(session('ACTION_RESULT'))
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
-          {{ session('ACTION_RESULT')['message'] }}
-        
-        </div>
-      </div>
-    </div>
-  @endif
-                    @forelse($items AS $d) @if($d->userInfo->username === Auth::user()->username)
+                    @if(session('ACTION_RESULT'))
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                {{ session('ACTION_RESULT')['message'] }}
+
+                            </div>
+                        </div>
+                    </div>
+                    @endif @forelse($items AS $d) @if($d->userInfo->username === Auth::user()->username)
                     <strong>Name:</strong>{{ $d->userInfo->fullname() }} <br>
                     <strong>Attainment:</strong>{{ $d->attainment }} <br> @endif @empty
                     <p>There are no users yet!</p>

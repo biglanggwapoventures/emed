@@ -137,124 +137,114 @@
         </section>
 
         <section id="content3" class="tab-content">
-              <div class="panel panel-primary "> 
+            <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Prescriptions</h4>
-          </div>
-        
-      <div class="panel-body  ">
-            <div class="col-md-2 ">
-                         <img alt="User Pic" src="{{ " /images/rx.png " }}" style="width: 150px; height: 150px;">
-                      </div>
-                        <table class="fix">
+                </div>
+
+                <div class="panel-body  ">
+                    <div class="col-md-2 ">
+                        <img alt="User Pic" src="{{ " /images/rx.png " }}" style="width: 150px; height: 150px;">
+                    </div>
+                    <table class="fix">
                         <thead>
-                          <tr class="active">
-                            <th>Generic Name</th>
-                            <th>Brand name</th>
-                            <th>Dosage</th>
-                            <th>Frequency</th>
-                            <th>Available</th>
-                            <th>Start</th>
-                              <th>end</th>
-                          </tr>
+                            <tr class="active">
+                                <th>Generic Name</th>
+                                <th>Brand name</th>
+                                <th>Dosage</th>
+                                <th>Frequency</th>
+                                <th>Available</th>
+                                <th>Start</th>
+                                <th>end</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @forelse($patients->prescriptions AS $consultation)
-                          <tr>
-                            <td>{{ $consultation->genericname }}</td>
-                            <td>{{ $consultation->brand }}</td>
-                            <td>{{ $consultation->dosage }}</td>
-                            <td>{{ $consultation->frequency }}</td>
-                            <td>{{ $consultation->quantity }}</td>
-                            <td>{{ $consultation->start }}</td>
-                            <td>{{ $consultation->end }}</td>
-                          </tr>
-                          @empty
-                          @endforelse
+                            @forelse($patients->prescriptions AS $consultation)
+                            <tr>
+                                <td>{{ $consultation->genericname }}</td>
+                                <td>{{ $consultation->brand }}</td>
+                                <td>{{ $consultation->dosage }}</td>
+                                <td>{{ $consultation->frequency }}</td>
+                                <td>{{ $consultation->quantity }}</td>
+                                <td>{{ $consultation->start }}</td>
+                                <td>{{ $consultation->end }}</td>
+                            </tr>
+                            @empty @endforelse
                         </tbody>
-                      </table>
-                      
+                    </table>
+
         </section>
 
         <section id="content4" class="tab-content">
-             <table class="table">
-                        <thead>
-                            <tr class="active">
-                                <th>Name</th>
-                                <th>Specialization</th>
-                                <th>Address</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($patients->doctors AS $item)
-                            <tr>
-                                <td>{{ $item->userInfo->fullname() }}</td>
-                                <td>{{ $item->specialization }}</td>
-                                <td>{{ $item->clinic_address }}</td>
-                                
-                                <td>
-                                    <button 
-                                               type="button" 
-                                               class="btn btn-warning btn-default-sm" 
-                                               data-toggle="modal" 
-                                               data-target="#infoModal_{{ $item->id }}">
+            <table class="table">
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($patients->doctors AS $item)
+                    <tr>
+                        <td>{{ $item->userInfo->fullname() }}</td>
+                        <td>{{ $item->specialization }}</td>
+                        <td>{{ $item->clinic_address }}</td>
+
+                        <td>
+                            <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
                                               <span class="glyphicon glyphicon-info-sign">
                                     </button>
-                                    <div class="modal fade" id="infoModal_{{ $item->id }}" 
-                                         tabindex="-1" role="dialog" 
-                                         aria-labelledby="favoritesModalLabel">
-                                      <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <button type="button" class="close" 
-                                              data-dismiss="modal" 
-                                              aria-label="Close">
+                            <div class="modal fade" id="infoModal_{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" 
-                                            id="favoritesModalLabel">{{ $item->userInfo->fullname() }}, {{ $item->title }}</h4>
-                                          </div>
-                                          <div class="modal-body">
-                                            <table class="table table-user-information">
-                                            <center><img alt="User Pic" src="{{ "storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
-                                            <tbody>
-                                              <tr>
-                                                <td><b>Clinic:</b>&#09;{{ $item->clinic }}, {{ $item->clinic_address }}</td>
-                                              </tr>
-                                              <tr>
-                                                <td><b>Gender:</b>&#09;{{ $item->userInfo->sex}} </td>
-                                              </tr>
-                                           
-                                                 <tr>
-                                                <tr>
-                                                <td><b>Clinic Hours:</b>&#09;{{ $item->clinic_hours }}</td>
-                                              </tr>
-                                              <tr>
-                                                <td><b>Email:</b>&#09;{{ $item->userInfo->email }}</td>
-                                              </tr>
-                                                <td><b>Phone Number:</b>&#09;{{ $item->userInfo->contact_number }}<br>
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td><b>PRC License:</b>&#09;{{ $item->prc }}<br>
-                                                </td>
-                                              </tr>
-                                             
-                                            </tbody>
-                                          </table>
-                                          </div>
+                                            <h4 class="modal-title" id="favoritesModalLabel">{{ $item->userInfo->fullname() }}, {{ $item->title }}</h4>
                                         </div>
-                                      </div>
+                                        <div class="modal-body">
+                                            <table class="table table-user-information">
+                                                <center><img alt="User Pic" src="{{ " storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>Clinic:</b>&#09;{{ $item->clinic }}, {{ $item->clinic_address }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Gender:</b>&#09;{{ $item->userInfo->sex}} </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <tr>
+                                                            <td><b>Clinic Hours:</b>&#09;{{ $item->clinic_hours }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Email:</b>&#09;{{ $item->userInfo->email }}</td>
+                                                        </tr>
+                                                        <td><b>Phone Number:</b>&#09;{{ $item->userInfo->contact_number }}<br>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>PRC License:</b>&#09;{{ $item->prc }}<br>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="text-center">No doctors recorded</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4" class="text-center">No doctors recorded</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </section>
 
         <section id="content5" class="tab-content">
@@ -282,7 +272,7 @@
                                 <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                             </form>
 
-                          <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-plus">Prescription</span></a>
+                            <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-plus">Prescription</span></a>
 
 
                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $patients->id }}">
@@ -354,7 +344,7 @@
         </div>
 
         <style type="text/css">
-            .img-circle {
+                .img-circle {
                 border-radius: 50%;
                 margin-left: 30px;
                 margin-top: 30px;
@@ -541,17 +531,17 @@
             td {
                 width: 8%;
             }
-
-              .panel-primary {
-    border-color: #ffffff;
-    width: 969px;
-    margin-left: 59px;
-}
-
-.fix   {
-    width: 83%;
-    max-width: 100%;
-    margin-bottom:
+            
+            .panel-primary {
+                border-color: #ffffff;
+                width: 969px;
+                margin-left: 59px;
+            }
+            
+            .fix {
+                width: 83%;
+                max-width: 100%;
+                margin-bottom:
 
         </style>
 

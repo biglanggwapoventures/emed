@@ -10,7 +10,7 @@
             <div class="col-md-6">
 
                 {!! Form::open(['method'=>'GET','url'=>'secretary','class'=>'navbar-form navbar-left','role'=>'search']) !!}
-            
+
                 <div class="input-group custom-search-form">
                     {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
                     <span class="input-group-btn">
@@ -20,11 +20,11 @@
                             </span>
                 </div>
                 {!! Form::close() !!}
-            
+
             </div>
 
             <a class="btn btn-primary pull-right" href="{{ route('secretary.create')}}">Add New Secretary</a>
-            
+
             <table class="table">
                 <thead>
                     <tr class="active">
@@ -66,13 +66,12 @@
 </div>
 
 <style type="text/css">
-    
     .col-md-12 {
-    width: 100%;
-    background-color: whitesmoke;
-    border-radius: 12px;
-}
+        width: 100%;
+        background-color: whitesmoke;
+        border-radius: 12px;
+    }
+
 </style>
 
 @endsection
-    
