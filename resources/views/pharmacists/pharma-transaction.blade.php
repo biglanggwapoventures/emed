@@ -3,59 +3,49 @@
 @section('body')
 
 <div class="container-fluid">
-<table class="lefty pull-left">
-                <thead>
-                  <tr class="active">
-                    <th><br></th>
-                    <th></th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-               
-                    <tr>
-                      <td><img alt="User Pic" src="/" style="width: 150px; height: 150px;" class="img-circle img-responsive"><br></td>
-                     <td>Name:<br> Nikki Gallego <br> Birthdate: 9/26/1994 <br> Age: 20</td>
-                    </tr>
-                </tbody>
-                
-              </table>
+  <table class="lefty pull-left">
+    <thead>
+      <tr class="active">
+        <th><br></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+            <img alt="User Pic" src="/" style="width: 150px; height: 150px;" class="img-circle img-responsive"><br>
+          </td>
+          <td>Name:<br> Nikki Gallego <br> Birthdate: 9/26/1994 <br> Age: 20</td>
+        </tr>
+    </tbody>
+  </table>
 	<table class="table">
-                <thead>
-                  <tr class="active">
-                  <th>Doctor</th>
-                    <th>Generic Name</th>
-                    <th>Brand Name</th>
-                    <th>Dosage</th>
-                    <th>Quantity</th>
-                    <th>Manage</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-               
-                    <tr>
-                    <td><div class="input-group spinner">
-                            Doctor
-                            </div>
-                        </div>
-</td>
-                      <td>Generic Name</td>
-                      <td>Brand</td>
-                      <td>Dosage</td>
-                      <td> Quantity</td>
-                      <td>
-                      	<div class="input-group spinner">
-                            <input type="text" class="form-control" value="0">
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-                </tbody>
-                
-              </table>
-         <button class="btn btn-success pull-right" type="button"><i class="fa fa-heart">Purchase</i></button>
+    <thead>
+      <tr class="active">
+        <th>Doctor</th>
+        <th>Generic Name</th>
+        <th>Brand Name</th>
+        <th>Dosage</th>
+        <th>Quantity</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="input-group spinner">Doctor</div></td>
+        <td>Generic Name</td>
+        <td>Brand</td>
+        <td>Dosage</td>
+        <td> Quantity</td>
+        <td>
+          <div class="input-group spinner"><input type="text" class="form-control" value="0"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-success pull-right" type="button"><i class="fa fa-heart">Purchase</i></button>
 </div>
+
 <script type="text/javascript">
 	(function ($) {
   $('.spinner .btn:first-of-type').on('click', function() {

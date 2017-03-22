@@ -27,7 +27,7 @@
             <li class="divider"></li>
             <li><a href="{{ url('/pharmacists')}}">View Pharmacists<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="#">Transactions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li><a href="{{ url('/pharma-transaction') }}">Transactions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
             <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
           </ul>
