@@ -23,7 +23,7 @@ class CreatePharmaTransactionsTable extends Migration
             $table->unsignedInteger('patient_id');
             $table->unsignedInteger('pharma_id');
             $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('pharma_id')->references('id')->on('pharmacists');
+            $table->foreign('pharma_id')->references('id')->on('pharmas');
         });
      }
 

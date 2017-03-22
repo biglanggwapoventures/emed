@@ -149,7 +149,7 @@
                           <tr class="active">
                             <th>Doctor</th>
                             <th>Generic Name</th>
-                            <th>Brand name</th>
+                            <th>Brand Name</th>
                             <th>Dosage</th>
                             <th>Frequency</th>
                             <th>Available</th>
