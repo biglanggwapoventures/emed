@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
     <link href=' https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'  type='text/css'>
+
+    @stack('styles')
    
 </head>
 <body>
@@ -105,8 +107,16 @@
             reader.connect(2); // 1-Exclusive, 2-Shared
             var apdu = "FFCA000000";
             var uid = reader.transcieve(apdu);
-            console.log(uid);
-            scan(uid);
+            // console.log(window.location)
+            var url = window.location.href.replace('http://', '').split('/');
+            // console.log(url);
+            
+            if(url[1] === 'patients' && url[2] === 'create'){
+                $('#rfid-uid').val(uid)
+            }else{
+                scan(uid);
+            }
+            
             reader.disconnect();
         }
 

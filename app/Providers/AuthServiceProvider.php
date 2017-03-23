@@ -25,6 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('detach-patient', function ($user, $patient) {
+            return $user->doctor->patients()->wherePatientId($patient->id)->exists();
+        });
+
+        Gate::define('attach-patient', function ($user, $patient) {
+            return !$user->doctor->patients()->wherePatientId($patient->id)->exists();
+        });
     }
 }

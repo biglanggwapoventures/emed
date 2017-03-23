@@ -151,6 +151,13 @@
                             {!! Form::bsText('enumber', 'Contact Number') !!}
                         </div>
                     </div>
+                    <h4>RFID</h4>
+                    <hr class="third">
+                    <div class="row">
+                        <div class="col-md-4">
+                            {!! Form::bsText('uid', 'RFID UID', null, ['readonly' => 'readonly', 'id' => 'rfid-uid']) !!}
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>
@@ -162,3 +169,8 @@
 
 
 @endsection
+
+
+@push('scripts')
+
+@endpush

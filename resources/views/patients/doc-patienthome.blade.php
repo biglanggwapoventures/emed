@@ -9,7 +9,7 @@
         </div>
     </div>
     @endif
-
+   
     <div class="tab_container">
         <input id="tab1" type="radio" name="tabs" checked>
         <label for="tab1"><i class="fa fa-code"></i><span>Profile</span></label>
@@ -26,7 +26,7 @@
         <input id="tab5" type="radio" name="tabs">
         <label for="tab5"><i class="fa fa-envelope-o"></i><span>Consultation</span></label>
 
-
+        
         <section id="content1" class="tab-content">
 
             <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
@@ -341,7 +341,19 @@
 
 
         </section>
+        @can('detach-patient', $patients)
+            {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}        
+              <button class="btn btn-danger" type="submit">Remove patient</button>
+            {!! Form::close() !!}
+        @endcan
+       
+       @can('attach-patient', $patients)
+            {!! Form::open(['url' => url('/attach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}        
+              <button class="btn btn-primary"  type="submit">Attach patient</button>
+            {!! Form::close() !!}
+        @endcan
         </div>
+        
 
         <style type="text/css">
                 .img-circle {

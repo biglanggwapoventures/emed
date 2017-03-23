@@ -13,6 +13,7 @@ s@extends('welcome') @section('body')
     @endif
 
     <div class="tab_container">
+        <button></button>
         <input id="tab1" type="radio" name="tabs" checked>
         <label for="tab1"><i class="fa fa-code"></i><span>Profile</span></label>
 

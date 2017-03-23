@@ -54,6 +54,7 @@ Route::resource('secretary', 'SecretaryController');
 Route::resource('pharmacists', 'PharmaController');
 Route::resource('consultations', 'MedicalHistoryController');
 Route::resource('prescription', 'PrescriptionController');
+Route::resource('transactions', 'TransactionsController');
 
 // Route::resource('pharmacists', 'PharmaController');
 
@@ -63,4 +64,7 @@ Route::post('/ChangePass', 'PasswordChangeController@postUpdatePassword')->name(
 Route::get('/ChangePass', 'PasswordChangeController@showHomepage')->middleware('auth');
 
 Route::post('/scan', 'RFIDController@scan');
+
+Route::post('/detach-patient/{patientId}', 'PatientActionController@detachPatient');
+Route::post('/attach-patient/{patientId}', 'PatientActionController@attachPatient');
 
