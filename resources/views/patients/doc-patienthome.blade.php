@@ -35,18 +35,24 @@
                     <img alt="User Pic" src="{{ " /storage/{$patients->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                 </div>
                 <div class="right">
-                    <table class="table table-user-information">
-                        <tbody>
-                            <tr>
-                                <td>
+                <table>
+                    <tbody>
+                         <tr>
+
+                                <td class="bg">
                                     <p class="name">{{ $patients->userInfo->fullname() }} </p><br>
                                     <p class="email"> <i class="fa fa-envelope"></i> &nbsp {{$patients->userInfo->email}}</p><br>
                                     <p class="address">
                                         </b><i class="fa fa-home"></i> &nbsp {{ $patients->userInfo->address }}</p><br>
                                 </td>
-                                <td></td>
-                                <td></td>
+                                 <td class="bg"></td>
+                                 <td class="bg"></td>
                             </tr>
+                    </tbody>
+                </table>
+                    <table class="table table-user-information">
+                        <tbody>
+                           
                             <tr>
                                 <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username</b> <br> {{ $patients->userInfo->username }} </td>
                                 <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$patients->userInfo->email}}</td>
@@ -79,6 +85,17 @@
 
 
                 </div>
+                 @can('detach-patient', $patients)
+            {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}        
+              <button class="btn btn-danger" type="submit">Remove patient</button>
+            {!! Form::close() !!}
+        @endcan
+       
+       @can('attach-patient', $patients)
+            {!! Form::open(['url' => url('/attach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}        
+              <button class="btn btn-primary"  type="submit">Attach patient</button>
+            {!! Form::close() !!}
+        @endcan
 
         </section>
 
@@ -206,7 +223,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <table class="table table-user-information">
-                                                <center><img alt="User Pic" src="{{ " storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                                                <center><img alt="User Pic" src="{{ " /storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
                                                 <tbody>
                                                     <tr>
                                                         <td><b>Clinic:</b>&#09;{{ $item->clinic }}, {{ $item->clinic_address }}</td>
@@ -341,17 +358,7 @@
 
 
         </section>
-        @can('detach-patient', $patients)
-            {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}        
-              <button class="btn btn-danger" type="submit">Remove patient</button>
-            {!! Form::close() !!}
-        @endcan
        
-       @can('attach-patient', $patients)
-            {!! Form::open(['url' => url('/attach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}        
-              <button class="btn btn-primary"  type="submit">Attach patient</button>
-            {!! Form::close() !!}
-        @endcan
         </div>
         
 
@@ -554,6 +561,11 @@
                 width: 83%;
                 max-width: 100%;
                 margin-bottom:
+}
+            .bg{
+
+                background-color: white;
+            }
 
         </style>
 
