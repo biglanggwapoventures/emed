@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Specialization extends Model
 {
     protected $fillable = [
-		'specialization'
+		'name',
+		'subs'
 	];
 
-	public function subspecialization()
-	{
-		return $this->hasMany('App\SubSpecialization', 'specialization_id');
-	}
+	protected $casts = [
+		'subs' => 'array'
+	];
 }

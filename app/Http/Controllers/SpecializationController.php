@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Specialization;
+use Validator;
 
 class SpecializationController extends Controller
 {
@@ -14,7 +15,9 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        return view('specialization.specialization');
+        return view('specialization.list', [
+            'items' => Specialization::orderBy('name', 'DESC')->get()
+        ]);
     }
 
     /**
@@ -24,7 +27,9 @@ class SpecializationController extends Controller
      */
     public function create()
     {
-        //
+        return view('specialization.manage', [
+            'data' => new Specialization
+        ]);
     }
 
     /**
@@ -35,18 +40,34 @@ class SpecializationController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'specialization' => 'present',
-        ];
-
-        $this->validate($request, $rules);
-        
-        $input = $request->only([
-            'specialization'
+        $v = Validator::make($request->all(), [
+            'name' => 'required|unique:specializations',
+            'subs' => 'present|array'
         ]);
 
+        if($v->fails()){
+            return response()->json([
+                'result' => false,
+                'errors' => $v->errors()->all()
+            ]);
+        }
 
-        Specialization::create($input);
+        $spec = new Specialization;
+        $spec->name = $request->input('name');
+        $spec->subs = array_values(array_filter($request->input('subs'), 'trim'));
+        $spec->save();
+
+        if($spec->id){
+            return response()->json([
+                'result' => true
+            ]);
+        }
+
+        return response()->json([
+            'result' => false,
+            'errors' => ['Cannot create new specialization due to an unknown error']
+        ]);
+
     }
 
     /**
@@ -68,7 +89,9 @@ class SpecializationController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('specialization.manage', [
+            'data' => Specialization::find($id) 
+        ]);
     }
 
     /**
@@ -80,7 +103,33 @@ class SpecializationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $v = Validator::make($request->all(), [
+            'name' => "required|unique:specializations,name,{$id}",
+            'subs' => 'present|array'
+        ]);
+
+        if($v->fails()){
+            return response()->json([
+                'result' => false,
+                'errors' => $v->errors()->all()
+            ]);
+        }
+
+        $spec = Specialization::find($id);
+        $spec->name = $request->input('name');
+        $spec->subs = array_values(array_filter($request->input('subs'), 'trim'));
+        $spec->save();
+
+        if($spec->id){
+            return response()->json([
+                'result' => true
+            ]);
+        }
+
+        return response()->json([
+            'result' => false,
+            'errors' => ['Cannot update specialization due to an unknown error']
+        ]);
     }
 
     /**
