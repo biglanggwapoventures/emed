@@ -41,8 +41,11 @@
                                 </div>
                             </div>
                             <div class="row col-md-offset-1 ">
-                                <div class="col-md-10 ">
+                                <div class="col-md-5 ">
                                     {!! Form::bsText('frequency', 'Frequency', null) !!}
+                                </div>
+                                <div class="col-md-5 ">
+                                    {!! Form::bsText('duration', 'Duration', null,['placeholder'=> 'Days']) !!}
                                 </div>
                             </div>
                             <div class="row col-md-offset-1 ">
@@ -53,11 +56,18 @@
                                     {!! Form::bsDate('end', 'End Date', null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
+                            <div class="row col-md-offset-1 ">
+                                <div class="col-md-5 ">
+                                    <strong>Notes:</strong> {{ Form::textarea('notes', null, ['size' => '62x5'])}}
+
+                                    <button type="submit" class="btn btn-primary">Add</button> {!! Form::close() !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- end of panelbody -->
-                <button type="submit" class="btn btn-primary">Add</button> {!! Form::close() !!}
+                
             </div>
         </div>
         <div class="col-md-6  ">
@@ -72,7 +82,7 @@
                     {!! Form::open(['url' => route('consultations.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
                 </div>
                 <!-- end of panelbody -->
-                <button type="submit" class="btn btn-primary">View All prescription history</button> {!! Form::close() !!}
+               <button type="submit" class="btn btn-primary">View All prescription history</button> {!! Form::close() !!}
             </div>
         </div>
     </div>

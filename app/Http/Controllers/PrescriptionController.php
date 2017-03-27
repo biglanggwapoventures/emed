@@ -48,10 +48,12 @@ class PrescriptionController extends Controller
             'genericname' => 'required',
             'brand' => 'present',
             'quantity' => 'required',
+            'duration' => 'required',
             'dosage' => 'required',
             'frequency' => 'required',
             'start' => 'required|date_format:"Y-m-d"',
             'end' => 'required|date_format:"Y-m-d"',
+            'notes' => 'present'
         ];
 
         $this->validate($request, $rules, [
