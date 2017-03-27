@@ -292,11 +292,11 @@
                             <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-plus">Prescription</span></a>
 
 
-                            <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $patients->id }}">
+                            <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $a->id }}">
                           <span class="glyphicon glyphicon-info-sign">
                           </button>
 
-                            <div class="modal fade" id="infoModal_{{ $patients->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
+                            <div class="modal fade" id="infoModal_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
