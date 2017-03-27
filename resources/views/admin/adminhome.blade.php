@@ -22,7 +22,9 @@
             <a class="btn btn-primary pull-right" href="{{ route('drugstore.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Drugstore</a>
             <a class="btn btn-primary pull-right" href="{{ route('drugstore.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Drugstore Branch</a>
             <a class="btn btn-primary pull-right" href="{{ route('managers.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacy Manager</a>
-            <a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a> {{ csrf_field() }}
+            <a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>
+            <a class="btn btn-primary pull-right" href="{{ route('specialization.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Specialization</a>
+            {{ csrf_field() }}
 
             <div class="tab-content">
                 <div id="users" class="tab-pane fade in active">
