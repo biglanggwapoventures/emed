@@ -55,6 +55,7 @@ Route::resource('pharmacists', 'PharmaController');
 Route::resource('consultations', 'MedicalHistoryController');
 Route::resource('prescription', 'PrescriptionController');
 Route::resource('transactions', 'TransactionsController');
+Route::resource('drugstore', 'DrugstoreController');
 
 // Route::resource('pharmacists', 'PharmaController');
 

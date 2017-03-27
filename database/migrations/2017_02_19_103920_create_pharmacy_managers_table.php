@@ -18,10 +18,11 @@ class CreatePharmacyManagersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('license');
             $table->string('drugstore');
-            $table->string('drugstore_address');
+            $table->string('drugstore_branch');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 
