@@ -5,6 +5,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+            <a class="btn btn-primary pull-right" href="{{ route('pharmacy.create')}}" style="margin-top:100px"><span class="glyphicon glyphicon-plus"></span>Add Pharmacy</a>
             <table class="table table-bordered" style="margin-top:100px">
                 <thead>
                     <tr>
