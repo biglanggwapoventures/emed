@@ -23,7 +23,7 @@
                                 <a href="" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
                             <td>{{ $i->name }}</td>
-                            <td>{{ implode(', ', $i->subs) ?: '-'}}</td>
+                            <td><ol><li>{!! implode('</li><li>', $i->subs) ?: '-' !!}</li></ol></td>
                             
                         </tr>
                     @empty
