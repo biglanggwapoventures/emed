@@ -25,12 +25,6 @@ body {
     
 }
 
-.container-fluid {
-    padding-right: 15px;
-    padding-left: 93px;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 /*Login*/
 .loginpage {
@@ -236,16 +230,6 @@ label.form-invalid:after {
     color: #346677;;
     font-weight: bold;
 }
-
-.btn-primary {
-    color: #fff;
-    margin-left: 5px;
-    margin-top: 8px;
-    margin-bottom: 7px;
-    background-color: #337ab7;
-    border-color: #2e6da4;
-}
-
 
 /* User drop down*/
 

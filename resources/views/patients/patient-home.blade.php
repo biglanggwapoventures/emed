@@ -1,4 +1,4 @@
-s@extends('welcome') @section('body')
+@extends('welcome') @section('body')
 
 <div class="container-fluid">
     @if(session('ACTION_RESULT'))
@@ -13,7 +13,7 @@ s@extends('welcome') @section('body')
     @endif
 
     <div class="tab_container">
-        <button></button>
+        
         <input id="tab1" type="radio" name="tabs" checked>
         <label for="tab1"><i class="fa fa-code"></i><span>Profile</span></label>
 
@@ -39,19 +39,24 @@ s@extends('welcome') @section('body')
                     <img alt="User Pic" src="{{ " /storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                 </div>
                 <div class="right">
-                    <table class="table table-user-information">
-                        <tbody>
-                            <tr>
+                <table>
+                    <tbody>
+                         <tr>
 
-                                <td>
+                                <td class="white">
                                     <p class="name">{{ $items->userInfo->fullname() }} </p><br>
                                     <p class="email"> <i class="fa fa-envelope"></i> &nbsp {{$items->userInfo->email}}</p><br>
                                     <p class="address">
                                         </b><i class="fa fa-home"></i> &nbsp {{ $items->userInfo->address }}</p><br>
                                 </td>
-                                <td></td>
-                                <td></td>
+                                 <td class="white"></td>
+                                 <td class="white"></td>
                             </tr>
+                    </tbody>
+                </table>
+                    <table class="table table-user-information">
+                        <tbody>
+                           
                             <tr>
                                 <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username</b> <br> {{ $items->userInfo->username }} </td>
                                 <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$items->userInfo->email}}</td>
@@ -542,6 +547,7 @@ s@extends('welcome') @section('body')
                 border-color: #ffffff;
                 width: 969px;
                 margin-left: 59px;
+
             }
             
             .fix {
@@ -549,7 +555,19 @@ s@extends('welcome') @section('body')
                 max-width: 100%;
                 margin-bottom: 20px;
             }
+            .tab_container {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 10px;
+    position: relative;
+    margin-left: 22px;
+    margin-top: 64px;
+}
 
+            .white{
+
+                background-color: white;
+            }
         </style>
 
         <!--  <script type="text/javascript">
