@@ -19,6 +19,7 @@
 
                 {!! Form::close() !!}
             </div>
+            <a class="btn btn-primary pull-right" href="{{ route('affiliations.index')}}"><span class="glyphicon glyphicon-plus"></span>Manage Affiliations</a>
             <a class="btn btn-primary pull-right" href="{{ route('drugstore.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Drugstore</a>
             <a class="btn btn-primary pull-right" href="{{ route('pharmacy.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Drugstore</a>
             <a class="btn btn-primary pull-right" href="{{ route('managers.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacy Manager</a>
