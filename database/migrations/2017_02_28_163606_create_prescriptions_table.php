@@ -19,10 +19,12 @@ class CreatePrescriptionsTable extends Migration
             $table->string('brand');
             $table->string('genericname');
             $table->integer('quantity');
+            $table->integer('duration');
             $table->string('frequency');
             $table->date('start');
             $table->date('end');
             $table->string('dosage');
+            $table->string('notes');
             $table->unsignedInteger('patient_id');
             $table->unsignedInteger('doctor_id');
             $table->unsignedInteger('consultation_id');

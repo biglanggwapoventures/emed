@@ -58,6 +58,7 @@ Route::resource('transactions', 'TransactionsController');
 Route::resource('specialization', 'SpecializationController');
 Route::resource('drugstore', 'DrugstoreController');
 Route::resource('pharmacy', 'PharmacyController');
+Route::resource('affiliations', 'AffiliationsController');
 
 // Route::resource('pharmacists', 'PharmaController');
 

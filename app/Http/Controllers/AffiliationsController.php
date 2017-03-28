@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\DoctorRequest;
-use Validator;
-use App\Doctor;
-use App\User;
-use App\Patient;
-use Auth;
+use App\Affiliations;
 
-class PrescriptionController extends Controller
+class AffiliationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +13,16 @@ class PrescriptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
+
     {
-        
-        return view('prescription.prescriptions');
+
+           $items = Affiliations::all();
+        return view('affiliations.affiliations', [
+            'items' => $items
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,35 +42,19 @@ class PrescriptionController extends Controller
      */
     public function store(Request $request)
     {
-
-        $rules = [
-            'patient_id' => 'required',
-            'consultation_id' => 'required',
-            'genericname' => 'required',
-            'brand' => 'present',
-            'quantity' => 'required',
-            'duration' => 'required',
-            'dosage' => 'required',
-            'frequency' => 'required',
-            'start' => 'required|date_format:"Y-m-d"',
-            'end' => 'required|date_format:"Y-m-d"',
-            'notes' => 'present'
-        ];
-
-        $this->validate($request, $rules, [
-            'start.date_format' => 'The start date must be of format MM/DD/YYYY',
-            'end.date_format' => 'The end date must be of format MM/DD/YYYY'
+           $input = $request->only([
+            'affiliations'
         ]);
+       
+       Affiliations::create($input);
 
-        $data = $request->only(array_keys($rules));
 
-        Auth::user()->doctor->prescriptions()->create($data); 
-
-        return redirect()
-            ->intended(route('patients.show', ['id' => $data['patient_id']]))
+       // return back();
+       return redirect()
+            ->intended(route('affiliations.index'))
             ->with('ACTION_RESULT', [
                 'type' => 'success', 
-                'message' => 'New prescription has been saved successfully!'
+                'message' => 'saved successfully!'
             ]);
     }
 
@@ -92,7 +77,9 @@ class PrescriptionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('affiliations.affiliations-edit', [
+            'data' => Affiliations::find($id)
+        ]);
     }
 
     /**
@@ -104,7 +91,15 @@ class PrescriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $data = Affiliations::find($id);
+        $data->fill([
+            'affiliations' => $request->affiliations,
+            
+        ]);
+
+        $data->save();
+
+         return redirect('/affiliations');
     }
 
     /**
@@ -115,6 +110,7 @@ class PrescriptionController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Affiliations::destroy($id);
+        return redirect()->back();
     }
 }
