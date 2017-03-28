@@ -6,7 +6,7 @@
 
             <h4 class="pull-left"><span class="glyphicon glyphicon-user"></span>Users</a>
             </h4>
-            <div class="col-md-6">
+            <div class="col-md-11">
                 {!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!} {!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
                 <div class="input-group custom-search-form pull-right">
                     {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
@@ -18,12 +18,30 @@
                 </div>
 
                 {!! Form::close() !!}
+
+                <div class="dropdown pull-right" style="margin-top: 7px;">
+                <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Add
+                        <span class="caret"></span>
+                </button>
+                    <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                        <li><a href="{{ route('pharmacy.index')}}">Drugstore</a></li>
+                         <li><a href="{{ route('affiliations.index')}}">Affiliations</a></li>
+                        <li><a href="{{ route('managers.create')}}">Pharmacy Manager</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ route('doctors.create')}}">Doctor</a></li>
+                        <li><a href="{{ route('specialization.index')}}">Specialization</a></li>
+                    </ul>
             </div>
-            <a class="btn btn-primary pull-right" href="{{ route('drugstore.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Drugstore</a>
+            </div>
+
+            
+
+           <!--  <a class="btn btn-primary pull-right" href="{{ route('drugstore.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Drugstore</a>
             <a class="btn btn-primary pull-right" href="{{ route('pharmacy.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Drugstore</a>
             <a class="btn btn-primary pull-right" href="{{ route('managers.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Pharmacy Manager</a>
             <a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>
-            <a class="btn btn-primary pull-right" href="{{ route('specialization.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Specialization</a>
+            <a class="btn btn-primary pull-right" href="{{ route('specialization.index')}}"><span class="glyphicon glyphicon-plus"></span>Add Specialization</a> -->
             {{ csrf_field() }}
 
             <div class="tab-content">
