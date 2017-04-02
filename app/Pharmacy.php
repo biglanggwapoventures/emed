@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pharmacy extends Model
 {
     protected $fillable = [
-		'name',
-		'branches'
+		'name'
 	];
 
-	protected $casts = [
-		'branches' => 'array'
-	];
+	public function branches()
+	{
+		return $this->hasMany('App\PharmacyBranch');
+	}
 }

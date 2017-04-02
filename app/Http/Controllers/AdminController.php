@@ -26,7 +26,7 @@ class AdminController extends Controller
  		}
 
         return view('admin.adminhome', [
-        	'items' => $items->paginate(7)
+        	'items' => $items->get()
     	]);
 
 	}

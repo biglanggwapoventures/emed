@@ -43,7 +43,7 @@ class PatientsController extends Controller
         }
 
             return view('patients.list', [
-                'patients' => $patients->paginate(6)
+                'patients' => $patients->get()
             ]);
         }
 
@@ -57,7 +57,7 @@ class PatientsController extends Controller
         }
 
             return view('patients.list', [
-                'patients' => $patients->paginate(6)
+                'patients' => $patients->get()
             ]);
         }
     }

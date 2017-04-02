@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pharmacy;
+use App\Pharmacy AS Pharmacy;
+use App\PharmacyBranch AS Branch;
 use Validator;
 
 class PharmacyController extends Controller
@@ -16,7 +17,7 @@ class PharmacyController extends Controller
     public function index()
     {
         return view('pharmacy.list', [
-            'items' => Pharmacy::orderBy('name', 'DESC')->get()
+            'items' => Pharmacy::with('branches')->orderBy('name', 'DESC')->get()
         ]);
     }
 
@@ -27,8 +28,10 @@ class PharmacyController extends Controller
      */
     public function create()
     {
+        $pharmacy = new Pharmacy;
+        $pharmacy->branches = [new Branch];
         return view('pharmacy.manage', [
-            'data' => new Pharmacy
+            'data' => $pharmacy
         ]);
     }
 
@@ -42,7 +45,9 @@ class PharmacyController extends Controller
     {
         $v = Validator::make($request->all(), [
             'name' => 'required|unique:pharmacies',
-            'branches' => 'present|array'
+            'branch' => 'required|array',
+            'branch.*.name' => 'required',
+            'branch.*.address' => 'required',
         ]);
 
         if($v->fails()){
@@ -52,20 +57,22 @@ class PharmacyController extends Controller
             ]);
         }
 
-        $pharmacy = new Pharmacy;
-        $pharmacy->name = $request->input('name');
-        $pharmacy->branches = array_values(array_filter($request->input('branches'), 'trim'));
-        $pharmacy->save();
+        $pharmacy = Pharmacy::create([
+            'name' => $request->input('name')
+        ]);
 
-        if($pharmacy->id){
-            return response()->json([
-                'result' => true
+        $branches = [];
+        foreach($request->input('branch') AS $branch){
+            $branches[] = new Branch([
+                'name' => $branch['name'],
+                'address' => $branch['address']
             ]);
         }
 
+        $pharmacy->branches()->saveMany($branches);
+
         return response()->json([
-            'result' => false,
-            'errors' => ['Cannot create new pharmacy due to an unknown error']
+            'result' => true
         ]);
 
     }
@@ -90,7 +97,7 @@ class PharmacyController extends Controller
     public function edit($id)
     {
         return view('pharmacy.manage', [
-            'data' => Pharmacy::find($id) 
+            'data' => Pharmacy::with('branches')->whereId($id)->first() 
         ]);
     }
 
@@ -105,7 +112,10 @@ class PharmacyController extends Controller
     {
         $v = Validator::make($request->all(), [
             'name' => "required|unique:pharmacies,name,{$id}",
-            'branches' => 'present|array'
+            'branch' => 'required|array',
+            'branch.*.name' => 'required',
+            'branch.*.address' => 'required',
+            'branch.*.id' => 'exists:pharmacy_branches,id',
         ]);
 
         if($v->fails()){
@@ -117,19 +127,34 @@ class PharmacyController extends Controller
 
         $pharmacy = Pharmacy::find($id);
         $pharmacy->name = $request->input('name');
-        $pharmacy->branches = array_values(array_filter($request->input('branches'), 'trim'));
         $pharmacy->save();
 
-        if($pharmacy->id){
-            return response()->json([
-                'result' => true
-            ]);
+        $branches = [];
+        $existing = [];
+        foreach($request->input('branch') AS $branch){
+            $fields = ['name' => $branch['name'], 'address' => $branch['address']];
+            if(isset($branch['id'])){
+                $existing[] = $branch['id'];
+                Branch::whereId($branch['id'])->update($fields);
+            }else{
+                $branches[] = new Branch($fields);
+            }
+        }
+
+        if(!empty($existing)){
+            Branch::wherePharmacyId($id)->whereNotIn('id', $existing)->delete();
+        }else{
+            Branch::wherePharmacyId($id)->delete();
+        }
+
+        if(!empty($branches)){
+            $pharmacy->branches()->saveMany($branches);
         }
 
         return response()->json([
-            'result' => false,
-            'errors' => ['Cannot update pharmacy due to an unknown error']
+            'result' => true
         ]);
+
     }
 
     /**
@@ -141,5 +166,7 @@ class PharmacyController extends Controller
     public function destroy($id)
     {
         //
+        Pharmacy::destroy($id);
+        return redirect()->back();
     }
 }

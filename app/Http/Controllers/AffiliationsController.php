@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Affiliations;
+use App\Affiliation AS Aff;
+use App\AffiliationBranch AS Branch;
+use Validator;
 
 class AffiliationsController extends Controller
 {
@@ -13,16 +15,11 @@ class AffiliationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
-
     {
-
-           $items = Affiliations::all();
-        return view('affiliations.affiliations', [
-            'items' => $items
+        return view('affiliations.list', [
+            'items' => Aff::with('branches')->orderBy('name', 'DESC')->get()
         ]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -31,7 +28,11 @@ class AffiliationsController extends Controller
      */
     public function create()
     {
-        //
+        $aff = new Aff;
+        $aff->branches = [new Branch];
+        return view('affiliations.manage', [
+            'data' => $aff
+        ]);
     }
 
     /**
@@ -42,20 +43,36 @@ class AffiliationsController extends Controller
      */
     public function store(Request $request)
     {
-           $input = $request->only([
-            'affiliations'
+        $v = Validator::make($request->all(), [
+            'name' => 'required|unique:affiliations',
+            'branches' => 'required|array',
+            'branches.*.name' => 'required',
         ]);
-       
-       Affiliations::create($input);
 
-
-       // return back();
-       return redirect()
-            ->intended(route('affiliations.index'))
-            ->with('ACTION_RESULT', [
-                'type' => 'success', 
-                'message' => 'saved successfully!'
+        if($v->fails()){
+            return response()->json([
+                'result' => false,
+                'errors' => $v->errors()->all()
             ]);
+        }
+
+        $aff = Aff::create([
+            'name' => $request->input('name')
+        ]);
+
+        $branches = [];
+        foreach($request->input('branches') AS $sub){
+            $branches[] = new Branch([
+                'name' => $sub['name']
+            ]);
+        }
+
+        $aff->branches()->saveMany($branches);
+
+        return response()->json([
+            'result' => true
+        ]);
+
     }
 
     /**
@@ -77,8 +94,8 @@ class AffiliationsController extends Controller
      */
     public function edit($id)
     {
-        return view('affiliations.affiliations-edit', [
-            'data' => Affiliations::find($id)
+        return view('affiliations.manage', [
+            'data' => Aff::with('branches')->whereId($id)->first() 
         ]);
     }
 
@@ -91,15 +108,49 @@ class AffiliationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $data = Affiliations::find($id);
-        $data->fill([
-            'affiliations' => $request->affiliations,
-            
+        $v = Validator::make($request->all(), [
+            'name' => "required|unique:specializations,name,{$id}",
+            'branches' => 'required|array',
+            'branches.*.name' => 'required',
+            'branches.*.id' => 'exists:affiliation_branches,id',
         ]);
 
-        $data->save();
+        if($v->fails()){
+            return response()->json([
+                'result' => false,
+                'errors' => $v->errors()->all()
+            ]);
+        }
 
-         return redirect('/affiliations');
+        $aff = Aff::find($id);
+        $aff->name = $request->input('name');
+        $aff->save();
+
+        $branches = [];
+        $existing = [];
+        foreach($request->input('branches') AS $branch){
+            if(isset($branch['id'])){
+                $existing[] = $branch['id'];
+                Branch::whereId($branch['id'])->update(['name' => $branch['name']]);
+            }else{
+                $branches[] = new Branch(['name' => $branch['name']]);
+            }
+        }
+
+        if(!empty($existing)){
+            Branch::whereAffiliationId($id)->whereNotIn('id', $existing)->delete();
+        }else{
+            Branch::whereAffiliationId($id)->delete();
+        }
+
+        if(!empty($branches)){
+            $aff->branches()->saveMany($branches);
+        }
+
+        return response()->json([
+            'result' => true
+        ]);
+
     }
 
     /**
@@ -110,7 +161,8 @@ class AffiliationsController extends Controller
      */
     public function destroy($id)
     {
-       Affiliations::destroy($id);
+        //
+        Aff::destroy($id);
         return redirect()->back();
     }
 }

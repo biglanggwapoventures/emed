@@ -1,54 +1,51 @@
-@extends('welcome')
-
-@section('body')
+@extends('welcome') @section('body')
 
 <div class="container">
-	<div class="row-bod">
-		<div class="col-md-12">
-			<div class="page-header">
-				<h1>DOCTORS</h1>
-			</div>
-			<a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>
-			<form class="navbar-form navbar-right">
-		        <div class="form-group">
-		          <input type="text" class="form-control" placeholder="Search">
-		        </div>
-		        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-		    </form>
-			<table class="table">
-				<thead>
-					<tr class="active">
-						<th>Name</th>
-						<th>Specialization</th>
-						<th>username</th>
-						<th>Manage</th>
-					</tr>
-				</thead>
-				<tbody>
-					@forelse($items AS $i)
-						<tr>
-							<td>{{ $i->userInfo->fullname() }}, {{ $i->title}} </td>
-							<td>{{ $i->specialization }}</td>
-							<td>{{ $i->userInfo->username }}</td>
-							<td>
-								<form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
-									{{ csrf_field() }}
-									{{ method_field('DELETE') }}
-									<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-								</form>
-								<a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-								<!-- <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a> -->
-							</td>
-						</tr>
-					@empty
-						<tr>
-							<td colspan="4" class="text-center">No doctors recorded</td>
-						</tr>
-					@endforelse
-				</tbody>
-			</table>
-		</div>
-	</div>
+    <div class="row-bod">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>DOCTORS</h1>
+            </div>
+            <a class="btn btn-primary pull-right" href="{{ route('doctors.create')}}"><span class="glyphicon glyphicon-plus"></span>Add Doctor</a>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+            <table class="table">
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>username</th>
+                        <th>Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($items AS $i)
+                    <tr>
+                        <td>{{ $i->userInfo->fullname() }}, {{ $i->title}} </td>
+                        <td>{{ $i->specialization }}</td>
+                        <td>{{ $i->userInfo->username }}</td>
+                        <td>
+                            <form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                                {{ csrf_field() }} {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                            </form>
+                            <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+                            <!-- <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></a> -->
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4" class="text-center">No doctors recorded</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <!-- <div class="modal fade" id="add-doctor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -96,13 +93,12 @@
 
 
 <style type="text/css">
-    
     .col-md-12 {
-    width: 100%;
-    background-color: whitesmoke;
-    border-radius: 12px;
-}
+        width: 100%;
+        background-color: whitesmoke;
+        border-radius: 12px;
+    }
+
 </style>
 
 @endsection
-

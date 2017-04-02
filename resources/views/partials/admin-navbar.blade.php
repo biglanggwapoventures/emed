@@ -1,37 +1,89 @@
-<nav class="navbar navbar-default">
-    <div onclick="location.href='/admin'" class="logo"> </div>
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-            <a class="navbar-brand" href="{{ url('/admin') }}">eMED</a>
-        </div>
+<header class="main-header">
+    <!-- Logo -->
+    <a href="../../index2.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>E</b>MS</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>eMed</b>Services</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-custom-menu" style="background-color: transparent;">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu" style="background-color: transparent;" ">
+            <a href="# " class="dropdown-toggle " data-toggle="dropdown ">
+              <img src="../../dist/img/user2-160x160.jpg " class="user-image " alt="User Image ">
+              <span class="hidden-xs ">ADMIN</span>
+            </a>
+            <ul class="dropdown-menu ">
+              <!-- User image -->
+              <li class="user-header ">
+                <img src="../../dist/img/user2-160x160.jpg " class="img-circle " alt="User Image ">
 
-
-            <!-- 
-      <ul class="nav navbar-nav">
-        <li><a href="{{ route('doctors.index') }}">Doctors</a></li>
-        <li><a href="{{ route('managers.index') }}">Pharmacy Managers</a></li>
-      </ul> -->
-
-
-            <ul class="nav navbar-nav-user">
-                <li class="dropdown" style="width: 100%;">
-                    <a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-out"></span></a>
-
-
-                </li>
+                <p>
+                  Nikki G. - Web Developer
+                </p>
+              </li>
+              
+              <!-- Menu Footer-->
+              <li class="user-footer ">
+                <div class="pull-right ">
+                  <a href="/logout " class="btn btn-default btn-flat ">Sign out</a>
+                </div>
+              </li>
             </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+   <aside class="main-sidebar ">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar ">
+      <!-- Sidebar user panel -->
+      <div class="user-panel ">
+        <div class="pull-left image ">
+          <img src="/dist/img/user2-160x160.jpg " class="img-circle " alt="User Image ">
         </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+        <div class="pull-left info ">
+          <p><br>Admin</p>
+        </div>
+      </div>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu ">
+        <li class="header ">MENU</li>
+        <li><a href="/admin "><i class="fa fa-users "></i> <span>All Users</span></a></li>
+        <li><a href="{{ route( 'specialization.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Specialization</span></a></li>
+         <li><a href="{{ route( 'affiliations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Affiliations</span></a></li>
+         <li><a href="{{ route( 'organizations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Organizations</span></a></li>
+         <li><a href="{{ route( 'pharmacy.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Drugstore</span></a></li>
+        <!-- <li><a href="documentation/index.html "><i class="fa fa-user-plus "></i> <span>Add Roles</span></a></li> -->
+        <li class="treeview ">
+          <a href="# ">
+            <i class="fa fa-dashboard "></i> <span>Add Users</span>
+            <span class="pull-right-container ">
+              <i class="fa fa-angle-left pull-right "></i>
+            </span>
+          </a>
+          <ul class="treeview-menu ">
+            <li><a href="{{ route( 'doctors.create') }} "><i class="fa fa-circle-o "></i> Add Doctor</a></li>
+            <li><a href="{{ route( 'managers.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacy Manager</a></li>
+          </ul>
+        <li><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>

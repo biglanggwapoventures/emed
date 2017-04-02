@@ -1,43 +1,61 @@
-@extends('welcome') 
+@extends('welcome') @section('body')
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <a class="btn btn-primary pull-right" href="{{ route('specialization.create')}}" style="margin-bottom:10px;margin-top:10px;"><span class="glyphicon glyphicon-plus"></span> New specialization</a>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Specialization</th>
+                            <th>Subspecialization</th>
 
-@section('body')
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-primary pull-right" href="{{ route('specialization.create')}}" style="margin-top:100px"><span class="glyphicon glyphicon-plus"></span>Add Sub-specialization</a>
-            <table class="table table-bordered" style="margin-top:100px">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Specialization</th>
-                        <th>Subspecialization</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($items AS $i)
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($items AS $i)
                         <tr>
                             <td>
                                 <a href="{{ route('specialization.edit', ['id' => $i->id]) }}" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>
                                 <a href="" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
                             <td>{{ $i->name }}</td>
-                            <td><ol><li>{!! implode('</li><li>', $i->subs) ?: '-' !!}</li></ol></td>
-                            
+                            <td>
+                                <ol>
+                                    @foreach($i->subspecializations AS $sub)
+                                    <li>{{ $sub->name }}</li>
+                                    @endforeach
+                                </ol>
+
+                            </td>
+
                         </tr>
-                    @empty
+                        @empty @endforelse
+                    </tbody>
+                </table>
+                </div>
 
-                    @endforelse
-                </tbody>
-            </table>
-
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<style type="">
+     th {
+    padding: 0;
+    background-color: #ecf0f5;
+}
+</style>
 
-@endsection
 
-@push('scripts')
-@endpush
+@endsection @push('scripts') @endpush

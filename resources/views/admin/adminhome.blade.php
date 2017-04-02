@@ -1,46 +1,29 @@
 @extends('welcome') @section('body')
-<div class="container-fluid">
-    <div class="row-bod">
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
 
-        <div class="col-md-9 col-md-offset-1">
 
-            <h4 class="pull-left"><span class="glyphicon glyphicon-user"></span>Users</a>
-            </h4>
-            <div class="col-md-11">
-                {!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!} {!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
-                <div class="input-group custom-search-form pull-right">
-                    {!! Form::text('search', request()->input('search'), ['placeholder' => 'Search', 'class' => 'form-control']) !!}
-                    <span class="input-group-btn">
-								<button type="submit" class="btn btn-default-sm">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="input-group input-group-sm">
+                    {!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!} {!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
+                    <div class="input-group custom-search-form pull-right">
+                        <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default-sm">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                    </div>
+
+                    {!! Form::close() !!}
                 </div>
-
-                {!! Form::close() !!}
-
-                <div class="dropdown pull-right" style="margin-top: 7px;">
-                <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Add
-                        <span class="caret"></span>
-                </button>
-                    <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                        <li><a href="{{ route('pharmacy.index')}}">Drugstore</a></li>
-                         <li><a href="{{ route('affiliations.index')}}">Affiliations</a></li>
-                        <li><a href="{{ route('managers.create')}}">Pharmacy Manager</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{ route('doctors.create')}}">Doctor</a></li>
-                        <li><a href="{{ route('specialization.index')}}">Specialization</a></li>
-                    </ul>
-            </div>
-            </div>
-            {{ csrf_field() }}
-
-            <div class="tab-content">
-                <div id="users" class="tab-pane fade in active">
-                    <table class="table">
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                            <tr class="active">
+                            <tr>
                                 <th>Last Name</th>
                                 <th>First Name</th>
                                 <th>Username</th>
@@ -49,6 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @forelse($items AS $i) @if($i->user_type != "ADMIN")
                             <tr>
                                 <td>{{ $i->lastname }}</td>
@@ -68,15 +52,15 @@
 
 
                                     <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $i->id }}">
-											  <span class="glyphicon glyphicon-info-sign">
-										</button>
+                        <span class="glyphicon glyphicon-info-sign">
+                    </button>
 
                                     <div class="modal fade" id="infoModal_{{ $i->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									          <span aria-hidden="true">&times;</span></button>
+                            <span aria-hidden="true">&times;</span></button>
                                                     <h4 class="modal-title" id="favoritesModalLabel">{{ $i->fullname() }}</h4>
                                                 </div>
                                                 <div class="modal-body">
@@ -109,10 +93,10 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <span class="pull-right">
-									        <button type="button" 
-									           class="btn btn-default" 
-									           data-dismiss="modal">Close</button>
-									        </span>
+                          <button type="button" 
+                             class="btn btn-default" 
+                             data-dismiss="modal">Close</button>
+                          </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,29 +110,17 @@
                             </tr>
                             @endforelse
                         </tbody>
+
                     </table>
                 </div>
+                <!-- /.box-body -->
             </div>
+            <!-- /.box -->
         </div>
-    </div>
+        <!-- /.col -->
 </div>
-
-
-
-<center>{{ $items->links('vendor.pagination.custom') }}</center>
-
-
-<style type="text/css">
-    .col-md-offset-1 {
-        margin-left: 8.33333333%;
-        background-color: whitesmoke;
-        border-radius: 14px;
-    }
-    
-    thead {
-        background-color: blue;
-    }
-
-</style>
-
+<!-- /.row -->
+</section>
+<!-- /.content -->
+</div>
 @endsection

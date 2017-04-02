@@ -28,7 +28,7 @@ class PharmaController extends Controller
         }
 
         return view('pharmacists.list', [
-            'items' => $items->paginate(6)
+            'items' => $items->get()
         ]);
     }
 
@@ -48,10 +48,13 @@ class PharmaController extends Controller
      */
     public function create()
     {
-        $pman = Auth::user()->manager;
-         return view('pharmacists.pharma-form', [
-            'pman' => $pman
-        ]);
+         $pman = Auth::user()->manager;
+          return view('pharmacists.pharma-form', [
+             'pman' => $pman
+         ]);
+
+         //return view('pharmacists.pharma-form');
+
     }
 
      public function phlist()

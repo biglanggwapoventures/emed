@@ -16,10 +16,10 @@ class CreateDoctorsTable extends Migration
             Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('clinic');
-            $table->string('clinic_address');
-            $table->string('specialization');
-            $table->string('clinic_hours');
+            // $table->string('clinic');
+            // $table->string('clinic_address');
+            // $table->string('specialization');
+            // $table->string('clinic_hours');
             $table->string('ptr');
             $table->string('prc');
             $table->string('s2');
@@ -30,8 +30,8 @@ class CreateDoctorsTable extends Migration
             $table->string('residency_year');
             $table->string('training');
             $table->string('training_year');
-            $table->string('affiliations');
-            $table->string('subspecialty');
+            // $table->string('affiliations');
+            // $table->string('subspecialty');
             $table->timestamps();
 
 

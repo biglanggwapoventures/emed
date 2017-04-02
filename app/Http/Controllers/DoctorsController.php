@@ -47,8 +47,11 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        //
-        return view('doctors.doctor-form');
+        return view('doctors.doctor-form', [
+            'orgs' => \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id'),
+            'affiliations' => \App\Affiliation::orderBy('name')->get()->pluck('name', 'id'),
+            'affiliationBranches' => \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id')
+        ]);
     }
 
     /**
@@ -59,6 +62,7 @@ class DoctorsController extends Controller
      */
     public function store(DoctorRequest $request)
     {
+        // dd($request->all());
         // get fields for user table
         $input = $request->only([
             'username', 
@@ -83,28 +87,42 @@ class DoctorsController extends Controller
         $user = User::create($input);
 
         // save to DB (doctors)       
-        $user->doctor()->create([
-            'specialization' => $request->specialization,
-            'clinic' => $request->clinic,
-            'clinic_address'=> $request->clinic_address,
-            'clinic_hours' => $request->clinic_hours,
+        $doctor = $user->doctor()->create([
+            'specialization_id' => $request->specialization,
+            // 'clinic' => $request->clinic,
+            // 'clinic_address'=> $request->clinic_address,
+            // 'clinic_hours' => $request->clinic_hours,
             'ptr' => $request->ptr,
             'prc' => $request->prc,
             's2' => $request->s2,
             'title' => $request->title,
-            'subspecialty' => $request->subspecialty,
-            'affiliations' => $request->affiliations,
+            // 'subspecialty' => $request->subspecialty,
+            // 'affiliations' => $request->affiliations,
             'med_school' => $request->med_school,
             'med_school_year' => $request->med_school_year,
             'residency' => $request->residency,
             'residency_year' => $request->residency_year,
             'training' => $request->training,
             'training_year' => $request->training_year,
-
         ]);
 
+        $doctor->subspecializations()->sync($request->input('subspecializations'));
+        $doctor->organizations()->sync($request->input('organizations'));
+        
+        $affiliations = [];
+        foreach(request()->input('affiliations') AS $aff){
+            $affiliations[$aff['affiliation_id']] = [
+                'affiliation_branch_id' => $aff['branch_id'],
+                'clinic_hours' => $aff['clinic_hours'],
+            ];
+        }
+        $doctor->affiliations()->sync($affiliations);
+        
+
        // $user ['subspecialty'] = json_encode($input['subspecialty']);
-       return redirect()->route('admin.index');
+       return response()->json([
+            'url' => route('admin.index') 
+       ]);
     }
 
 
@@ -129,8 +147,11 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {   
-            return view('doctors.edit', [
-            'data' => Doctor::with('userInfo')->where('user_id', $id)->first()
+        return view('doctors.edit', [
+            'data' => Doctor::whereUserId($id)->with(['userInfo', 'subspecializations', 'organizations', 'affiliations'])->first(),
+            'orgs' => \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id'),
+            'affiliations' => \App\Affiliation::orderBy('name')->get()->pluck('name', 'id'),
+            'affiliationBranches' => \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id')
         ]);
       }
 
@@ -148,20 +169,37 @@ class DoctorsController extends Controller
         // dd($request->all());
 
         $doctor = Doctor::find($id);
-        $doctor->fill([
-            'specialization' => $request->specialization,
+        $data = [
+            'specialization_id' => $request->specialization,
             'title' => $request->title,
-            'clinic' => $request->clinic,
-            'clinic_address'=> $request->clinic_address,
-            'clinic_hours' => $request->clinic_hours,
-            'prc' => $request->prc,
-            'ptr' => $request->ptr,
-            's2' => $request->s2,
-            'subspecialty' => $request->input('subspecialty'),
-            'affiliations' => $request->input('affiliations')
-        ]);
-
+            'med_school' => $request->med_school,
+            'med_school_year' => $request->med_school_year,
+            'residency' => $request->residency,
+            'residency_year' => $request->residency_year,
+            'training' => $request->training,
+            'training_year' => $request->training_year,
+        ];
+        if(Auth::user()->isAdmin()){
+            $data += [
+                'prc' => $request->prc,
+                'ptr' => $request->ptr,
+                's2' => $request->s2,
+            ];
+        }
+        $doctor->fill($data);
         $doctor->save();
+
+        $doctor->subspecializations()->sync($request->input('subspecializations'));
+        $doctor->organizations()->sync($request->input('organizations'));
+        
+        $affiliations = [];
+        foreach(request()->input('affiliations') AS $aff){
+            $affiliations[$aff['affiliation_id']] = [
+                'affiliation_branch_id' => $aff['branch_id'],
+                'clinic_hours' => $aff['clinic_hours'],
+            ];
+        }
+        $doctor->affiliations()->sync($affiliations);
 
         $user = User::find($doctor->user_id);
         $user->fill($request->only([
@@ -177,12 +215,10 @@ class DoctorsController extends Controller
         ]));
         $user->save();
         
-        // $docs = Auth::user()->doctor;
-        if(Auth::user()->user_type === "DOCTOR")
-            return redirect('/doctor-home');
-        else 
-            return redirect()->route('admin.index');
-}
+        return response()->json([
+            'url' => Auth::user()->isAdmin() ? route('admin.index') : url('/doctor-home') 
+        ]);
+    }
     
 
     /**

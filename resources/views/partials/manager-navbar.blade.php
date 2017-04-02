@@ -1,40 +1,91 @@
-<nav class="navbar navbar-default">
-<div onclick="location.href='/pmanager-home'" class="logo"> </div>
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ url('/pmanager-home') }}">eMED</a>
-    </div>
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/doctor-home" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>E</b>MS</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>eMed</b>Services</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-     
-      <ul class="nav navbar-nav-user">
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-primary"><a href="/pmanager-home" style="color: white; text-decoration: none;"> {{ Auth::user()->fullname() }}</a></button>
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="caret"></span>
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-    <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url('/pharmacists')}}">View Pharmacists<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url('/pharma-transaction') }}">Transactions<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url('/logout') }}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+        <div class="navbar-custom-menu" style="background-color: transparent;">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu" style="background-color: transparent;" ">
+            <a href="# " class="dropdown-toggle " data-toggle="dropdown ">
+              <!-- <img src="{{ "/storage/avatars/{Auth::user()->avatar}" }} " class="user-image " alt="User Image "> -->
+              <span class="hidden-xs ">{{ Auth::user()->fullname() }}</span>
+            </a>
+            <ul class="dropdown-menu ">
+              <!-- User image -->
+              <!-- <li class="user-header ">
+                <img src="{{ " storage/avatars/{Auth::user()->avatar}" }} " class="img-circle " alt="User Image ">
+
+                <p>
+                  {{ Auth::user()->fullname() }}
+                </p>
+              </li> -->
+              
+              <!-- Menu Footer-->
+              <li class="user-footer ">
+                <div class="pull-right ">
+                  <a href="/logout " class="btn btn-default btn-flat ">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+   <aside class="main-sidebar ">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar ">
+      <!-- Sidebar user panel -->
+      <div class="user-panel ">
+        <!-- <div class="pull-left image ">
+          <img src="{{ " storage/avatars/{Auth::user()->avatar}" }} " class="img-circle " alt="User Image ">
+        </div> -->
+        <div class="pull-left ">
+          <a href="/pmanager-home " class="fa fa-user-md ">
+            <!-- <span class="logo-mini "><b>E</b>MS</span> -->
+            <span><b></b>{{ Auth::user()->fullname() }}</span>
+          </a>
+          <!-- <p><br><h4><a href="/doctor-home ">Dr. {{ Auth::user()->fullname() }}</a></h4></p> -->
+        </div>
+      </div>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu ">
+        <li class="header ">MENU</li>
+        <li><a href="{{ route( 'pharmacists.index') }} "><i class="fa fa-users "></i> <span>Pharmacists</span></a></li>
+        <li><a href="# "><i class="fa fa-pencil "></i> <span>Transaction History</span></a></li>
+        <li><a href="/ChangePass "><i class="fa fa-unlock-alt "></i> <span>Change Password</span></a></li>
+        <!-- <li><a href="/admin "><i class="fa fa-circle-o "></i> <span>Add Specialization</span></a></li> -->
+        <!-- <li><a href="documentation/index.html "><i class="fa fa-user-plus "></i> <span>Add Roles</span></a></li> -->
+        <li class="treeview ">
+          <a href="# ">
+            <i class="fa fa-dashboard "></i> <span>Add Users</span>
+            <span class="pull-right-container ">
+              <i class="fa fa-angle-left pull-right "></i>
+            </span>
+          </a>
+          <ul class="treeview-menu ">
+            <li><a href="{{ route( 'pharmacists.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacist</a></li>
           </ul>
-          </div>
+        <li style="margin-top: 100%;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
       </ul>
-
-     
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav> 
+    </section>
+    <!-- /.sidebar -->
+  </aside>

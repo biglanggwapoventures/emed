@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Specialization;
+use App\Specialization AS Spec;
+use App\Subspecialization AS Sub;
 use Validator;
 
 class SpecializationController extends Controller
@@ -16,7 +17,7 @@ class SpecializationController extends Controller
     public function index()
     {
         return view('specialization.list', [
-            'items' => Specialization::orderBy('name', 'DESC')->get()
+            'items' => Spec::with('subspecializations')->orderBy('name', 'DESC')->get()
         ]);
     }
 
@@ -27,8 +28,10 @@ class SpecializationController extends Controller
      */
     public function create()
     {
+        $spec = new Spec;
+        $spec->subspecializations = [new Sub];
         return view('specialization.manage', [
-            'data' => new Specialization
+            'data' => $spec
         ]);
     }
 
@@ -42,7 +45,8 @@ class SpecializationController extends Controller
     {
         $v = Validator::make($request->all(), [
             'name' => 'required|unique:specializations',
-            'subs' => 'present|array'
+            'subs' => 'required|array',
+            'subs.*.name' => 'required',
         ]);
 
         if($v->fails()){
@@ -52,20 +56,21 @@ class SpecializationController extends Controller
             ]);
         }
 
-        $spec = new Specialization;
-        $spec->name = $request->input('name');
-        $spec->subs = array_values(array_filter($request->input('subs'), 'trim'));
-        $spec->save();
+        $spec = Spec::create([
+            'name' => $request->input('name')
+        ]);
 
-        if($spec->id){
-            return response()->json([
-                'result' => true
+        $subs = [];
+        foreach($request->input('subs') AS $sub){
+            $subs[] = new Sub([
+                'name' => $sub['name']
             ]);
         }
 
+        $spec->subspecializations()->saveMany($subs);
+
         return response()->json([
-            'result' => false,
-            'errors' => ['Cannot create new specialization due to an unknown error']
+            'result' => true
         ]);
 
     }
@@ -90,7 +95,7 @@ class SpecializationController extends Controller
     public function edit($id)
     {
         return view('specialization.manage', [
-            'data' => Specialization::find($id) 
+            'data' => Spec::with('subspecializations')->whereId($id)->first() 
         ]);
     }
 
@@ -105,7 +110,9 @@ class SpecializationController extends Controller
     {
         $v = Validator::make($request->all(), [
             'name' => "required|unique:specializations,name,{$id}",
-            'subs' => 'present|array'
+            'subs' => 'required|array',
+            'subs.*.name' => 'required',
+            'subs.*.id' => 'exists:subspecializations,id',
         ]);
 
         if($v->fails()){
@@ -115,21 +122,35 @@ class SpecializationController extends Controller
             ]);
         }
 
-        $spec = Specialization::find($id);
+        $spec = Spec::find($id);
         $spec->name = $request->input('name');
-        $spec->subs = array_values(array_filter($request->input('subs'), 'trim'));
         $spec->save();
 
-        if($spec->id){
-            return response()->json([
-                'result' => true
-            ]);
+        $subs = [];
+        $existing = [];
+        foreach($request->input('subs') AS $sub){
+            if(isset($sub['id'])){
+                $existing[] = $sub['id'];
+                Sub::whereId($sub['id'])->update(['name' => $sub['name']]);
+            }else{
+                $subs[] = new Sub(['name' => $sub['name']]);
+            }
+        }
+
+        if(!empty($existing)){
+            Sub::whereSpecializationId($id)->whereNotIn('id', $existing)->delete();
+        }else{
+            Sub::whereSpecializationId($id)->delete();
+        }
+
+        if(!empty($subs)){
+            $spec->subspecializations()->saveMany($subs);
         }
 
         return response()->json([
-            'result' => false,
-            'errors' => ['Cannot update specialization due to an unknown error']
+            'result' => true
         ]);
+
     }
 
     /**

@@ -37,7 +37,7 @@ class ManagerRequest extends FormRequest
             'username' => 'required|unique:users',
             'email' => 'required|unique:users',
             'drugstore' => 'required',
-            'drugstore_address' => 'required',
+            'drugstore_branch' => 'required',
             'license' => 'required',
         ];
 
@@ -72,7 +72,7 @@ class ManagerRequest extends FormRequest
             'username.required' => 'Please enter your username.',
             'email.required' => 'Please enter your email.',
             'drugstore.required' => 'Please enter your drusgtore.',
-            'drugstore_address.required' => 'Please enter your drusgtore address.',
+            'drugstore_branch.required' => 'Please enter your drusgtore address.',
             'license.required' => 'Please enter your license.',
             'email.unique' => 'Email already taken',
              'username.unique' => 'Taken username.',

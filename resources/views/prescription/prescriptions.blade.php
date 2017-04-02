@@ -1,13 +1,40 @@
 @extends('welcome') @section('body')
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
 
-<div class="container-fluid ">
-    <div class="row-bod ">
-        <div class="col-md-6  ">
-            <div class="panel panel-primary ">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Medical Notes</h4>
+
+    <section class="content-header">
+        <h1>
+            Prescription
+
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Patient</a></li>
+            <li class="active">Prescription</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+
+    <section class="content">
+        <div class="row"></div>
+        <!-- Default box -->
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <div class="col-md-2 ">
+                            <img alt="User Pic" src="{{ " /images/rx.png " }}" style="width: 3x 0px; height: 30px;">
+                        </div> &nbsp &nbsp Add Prescriptions</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+
+                    </div>
                 </div>
-                <div class="panel-body ">
+                <div class="box-body">
                     @if(count($errors->all()))
                     <div class="alert alert-danger">
                         <ul class="list-unstyled">
@@ -17,83 +44,85 @@
                         </ul>
                     </div>
                     @endif {!! Form::open(['url' => route('prescription.store'), 'method' => 'POST']) !!} {!! Form::hidden('patient_id', request()->input('patient_id')) !!} {!! Form::hidden('consultation_id', request()->input('consultation_id')) !!}
-                    <div class="row ">
-                        <div class="col-md-2 ">
-                            <img alt="User Pic" src="{{ " /images/rx.png " }}" style="width: 150px; height: 150px;">
-                        </div>
-                        <div class="col-md-10">
-                            <div class="row col-md-offset-1 ">
-                                <div class="col-md-10 ">
-                                    {!! Form::bsText('genericname', 'Generic Name', null) !!}
-                                </div>
-                            </div>
-                            <div class="row col-md-offset-1 ">
-                                <div class="col-md-10">
-                                    {!! Form::bsText('brand', 'Brand Name') !!}
-                                </div>
-                            </div>
-                            <div class="row col-md-offset-1 ">
-                                <div class="col-md-5">
-                                    {!! Form::bsText('quantity', 'Quantity', null) !!}
-                                </div>
-                                <div class="col-md-5  ">
-                                    {!! Form::bsText('dosage', 'Dosage', null) !!}
-                                </div>
-                            </div>
-                            <div class="row col-md-offset-1 ">
-                                <div class="col-md-5 ">
-                                    {!! Form::bsText('frequency', 'Frequency', null) !!}
-                                </div>
-                                <div class="col-md-5 ">
-                                    {!! Form::bsText('duration', 'Duration', null,['placeholder'=> 'Days']) !!}
-                                </div>
-                            </div>
-                            <div class="row col-md-offset-1 ">
-                                <div class="col-md-5 ">
-                                    {!! Form::bsDate('start', 'Start Date', null, ['class' => 'form-control']) !!}
-                                </div>
-                                <div class="col-md-5">
-                                    {!! Form::bsDate('end', 'End Date', null, ['class' => 'form-control']) !!}
-                                </div>
-                            </div>
-                            <div class="row col-md-offset-1 ">
-                                <div class="col-md-5 ">
-                                    <strong>Notes:</strong> {{ Form::textarea('notes', null, ['size' => '62x5'])}}
 
-                                    <button type="submit" class="btn btn-primary">Add</button> {!! Form::close() !!}
-                                </div>
-                            </div>
+
+
+                    <div class="row col-md-offset-1 ">
+                        <div class="col-md-10 ">
+                            {!! Form::bsText('genericname', 'Generic Name', null) !!}
                         </div>
                     </div>
+                    <div class="row col-md-offset-1 ">
+                        <div class="col-md-10">
+                            {!! Form::bsText('brand', 'Brand Name') !!}
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 ">
+                        <div class="col-md-5">
+                            {!! Form::bsText('quantity', 'Quantity', null) !!}
+                        </div>
+                        <div class="col-md-5  ">
+                            {!! Form::bsText('dosage', 'Dosage', null) !!}
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 ">
+                        <div class="col-md-5 ">
+                            {!! Form::bsText('frequency', 'Frequency', null) !!}
+                        </div>
+                        <div class="col-md-5 ">
+                            {!! Form::bsText('duration', 'Duration', null,['placeholder'=> 'Days']) !!}
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 ">
+                        <div class="col-md-5 ">
+                            {!! Form::bsDate('start', 'Start Date', null, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-md-5">
+                            {!! Form::bsDate('end', 'End Date', null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 ">
+                        <div class="col-md-5 ">
+                            <strong>Notes:</strong> {{ Form::textarea('notes', null, ['size' => '56x5'])}}
+
+                            <button type="submit" class="btn btn-primary">Add</button> {!! Form::close() !!}
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+                    </div>
+                    <!-- /.box-footer-->
                 </div>
-                <!-- end of panelbody -->
-                
+            </div>
+            <!-- /.box -->
+
+        </div>
+        <!-- Default box -->
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Prescriptions</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    Insert prescriptions here
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer-->
             </div>
         </div>
-        <div class="col-md-6  ">
-            <div class="panel panel-primary ">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Prescriptions</h4>
-                </div>
-                Weeds<br> Flintsones
-                <br> Adderall
-                <br>
-                <div class="panel-body  ">
-                    {!! Form::open(['url' => route('consultations.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
-                </div>
-                <!-- end of panelbody -->
-               <button type="submit" class="btn btn-primary">View All prescription history</button> {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
+        <!-- /.box -->
 </div>
+</section>
+<!-- /.content -->
 
-<style type="text/css">
-    .row-bod {
-        margin-right: -15px;
-        margin-left: -85px;
-        margin-top: 7%;
-    }
-
-</style>
+</div>
 @endsection

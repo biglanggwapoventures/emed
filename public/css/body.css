@@ -13,19 +13,6 @@ body {
 
 }
 
-.logo {
-        position: fixed;
-    height: 10%;
-    width: 20%;
-    margin-top: -7px;
-    background: url("./../images/Logo.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    
-}
-
-
 /*Login*/
 .loginpage {
     padding: 12px 0px;
@@ -34,7 +21,7 @@ body {
     position: absolute;
     background-color: whitesmoke;
     margin-top: 180px;
-    margin-left: 382px;
+    margin-left: 32%;
     border-radius: 20px;
     /*opacity: 0.8;*/
 }
@@ -233,32 +220,6 @@ label.form-invalid:after {
 
 /* User drop down*/
 
-
-
-.dropdown {
-    background:#fff;
-    border:1px solid #ccc;
-    border-radius:4px;  
-}
-.dropdown-menu>li>a {
-    color:#428bca;
-    margin-top: 3px;
-}
-
-ul li ul.dropdown-menu{
-    min-width: 170px;
-    background: #f2f2f2;
-    display: none;
-    position: absolute;
-    z-index: 999;
-    left: -125px;
-}
-ul li:hover ul.dropdown-menu{
-        display: block; /* Display the dropdown */
-}
-ul li ul.dropdown-menu li{
-        display: block;
-}
 
 /* Navbars */
 

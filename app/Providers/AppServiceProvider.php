@@ -17,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Form::component('bsText', 'components.form.text', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
         Form::component('bsRadio', 'components.form.radio', ['name', 'label' => null, 'options', 'selected' => null]);
+        Form::component('bsSpecializationDropdown', 'components.form.specialization-dropdown', ['name', 'label' => null, 'selected' => null]);
+        Form::component('bsAffiliationDropdown', 'components.form.affiliations-dropdown', ['name', 'label' => null, 'selected' => null]);
 
 
         // Validator::extend('current_password_match', function($attribute, $value, $parameters, $validator) {

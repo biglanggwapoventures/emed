@@ -15,8 +15,8 @@ class CreateAffiliationsTable extends Migration
     {
         Schema::create('affiliations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unique();
             $table->timestamps();
-            $table->string('affiliations');
         });
     }
 

@@ -32,7 +32,7 @@ class ManagersController extends Controller
     public function showHomepage()
     {
 
-        $items = PharmacyManager::with('userInfo')->get();
+       $items = Auth::user()->manager;
         // dd($items);
         return view('managers.pmanager-home', [
             'items' => $items
@@ -92,7 +92,7 @@ class ManagersController extends Controller
         // save to DB (managers)       
         $user->manager()->create([
             'drugstore' => $request->drugstore,
-            'drugstore_address' => $request->drugstore_address,
+            'drugstore_branch' => $request->drugstore_branch,
             'license' => $request->license
         ]);
 
@@ -135,8 +135,8 @@ class ManagersController extends Controller
          $manager = PharmacyManager::find($id);
         $manager->fill([
             'license' => $request->license,
-            'drugstore' => $request->clinic,
-            'drugstore_address'=> $request->clinic_address,
+            'drugstore' => $request->drugstore,
+            'drugstore_branch'=> $request->drugstore_branch,
         ]);
         $manager->save();
 

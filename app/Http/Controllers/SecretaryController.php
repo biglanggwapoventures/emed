@@ -44,7 +44,7 @@ class SecretaryController extends Controller
         }
 
             return view('secretary.list', [
-                'items' => $items->paginate(6)
+                'items' => $items->get()
             ]);
     }
 
