@@ -181,7 +181,6 @@
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="doctor">
-                            <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Prescriptions</h4>
                             <table id="example2" class="table table-bordered table-striped">
                                 <thead>
                                     <tr class="active">

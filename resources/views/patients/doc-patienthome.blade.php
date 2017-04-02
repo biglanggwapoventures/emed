@@ -43,9 +43,6 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-home" aria-hidden="true"></i><b>{{ $patients->userInfo->address }}</b>
-                                <li class="list-group-item">
-
-                                </li>
                         </ul>
                         @can('detach-patient', $patients) {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
                         <button class="btn btn-danger btn-block" type="submit">Remove patient</button> {!! Form::close() !!} @endcan @can('attach-patient', $patients) {!! Form::open(['url' => url('/attach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
@@ -196,7 +193,7 @@
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="doctor">
-                            <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Prescriptions</h4>
+                          
                             <div class="box-body table-responsive no-padding">
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
@@ -211,19 +208,20 @@
                                         @forelse($patients->doctors AS $item)
                                         <tr>
                                             <td>{{ $item->userInfo->fullname() }}</td>
-                                            <td>{{ $item->specialization }}</td>
+                                            <td>{{ $item->specialization->name }}</td>
                                             <td>{{ $item->clinic_address }}</td>
 
                                             <td>
                                                 <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
-                                              <span class="glyphicon glyphicon-info-sign">
-                                    </button>
+                                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                                </button>
                                                 <div class="modal fade" id="infoModal_{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span></button>
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                                 <h4 class="modal-title" id="favoritesModalLabel">{{ $item->userInfo->fullname() }}, {{ $item->title }}</h4>
                                                             </div>
                                                             <div class="modal-body">

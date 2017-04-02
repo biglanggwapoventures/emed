@@ -35,9 +35,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-fw fa-home" aria-hidden="true"></i><b>{{ $docs->userInfo->address }}</b>
-                                <li class="list-group-item">
-                                    <b>Friends</b> <a class="pull-right">13,287</a>
-                                </li>
+                            </li>
                         </ul>
 
                     </div>
@@ -102,8 +100,7 @@
 
 
                                     <tr>
-                                        <td>
-                                            <b><h3>Clinic Information</h3></td>
+                            <td><b><h3>Clinic Information</h3></td>
                             <td></td>
                             </tr>  
                             

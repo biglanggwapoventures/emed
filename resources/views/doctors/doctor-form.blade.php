@@ -103,9 +103,6 @@
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
-                                {!! Form::bsSpecializationDropdown('specialization', 'Specialization') !!}
-                            </div>
-                            <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                                     <label class="control-label">Title</label>
                                     <span style="color: red">*</span>
@@ -113,6 +110,10 @@
                                     <span class="help-block">{{ $errors->first('title') }}</span> @endif
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                {!! Form::bsSpecializationDropdown('specialization', 'Specialization') !!}
+                            </div>
+                            
 
                             <!-- test json -->
 

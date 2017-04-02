@@ -147,10 +147,10 @@ class AffiliationsController extends Controller
             $aff->branches()->saveMany($branches);
         }
 
-        return response()->json([
-            'result' => true
-        ]);
-
+        // return response()->json([
+        //     'result' => true
+        // ]);
+        return view('affiliations.index');
     }
 
     /**
