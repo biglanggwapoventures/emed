@@ -118,9 +118,10 @@
             <!-- /.box -->
         </div>
         <!-- /.col -->
-</div>
+
 <!-- /.row -->
-</section>
+        </section>
 <!-- /.content -->
 </div>
 @endsection
+
