@@ -23,7 +23,7 @@
                 <div class="box box-primary">
                     <div class="inside">
                         {!! Form::open(['url' => route ('managers.store'), 'method' => 'POST']) !!}
-
+                        {{json_encode($errors->all())}}
                         <h4>Personal Information</h4>
                         <hr class="third">
                         <div class="row">
@@ -56,7 +56,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" />
+                                    <input maxlength="100" name="birthdate" type="date" max="9999-12-31" class="form-control" style="width: 275px" />
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -116,7 +116,7 @@
                                                 {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][pharmacy_id]' ]) !!}
                                             </td>
                                             <td>
-                                                {!! Form::bsText('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][address]','readonly' => 'true' ]) !!}
+                                                {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][address]' ]) !!}
                                             </td>
                                             <td>
                                             <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
