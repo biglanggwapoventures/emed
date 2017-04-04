@@ -16,6 +16,8 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('components.form.specialization-dropdown', 'App\Http\ViewComposers\SpecializationComposer');
         View::composer('components.form.affiliations-dropdown', 'App\Http\ViewComposers\AffiliationComposer');
+         View::composer('components.form.pharmacies-dropdown', 'App\Http\ViewComposers\PharmacyComposer');
+
     }
 
     /**

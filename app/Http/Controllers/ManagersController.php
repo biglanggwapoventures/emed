@@ -46,7 +46,19 @@ class ManagersController extends Controller
      */
     public function create()
     {
-         return view('managers.manager-form');
+
+         // return view('managers.manager-form');
+
+        //   return view('managers.manager-form', [
+        //     'orgs' => \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id'),
+        //     'affiliations' => \App\Affiliation::orderBy('name')->get()->pluck('name', 'id'),
+        //     'affiliationBranches' => \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id')
+        // ]);
+
+         return view('managers.manager-form', [
+            'pharmacies' => \App\Pharmacy::orderBy('name')->get()->pluck('name', 'id'),
+            'pharmacyBranches' => \App\PharmacyBranch::select('name', 'id', 'pharmacy_id','address')->get()->groupBy('pharmacy_id')
+        ]);
     }
 
      public function phlist()
@@ -91,10 +103,19 @@ class ManagersController extends Controller
 
         // save to DB (managers)       
         $user->manager()->create([
-            'drugstore' => $request->drugstore,
-            'drugstore_branch' => $request->drugstore_branch,
+            // 'drugstore' => $request->drugstore,
+            // 'drugstore_branch' => $request->drugstore_branch,
             'license' => $request->license
         ]);
+
+        $pharmacies = [];
+        foreach(request()->input('pharmacies') AS $pharm){
+            $pharmacies[$aff['affiliation_id']] = [
+                'affiliation_branch_id' => $aff['branch_id'],
+                'clinic_hours' => $aff['clinic_hours'],
+            ];
+        }
+        $doctor->affiliations()->sync($affiliations);
 
        return redirect()->route('admin.index');
     }
