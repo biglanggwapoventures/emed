@@ -5,10 +5,6 @@
         <h1>
             User Profile
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#">Profile</a></li>
-
-        </ol>
     </section>
 
     <!-- Main content -->

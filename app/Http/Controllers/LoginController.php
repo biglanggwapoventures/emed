@@ -63,7 +63,7 @@ class LoginController extends Controller
  }
 
         else{
-              return view('login', [
+              return view('welcome', [
                 'wrongPassword' => 'Incorrect Password'
             ]);
         }

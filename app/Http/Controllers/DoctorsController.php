@@ -63,6 +63,27 @@ class DoctorsController extends Controller
     public function store(DoctorRequest $request)
     {
         // dd($request->all());
+
+        $this->validate($request, [
+                'firstname' => 'required',
+                'middle_initial' => 'required',
+                'lastname' => 'required',
+                'username' => 'required|unique:users',
+                'address' => 'required',
+                'birthdate' => 'required|date',
+                'sex' => 'required',
+                'contact_number' => 'required|min:6'
+            ], [
+                'firstname.required' => 'Please enter your first name.',
+                'middle_initial.required' => 'Please enter your middle initial.',
+                'lastname.required' => 'Please enter your last name.',
+                'birthdate.required' => 'Please enter your birthdate.',
+                'username.required' => 'Please enter your username.',
+                'address.required' => 'Please enter your address.',
+                'sex.required' => 'Please select your gender.',
+                'contact_number.required' => 'Please enter your contact number.'
+           ]);
+
         // get fields for user table
         $input = $request->only([
             'username', 

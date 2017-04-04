@@ -87,17 +87,32 @@ class PatientsController extends Controller
         // validate input
         $this->validate($request, [
                 'firstname' => 'required',
+                'middle_initial' => 'required',
                 'lastname' => 'required',
                 'username' => 'required|unique:users',
                 'address' => 'required',
-                'birthdate' => 'required|date',
-                'avatar' => 'required|image|max:2048'
+                'birthdate' => 'required|date_format:"Y-m-d"',
+                'sex' => 'required',
+                'contact_number' => 'required|min:6',
+                'civilstatus' => 'required',
+                'bloodtype' => 'required',
+                'nationality' => 'required',
+                'occupation' => 'required',
+                'email' => 'required|email|unique:users'
             ], [
                 'firstname.required' => 'Please enter your first name.',
+                'middle_initial.required' => 'Please enter your middle initial.',
                 'lastname.required' => 'Please enter your last name.',
+                'birthdate.required' => 'Please enter your birthdate.',
                 'username.required' => 'Please enter your username.',
                 'address.required' => 'Please enter your address.',
-                'avatar.required' => 'Please select profile picture to upload.'
+                'sex.required' => 'Please select your gender.',
+                'contact_number.required' => 'Please enter your contact number.',
+                'civilstatus.required' => 'Please enter your civilstatus.',
+                'bloodtype.required' => 'Please enter your bloodtype.',
+                'nationality.required' => 'Please enter your nationality.',
+                'occupation.required' => 'Please enter your occupation.',
+                'email.required' => 'Please enter your email.'
            ]);
 
         // get fields for user table

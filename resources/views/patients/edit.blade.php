@@ -22,19 +22,6 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-
-                        <!-- /.box-header -->
-                        <!-- form start -->
-                        <!-- @if(count($errors->all()))
-                    <div class="alert alert-danger">
-                        <ul class="list-unstyled">
-                            @foreach($errors->all() AS $err)
-                            <li>{{ $err }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif  -->
-
                         <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                         <input type="file" class="upload" name="avatar"> {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
 

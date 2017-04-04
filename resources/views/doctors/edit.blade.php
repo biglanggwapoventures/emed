@@ -1,7 +1,6 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Edit Doctor
@@ -10,20 +9,13 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Edit Doctor</a></li>
-
         </ol>
     </section>
-
-    <!-- Main content -->
     <section class="content">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-                        <!-- /.box-header -->
-                        <!-- form start -->
                         <div class="col-md-9" style="margin-left: 40%">
                             <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
                             <input type="file" name="avatar">
@@ -106,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--  -->
+                
                         <h4>Specialty</h4>
                         <hr class="third">
                         <div class="row">
@@ -121,24 +113,16 @@
                                 {!! Form::bsSpecializationDropdown('specialization', 'Specialization', $data->specialization_id) !!}
                             </div>
 
-                            <!-- test json -->
-
                             <div class="col-md-4">
                                 <label class="control-label">Subspecialization(s)</label>
                                 <table class="table" id="sub">
                                     <tbody>
                                         @foreach($data->subspecializations AS $sub)
-
                                         <tr>
                                             <td>{!! Form::select('subspecializations[]', [], null, ['class' => 'form-control subspecialization', 'data-default' => $sub->id]) !!}</td>
                                             <td style="width:5px;"><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>
-
                                         @endforeach
-
-
-
-
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -154,8 +138,8 @@
                         <h4>Clinic Information</h4>
                         <hr class="third">
                         <div class="row">
-
                         </div>
+
                         @if(Auth::check()) @if(Auth::user()->user_type === 'ADMIN')
                         <h4>Licenses</h4>
                         <hr class="third">
@@ -189,19 +173,15 @@
                             <div class="col-md-8">
                                 {!! Form::bsText('med_school', 'Medical School', $data->med_school) !!}
                             </div>
-
                             <div class="col-md-4">
                                 {!! Form::bsText('med_school_year', 'Year Completed', $data->med_school_year) !!}
                             </div>
                         </div>
 
-
                         <div class="row">
-
                             <div class="col-md-8">
                                 {!! Form::bsText('residency', 'Residency', $data->residency) !!}
                             </div>
-
                             <div class="col-md-4">
                                 {!! Form::bsText('residency_year', 'Year Completed', $data->residency_year) !!}
                             </div>
@@ -211,17 +191,13 @@
                             <div class="col-md-8">
                                 {!! Form::bsText('training', 'Fellowship Training', $data->training) !!}
                             </div>
-
                             <div class="col-md-4">
                                 {!! Form::bsText('training_year', 'Year completed', $data->training_year) !!}
                             </div>
                         </div>
-                        <!-- Closing div for Education and Training -->
-                        <!-- end -->
 
                         <h4>Affiliated Clinics</h4>
                         <hr class="third">
-
                         <div class="col-sm-12">
                             <table class="table" id="aff-table">
                                 <thead>
@@ -279,27 +255,15 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
-
                     @endif
                     <button type="submit" class="btn btn-primary">Update</button> {!! Form::close() !!}
                 </div>
             </div>
         </div>
-        <!-- /.box -->
+    </section>
 </div>
 
-
-</div>
-
-</div>
-<!-- /.row -->
-</section>
-<!-- /.content -->
-</div>
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function() {

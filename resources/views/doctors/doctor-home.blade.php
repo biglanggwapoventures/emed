@@ -5,10 +5,6 @@
         <h1>
             User Profile
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#">Profile</a></li>
-            <li class="active">Dr. {{ $docs->userInfo->fullname() }} </li>
-        </ol>
     </section>
 
     <!-- Main content -->
@@ -25,25 +21,22 @@
                             <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}" class="btn btn-info btn-sm ">Edit Picture</a></center>
                         <!--  <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}" class="btn btn-info btn-sm ">Edit Picture</a> -->
 
-                        <h3 class="profile-username text-center">Dr.{{ $docs->userInfo->fullname() }} </h3>
+                        <h3 class="profile-username text-center">Dr. {{ $docs->userInfo->fullname() }} </h3>
 
                         <p class="text-muted text-center">Doctor</p>
 
-                        <ul class="list-group list-group-unbordered">
+                        <!-- <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
                                 <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i> <b>{{$docs->userInfo->email}}</b>
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-fw fa-home" aria-hidden="true"></i><b>{{ $docs->userInfo->address }}</b>
                             </li>
-                        </ul>
-
+                        </ul> -->
                     </div>
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
-
-
                 <!-- /.box -->
             </div>
             <!-- /.col -->
@@ -58,7 +51,6 @@
                             <a href="{{ route('doctors.edit', ['id' => $docs->userInfo->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
                             <table class="table table-user-information">
                                 <tbody>
-
                                     <tr>
                                         @if(session('ACTION_RESULT'))
                                         <div class="row">
@@ -88,22 +80,17 @@
                                     <tr>
                                         <td><span class="glyphicon glyphicon-home"></span> <b>Home Address</b><br>{{ $docs->userInfo->address }}</td>
                                         <td>
-                                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <strong>Subspecialties </strong><br>
+                                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <strong>Subspecialty </strong><br>
                                             <ol>
                                                 <li>{!! implode('</li>
                                                 <li>', $docs->subspecializations->pluck('name')->toArray()) !!}</li>
                                                 <ol><br>
-
                                         </td>
                                     </tr>
-
-
-
                                     <tr>
                             <td><b><h3>Clinic Information</h3></td>
                             <td></td>
                             </tr>  
-                            
                                 <tr>
                                     <td colspan="3">
                                         <table class="table">

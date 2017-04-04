@@ -17,7 +17,6 @@
                                 <th>Email</th>
                                 <th>Bloodtype</th>
                                 <th>Occupation</th>
-
                                 <th>Manage</th>
                             </tr>
                         </thead>

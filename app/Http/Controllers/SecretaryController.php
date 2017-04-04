@@ -98,11 +98,7 @@ class SecretaryController extends Controller
 
         Auth::user()->doctor->secretaries()->create($secretary);
 
-        
-       // if(Auth::user()->user_type === "DOCTOR")
-            return redirect('/secretary-home');
-        // else 
-        //     return redirect()->route('admin.index');
+        return redirect()->route('secretary.index');
     }
 
 

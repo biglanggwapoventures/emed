@@ -42,7 +42,7 @@
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
-                                {!! Form::bsText('firstname', ' Firstname') !!}
+                                {!! Form::bsText('firstname', 'Firstname') !!}
                             </div>
                             <div class="col-md-4">
                                 {!! Form::bsText('middle_initial', 'Middle Initial') !!}
@@ -55,14 +55,15 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="control-label">Birthdate <span style="color: red">*</span></label>
+                                    <label class="control-label">Birthdate</label>
+                                    <!-- <span style="color: red">*</span> -->
                                     <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('sex') ? 'has-error' : '' }}">
                                     <label class="control-label">Gender</label>
-                                    <span style="color: red">*</span>
+                                    <!-- <span style="color: red">*</span> -->
                                     <select class="form-control" name="sex">
                                         <option value="" selected disabled>Select</option>
                                             <option>Male</option>
@@ -85,7 +86,7 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('civilstatus') ? 'has-error' : '' }}">
                                     <label class="control-label">Civil Status</label>
-                                    <span style="color: red">*</span>
+                                    <!-- <span style="color: red">*</span> -->
                                     <select class="form-control" name="civilstatus">
                                         <option value="" selected disabled>Select</option>
                                             <option>Single</option>
@@ -99,7 +100,7 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('bloodtype') ? 'has-error' : '' }}">
                                     <label class="control-label">Bloodtype</label>
-                                    <span style="color: red">*</span>
+                                    <!-- <span style="color: red">*</span> -->
                                     <select class="form-control" name="bloodtype">
                                         <option value="" selected disabled>Select</option>
                                             <option>A+</option>
@@ -148,7 +149,7 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('erelationship') ? 'has-error' : '' }}">
                                     <label class="control-label">Relationship</label>
-                                    <span style="color: red">*</span>
+                                    <!-- <span style="color: red">*</span> -->
                                     <select class="form-control" name="erelationship">
                                             <option>Mother</option>
                                             <option>Father</option>
