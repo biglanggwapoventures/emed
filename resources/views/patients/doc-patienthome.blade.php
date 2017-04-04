@@ -292,7 +292,7 @@
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
                                             <td>{{ $a->id }}</td>
                                             <td>
-                                                <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                                                <form action="{{ route('consultations.destroy', ['id' => $a->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
                                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                                                 </form>

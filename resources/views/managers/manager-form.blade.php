@@ -23,7 +23,6 @@
                 <div class="box box-primary">
                     <div class="inside">
                         {!! Form::open(['url' => route ('managers.store'), 'method' => 'POST']) !!}
-                        {{json_encode($errors->all())}}
                         <h4>Personal Information</h4>
                         <hr class="third">
                         <div class="row">
