@@ -98,7 +98,9 @@ class PatientsController extends Controller
                 'bloodtype' => 'required',
                 'nationality' => 'required',
                 'occupation' => 'required',
-                'email' => 'required|email|unique:users'
+                'email' => 'required|email|unique:users',
+                'econtact' =>'required',
+                'enumber' =>'required|min:6'
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'middle_initial.required' => 'Please enter your middle initial.',
@@ -112,7 +114,9 @@ class PatientsController extends Controller
                 'bloodtype.required' => 'Please enter your bloodtype.',
                 'nationality.required' => 'Please enter your nationality.',
                 'occupation.required' => 'Please enter your occupation.',
-                'email.required' => 'Please enter your email.'
+                'email.required' => 'Please enter your email.',
+                'econtact.required' => 'Please enter contact person.',
+                'enumber.required' => 'Please enter contact number.'
            ]);
 
         // get fields for user table

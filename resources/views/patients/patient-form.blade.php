@@ -144,7 +144,7 @@
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
-                                {!! Form::bsText('econtact', 'Emergency Contact') !!}
+                                {!! Form::bsText('econtact', 'Contact Person') !!}
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('erelationship') ? 'has-error' : '' }}">

@@ -59,7 +59,7 @@
                             <div class="col-md-4 ">
                                 <div class="form-group {{ $errors->has('sex') ? 'has-error' : '' }}">
                                     <label class="control-label">Gender</label>
-                                    <span style="color: red">*</span> {!! Form::select('sex', ['Female' => 'FEMALE', 'Male' => 'MALE'], $data->userInfo->sex, ['class' => 'form-control']) !!} @if($errors->has('sex'))
+                                    <span style="color: red">*</span> {!! Form::select('sex', ['Female' => 'Female', 'Male' => 'Male'], $data->userInfo->sex, ['class' => 'form-control']) !!} @if($errors->has('sex'))
                                     <span class="help-block">{{ $errors->first('sex') }}</span> @endif
                                 </div>
                             </div>
