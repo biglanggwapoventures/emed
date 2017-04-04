@@ -193,7 +193,6 @@
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="doctor">
-                          
                             <div class="box-body table-responsive no-padding">
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
@@ -291,9 +290,8 @@
                                         <tr>
                                             <td>{{ $a->created_at }}</td>
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                            <td>{{ $a->doctor->clinic_address }}</td>
+                                            <td>{{ $a->id }}</td>
                                             <td>
-
                                                 <form action="{{ route('consultations.destroy', ['patient_id' => $patients->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
                                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
@@ -301,17 +299,17 @@
 
                                                 <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info" style=""><b>P</b></a>
 
-
                                                 <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $a->id }}">
-                          <span class="glyphicon glyphicon-info-sign">
-                          </button>
+                                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                                </button>
 
                                                 <div class="modal fade" id="infoModal_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span></button>
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                                 <h4 class="modal-title" id="favoritesModalLabel">{{ $patients->userInfo->fullname() }}</h4>
                                                             </div>
                                                             <div class="modal-body">
@@ -326,37 +324,35 @@
                                                                         <tr>
                                                                             <td><b>Blood Pressure:</b>&#09;{{ $a->bloodpressure}} mmHg</td>
                                                                         </tr>
-
                                                                         <tr>
-                                                                            <tr>
-                                                                                <td><b>Temperature:</b>&#09;{{ $a->temperature }} C</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td><b>Pulse Rate:</b>&#09;{{ $a->pulserate }} bpm</td>
-                                                                            </tr>
+                                                                            <td><b>Temperature:</b>&#09;{{ $a->temperature }} C</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b>Pulse Rate:</b>&#09;{{ $a->pulserate }} bpm</td>
+                                                                        </tr>
+                                                                        <tr>
                                                                             <td><b>Respiratory Rate:</b>&#09;{{ $a->resprate }} cpm<br>
                                                                             </td>
-                                                                            <tr>
-                                                                                <td><b>Chief Complaints:</b>&#09;<br>{{ $a->chiefcomplaints }}</td>
-                                                                            </tr>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b>Chief Complaints:</b>&#09;<br>{{ $a->chiefcomplaints }}</td>
+                                                                        </tr>
+                                                                        <tr>
                                                                             <td><b>Diagnosis:</b><br>{{ $a->notes }}</td>
                                                                         </tr>
-
                                                                     </tbody>
                                                                 </table>
                                                                 <div class="box-body table-responsive no-padding">
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <span class="pull-right">
-                            <button type="button" 
-                             class="btn btn-default" 
-                             data-dismiss="modal">Close</button>
-                            </span>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                </div>
                                             </td>
                                         </tr>
                                         @empty
@@ -366,9 +362,9 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                </div>
                             </div>
                         </div>
+                    </div>
                         <!-- /.tab-content -->
                     </div>
                     <!-- /.nav-tabs-custom -->

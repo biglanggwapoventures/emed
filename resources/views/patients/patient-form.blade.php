@@ -25,12 +25,11 @@
 
                         <!-- /.box-header -->
                         <!-- form start -->
-                        @if(count($errors->all()))
+                        @if($errors->has('avatar'))
                         <div class="alert alert-danger">
                             <ul class="list-unstyled">
-                                @foreach($errors->all() AS $err)
-                                <li>{{ $err }}</li>
-                                @endforeach
+                              
+                                <li>{{ $errors->first('avatar') }}</li>
                             </ul>
                         </div>
                         @endif {!! Form::open(['url' => route ('patients.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}

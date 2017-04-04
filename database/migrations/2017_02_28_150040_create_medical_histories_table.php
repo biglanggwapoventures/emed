@@ -27,8 +27,8 @@ class CreateMedicalHistoriesTable extends Migration
             $table->string('resprate')->nullable();
             $table->string('notes');
             $table->string('chiefcomplaints');
-            $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
 
 
             $table->string('allergyquestion')->nullable();

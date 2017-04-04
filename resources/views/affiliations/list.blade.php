@@ -31,6 +31,7 @@
                             <form action="{{ route('affiliations.destroy', ['id' => $i->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                 {{ csrf_field() }} {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                            </form>
                             </td>
                             <td>{{ $i->name }}</td>
                             <td>

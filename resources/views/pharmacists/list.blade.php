@@ -51,7 +51,7 @@
                                                 <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                                             </form>
 
-                                            <a href="{{ route('pharmacists.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="{{ route('pharmacists.edit', ['id' => $i->user_id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span></a>
                                         </td>
                                     </tr>
                                     @empty

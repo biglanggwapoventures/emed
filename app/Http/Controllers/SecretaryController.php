@@ -100,7 +100,7 @@ class SecretaryController extends Controller
 
         
        // if(Auth::user()->user_type === "DOCTOR")
-            return redirect('/doctor-home');
+            return redirect('/secretary-home');
         // else 
         //     return redirect()->route('admin.index');
     }

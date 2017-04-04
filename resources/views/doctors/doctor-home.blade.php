@@ -145,8 +145,6 @@
                                     </tr>
 
                                     <!-- med school end -->
-
-
                                     <tr>
                                         <td>
                                             <i class="fa fa-fw fa-sitemap" aria-hidden="true"></i>

@@ -16,19 +16,15 @@
                     <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Specialization</th>
                             <th>Subspecialization</th>
-
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($items AS $i)
                         <tr>
-                            <td>
-                                <a href="{{ route('specialization.edit', ['id' => $i->id]) }}" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>
-                                <a href="" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                            </td>
+                            
                             <td>{{ $i->name }}</td>
                             <td>
                                 <ol>
@@ -36,9 +32,14 @@
                                     <li>{{ $sub->name }}</li>
                                     @endforeach
                                 </ol>
-
                             </td>
-
+                            <td>
+                                <a href="{{ route('specialization.edit', ['id' => $i->id]) }}" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>
+                               <form action="{{ route('specialization.destroy', ['id' => $i->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                    {{ csrf_field() }} {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                </form>
+                            </td>
                         </tr>
                         @empty @endforelse
                     </tbody>

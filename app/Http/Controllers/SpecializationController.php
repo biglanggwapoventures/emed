@@ -161,6 +161,7 @@ class SpecializationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Spec::destroy($id);
+        return redirect()->back();
     }
 }
