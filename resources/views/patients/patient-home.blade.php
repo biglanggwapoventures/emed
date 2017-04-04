@@ -178,7 +178,7 @@
                                 <thead>
                                     <tr class="active">
                                         <th>Name</th>
-                                        <th>ptr</th>
+                                        <th>Specialization</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -186,7 +186,7 @@
                                     @forelse($items->doctors AS $item)
                                     <tr>
                                         <td>{{ $item->userInfo->fullname()}}</td>
-                                        <td>{{ $item->ptr }}</td>
+                                        <td>{{ $item->specialization->name }}</td>
 
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
@@ -209,9 +209,9 @@
                                                                     <!-- <tr>
                                                                         <td><b>Clinic:</b>&#09;{{ $item->clinic }}, {{ $item->clinic_address }}</td>
                                                                     </tr> -->
-                                                                    <tr>
+                                                                    <!-- <tr>
                                                                         <td><b>Gender:</b>&#09;{{ $item->userInfo->sex}} </td>
-                                                                    </tr>
+                                                                    </tr> -->
 
                                                                     <tr>
                                                                         <!-- <tr>
@@ -263,11 +263,11 @@
                                         <td>{{ $a->doctor->userInfo->fullname() }}</td>
                                         <td>{{ $a->doctor->clinic }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $items->id }}">
+                                            <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                               <span class="glyphicon glyphicon-info-sign">
                             </button>
 
-                                            <div class="modal fade" id="infoModals_{{ $items->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
+                                            <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">

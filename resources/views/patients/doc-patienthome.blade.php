@@ -299,60 +299,60 @@
 
                                                 <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info" style=""><b>P</b></a>
 
-                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $a->id }}">
+                                               <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </button>
 
-                                                <div class="modal fade" id="infoModal_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
+                                                <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
-                                                                <h4 class="modal-title" id="favoritesModalLabel">{{ $patients->userInfo->fullname() }}</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <table class="table table-user-information">
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td><b>Weight:</b>&#09;{{ $a->weight }} kgs</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td><b>Height:</b>&#09;{{ $a->height }} cm</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td><b>Blood Pressure:</b>&#09;{{ $a->bloodpressure}} mmHg</td>
-                                                                        </tr>
+                                                            <h4 class="modal-title" id="favoritesModalLabel">{{ $patients->userInfo->fullname() }}</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table class="table table-user-information">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><b>Weight:</b>&#09;{{ $a->weight }} kgs</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Height:</b>&#09;{{ $a->height }} cm</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Blood Pressure:</b>&#09;{{ $a->bloodpressure}} mmHg</td>
+                                                                    </tr>
+
+                                                                    <tr>
                                                                         <tr>
                                                                             <td><b>Temperature:</b>&#09;{{ $a->temperature }} C</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td><b>Pulse Rate:</b>&#09;{{ $a->pulserate }} bpm</td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td><b>Respiratory Rate:</b>&#09;{{ $a->resprate }} cpm<br>
-                                                                            </td>
-                                                                        </tr>
+                                                                        <td><b>Respiratory Rate:</b>&#09;{{ $a->resprate }} cpm<br>
+                                                                        </td>
                                                                         <tr>
                                                                             <td><b>Chief Complaints:</b>&#09;<br>{{ $a->chiefcomplaints }}</td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td><b>Diagnosis:</b><br>{{ $a->notes }}</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <div class="box-body table-responsive no-padding">
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <span class="pull-right">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
+                                                                        <td><b>Diagnosis:</b><br>{{ $a->notes }}</td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <span class="pull-right">
+                                                <button type="button" 
+                                                  class="btn btn-default" 
+                                                  data-dismiss="modal">Close</button>
+                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                             </td>
                                         </tr>
                                         @empty

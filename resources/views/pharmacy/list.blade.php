@@ -15,10 +15,9 @@
                     <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Pharmacy</th>
                             <th>Branch</th>
-
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
