@@ -116,7 +116,7 @@
                                                 {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][pharmacy_id]' ]) !!}
                                             </td>
                                             <td>
-                                                {!! Form::bsText('address') !!}
+                                                {!! Form::bsText('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][address]','readonly' => 'true' ]) !!}
                                             </td>
                                             <td>
                                             <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
@@ -130,7 +130,6 @@
                                 </table>
                             </div>
                         </div>
-
 
 
 
