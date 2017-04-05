@@ -23,6 +23,7 @@
                 <div class="box box-primary">
                     <div class="inside">
                         {!! Form::open(['url' => route ('managers.store'), 'method' => 'POST']) !!}
+
                         <h4>Personal Information</h4>
                         <hr class="third">
                         <div class="row">
@@ -55,7 +56,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" max="9999-12-31" class="form-control" style="width: 275px" />
+                                    <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" />
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -97,7 +98,7 @@
                         <div class="row">
                             
                             <div class="col-sm-12">
-                                <table class="table" id="aff-table">
+                                <table class="table" id="pha-table">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -115,7 +116,7 @@
                                                 {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][pharmacy_id]' ]) !!}
                                             </td>
                                             <td>
-                                                {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][address]' ]) !!}
+                                                {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-address', 'data-name' => 'pharmacies[idx][pharmacy_id]','readonly' => 'true' ]) !!}
                                             </td>
                                             <td>
                                             <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
@@ -163,19 +164,52 @@
             counter = 1;
 
 
-        $('select[name=pharmacies]').change(function() {
+        // $('select[name=pharmacies]').change(function() {
+
+        //     var $this = $(this),
+        //         pharmacy_branches = $this.find('option:selected').data('pharmacy_branches'),
+        //         options = '<option></option>';
+
+        //     for (var x in pharmacy_branches) {
+        //         options += '<option value="' + x + '">' + pharmacy_branches[x] + '</option>'
+        //     }
+
+        //     $('.pharmacy_branches').html(options);
+
+        // });
+        ////
+
+         $('select[name=pharmacy_branches]').change(function() {
 
             var $this = $(this),
                 pharmacy_branches = $this.find('option:selected').data('pharmacy_branches'),
                 options = '<option></option>';
 
             for (var x in pharmacy_branches) {
-                options += '<option value="' + x + '">' + pharmacy_branches[x] + '</option>'
+                options += '<option value="' + x + '">' + address + '</option>'
             }
 
             $('.pharmacy_branches').html(options);
 
         });
+
+        ////
+         $('.table').on('change', '.pharmacy-branch', function() {
+            var $this = $(this),
+                val = $this.val(),
+                phaBranchEl = $this.closest('tr').find('.pharmacy-address');
+            if (val) {
+                var optionsEl = '<option disabled selected>address</option>';
+                $(phaBranches[val]).each(function(i, v) {
+                    optionsEl += '<option value="' + v.pharmacy_id + '">' + v.address + '</option>'
+                });
+                phaBranchEl.html(optionsEl);
+            } else {
+                phaBranchEl.html('');
+            }
+        }).trigger('change');
+        ////
+
 
         $('table').on('click', '.remove-line', function() {
             var trs = $(this).closest('table').find('tbody tr');
@@ -238,6 +272,8 @@
         })
 
     })
+
+   
 
 </script>
 @endpush
