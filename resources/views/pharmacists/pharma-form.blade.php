@@ -77,7 +77,7 @@
                                 {!! Form::bsText('username', 'Username') !!}
                             </div>
                             <div class="col-md-4">
-                                {!! Form::bsText('email', 'Email') !!}
+                                <label>Email</label>{{Form::email('email',null,['class' => 'form-control'])}}
                             </div>
                             <div class="col-md-4">
                                 {!! Form::bsText('license', 'License') !!}

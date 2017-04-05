@@ -8,8 +8,8 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Add Doctor</a></li>
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'doctors.create') }} ">Add Doctor</a></li>
 
         </ol>
     </section>
@@ -42,11 +42,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                                    <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" /> @if($errors->has('sex'))
-                                    <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
-                                </div>
+                               {{Form::date('birthdate', \Carbon\Carbon::now())}} 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('sex') ? 'has-error' : '' }}">
@@ -81,7 +77,11 @@
                                 {!! Form::bsText('username', 'Username') !!}
                             </div>
                             <div class="col-md-4">
-                                {!! Form::bsText('email', 'Email') !!}
+                                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                                    <label>Email</label>{{Form::email('email',null,['class' => 'form-control'])}}
+                                    @if($errors->has('email'))
+                                    <span class="help-block">{{ $errors->first('email') }}</span> @endif
+                                </div>
                             </div>
                         </div>
                         <h4>Licenses</h4>
