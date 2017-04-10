@@ -119,8 +119,9 @@
                                             <td>
                                                 {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][pharmacy_id]' ]) !!}
                                             </td>
-                                            <td>
-                                                {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-address', 'data-name' => 'pharmacies[idx][pharmacy_id]','readonly' => 'true' ]) !!}
+                                            <td data-pharmacy-addresses="{{ json_encode($pharmacyAddress) }}">
+                                                {{-- Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-address', 'data-name' => 'pharmacies[idx][pharmacy_id]','readonly' => 'true' ]) --}}
+                                                {{ Form::bsText('pharmacy-branch-address') }}
                                             </td>
                                             <td>
                                             <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
@@ -165,8 +166,8 @@
     $(document).ready(function() {
 
         var phaBranches = $('[data-pharmacy-branches]').data('pharmacy-branches'),
+            phaAddresses = $('[data-pharmacy-addresses]').data('pharmacy-addresses'),
             counter = 1;
-
 
         // $('select[name=pharmacies]').change(function() {
 
@@ -202,11 +203,17 @@
             var $this = $(this),
                 val = $this.val(),
                 phaBranchEl = $this.closest('tr').find('.pharmacy-address');
+
+                console.log(val);
             if (val) {
                 var optionsEl = '<option disabled selected>address</option>';
-                $(phaBranches[val]).each(function(i, v) {
-                    optionsEl += '<option value="' + v.pharmacy_id + '">' + v.address + '</option>'
-                });
+                var phar_branch_address = phaAddresses[val];
+                // $(phaAddresses[val]).each(function(i, v) 
+                // {
+                   
+                //     optionsEl += '<option value="' + v.pharmacy_id + '">' + v.address + '</option>'
+                // });
+                $("input[name=pharmacy-branch-address]").val(phar_branch_address);
                 phaBranchEl.html(optionsEl);
             } else {
                 phaBranchEl.html('');

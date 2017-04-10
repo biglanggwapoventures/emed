@@ -34,14 +34,15 @@
       <ul class="sidebar-menu ">
         <li class="header ">MENU</li>
         <li><a href="/admin "><i class="fa fa-users "></i> <span>All Users</span></a></li>
-        <li><a href="{{ route( 'specialization.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Specialization</span></a></li>
-         <li><a href="{{ route( 'affiliations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Affiliations</span></a></li>
-         <li><a href="{{ route( 'organizations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Organizations</span></a></li>
-         <li><a href="{{ route( 'pharmacy.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Drugstore</span></a></li>
+         <li><a href="{{ route( 'userroles.index')}} "><i class="fa fa-user "></i> <span>Add Roles</span></a></li>
+        <li><a href="{{ route( 'specialization.index')}} "><i class="fa fa-stethoscope "></i> <span>Manage Specialization</span></a></li>
+         <li><a href="{{ route( 'affiliations.index')}} "><i class="fa fa-hospital-o "></i> <span>Manage Affiliations</span></a></li>
+         <li><a href="{{ route( 'organizations.index')}} "><i class="fa fa-sitemap "></i> <span>Manage Organizations</span></a></li>
+         <li><a href="{{ route( 'pharmacy.index')}} "><i class="fa fa-heart "></i> <span>Manage Drugstore</span></a></li>
         <!-- <li><a href="documentation/index.html "><i class="fa fa-user-plus "></i> <span>Add Roles</span></a></li> -->
         <li class="treeview ">
           <a href="# ">
-            <i class="fa fa-dashboard "></i> <span>Add Users</span>
+            <i class="fa fa-plus-circle "></i> <span>Add Users</span>
             <span class="pull-right-container ">
               <i class="fa fa-angle-left pull-right "></i>
             </span>

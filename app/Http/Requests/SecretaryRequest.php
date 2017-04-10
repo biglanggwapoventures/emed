@@ -33,7 +33,7 @@ class SecretaryRequest extends FormRequest
             'lastname' => 'required',
             'birthdate' => 'required',
             'sex' => 'required',
-            'contact_number' => 'required',
+            'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required|unique:users'
@@ -71,6 +71,7 @@ class SecretaryRequest extends FormRequest
             'username.required' => 'Please enter your username.',
             'email.required' => 'Please enter your email.',
             'email.unique' => 'Email already taken',
+            'contact_number.min' => 'Please enter valid contact number.',
             'username.unique' => 'Taken username.'
         ];
     }

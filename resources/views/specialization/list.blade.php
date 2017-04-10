@@ -34,11 +34,15 @@
                                 </ol>
                             </td>
                             <td>
-                                <a href="{{ route('specialization.edit', ['id' => $i->id]) }}" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>
-                               <form action="{{ route('specialization.destroy', ['id' => $i->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
-                                    {{ csrf_field() }} {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                                </form>
+
+
+                            <form action="{{ route('specialization.destroy', ['id' => $i->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                            {{ csrf_field() }} {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                             </form>
+
+                                 <a href="{{ route('specialization.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+                                 
                             </td>
                         </tr>
                         @empty @endforelse

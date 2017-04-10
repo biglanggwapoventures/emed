@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //show login page
 Route::get('/login', 'LoginController@showLoginPage')->middleware('guest');
 
@@ -28,8 +29,6 @@ Route::get('/secretary-home', 'SecretaryController@showHomepage');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
 Route::get('/pharma-transaction', 'ManagersController@transaction');
-
-
 // Route::get('/doctor-home', 'DoctorsController@showHomepage');
 
 /* LANDING PAGE */
@@ -60,6 +59,7 @@ Route::resource('drugstore', 'DrugstoreController');
 Route::resource('pharmacy', 'PharmacyController');
 Route::resource('affiliations', 'AffiliationsController');
 Route::resource('organizations', 'OrganizationsController');
+Route::resource('userroles', 'UserRolesController');
 
 // Route::resource('pharmacists', 'PharmaController');
 

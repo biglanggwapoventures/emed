@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PharmacyManager;
+use App\Pharmacy;
+use App\PharmacyBranch;
 use App\Http\Requests\ManagerRequest;
 use App\User;
 use Auth;
@@ -56,9 +58,9 @@ class ManagersController extends Controller
         // ]);
 
          return view('managers.manager-form', [
-            'pharmacies' => \App\Pharmacy::orderBy('name')->get()->pluck('name', 'id'),
-            'pharmacyAddress' => \App\PharmacyBranch::orderBy('address')->get()->pluck('address', 'id'),
-            'pharmacyBranches' => \App\PharmacyBranch::select('name', 'id', 'pharmacy_id','address')->get()->groupBy('pharmacy_id')
+            'pharmacies' => Pharmacy::orderBy('name')->get()->pluck('name', 'id'),
+            'pharmacyAddress' => PharmacyBranch::orderBy('address')->get()->pluck('address', 'id'),
+            'pharmacyBranches' => PharmacyBranch::select('name', 'id', 'pharmacy_id','address')->get()->groupBy('pharmacy_id')
         ]);
     }
 

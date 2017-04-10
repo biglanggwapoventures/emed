@@ -17,8 +17,19 @@
                 <div class="box box-primary">
                     <div class="inside">
                         <div class="col-md-9" style="margin-left: 40%">
+                       <!--  <center>
+                                                            @if (count($errors) > 0)
+                                        <div class="alert alert-danger pull-right" style="width: 30%">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                            @endif
+                         </center> -->
                             <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
-                            <input type="file" name="avatar">
+                            {{Form::file('avatar')}}
                             <input type="submit" class="btn btn-sm btn-primary"> {!! Form::close() !!}
                         </div>
 

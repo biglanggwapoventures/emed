@@ -78,13 +78,13 @@
                                         <td><i class="fa fa-fw fa-user-md" aria-hidden="true"></i></span> <b>Specialization</b> <br> {{ $docs->specialization->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><span class="glyphicon glyphicon-home"></span> <b>Home Address</b><br>{{ $docs->userInfo->address }}</td>
+                                        <td style="width: 50%;"><span class="glyphicon glyphicon-home"></span> <b>Home Address</b><br>{{ $docs->userInfo->address }}</td>
                                         <td>
-                                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <strong>Subspecialty </strong><br>
-                                            <ol>
+                                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <b>Subspecialty </b><br>
+                                            
                                                 <li>{!! implode('</li>
                                                 <li>', $docs->subspecializations->pluck('name')->toArray()) !!}</li>
-                                                <ol><br>
+                                                <br>
                                         </td>
                                     </tr>
                                     <tr>
@@ -133,13 +133,14 @@
 
                                     <!-- med school end -->
                                     <tr>
-                                        <td>
-                                            <i class="fa fa-fw fa-sitemap" aria-hidden="true"></i>
-                                            <strong>Affiliations and Organizations </strong> <br> {{ implode(', ', $docs->organizations->pluck('organizations')->toArray()) }}
+                                         <td>
+                                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <b>Affiliations and Organizations </b><br>
+                                            
+                                                <li>{!! implode('</li>
+                                                <li>', $docs->organizations->pluck('organizations')->toArray()) !!}</li>
+                                                <br>
                                         </td>
-                                        <td>
-
-                                        </td>
+                                        <td></td>
                                     </tr>
 
                                 </tbody>

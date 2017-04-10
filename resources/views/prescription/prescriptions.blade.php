@@ -124,5 +124,50 @@
 </section>
 <!-- /.content -->
 
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function() 
+    {
+        $("input[name=start]").focusout(function()
+        {
+            var strStartDate = $(this).val(),
+                startDate = new Date(strStartDate);
+
+            if(!isNaN(startDate))
+            {
+                var year = startDate.getFullYear();
+                var month = startDate.getMonth() + 1;
+                var currDay = startDate.getDate();
+                var endDay = startDate.getDate() + 5;
+                var maxDaysInTheMonth = new Date(year, month, 0).getDate();
+
+                if(endDay > maxDaysInTheMonth)
+                {
+                    endDay = endDay - maxDaysInTheMonth;
+                    month++;
+                }
+
+                if(month > 12)
+                {
+                    month = month - 12;
+                    year++;
+                }
+
+                // var strEndDate = month + "/" + endDay + "/" + year,
+                var strEndDate = year + "/" + month + "/" + endDay,
+                    endDate = new Date(strEndDate);
+                console.log(strEndDate);
+                $("input[name=end]").val(strEndDate);
+            }
+
+                
+            // console.log(startDate.getDate());
+            // console.log(startDate.getDate() + 5);
+        });
+    })
+</script>
+
 </div>
+@endpush
+
 @endsection
