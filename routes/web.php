@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@showLoginPage')->middleware('guest');
 
 // log out user
-Route::get('/logout', 'LogoutController');
+Route::get('logout', 'LogoutController');
 Route::get('/pmanager-home', 'ManagersController@showHomepage')->middleware('auth');
 Route::get('/pharmacists', 'ManagersController@phlist');
 Route::get('/pharmacists-home', 'PharmaController@showHomepage')->middleware('auth');

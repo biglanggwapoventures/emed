@@ -84,7 +84,7 @@
           <ul class="treeview-menu ">
             <li><a href="{{ route( 'patients.create') }} "><i class="fa fa-circle-o "></i> Add Patient</a></li>
           </ul>
-          <li style="margin-top: 100%;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+          <li style="margin-top: 100%;"><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
       </ul>
     </section>
     <!-- /.sidebar -->

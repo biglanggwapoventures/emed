@@ -24,7 +24,7 @@
                                         <td>{{ $i->userInfo->firstname}}</td>
                                         <td>{{ $i->userInfo->username}}</td>
                                         <td>
-                                            <form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                            <form action="{{ route('users.destroy', ['id' => $i->userInfo->id, 'info' => $i->userInfo]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                                                 <a href="{{ route('secretary.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>

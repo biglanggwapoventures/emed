@@ -33,7 +33,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu ">
         <li class="header ">MENU</li>
-        <li><a href="/admin "><i class="fa fa-users "></i> <span>All Users</span></a></li>
+        <li><a href="{{ url('admin') }}"><i class="fa fa-users "></i> <span>All Users</span></a></li>
         <li><a href="{{ route( 'specialization.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Specialization</span></a></li>
          <li><a href="{{ route( 'affiliations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Affiliations</span></a></li>
          <li><a href="{{ route( 'organizations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Organizations</span></a></li>
@@ -50,7 +50,7 @@
             <li><a href="{{ route( 'doctors.create') }} "><i class="fa fa-circle-o "></i> Add Doctor</a></li>
             <li><a href="{{ route( 'managers.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacy Manager</a></li>
           </ul>
-        <li><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
+        <li><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

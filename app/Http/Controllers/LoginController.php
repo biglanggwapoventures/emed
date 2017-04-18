@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+use App\User;
+use Session, Log;
+
 class LoginController extends Controller
 {
     // public function __construct()
@@ -32,9 +35,14 @@ class LoginController extends Controller
         ]);
 
         $credentials = $request->only(['username', 'password']);
-        if(Auth::attempt($credentials)){
-
+        if(Auth::attempt($credentials))
+        {
             $user = Auth::user();
+            Log::info($user);
+
+            $roleId = $user->user_type_id;
+            Session::put('user_type_id', $roleId);
+
             if($user->user_type === 'ADMIN')
             {
                 return redirect('/admin');
@@ -58,7 +66,6 @@ class LoginController extends Controller
             }else if($user->user_type === 'PHARMA'){
 
                 return redirect('/pharmacists-home');
-
         }
  }
 

@@ -37,7 +37,7 @@
               <!-- Menu Footer-->
               <li class="user-footer ">
                 <div class="pull-right ">
-                  <a href="/logout " class="btn btn-default btn-flat ">Sign out</a>
+                  <a href="{{ url('logout') }}" class="btn btn-default btn-flat ">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -71,7 +71,7 @@
         <li class="header ">MENU</li>
         <li><a href="# "><i class="fa fa-pencil "></i> <span>Transaction</span></a></li>
         <li><a href="/ChangePass "><i class="fa fa-unlock-alt "></i> <span>Change Password</span></a></li>
-        <li style="margin-top: 100%;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+        <li style="margin-top: 100%;"><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
 
         <!-- <li class="treeview ">
           <a href="# ">

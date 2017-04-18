@@ -27,7 +27,7 @@
         <li class="header ">MENU</li>
                 <li><a href="{{ url('/patient-home') }}"><i class="fa fa-user"></i> <span>{{ Auth::user()->fullname() }}</span></a></li>
                 <li><a href="{{ url('/ChangePass') }}"><i class="fa fa-unlock-alt"></i> <span>Change Password</span></a></li>
-                <li style="margin-top: 100%;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+                <li style="margin-top: 100%;"><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
                 <!-- <li><a href="/admin"><i class="fa fa-circle-o"></i> <span>Add Specialization</span></a></li> -->
                 <!-- <li><a href="documentation/index.html"><i class="fa fa-user-plus"></i> <span>Add Roles</span></a></li> -->
 
