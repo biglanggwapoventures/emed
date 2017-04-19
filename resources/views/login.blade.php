@@ -1,5 +1,5 @@
 @extends('welcome') @section('body')
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <div class="text-center loginpage" style="color: #346677;">
         <div class="login-form-1">
             <form action="{{ url('/login') }}" method="POST">
@@ -31,5 +31,5 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
 @endsection

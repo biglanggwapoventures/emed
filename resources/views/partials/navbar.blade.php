@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="background-color: #3c8dbc;">
     <div onclick="location.href='/'" class="logo"> </div>
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,16 +9,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-            <a class="navbar-brand" href="{{ url('/') }}">eMED</a>
+            <a class="navbar-brand" style ="color: white;" href="{{ url('/') }}">eMED</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="/" class="btn btn-home btn-2" style="margin-bottom: -20px;">HOME</a></li>
-                <li><a href="/aboutus" class="btn btn-home btn-2" style="margin-bottom: -20px;">ABOUT US</a></li>
-                <li><a href="/faq" class="btn btn-home btn-2" style="margin-bottom: -20px;">FAQ</a></li>
-                <li><a href="/contactus" class="btn btn-home btn-2" style="margin-bottom: -20px;">CONTACT US</a></li>
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="/" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">HOME</a></li>
+                <li><a href="/aboutus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">ABOUT US</a></li>
+                <li><a href="/faq" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">FAQ</a></li>
+                <li><a href="/contactus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">CONTACT US</a></li>
             </ul>
 
         </div>

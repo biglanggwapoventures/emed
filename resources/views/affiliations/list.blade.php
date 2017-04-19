@@ -25,14 +25,7 @@
                     <tbody>
                         @forelse($items AS $i)
                         <tr>
-                            <td>
-                                <a href="{{ route('affiliations.edit', ['id' => $i->id]) }}" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>
-                                
-                            <form action="{{ route('affiliations.destroy', ['id' => $i->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
-                                {{ csrf_field() }} {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                            </form>
-                            </td>
+                           
                             <td>{{ $i->name }}</td>
                             <td>
                                 <ol>
@@ -40,6 +33,19 @@
                                     <li>{{ $branch->name }}</li>
                                     @endforeach
                                 </ol>
+
+                            </td>
+                             <td>
+
+
+                                  <form action="{{ route('affiliations.destroy', ['id' => $i->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                                     {{ csrf_field() }} {{ method_field('DELETE') }}
+                                  <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                     </form>
+
+                                 <a href="{{ route('affiliations.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+                            </form>
+
 
                             </td>
 

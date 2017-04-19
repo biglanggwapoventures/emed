@@ -17,35 +17,7 @@
         </a>
 
         <div class="navbar-custom-menu" style="background-color: transparent;">
-            <ul class="nav navbar-nav">
-                <!-- User Account: style can be found in dropdown.less -->
-                <li class="dropdown user user-menu" style="background-color: transparent;" ">
-            <a href="# " class="dropdown-toggle " data-toggle="dropdown ">
-              <!-- <img src="{{ "/storage/avatars/{Auth::user()->avatar}" }} " class="user-image " alt="User Image "> -->
-              <span class="hidden-xs ">{{ Auth::user()->fullname() }}</span>
-            </a>
-            <ul class="dropdown-menu ">
-              <!-- User image -->
-              <!-- <li class="user-header ">
-                <img src="{{ " storage/avatars/{Auth::user()->avatar}" }} " class="img-circle " alt="User Image ">
-
-                <p>
-                  {{ Auth::user()->fullname() }}
-                </p>
-              </li> -->
               
-              <!-- Menu Footer-->
-              <li class="user-footer ">
-                <div class="pull-right ">
-                  <a href="/logout " class="btn btn-default btn-flat ">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-          </li>
-        </ul>
       </div>
     </nav>
   </header>
@@ -58,9 +30,9 @@
           <img src="{{ " storage/avatars/{Auth::user()->avatar}" }} " class="img-circle " alt="User Image ">
         </div> -->
         <div class="pull-left ">
-          <a href="/secretary-home " class="fa fa-user-md ">
+          <a href="/secretary-home "><i class="fa fa-user-md "></i>
             <!-- <span class="logo-mini "><b>E</b>MS</span> -->
-            <span><b></b>{{ Auth::user()->fullname() }}</span>
+            <span><b>{{ Auth::user()->fullname() }}</b></span>
           </a>
           <!-- <p><br><h4><a href="/doctor-home ">Dr. {{ Auth::user()->fullname() }}</a></h4></p> -->
         </div>
@@ -84,7 +56,7 @@
           <ul class="treeview-menu ">
             <li><a href="{{ route( 'patients.create') }} "><i class="fa fa-circle-o "></i> Add Patient</a></li>
           </ul>
-          <li style="margin-top: 100%;"><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+          <li style="margin-top: 430px;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
       </ul>
     </section>
     <!-- /.sidebar -->

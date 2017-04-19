@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <div class="container-fluid">
 
-        <div class="text-center loginpage" style="color: #346677;">
+        <div class="text-center changepage" style="color: #346677;">
             <div class="login-logo">Change Password</div>
             <!-- Main Form -->
             <div class="login-form-1">
@@ -12,7 +12,8 @@
                     <div class="login-group">
                         <div class="form-group {{ $errors->has('current_password') ? 'has-error' : '' }}">
                             <label class="control-label">Current Password</label>
-                            <input type="password" name="current_password" class="form-control"> @if($errors->has('current_password'))
+                            <input type="password" name="current_password" class="form-control">
+                             @if($errors->has('current_password'))
                             <span class="help-block">{{ $errors->first('current_password') }}</span> @endif
                         </div>
                         <div class="form-group {{ $errors->has('new_password') || isset($new_password) ? 'has-error' : '' }}">
@@ -70,4 +71,17 @@
     	</div> -->
     </div>
 </div>
+<style type="text/css">
+    .changepage {
+    padding: 12px 0px;
+    height: 50%;
+    width: 30%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 100px;
+    margin-left: 25%;
+    border-radius: 20px;
+    /*opacity: 0.8;*/
+}
+</style>
 @endsection

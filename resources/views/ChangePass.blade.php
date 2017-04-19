@@ -1,8 +1,8 @@
 @extends('welcome') @section('body')
 <div class="container-fluid">
 
-    <div class="text-center loginpage" style="color: #346677;">
-        <div class="login-logo">ChangePassword</div>
+    <div class="text-center changepage" style="color: red;">
+        <div class="login-logo">Change Password</div>
         <!-- Main Form -->
         <div class="login-form-1">
             {!! Form::open(['url' => route('ChangePass'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
@@ -10,7 +10,7 @@
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group {{ $errors->has('current_password') ? 'has-error' : '' }}">
-                        <label class="control-label">current password</label>
+                        <label class="control-label">Current password</label>
                         <input type="password" name="current_password" class="form-control"> @if($errors->has('current_password'))
                         <span class="help-block">{{ $errors->first('current_password') }}</span> @endif
                     </div>
@@ -42,4 +42,17 @@
     </div>
 
 </div>
+<style type="text/css">
+    .changepage {
+    padding: 12px 0px;
+    height: 50%;
+    width: 30%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 180px;
+    margin-left: 32%;
+    border-radius: 20px;
+    /*opacity: 0.8;*/
+}
+</style>
 @endsection

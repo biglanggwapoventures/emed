@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Organizations;
+use Validator;
 
 class OrganizationsController extends Controller
 {
@@ -52,20 +53,58 @@ class OrganizationsController extends Controller
      */
     public function store(Request $request)
     {
-           $input = $request->only([
-            'organizations'
-        ]);
+
+        //           $this->validate($request,[
+        //     'organizations' => 'required|unique:organizations'
+
+        //     ], [
+        //         'organizations.required' => 'Please input organization.',
+        //         'organizations.unique' => 'The organization already exists.'
+        //     ]);
+
+
+        //    $input = $request->only([
+        //     'organizations'
+        // ]);
+
+        $rules = array(
+            'organizations' => 'required|unique:organizations',
+            );
+
+        $messages = array(
+            'organizations.required' => 'Please fill out organization.',
+            'organizations.unique' => 'The organization already exists.',
+            );
        
-       Organizations::create($input);
+       $validator = Validator::make($request->all(), $rules, $messages);
 
+       if ($validator->passes()) {
 
-       // return back();
+        Organizations::create($input);
        return redirect()
             ->intended(route('organizations.index'))
             ->with('ACTION_RESULT', [
                 'type' => 'success', 
-                'message' => 'saved successfully!'
+                'message' => 'Saved Successfully!'
             ]);
+        }
+        else
+        {
+
+        return redirect()
+            ->intended(route('organizations.index'))
+            ->withErrors($validator)
+            ->with('ACTION_RESULT', [
+                'type' => 'danger', 
+                'message' => 'Error Occured! Check entered organization.'
+            ]);
+
+
+        }
+
+
+         
+       
     }
 
     /**

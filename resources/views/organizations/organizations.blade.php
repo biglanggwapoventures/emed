@@ -19,6 +19,17 @@
     <!-- Main content -->
     <section class="content">
 
+     @if(session('ACTION_RESULT'))
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                                    {{ session('ACTION_RESULT')['message'] }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+
         <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>Add Organization</button><br><br>
 
         <!-- Modal -->

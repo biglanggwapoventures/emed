@@ -4,24 +4,50 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Validator;
 
 class FileUploadController extends Controller
 {
     public function uploadDisplayPhoto(Request $request)
     {
-    	$this->validate($request, [
-    		'avatar' => 'image|max:2048'
-		]);
+    	$validator = Validator::make($request->all(), [
+           'avatar' => 'image|max:2048',
+        ]);
 
-		$path = $request->file('avatar')->store(
-		    'avatars/'.$request->id, 'public'
-		);
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
 
-		$user = Auth::user()->find($request->id);
+      if ($request->hasFile('avatar')) {
+        $path = $request->file('avatar')->store(
+        'avatars/'.$request->id, 'public'
+        );
 
-		$user->avatar = $path;
-		$user->save();
+        $user = Auth::user()->find($request->id);
 
-		return redirect()->back();
+        $user->avatar = $path;
+        $user->save();
+
+        return redirect()->back();
+      }
+      else{
+         return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+      }
+
+
+
+
+  //   	$this->validate($request, [
+  //   		'avatar' => 'image|max:2048'
+		// ]);
+
+
+
+
+	
     }
 }
