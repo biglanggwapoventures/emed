@@ -29,7 +29,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu ">
         <li class="header ">MENU</li>
-        <li><a href="{{ url('pmanager-home') }}"><i class="fa fa-user "></i> <span>{{ Auth::user()->fullname() }}</span></a></li>
+        <li><a href="/pmanager-home"><i class="fa fa-user "></i> <span>{{ Auth::user()->fullname() }}</span></a></li>
         <li><a href="{{ route( 'pharmacists.index') }} "><i class="fa fa-users "></i> <span>Pharmacists</span></a></li>
         <li><a href="# "><i class="fa fa-pencil "></i> <span>Transaction History</span></a></li>
         <li><a href="/ChangePass "><i class="fa fa-unlock-alt "></i> <span>Change Password</span></a></li>

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Log;
 use Session;
-use Route;
+use Route, Request;
 
 use App\Permissions;
 
@@ -21,27 +21,29 @@ class CheckPermissions
      */
     public function handle($request, Closure $next)
     {
-        $roleId = session('user_type_id');
-        $permissions = Permissions::retrieveRolePermissions($roleId);
+        $response = $next($request);
+
+        // $permissions = Permissions::retrieveRolePermissions();
         $currentRoute = Route::currentRouteName();
+        $data = Permissions::hasUrlPermission($currentRoute);
 
-        Log::info($currentRoute);
-        Log::info($request);
+        Log::info('Route accessed:' . $currentRoute);
 
-        $continue = false;
+        $continue = !is_null($data);
 
-        foreach ($permissions as $permission) 
-        {
-            if($currentRoute === $permission->route)
-            {
-                $continue = true;
-                break;
-            }
-        }        
+        // foreach ($permissions as $permission) 
+        // {
+        //     if($currentRoute === $permission->route)
+        //     {
+        //         $continue = true;
+        //         break;
+        //     }
+        // } 
 
         if($continue)
         {
-            return $next($request);
+            // return $next($request);
+            return $response;
         }
         else
         {

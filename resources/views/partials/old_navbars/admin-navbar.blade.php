@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="/pmanager-home" class="logo">
+    <a href="/admin" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>E</b>MS</span>
         <!-- logo for regular state and mobile devices -->
@@ -21,19 +21,23 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar ">
       <!-- Sidebar user panel -->
-      <div class="user-panel ">
-        <!-- <div class="pull-left image ">
-          <img src="{{ " storage/avatars/{Auth::user()->avatar}" }} " class="img-circle " alt="User Image ">
-        </div> -->
+      <!-- <div class="user-panel ">
+        <div class="pull-left image ">
+          <img src="/dist/img/user2-160x160.jpg " class="img-circle " alt="User Image ">
+        </div>
+        <div class="pull-left info ">
+          
+        </div>
+      </div> -->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu ">
         <li class="header ">MENU</li>
-        <li><a href="{{ url('pmanager-home') }}"><i class="fa fa-user "></i> <span>{{ Auth::user()->fullname() }}</span></a></li>
-        <li><a href="{{ route( 'pharmacists.index') }} "><i class="fa fa-users "></i> <span>Pharmacists</span></a></li>
-        <li><a href="# "><i class="fa fa-pencil "></i> <span>Transaction History</span></a></li>
-        <li><a href="/ChangePass "><i class="fa fa-unlock-alt "></i> <span>Change Password</span></a></li>
-        <!-- <li><a href="/admin "><i class="fa fa-circle-o "></i> <span>Add Specialization</span></a></li> -->
+        <li><a href="{{ url('admin') }}"><i class="fa fa-users "></i> <span>All Users</span></a></li>
+        <li><a href="{{ route( 'specialization.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Specialization</span></a></li>
+         <li><a href="{{ route( 'affiliations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Affiliations</span></a></li>
+         <li><a href="{{ route( 'organizations.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Organizations</span></a></li>
+         <li><a href="{{ route( 'pharmacy.index')}} "><i class="fa fa-circle-o "></i> <span>Manage Drugstore</span></a></li>
         <!-- <li><a href="documentation/index.html "><i class="fa fa-user-plus "></i> <span>Add Roles</span></a></li> -->
         <li class="treeview ">
           <a href="# ">
@@ -43,9 +47,10 @@
             </span>
           </a>
           <ul class="treeview-menu ">
-            <li><a href="{{ route( 'pharmacists.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacist</a></li>
+            <li><a href="{{ route( 'doctors.create') }} "><i class="fa fa-circle-o "></i> Add Doctor</a></li>
+            <li><a href="{{ route( 'managers.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacy Manager</a></li>
           </ul>
-        <li style="margin-top: 100%;"><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+        <li><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

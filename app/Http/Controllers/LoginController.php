@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\User;
+
+use App\Permissions;
 use Session, Log;
 
 class LoginController extends Controller
@@ -38,34 +40,34 @@ class LoginController extends Controller
         if(Auth::attempt($credentials))
         {
             $user = Auth::user();
-            Log::info($user);
 
             $roleId = $user->user_type_id;
+            Session::put('user_type', strtoupper($user->user_type));
             Session::put('user_type_id', $roleId);
 
             if($user->user_type === 'ADMIN')
             {
-                return redirect('/admin');
+                return redirect('admin');
             }
             else if($user->user_type === 'DOCTOR')
             {
-                return redirect('/doctor-home'); //test
+                return redirect('doctor-home'); //test
 
             }else if($user->user_type === 'PMANAGER'){
 
-                return redirect('/pmanager-home'); //test
+                return redirect('pmanager-home'); //test
 
             }else if($user->user_type === 'PATIENT'){
 
-                return redirect('/patient-home'); //test
+                return redirect('patient-home'); //test
 
             }else if($user->user_type === 'SECRETARY'){
 
-                return redirect('/secretary-home'); //test
+                return redirect('secretary-home'); //test
 
             }else if($user->user_type === 'PHARMA'){
 
-                return redirect('/pharmacists-home');
+                return redirect('pharmacists-home');
         }
  }
 

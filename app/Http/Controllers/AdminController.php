@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'index']]);
+        $this->middleware('permissions', ['except' => ['store', 'update']]);
     }
 
 	public function index(Request $request)

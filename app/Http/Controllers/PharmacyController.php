@@ -10,6 +10,16 @@ use Validator;
 class PharmacyController extends Controller
 {
     /**
+     *  Sets the middleware which checks the permissions of each URL request
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permissions', ['except' => ['store', 'update']]);
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
