@@ -79,7 +79,7 @@
 
                         <div class="row">
                             <div class="col-md-8">
-                                <strong>Diagnosis:</strong> <br>{{ Form::textarea('notes','Notes')}}
+                                <strong>Diagnosis:</strong> <br>{{ Form::textarea('notes','', ['placeholder'=> 'Notes'])}}
                             </div>
 
 
