@@ -97,13 +97,15 @@
                                             <thead><tr><th>Clinic</th><th>Branch</th><th>Clinic Hours</th></tr></thead>
                                             <tbody>
                                                 @forelse($docs->affiliations AS $aff)
-                                                    {{ $start = $aff->pivot->clinic_start }}
-                                                    {{ $end =  $aff->pivot->clinic_end }}
-                                                    {{ $start_time = date("g:i A", strtotime("$start")) }}
-                                                    {{ $end_time = date("g:i A", strtotime("$end")) }}
+                                                    <?php
+                                                        $start = $aff->pivot->clinic_start;
+                                                        $end =  $aff->pivot->clinic_end;
+                                                        $start_time = date("g:i A", strtotime("$start"));
+                                                        $end_time = date("g:i A", strtotime("$end"));
+                                                    ?>
                                                     <tr>
                                                         <td>{{ $aff->name }}</td>
-                                                        <td>{{ '' }}</td>
+                                                        <td>{{ $aff->pivot->affiliation_branch_id }}</td>
                                                         <td>{{ $start_time }} - {{ $end_time }}</td>
                                                     </tr>
                                                 @empty
