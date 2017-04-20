@@ -20,10 +20,12 @@
                                             @foreach($data->branches AS $i => $sub)
                                             <tr>
                                                 <td>
-                                                    {!! Form::text("branch[{$i}][name]", $sub->name, ['class' => 'form-control', 'data-name' => 'branch[idx][name]']) !!} @if($sub->id) {!! Form::hidden("branch[{$i}][id]", $sub->id) !!} @endif
+                                                    {!! Form::text("branch[{$i}][name]", $sub->name, ['class' => 'form-control', 'data-name' => 'branch[idx][name]', 'placeholder'=>'Branch Name']) !!} @if($sub->id) {!! Form::hidden("branch[{$i}][id]", $sub->id) !!}  @endif
                                                 </td>
                                                 <td>
-                                                    {!! Form::text("branch[{$i}][address]", $sub->address, ['class' => 'form-control', 'data-name' => 'branch[idx][address]']) !!}
+                                                    {!! Form::text("branch[{$i}][address]", $sub->address, ['class' => 'form-control', 'data-name' => 'branch[idx][address]','placeholder'=>'Branch Address']) !!}
+
+
                                                 </td>
 
                                                 <td> <a href="javascript:void(0)" class="btn btn-danger remove-line"><i class="glyphicon glyphicon-remove"></i></a></td>
