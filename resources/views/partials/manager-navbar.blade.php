@@ -29,7 +29,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu ">
         <li class="header ">MENU</li>
-        <li><a href="{{ url('pmanager-home') }}"><i class="fa fa-user "></i> <span>{{ Auth::user()->fullname() }}</span></a></li>
+        <li><a href="/pmanager-home"><i class="fa fa-user "></i> <span>{{ Auth::user()->fullname() }}</span></a></li>
         <li><a href="{{ route( 'pharmacists.index') }} "><i class="fa fa-users "></i> <span>Pharmacists</span></a></li>
         <li><a href="# "><i class="fa fa-pencil "></i> <span>Transaction History</span></a></li>
         <li><a href="/ChangePass "><i class="fa fa-unlock-alt "></i> <span>Change Password</span></a></li>
@@ -45,7 +45,8 @@
           <ul class="treeview-menu ">
             <li><a href="{{ route( 'pharmacists.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacist</a></li>
           </ul>
-        <li style="margin-top: 100%;"><a href="{{ url('logout') }}" class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+          <li class="list-group-item"></li>
+        <li><a href="/logout "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

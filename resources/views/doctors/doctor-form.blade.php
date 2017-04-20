@@ -166,7 +166,7 @@
                                             <td>
                                                 {!! Form::select('affiliations[0][branch_id]', [], null, ['class' => 'form-control aff-branch', 'data-name' => 'affiliations[idx][branch_id]' ]) !!}
                                             </td>
-                                            <td>{!! Form::text('affiliations[0][clinic_hours]', null, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_hours]']) !!}</td>
+                                            <td>{!! Form::time('affiliations[0][clinic_start]', null, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_start]']) !!} <h4> - </h4> {!! Form::time('affiliations[0][clinic_end]', null, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_end]']) !!}</td>
                                             <td><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>
                                     </tbody>

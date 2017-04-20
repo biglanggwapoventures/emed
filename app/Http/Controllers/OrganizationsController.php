@@ -63,18 +63,18 @@ class OrganizationsController extends Controller
         //     ]);
 
 
-        //    $input = $request->only([
-        //     'organizations'
-        // ]);
+        $input = $request->only([
+            'organizations'
+        ]);
 
         $rules = array(
             'organizations' => 'required|unique:organizations',
-            );
+        );
 
         $messages = array(
             'organizations.required' => 'Please fill out organization.',
             'organizations.unique' => 'The organization already exists.',
-            );
+        );
        
        $validator = Validator::make($request->all(), $rules, $messages);
 

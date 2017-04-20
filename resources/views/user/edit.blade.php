@@ -22,7 +22,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-                        <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+                        <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                         <input type="file" class="upload" name="avatar"> {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
 
                         <h4>Personal Information</h4>
@@ -180,55 +180,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h4>Medical Profile</h4>
-                        <hr class="third">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
-                                    Do you have allergies? {{ Form::radio('allergyquestion', 'Y',false) }} Yes {{ Form::radio('allergyquestion', 'N',false) }} No @if($errors->has('allergyquestion'))
-                                    <span class="help-block">{{ $errors->first('allergyquestion') }}</span> @endif
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
-                                    <label class="control-label">If yes what</label>
-                                    <span style="color: red">*</span> {!! Form::text('allergyname', $data->allergyname, ['class' => 'form-control']) !!} @if($errors->has('allergyname'))
-                                    <span class="help-block">{{ $errors->first('allergyname') }}</span> @endif
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('past_disease') ? 'has-error' : '' }}">
-                                    <label class="control-label">Disease History</label>
-                                    <span style="color: red">*</span> {!! Form::text('past_disease', $data->past_disease, ['class' => 'form-control']) !!} @if($errors->has('past_disease'))
-                                    <span class="help-block">{{ $errors->first('past_disease') }}</span> @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('past_surgery') ? 'has-error' : '' }}">
-                                    <label class="control-label">Surgery History</label>
-                                    <span style="color: red">*</span> {!! Form::text('past_surgery', $data->past_surgery, ['class' => 'form-control']) !!} @if($errors->has('past_surgery'))
-                                    <span class="help-block">{{ $errors->first('past_surgery') }}</span> @endif
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('immunization') ? 'has-error' : '' }}">
-                                    <label class="control-label">Immunizations</label>
-                                    <span style="color: red">*</span> {!! Form::text('immunization', $data->immunization, ['class' => 'form-control']) !!} @if($errors->has('immunization'))
-                                    <span class="help-block">{{ $errors->first('immunization') }}</span> @endif
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('family_history') ? 'has-error' : '' }}">
-                                    <label class="control-label">Family History</label>
-                                    <span style="color: red">*</span> {!! Form::text('family_history', $data->family_history, ['class' => 'form-control']) !!} @if($errors->has('family_history'))
-                                    <span class="help-block">{{ $errors->first('family_history') }}</span> @endif
-                                </div>
-                            </div>
-                        </div>
                         <button type="submit" class="btn btn-primary">Update</button> {!! Form::close() !!}
-
                         </form>
                     </div>
                     <!-- /.box -->

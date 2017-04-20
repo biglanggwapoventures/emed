@@ -228,7 +228,7 @@
                                         <td>
                                             {!! Form::select("affiliations[{$i}][branch_id]", [], null, ['class' => 'form-control aff-branch', 'data-name' => 'affiliations[idx][branch_id]', 'data-default' => $aff->pivot->affiliation_branch_id ]) !!}
                                         </td>
-                                        <td>{!! Form::text("affiliations[{$i}][clinic_hours]", $aff->pivot->clinic_hours, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_hours]']) !!}</td>
+                                        <td>{!! Form::time("affiliations[{$i}][clinic_start]", $aff->pivot->clinic_start, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_start]']) !!} <h4> - </h4>{!! Form::time("affiliations[{$i}][clinic_end]", $aff->pivot->clinic_end, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_end]']) !!}</td>
                                         <td><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
                                     </tr>
                                     @endforeach
