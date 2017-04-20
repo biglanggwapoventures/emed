@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <div class="container-fluid">
 
-        <div class="text-center changepage" style="color: #346677;">
+        <div class="text-center changepage" >
             <div class="login-logo">Change Password</div>
             <!-- Main Form -->
             <div class="login-form-1">
@@ -74,14 +74,58 @@
 <style type="text/css">
     .changepage {
     padding: 12px 0px;
-    height: 50%;
+    height: 65%;
     width: 30%;
     position: absolute;
     background-color: whitesmoke;
-    margin-top: 100px;
+    margin-top: 80px;
     margin-left: 25%;
     border-radius: 20px;
     /*opacity: 0.8;*/
 }
+@media only screen and (max-device-width: 480px) {
+     .changepage {
+       padding: 12px 0px;
+    height: 57%;
+    width: 90%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 80px;
+    margin-left: 1%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+}
+.login-form-1 {
+    max-width: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: -18px;
+    margin-left: -296px;
+}
+    }
+
+@media only screen and (max-device-width: 320px) {
+     .changepage {
+    padding: 12px 0px;
+    height: 66%;
+    width: 98%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 18px;
+    margin-left: -4%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+}
+.login-form-1 {
+    max-width: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: -18px;
+    margin-left: -296px;
+}
+    }
+
+
+
 </style>
 @endsection
