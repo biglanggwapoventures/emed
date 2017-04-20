@@ -100,7 +100,7 @@
                                                     <tr>
                                                         <td>{{ $aff->name }}</td>
                                                         <td>{{ '' }}</td>
-                                                        <td>{{ $aff->pivot->clinic_hours }}</td>
+                                                        <td>{{ $aff->pivot->clinic_start }} - {{ $aff->pivot->clinic_end }}</td>
                                                     </tr>
                                                 @empty
                                                     <tr>

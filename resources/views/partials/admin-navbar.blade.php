@@ -51,7 +51,8 @@
             <li><a href="{{ route( 'doctors.create') }} "><i class="fa fa-circle-o "></i> Add Doctor</a></li>
             <li><a href="{{ route( 'managers.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacy Manager</a></li>
           </ul>
-        <li style="margin-top: 300px;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
+          <li class="list-group-item"></li>
+        <li><a href="/logout "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

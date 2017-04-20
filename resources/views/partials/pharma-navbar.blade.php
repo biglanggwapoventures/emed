@@ -71,7 +71,8 @@
         <li class="header ">MENU</li>
         <li><a href="# "><i class="fa fa-pencil "></i> <span>Transaction</span></a></li>
         <li><a href="/ChangePass "><i class="fa fa-unlock-alt "></i> <span>Change Password</span></a></li>
-        <li style="margin-top: 100%;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+        <li class="list-group-item"></li>
+        <li><a href="/logout "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
 
         <!-- <li class="treeview ">
           <a href="# ">

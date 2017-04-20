@@ -134,7 +134,8 @@ class DoctorsController extends Controller
         foreach(request()->input('affiliations') AS $aff){
             $affiliations[$aff['affiliation_id']] = [
                 'affiliation_branch_id' => $aff['branch_id'],
-                'clinic_hours' => $aff['clinic_hours'],
+                'clinic_start' => $aff['clinic_start'],
+                'clinic_end' => $aff['clinic_end'],
             ];
         }
         $doctor->affiliations()->sync($affiliations);
@@ -217,7 +218,8 @@ class DoctorsController extends Controller
         foreach(request()->input('affiliations') AS $aff){
             $affiliations[$aff['affiliation_id']] = [
                 'affiliation_branch_id' => $aff['branch_id'],
-                'clinic_hours' => $aff['clinic_hours'],
+                'clinic_start' => $aff['clinic_start'],
+                'clinic_end' => $aff['clinic_end'],
             ];
         }
         $doctor->affiliations()->sync($affiliations);

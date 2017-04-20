@@ -45,7 +45,8 @@
           <ul class="treeview-menu ">
             <li><a href="{{ route( 'pharmacists.create') }} "><i class="fa fa-circle-o "></i> Add Pharmacist</a></li>
           </ul>
-        <li style="margin-top: 100%;"><a href="/logout " class="btn btn-default btn-flat "><i class="fa fa-sign-out"></i><span>Sign out</span></a>
+          <li class="list-group-item"></li>
+        <li><a href="/logout "><i class="fa fa-sign-out"></i><span>Sign out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

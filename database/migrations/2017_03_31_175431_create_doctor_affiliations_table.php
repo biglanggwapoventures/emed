@@ -18,6 +18,8 @@ class CreateDoctorAffiliationsTable extends Migration
             $table->unsignedInteger('doctor_id');
             $table->unsignedInteger('affiliation_id');
             $table->unsignedInteger('affiliation_branch_id');
+            $table->string('clinic_start');
+            $table->string('clinic_end');
             $table->string('clinic_hours');
             $table->timestamps();
 
