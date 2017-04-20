@@ -51,7 +51,7 @@
                                                 <body>
                                                     <div class="container-fluid">
 
-                                                        <div class="text-center loginpage">
+                                                        <div class="text-center changepage">
                                                             <div class="login-logo">login</div>
                                                             <!-- Main Form -->
                                                             <div class="login-form-1">
@@ -75,12 +75,13 @@
                                                                                 <input type="checkbox" id="lg_remember" name="lg_remember">
                                                                                 <label for="lg_remember">remember</label>
                                                                             </div>
+                                                                            <div class="etc-login-form">
+                                                                                 <p>forgot your password? <a href="#">Click here</a></p>
+                                                                            </div>
                                                                         </div>
-                                                                        <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                                                                        <button type="submit" class="login-button "><i class="glyphicon glyphicon-chevron-right"></i></button>
                                                                     </div>
-                                                                    <div class="etc-login-form">
-                                                                        <p>forgot your password? <a href="#">Click here</a></p>
-                                                                    </div>
+                                                                    
                                                                 </form>
                                                             </div>
                                                             <!-- end:Main Form -->
@@ -167,5 +168,82 @@
                                             @stack('scripts')
 
                                             </body>
+                                            <style type="text/css">
+    .changepage {
+    padding: 12px 0px;
+    height: 60%;
+    width: 25%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 106px;
+    margin-left: 37%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+}
+.login-form-1 {
+    max-width: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: -7%;
+    margin-left: -85%;
+}
+@media only screen and (max-device-width: 480px) {
+     .changepage {
+       padding: 12px 0px;
+    height: 57%;
+    width: 90%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 80px;
+    margin-left: 1%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+}
+.login-form-1 {
+    max-width: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: -18px;
+    margin-left: -296px;
+}
+    }
 
+@media only screen and (max-device-width: 320px) {
+     .changepage {
+    padding: 12px 0px;
+    height: 66%;
+    width: 98%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 76px;
+    margin-left: -4%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+}
+.login-form-1 {
+    max-width: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: -18px;
+    margin-left: -296px;
+}
+    }
+
+.login-form-1 .login-button {
+    position: absolute;
+    right: -288px;
+    top: 50%;
+    background: #ffffff;
+    color: #999999;
+    padding: 11px 0;
+    width: 50px;
+    height: 50px;
+    margin-top: -50px;
+    border: 5px solid #efefef;
+    border-radius: 50%;
+    transition: all ease-in-out 500ms;
+    /* margin-left: 97%; */
+}
+
+</style>
 </html>
