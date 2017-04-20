@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route( 'pharmacy.index')}} ">Pharmacies</a></li>
-            <li><a href="{{ route( 'pharmacy.create')}} ">Add Pharmacy</a></li>
+            <li><a href="{{ route( 'pharmacy.create')}} ">Manage Pharmacy</a></li>
 
         </ol>
     </section>

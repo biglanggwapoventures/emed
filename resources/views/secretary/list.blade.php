@@ -1,5 +1,15 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
+ <section class="content-header">
+        <h1>
+            Secretary List
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'secretary.index') }} ">Secretary List</a></li>
+        </ol>
+    </section>
    <!--  <div class="box">
         <div class="box-body"> -->
         <section class="content">

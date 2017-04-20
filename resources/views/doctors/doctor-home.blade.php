@@ -1,10 +1,17 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+   <section class="content-header">
         <h1>
-            User Profile
+           User Profile
+            <small></small>
         </h1>
+        <ol class="breadcrumb">
+            <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/doctor-home"><i class="fa fa-user"></i> Dr. {{ $docs->userInfo->fullname() }}</a></li>
+           
+
+        </ol>
     </section>
 
     <!-- Main content -->

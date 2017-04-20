@@ -8,7 +8,7 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Add Consultation</a></li>
 
         </ol>

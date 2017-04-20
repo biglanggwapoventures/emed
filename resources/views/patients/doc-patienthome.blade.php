@@ -18,8 +18,7 @@
         <ol class="breadcrumb">
             <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('patients.index') }}">Patients</a></li>
-            <li class="active">{{ $patients->userInfo->fullname() }} </li>
-        </ol>
+            <li><a href="#"><i class="fa fa-user"></i> {{ $patients->userInfo->fullname() }} </a></li>
     </section>
 
     <!-- Main content -->

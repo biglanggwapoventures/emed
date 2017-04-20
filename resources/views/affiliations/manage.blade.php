@@ -3,13 +3,13 @@
 <div class="content-wrapper">
    <section class="content-header">
         <h1>
-            Affiliations Form
+            Manage Affiliations 
             <small></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('affiliations.index')}}">Affiliations</a></li>
-            <li><a href="{{ route( 'affiliations.create')}} ">Add Affiliations</a></li>
+            <li><a href="{{ route( 'affiliations.create')}} ">Manage Affiliations</a></li>
 
         </ol>
     </section>
