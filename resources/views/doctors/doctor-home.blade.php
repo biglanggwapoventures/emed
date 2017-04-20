@@ -30,7 +30,7 @@
 
                         <h3 class="profile-username text-center">Dr. {{ $docs->userInfo->fullname() }} </h3>
 
-                        <p class="text-muted text-center">Doctor</p>
+                        <!-- <p class="text-muted text-center">Doctor</p> -->
 
                         <!-- <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
@@ -49,9 +49,9 @@
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
+                    <!-- <ul class="nav nav-tabs">
                         <li class="active"><a href="#activity" data-toggle="tab">Profile</a></li>
-                    </ul>
+                    </ul> -->
                     <div class="tab-content">
                         <!-- tab start -->
                         <div class="active tab-pane" id="activity">
