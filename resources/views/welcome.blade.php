@@ -106,7 +106,6 @@
             $(document).ready(pluginLoaded)
 
             function pluginLoaded() {
-                console.log("asdasd")
                 window.webcard = document.getElementById("webcard");
                 if (webcard.attachEvent) {
                     webcard.attachEvent("oncardpresent", cardPresent);

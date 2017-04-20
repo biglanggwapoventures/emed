@@ -75,6 +75,15 @@
                 </li>
             @endif
 
+            @if(EMedHelper::hasUrlPermission('userroles.index'))
+                <li>
+                    <a href="{{ route('userroles.index') }}">
+                        <i class="fa fa-circle-o "/></i>
+                        <span>Manage User Roles</span>
+                    </a>
+                </li>
+            @endif
+
             @if(EMedHelper::hasUrlPermission('specialization.index'))
                 <li>
                     <a href="{{ route('specialization.index')}} ">
@@ -149,51 +158,18 @@
                             <i class="fa fa-angle-left pull-right "/></i>
                         </span>
                     </a>
+
                     <ul class="treeview-menu ">
-                        @if(EMedHelper::hasUrlPermission('doctors.create'))
-                            <li>
-                                <a href="{{ route('doctors.create') }} ">
-                                    <i class="fa fa-circle-o "></i> 
-                                    Add Doctor
-                                </a>
-                            </li>
-                        @endif
-
-                        @if(EMedHelper::hasUrlPermission('managers.create'))
-                            <li>
-                                <a href="{{ route('managers.create') }} ">
-                                    <i class="fa fa-circle-o "></i> 
-                                    Add Pharmacy Manager
-                                </a>
-                            </li>
-                        @endif
-
-                        @if(EMedHelper::hasUrlPermission('pharmacists.create'))
-                            <li>
-                                <a href="{{ route( 'pharmacists.create') }} ">
-                                    <i class="fa fa-circle-o "></i> 
-                                    Add Pharmacist
-                                </a>
-                            </li>
-                        @endif
-
-                        @if(EMedHelper::hasUrlPermission('patients.create'))
-                            <li>
-                                <a href="{{ route( 'patients.create') }} ">
-                                    <i class="fa fa-circle-o "></i> 
-                                    Add Patient
-                                </a>
-                            </li>
-                        @endif
-
-                        @if(EMedHelper::hasUrlPermission('secretary.create'))
-                            <li>
-                                <a href="{{ route( 'secretary.create') }} ">
-                                    <i class="fa fa-circle-o "></i> 
-                                    Add Secretary
-                                </a>
-                            </li>
-                        @endif
+                        @foreach(EMedHelper::getAddUserPermissions() as $data)
+                            @if(EMedHelper::hasUrlPermission($data->route))
+                                <li>
+                                    <a href="{{ route($data->route) }} ">
+                                        <i class="fa fa-circle-o "></i> 
+                                        {{ $data->display_name }}
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </li>
             @endif
