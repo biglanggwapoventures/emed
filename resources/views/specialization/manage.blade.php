@@ -1,6 +1,18 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
+   <section class="content-header">
+        <h1>
+            Specialization Form
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route('specialization.index')}}">Specializations</a></li>
+            <li><a href="{{ route( 'specialization.create')}} ">Add Specialization</a></li>
+
+        </ol>
+    </section>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
@@ -42,7 +54,12 @@
         </div>
     </div>
 </div>
-
+<style type="text/css">
+    .panel-default {
+    border-color: #ddd;
+    margin-top: 30px;
+}
+</style>
 
 @endsection @push('scripts')
 <script type="text/javascript">

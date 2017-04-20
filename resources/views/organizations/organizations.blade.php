@@ -5,13 +5,14 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <!-- <h1>
-            Manage Organization
+        <h1>
+            Organizations 
+            <small></small>
+        </h1>
 
-        </h1> -->
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Organizations</a></li>
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'organizations.index')}}">Organizations</a></li>
 
         </ol>
     </section>

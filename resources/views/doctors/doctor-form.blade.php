@@ -8,8 +8,8 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Add Doctor</a></li>
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'doctors.create') }} ">Add Doctor</a></li>
 
         </ol>
     </section>

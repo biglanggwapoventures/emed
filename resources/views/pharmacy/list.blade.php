@@ -1,6 +1,19 @@
 @extends('welcome') 
 @section('body')
 <div class="content-wrapper">
+<section class="content-header">
+        <h1>
+            Pharmacies 
+            <small></small>
+        </h1>
+
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'pharmacy.index')}} ">Pharmacies</a></li>
+
+        </ol>
+    </section>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -17,7 +30,7 @@
                         <tr>
                             <th>Pharmacy</th>
                             <th>Branch</th>
-                            <th></th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +45,7 @@
                                     @endforeach
                                 </ol>
                             </td>
-                             <td>
+                           
                                  <td>
 
 
@@ -42,12 +55,12 @@
                                      </form>
 
                                  <a href="{{ route('pharmacy.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
-                            </form>
+                                   </form>
 
 
                             </td>
 
-                            </td>
+                            
                         </tr>
                         @empty @endforelse
                     </tbody>
