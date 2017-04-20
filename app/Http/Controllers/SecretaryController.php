@@ -33,19 +33,30 @@ class SecretaryController extends Controller
     public function index(Request $request)
     {
 
-        $items = Auth::user()->doctor->secretaries();
-        $search =  $request->input('search');
+        // $search =  $request->input('search');
         
         
-        if(trim($search)){
-            $items->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
-        }
+        // if(trim($search)){
+        //     $items->whereHas('userInfo', function($q) USE($search){
+        //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+        //     });
+        // }
 
+        if(Auth::user()->user_type === "DOCTOR")
+        {
+            $items = Auth::user()->doctor->secretaries();
             return view('secretary.list', [
                 'items' => $items->get()
             ]);
+        }
+
+        else if(Auth::user()->user_type === "SECRETARY")
+        {
+            $patients = Auth::user()->secretary->doctor->patients();
+            return view('patients.list', [
+                'patients' => $patients->get()
+            ]);
+        }
     }
 
     
