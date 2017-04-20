@@ -30,16 +30,16 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="{{ " /storage/{$patients->userInfo->avatar}" }}" alt="User profile picture">
+                        <img class="img-responsive img-circle" src="{{ " /storage/{$patients->userInfo->avatar}" }}" alt="User profile picture">
 
                         <h3 class="profile-username text-center">{{ $patients->userInfo->fullname() }} </h3>
 
                         <p class="text-muted text-center">Patient</p>
 
                         <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
+                           <!--  <li class="list-group-item">
                                 <i class="fa fa-envelope-o" aria-hidden="true"></i> <b>{{$patients->userInfo->email}}</b>
-                            </li>
+                            </li> -->
                             <li class="list-group-item">
                                 <i class="fa fa-home" aria-hidden="true"></i><b>{{ $patients->userInfo->address }}</b>
                         </ul>
