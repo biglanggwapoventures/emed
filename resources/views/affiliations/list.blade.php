@@ -24,7 +24,7 @@
                     </thead>
                 </table>
                 <div class="box-body table-responsive no-padding">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th></th>

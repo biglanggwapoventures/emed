@@ -79,7 +79,7 @@
 
         <!-- //////////////////// -->
          <div class="box-body table-responsive no-padding">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped">
 
             <thead>
                 <tr class="active">
@@ -99,8 +99,9 @@
                             <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                         </form>
 
-                        <a href="{{ route('organizations.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+                        <a href="{{ route('organizations.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a></span>
                     </td>
+
                 </tr>
 
 
@@ -109,6 +110,8 @@
                     <td colspan="4" class="text-center">No records</td>
                 </tr>
                 @endforelse
+                
+                </tbody>
         </table>
         </div>
 </div>
