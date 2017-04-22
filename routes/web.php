@@ -29,6 +29,7 @@ Route::get('/secretary-home', 'SecretaryController@showHomepage');
 
 Route::get('/patient-home', 'PatientsController@showHomepage');
 Route::get('/pharma-transaction', 'ManagersController@transaction');
+Route::get('/transaction-summary', 'ManagersController@summary');
 // Route::get('/doctor-home', 'DoctorsController@showHomepage');
 
 /* LANDING PAGE */
@@ -72,4 +73,6 @@ Route::post('/scan', 'RFIDController@scan');
 
 Route::post('/detach-patient/{patientId}', 'PatientActionController@detachPatient');
 Route::post('/attach-patient/{patientId}', 'PatientActionController@attachPatient');
+
+
 
