@@ -40,8 +40,9 @@
                            <!--  <li class="list-group-item">
                                 <i class="fa fa-envelope-o" aria-hidden="true"></i> <b>{{$patients->userInfo->email}}</b>
                             </li> -->
-                            <li class="list-group-item">
+                            <!-- <li class="list-group-item">
                                 <i class="fa fa-home" aria-hidden="true"></i><b>{{ $patients->userInfo->address }}</b>
+                            </li> -->
                         </ul>
                         @can('detach-patient', $patients) {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
                         <button class="btn btn-danger btn-block" type="submit">Remove patient</button> {!! Form::close() !!} @endcan @can('attach-patient', $patients) {!! Form::open(['url' => url('/attach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
@@ -85,7 +86,7 @@
                                     </tr>
                                     <tr><b><h3>Personal information</h3></tr></b></tr>
                                     <tr>
-                                        <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username</b> <br> {{ $patients->userInfo->username }} </td>
+                                        <td><span class="glyphicon glyphicon-home"></span> &nbsp<b>Address</b> <br> {{ $patients->userInfo->address }} </td>
                                         <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$patients->userInfo->email}}</td>
                                         <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth</b><br> {{ $patients->userInfo->birthdate }}</td>
                                     </tr>

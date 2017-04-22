@@ -27,10 +27,9 @@
                     <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Clinic Affiliation</th>
                             <th>Branch</th>
-
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
