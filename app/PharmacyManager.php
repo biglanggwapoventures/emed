@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PharmacyManager extends Model
 {
-	
     protected $fillable = [
 		'drugstore','drugstore_branch','license'
 	];

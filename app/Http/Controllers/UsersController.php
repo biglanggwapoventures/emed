@@ -5,17 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-use App\Permissions;
-use Log;
-
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'destroy']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -90,17 +81,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $data = Permissions::hasDeleteUserPermission($id);
-        
-        if(trim($data) === '')
-        {
-            User::destroy($id);
-            return redirect()->back();
-        }
-        else
-        {
-            Log::error('ACCESS DENIED. User tries to delete data of UserType=' . strtoupper($data) . ' but is not included in the current user\'s list of permissions.');
-            abort(503);
-        }
+        User::destroy($id);
+        return redirect()->back();
     }
 }
