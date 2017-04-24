@@ -9,7 +9,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Add Custom User Role</a></li>
+            <li><a href="#">Edit Custom User Role</a></li>
 
         </ol>
     </section>
@@ -17,25 +17,25 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            {!! Form::open(['url' => route ('userroles.store'), 'method' => 'POST', 'id' => 'doc']) !!}
+            {!! Form::open(['url' => route ('userroles.update', ['id' => $roleData->id]), 'method' => 'POST']) !!}
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-                       <h3>Add Custom User Role</h3>
+                       <h3>Edit Custom User Role</h3>
 
                         
                         {{csrf_field()}}
 
                         <div class="form-group">
-                             {!! Form::bsText('name', 'Role Name') !!}
+                             {!! Form::bsText('name', 'Role Name', $roleData->name) !!}
                         </div>
                         <div class="form-group">
-                              {!! Form::bsText('namedisplay', 'Display Name') !!}
+                              {!! Form::bsText('namedisplay', 'Display Name', $roleData->display_name) !!}
                         </div>
                         <div class="form-group">
-                              {!! Form::bsText('description', 'Description') !!}
+                              {!! Form::bsText('description', 'Description', $roleData->description) !!}
                         </div>
 
                         <div class="form-group text-left">
@@ -59,7 +59,10 @@
                                                 <tr>
                                             @endif
 
-                                            <td><input type="checkbox" name="permissions[]" value="{{ $permission->id }}" >{{ $permission->display_name }}</td>
+                                            <td>
+                                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ EMedHelper::hasPermissionId($permission->id, $roleData->id) ? "checked='checked'" : "" }} >
+                                                {{ $permission->display_name }}
+                                            </td>
                                             <?php $tdCount++; ?>
 
                                             @if($tdCount > 4)
@@ -72,7 +75,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </div>

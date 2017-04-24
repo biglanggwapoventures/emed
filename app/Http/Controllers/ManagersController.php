@@ -13,6 +13,16 @@ use Auth;
 class ManagersController extends Controller
 {
     /**
+     *  Sets the middleware which checks the permissions of each URL request
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,12 +43,19 @@ class ManagersController extends Controller
 
     public function showHomepage()
     {
-
-       $items = Auth::user()->manager;
-        // dd($items);
-        return view('managers.pmanager-home', [
-            'items' => $items
-        ]);
+        if(session('user_type') === 'PMANAGER')
+        {
+            $items = Auth::user()->manager;
+            // dd($items);
+            return view('managers.pmanager-home', [
+                'items' => $items
+            ]);
+        }
+        else
+        {
+            Log::error('ACCESS DENIED. User tries to access Pharmacy Manager\'s Homepage but is not included in the current user\'s list of permissions.');
+            abort(503);
+        }
     }
 
     /**
