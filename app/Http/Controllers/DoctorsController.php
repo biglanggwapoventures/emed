@@ -10,20 +10,8 @@ use App\User;
 use App\Patient;
 use Auth;
 
-use Log;
-
 class DoctorsController extends Controller
 {
-    /**
-     *  Sets the middleware which checks the permissions of each URL request
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -33,20 +21,11 @@ class DoctorsController extends Controller
     public function showHomepage()
     {
 
-        if(session('user_type') === 'DOCTOR')
-        {
-            $docs = Auth::user()->doctor;
-            // dd($items);
-            return view('doctors.doctor-home', [
-                'docs' => $docs
-            ]);
-        }
-        else
-        {
-            Log::error('ACCESS DENIED. User tries to access Doctor\'s Homepage but is not included in the current user\'s list of permissions.');
-            abort(503);
-        }
-            
+        $docs = Auth::user()->doctor;
+        // dd($items);
+        return view('doctors.doctor-home', [
+            'docs' => $docs
+        ]);
 
            
     }
