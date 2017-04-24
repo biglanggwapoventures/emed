@@ -12,16 +12,6 @@ use Auth;
 class PharmaController extends Controller
 {
     /**
-     *  Sets the middleware which checks the permissions of each URL request
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -44,19 +34,11 @@ class PharmaController extends Controller
 
     public function showHomepage()
     {
-        if(session('user_type') === 'PHARMA')
-        {
-            $items = Pharma::with('userInfo')->get();
-            // dd($items);
-            return view('pharmacists.pharma-home', [
-                'items' => $items
-                ]);
-        }
-        else
-        {
-            Log::error('ACCESS DENIED. User tries to access Pharmacist\'s Homepage but is not included in the current user\'s list of permissions.');
-            abort(503);
-        }
+        $items = Pharma::with('userInfo')->get();
+        // dd($items);
+        return view('pharmacists.pharma-home', [
+            'items' => $items
+            ]);
     }
 
     /**

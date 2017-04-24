@@ -13,35 +13,16 @@ use Auth;
 class PatientsController extends Controller
 {
     /**
-     *  Sets the middleware which checks the permissions of each URL request
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
-    }
-    
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function showHomepage()
     {
-
-        if(session('user_type') === 'PATIENT')
-        {
-            $items = Auth::user()->patient;
-            return view('patients.patient-home', [
-                'items' => $items
-            ]);
-        }
-        else
-        {
-            Log::error('ACCESS DENIED. User tries to access Patient\'s Homepage but is not included in the current user\'s list of permissions.');
-            abort(503);
-        }
+        $items = Auth::user()->patient;
+        return view('patients.patient-home', [
+            'items' => $items
+        ]);
     
     }
     
