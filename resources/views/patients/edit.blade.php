@@ -200,7 +200,13 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
                                     <label class="control-label">If yes, what?</label>
-                                    <span style="color: red">*</span> {!! Form::text('allergyname', $data->allergyname, ['class' => 'form-control']) !!} @if($errors->has('allergyname'))
+                                    <span style="color: red">*</span>
+                                    @if($data->allergyquestion==='N')
+                                        {!! Form::text('allergyname', NULL, ['class' => 'form-control']) !!} 
+                                    @else
+                                        {!! Form::text('allergyname', $data->allergyname, ['class' => 'form-control']) !!} 
+                                    @endif
+                                    @if($errors->has('allergyname'))
                                     <span class="help-block">{{ $errors->first('allergyname') }}</span> @endif
                                 </div>
                             </div>

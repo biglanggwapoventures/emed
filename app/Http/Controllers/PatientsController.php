@@ -183,12 +183,14 @@ class PatientsController extends Controller
             else
                 $patient->doctors()->attach(Auth::user()->secretary->doctor->id);            
 
+            // save profile picture
             $path = $request->file('avatar')->store(
                 'avatars/'.$user->id, 'public'
             );
             $user->avatar = $path;
             $user->save();
 
+            // redirect
             if(Auth::user()->user_type === "DOCTOR")
             {
                 return redirect()->route('patients.index');

@@ -125,7 +125,11 @@
                                     </tr>
                                     <tr>
                                         <td><i class="fa fa-question" aria-hidden="true"></i> <b>Do you have allergies? Y/N :</b><br>&nbsp {{ $patients->allergyquestion }} </td>
-                                        <td><i class="fa fa-bug" aria-hidden="true"></i> <b>Allergic to:</b> <br>{{ $patients->allergyname }} </td>
+                                        <td><i class="fa fa-bug" aria-hidden="true"></i> <b>Allergic to:</b> <br>
+                                        @if($patients->allergyquestion==='Y')
+                                            {{ $patients->allergyname }}
+                                        @endif
+                                        </td>
                                         <td></td>
                                     </tr>
 
