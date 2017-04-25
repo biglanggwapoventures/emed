@@ -105,7 +105,13 @@ class PharmaController extends Controller
 
         Auth::user()->manager->pharmacists()->create($pharmacist);
 
-       return redirect()->route('pharmacists.index');
+       // return redirect()->route('pharmacists.index');
+        return redirect()
+            ->intended(route('pharmacists.index'))
+            ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'New pharmacists has been saved successfully!'
+            ]);
     }
 
     /**
@@ -127,9 +133,15 @@ class PharmaController extends Controller
      */
     public function edit($id)
     {
-         return view('pharmacists.edit', [
-            'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
-        ]);
+        $pman = Auth::user()->manager;
+          return view('pharmacists.edit', [
+             'pman' => $pman,
+             'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
+         ]);
+
+        //  return view('pharmacists.edit', [
+        //     'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
+        // ]);
     }
 
     /**
@@ -146,6 +158,7 @@ class PharmaController extends Controller
             'license' => $request->license,
             'drugstore' => $request->clinic,
             'drugstore_address'=> $request->clinic_address,
+            'user_id' => $user->id
         ]);
         $pharma->save();
 
@@ -163,8 +176,14 @@ class PharmaController extends Controller
 
         ]));
         $user->save();
-
-       return redirect()->route('pharmacists.index');
+        return redirect()
+            ->intended(route('pharmacists.index'))
+            ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => ' pharmacists has been edited successfully!'
+            ]);
+        
+       
     }
 
     /**
