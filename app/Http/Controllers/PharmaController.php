@@ -156,7 +156,7 @@ class PharmaController extends Controller
         $pharma = Pharma::find($id);
         $pharma->fill([
             'license' => $request->license,
-            'drugstore' => $request->clinic,
+            'drugstore' => $request->drugstore,
             'drugstore_branch'=> $request->drugstore_branch,
             
         ]);
