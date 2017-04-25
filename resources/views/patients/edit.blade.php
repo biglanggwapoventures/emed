@@ -22,8 +22,10 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-                        <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                        <input type="file" class="upload" name="avatar"> {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
+                        {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
+
+                        <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
+                        <input type="file" onchange="readURL(this)" class="upload" name="avatar">
 
                         <h4>Personal Information</h4>
                         <hr class="third">
@@ -185,13 +187,19 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
-                                    Do you have allergies? {{ Form::radio('allergyquestion', 'Y',false) }} Yes {{ Form::radio('allergyquestion', 'N',false) }} No @if($errors->has('allergyquestion'))
+                                    Do you have allergies? 
+                                    @if($data->allergyquestion==='Y')
+                                        {{ Form::radio('allergyquestion', 'Y', true) }} Yes {{ Form::radio('allergyquestion', 'N',false) }} No 
+                                    @else
+                                        {{ Form::radio('allergyquestion', 'Y', false) }} Yes {{ Form::radio('allergyquestion', 'N', true) }} No 
+                                    @endif
+                                    @if($errors->has('allergyquestion'))
                                     <span class="help-block">{{ $errors->first('allergyquestion') }}</span> @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
-                                    <label class="control-label">If yes what</label>
+                                    <label class="control-label">If yes, what?</label>
                                     <span style="color: red">*</span> {!! Form::text('allergyname', $data->allergyname, ['class' => 'form-control']) !!} @if($errors->has('allergyname'))
                                     <span class="help-block">{{ $errors->first('allergyname') }}</span> @endif
                                 </div>
@@ -251,5 +259,19 @@
     }
 
 </style>
+
+<script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#dp').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 @endsection

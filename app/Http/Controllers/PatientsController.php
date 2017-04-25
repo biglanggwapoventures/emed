@@ -8,6 +8,7 @@ use App\Http\Requests\PatientRequest;
 use App\User;
 use App\Doctor;
 use App\Secretary;
+use Validator;
 use Auth;
 
 class PatientsController extends Controller
@@ -115,73 +116,89 @@ class PatientsController extends Controller
                 'email.required' => 'Please enter your email.'
            ]);
 
-        // get fields for user table
-        $input = $request->only([
-            'username', 
-            'firstname', 
-            'lastname',
-            'address',
-            'middle_initial',
-            'birthdate',
-            'gender',
-            'contact_number',
-            'address',
-            'email',
-            'sex'
-        ]);
-
-        // verify if username exists
-        $credentials = $request->only(['username']);
-
-        // assign password: default is firstname+lastname lowercase
-        $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
-        // assign user type
-        $input['user_type'] = 'PATIENT';
-        //save to DB (users)
-        $user = User::create($input);
-
-        // save to DB      
-        $patient = $user->patient()->create([
-            'bloodtype' => $request->bloodtype,
-            'econtact'=> $request ->econtact,
-            'erelationship'=> $request->erelationship,
-            'civilstatus'=> $request->civilstatus,
-            'bloodtype'=> $request->bloodtype,
-            'enumber'=> $request->enumber,
-            'nationality'=> $request->nationality,
-            'occupation'=> $request->occupation,
-            'allergyquestion'=> $request ->allergyquestion,
-            'allergyname'=> $request->allergyname,
-            'civilstatus'=> $request->civilstatus,
-            'bloodtype'=> $request->bloodtype,
-            'enumber'=> $request->enumber,
-            'nationality'=> $request->nationality,
-            'occupation'=> $request->occupation
-        ]);
-
-        // connect patient to doctor
-        if(Auth::user()->user_type === 'DOCTOR')
-            $patient->doctors()->attach(Auth::user()->doctor->id);
-        else
-            $patient->doctors()->attach(Auth::user()->secretary->doctor->id);
-
         // save patient's profile picture
-        $path = $request->file('avatar')->store(
-            'avatars/'.$user->id, 'public'
+        $rules = array(
+            'avatar' => 'required|image|max:2048'
         );
-        $user->avatar = $path;
-        $user->save();
 
-        if(Auth::user()->user_type === "DOCTOR")
-        {
-            return redirect()->route('patients.index');
-        }
+        $messages = array(
+            'avatar.required' => 'Please choose profile picture.'
+        );
 
-        else if(Auth::user()->user_type === "SECRETARY")
-        {
-            return redirect()->route('patients.index');
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if(!$request->hasFile('avatar')) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
         }
-       
+        else{
+            // get fields for user table
+            $input = $request->only([
+                'username', 
+                'firstname', 
+                'lastname',
+                'address',
+                'middle_initial',
+                'birthdate',
+                'gender',
+                'contact_number',
+                'address',
+                'email',
+                'sex'
+            ]);
+
+            // verify if username exists
+            $credentials = $request->only(['username']);
+
+            // assign password: default is firstname+lastname lowercase
+            $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
+            // assign user type
+            $input['user_type'] = 'PATIENT';
+            //save to DB (users)
+            $user = User::create($input);
+
+            // save to DB      
+            $patient = $user->patient()->create([
+                'bloodtype' => $request->bloodtype,
+                'econtact'=> $request ->econtact,
+                'erelationship'=> $request->erelationship,
+                'civilstatus'=> $request->civilstatus,
+                'bloodtype'=> $request->bloodtype,
+                'enumber'=> $request->enumber,
+                'nationality'=> $request->nationality,
+                'occupation'=> $request->occupation,
+                'allergyquestion'=> $request ->allergyquestion,
+                'allergyname'=> $request->allergyname,
+                'civilstatus'=> $request->civilstatus,
+                'bloodtype'=> $request->bloodtype,
+                'enumber'=> $request->enumber,
+                'nationality'=> $request->nationality,
+                'occupation'=> $request->occupation
+            ]);
+
+            // connect patient to doctor
+            if(Auth::user()->user_type === 'DOCTOR')
+                $patient->doctors()->attach(Auth::user()->doctor->id);
+            else
+                $patient->doctors()->attach(Auth::user()->secretary->doctor->id);            
+
+            $path = $request->file('avatar')->store(
+                'avatars/'.$user->id, 'public'
+            );
+            $user->avatar = $path;
+            $user->save();
+
+            if(Auth::user()->user_type === "DOCTOR")
+            {
+                return redirect()->route('patients.index');
+            }
+
+            else if(Auth::user()->user_type === "SECRETARY")
+            {
+                return redirect()->route('patients.index');
+            }
+        }
     }
 
     /**
@@ -266,7 +283,7 @@ class PatientsController extends Controller
             'erelationship' => $request->erelationship,
             'econtact'=> $request->econtact,
             'enumber'=> $request->enumber,
-             'allergyname' => $request->allergyname,
+            'allergyname' => $request->allergyname,
             'allergyquestion' => $request->allergyquestion,
             'past_disease'=> $request->past_disease,
             'past_surgery' => $request->past_surgery,
@@ -286,9 +303,17 @@ class PatientsController extends Controller
             'email',
             'birthdate',
             'address',
-
+            'avatar'
         ]));
         $user->save();
+
+        if($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store(
+                'avatars/'.$user->id, 'public'
+            );
+            $user->avatar = $path;
+            $user->save();
+        }
         
 
        if(Auth::user()->user_type === "DOCTOR")

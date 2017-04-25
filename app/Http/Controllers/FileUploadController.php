@@ -10,9 +10,15 @@ class FileUploadController extends Controller
 {
     public function uploadDisplayPhoto(Request $request)
     {
-    	$validator = Validator::make($request->all(), [
-           'avatar' => 'image|max:2048',
-        ]);
+      $rules = array(
+        'avatar' => 'image|max:2048'
+      );
+
+      $messages = array(
+        'avatar.max' => 'File size too large. Choose file below 2MB.'
+      );
+
+    	$validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->fails()) {
         //     return redirect()->back()
