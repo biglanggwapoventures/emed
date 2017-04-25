@@ -109,9 +109,9 @@ class AffiliationsController extends Controller
     public function update(Request $request, $id)
     {
         $v = Validator::make($request->all(), [
-            'name' => "required|unique:specializations,name,{$id}",
+            'name' => "required|unique:affiliations,name,{$id}",
             'branches' => 'required|array',
-            'branches.*.name' => 'required',
+            'branches.*.name' => 'required|unique:affiliation_branches',
             'branches.*.id' => 'exists:affiliation_branches,id',
         ]);
 
@@ -147,10 +147,10 @@ class AffiliationsController extends Controller
             $aff->branches()->saveMany($branches);
         }
 
-        // return response()->json([
-        //     'result' => true
-        // ]);
-        return view('affiliations.index');
+         return response()->json([
+             'result' => true
+         ]);
+
     }
 
     /**
