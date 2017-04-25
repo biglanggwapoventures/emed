@@ -76,7 +76,7 @@
                                         @if(session('ACTION_RESULT'))
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
                                                     {{ session('ACTION_RESULT')['message'] }}
 
                                                 </div>
@@ -377,7 +377,13 @@
     <!-- /.content -->
     </div>
 
-
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
 
 
     @endsection
