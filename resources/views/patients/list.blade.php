@@ -39,19 +39,23 @@
                                 <td>{{ $patient->bloodtype }}</td>
                                 <td>{{ $patient->occupation }}</td>
                                 <td>
-
-
-
-                                    <form action="{{ route('users.destroy', ['id' => $patient->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
-                                        {{ csrf_field() }} {{ method_field('DELETE') }} @if(Auth::user()->user_type === "DOCTOR")
-                                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button> @elseif(Auth::user()->user_type === "SECRETARY")
-                                        <button type="submit" class="btn btn-danger" disabled><span class="glyphicon glyphicon-trash"></button> @endif
-
-
-                                        <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a> @if(Auth::user()->user_type === "DOCTOR")
-                                        <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-warning">View Patient</a> @elseif(Auth::user()->user_type === "SECRETARY")
-                                        <button type="button" class="btn btn-warning" disabled>View Patient</button> @endif
-                                    </form>
+                                    @if(Auth::user()->user_type === "DOCTOR")
+                                        @can('detach-patient', $patient) 
+                                            {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patient->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
+                                                <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span></button> 
+                                            {!! Form::close() !!} 
+                                        @endcan
+                                    @elseif(Auth::user()->user_type === "SECRETARY")
+                                        <button type="submit" class="btn btn-danger" disabled><span class="glyphicon glyphicon-trash"></button> 
+                                    @endif
+                                        
+                                    <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a> 
+                                        
+                                    @if(Auth::user()->user_type === "DOCTOR")
+                                        <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-warning">View Patient</a> 
+                                    @elseif(Auth::user()->user_type === "SECRETARY")
+                                        <button type="button" class="btn btn-warning" disabled>View Patient</button> 
+                                    @endif
                                 </td>
                             </tr>
                             @empty

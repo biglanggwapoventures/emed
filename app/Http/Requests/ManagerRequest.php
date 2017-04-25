@@ -18,7 +18,7 @@ class ManagerRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->isAdmin() || Auth::user()->user_type === 'SECRETARY';
+        return Auth::user()->isAdmin() || Auth::user()->user_type === 'PMANAGER';
     }
 
     /**

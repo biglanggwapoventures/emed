@@ -4,7 +4,7 @@
     <div class="row">
 
         <div class="col-md-6 col-md-offset-3">
-            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+           <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
                 {{ session('ACTION_RESULT')['message'] }}
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                        <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" >center>
 
                         <h3 class="profile-username text-center"> </h3>
 
@@ -113,7 +113,12 @@
                                     </tr>
                                     <tr>
                                         <td><i class="fa fa-question" aria-hidden="true"></i> <b>Do you have allergies? Y/N :</b><br>&nbsp {{ $items->allergyquestion }}</td>
-                                        <td><i class="fa fa-bug" aria-hidden="true"></i> <b>Allergic to:</b> <br>{{ $items->allergyname }} </td>
+                                        <td><i class="fa fa-bug" aria-hidden="true"></i> <b>Allergic to:</b> <br>
+                                        @if($items->allergyquestion==='Y')
+                                            {{ $items->allergyname }}
+                                        @endif
+                                        </td> 
+                                        </td>
                                         <td></td>
                                     </tr>
 
@@ -346,7 +351,17 @@
     <!-- /.content -->
 </div>
 
-
-
-
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
+<style type="text/css">
+    .img-circle {
+    border-radius: 50%;
+    margin-left: 39px;
+}
+</style>
 @endsection

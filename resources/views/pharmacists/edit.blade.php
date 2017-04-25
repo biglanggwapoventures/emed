@@ -12,6 +12,15 @@
             <li><a href="#">edit Manager</a></li>
 
         </ol>
+        @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     </section>
 
     <!-- Main content -->
@@ -67,15 +76,39 @@
                         </div>
                         <h4>Account Information</h4>
                         <hr class="third">
+
                         <div class="row">
                             <div class="col-md-4">
-                                
+                                <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
+                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $pman->drugstore, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
+                                    <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
+                                </div>
                             </div>
 
                             <div class="col-md-4">
-                              
+                                <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
+                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', $pman->drugstore_branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                    <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
+                                </div>
                             </div>
-                        </div>
+
+                              <div class="col-md-4">
+                               
+                                    {!! Form::bsText('license', 'License', $data->license, ['class' => 'form-control','readonly' => 'true']) !!}  
+                               
+                            </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    {!! Form::bsText('username', 'Username', $data->userInfo->username) !!}
+                                 </div>
+                            <div class="col-md-4">
+                                    {!! Form::bsText('email', 'Email', $data->userInfo->email) !!}
+                            </div>
+
+                            </div>
+
                         <button type="submit" class="btn btn-primary">Update</button>
                         {!! Form::close() !!}
                     </div>

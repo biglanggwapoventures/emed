@@ -43,10 +43,7 @@
                                     <label class="control-label">Gender</label>
                                     <label for="sel1">Select list:</label>
                                     <span style="color: red">*</span>
-                                    <select class="form-control" name="sex">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select> @if($errors->has('sex'))
+                                    {!! Form::select('sex', ['Female' => 'Female', 'Male' => 'Male'], $data->userInfo->sex, ['class' => 'form-control']) !!} @if($errors->has('sex'))
                                     <span class="help-block">{{ $errors->first('sex') }}</span> @endif
                                 </div>
                             </div>

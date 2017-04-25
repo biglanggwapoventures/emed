@@ -98,14 +98,20 @@ class PharmaController extends Controller
         // save to DB (pharmas)       
         $pharmacist = [
             'drugstore' => $request->drugstore,
-            'drugstore_address' => $request->drugstore_address,
+            'drugstore_branch' => $request->drugstore_branch,
             'license' => $request->license,
             'user_id' => $user->id
         ];
 
         Auth::user()->manager->pharmacists()->create($pharmacist);
 
-       return redirect()->route('pharmacists.index');
+       // return redirect()->route('pharmacists.index');
+        return redirect()
+            ->intended(route('pharmacists.index'))
+            ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'New pharmacists has been saved successfully!'
+            ]);
     }
 
     /**
@@ -127,9 +133,15 @@ class PharmaController extends Controller
      */
     public function edit($id)
     {
-         return view('pharmacists.edit', [
-            'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
-        ]);
+        $pman = Auth::user()->manager;
+          return view('pharmacists.edit', [
+             'pman' => $pman,
+             'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
+         ]);
+
+        //  return view('pharmacists.edit', [
+        //     'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
+        // ]);
     }
 
     /**
@@ -144,8 +156,9 @@ class PharmaController extends Controller
         $pharma = Pharma::find($id);
         $pharma->fill([
             'license' => $request->license,
-            'drugstore' => $request->clinic,
-            'drugstore_address'=> $request->clinic_address,
+            'drugstore' => $request->drugstore,
+            'drugstore_branch'=> $request->drugstore_branch,
+            
         ]);
         $pharma->save();
 
@@ -163,8 +176,14 @@ class PharmaController extends Controller
 
         ]));
         $user->save();
-
-       return redirect()->route('pharmacists.index');
+        return redirect()
+            ->intended(route('pharmacists.index'))
+            ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => ' pharmacists has been edited successfully!'
+            ]);
+        
+       
     }
 
     /**

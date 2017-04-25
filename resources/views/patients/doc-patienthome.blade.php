@@ -30,7 +30,7 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="img-responsive img-circle" src="{{ " /storage/{$patients->userInfo->avatar}" }}" alt="User profile picture">
+                        <img class="img-responsive img-circle" src="{{ " /storage/{$patients->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" >
 
                         <h3 class="profile-username text-center">{{ $patients->userInfo->fullname() }} </h3>
 
@@ -125,7 +125,11 @@
                                     </tr>
                                     <tr>
                                         <td><i class="fa fa-question" aria-hidden="true"></i> <b>Do you have allergies? Y/N :</b><br>&nbsp {{ $patients->allergyquestion }} </td>
-                                        <td><i class="fa fa-bug" aria-hidden="true"></i> <b>Allergic to:</b> <br>{{ $patients->allergyname }} </td>
+                                        <td><i class="fa fa-bug" aria-hidden="true"></i> <b>Allergic to:</b> <br>
+                                        @if($patients->allergyquestion==='Y')
+                                            {{ $patients->allergyname }}
+                                        @endif
+                                        </td>
                                         <td></td>
                                     </tr>
 
@@ -384,6 +388,13 @@
     });
 }, 1000);
 </script>
+
+<style type="text/css">
+    .img-circle {
+    border-radius: 50%;
+    margin-left: 39px;
+}
+</style>
 
 
     @endsection

@@ -188,8 +188,26 @@ class ManagersController extends Controller
         ]));
         $user->save();
         
+        if(Auth::user()->user_type === "PMANAGER")
+        {
+           return redirect('/pmanager-home')->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Edit manager successful!'
+            ]);
+        return redirect('/doctor-home')->with('success', 0);
 
-       return redirect()->route('admin.index');
+        }
+         else if(Auth::user()->user_type === "ADMIN")
+        {
+           return redirect()->route('admin.index')->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Edit manager successful!'
+            ]);
+
+        return redirect('/patient-home')->with('success', 0);
+
+        }
+       // return redirect()->route('admin.index');
     }
 
     /**

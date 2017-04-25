@@ -24,7 +24,7 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <center>
-                            <img alt="User Pic" src="{{ " storage/{$docs->userInfo->avatar}" }}" style="width 150px; height 150px;" class="img-circle img-responsive"><br>
+                            <img alt="User Pic" src="{{ " storage/{$docs->userInfo->avatar}" }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
                             <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}" class="btn btn-info btn-sm ">Edit Picture</a></center>
                         <!--  <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}" class="btn btn-info btn-sm ">Edit Picture</a> -->
 
@@ -62,7 +62,7 @@
                                         @if(session('ACTION_RESULT'))
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                                 <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
                                                     {{ session('ACTION_RESULT')['message'] }}
 
                                                 </div>
@@ -177,6 +177,12 @@
     </div>
 
 
-
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
 
     @endsection

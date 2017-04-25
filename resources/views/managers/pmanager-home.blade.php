@@ -51,9 +51,6 @@
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#activity" data-toggle="tab">Profile</a></li>
-                    </ul>
                     <div class="tab-content">
                         <!-- tab start -->
                         <div class="active tab-pane" id="activity">
@@ -65,7 +62,7 @@
                                         @if(session('ACTION_RESULT'))
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                               <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
                                                     {{ session('ACTION_RESULT')['message'] }}
 
                                                 </div>
@@ -108,6 +105,13 @@
     </section>
     <!-- /.content -->
     </div>
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
 
 
 
