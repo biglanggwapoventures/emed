@@ -10,6 +10,9 @@ use App\User;
 use App\Patient;
 use Auth;
 
+use App\Common;
+use Log;
+
 class PrescriptionController extends Controller
 {
     /**
@@ -17,10 +20,13 @@ class PrescriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        return view('prescription.prescriptions');
+        Log::infO($request);   
+        $prescriptions = Common::retrievePrescriptions($request->patient_id, $request->consultation_id);
+        Log::infO($prescriptions);   
+
+        return view('prescription.prescriptions', ['prescriptions' => $prescriptions]);
     }
 
     /**
@@ -65,12 +71,17 @@ class PrescriptionController extends Controller
 
         Auth::user()->doctor->prescriptions()->create($data); 
 
-        return redirect()
-            ->intended(route('patients.show', ['id' => $data['patient_id']]))
-            ->with('ACTION_RESULT', [
+        return redirect()->back()->with('ACTION_RESULT', [
                 'type' => 'success', 
                 'message' => 'New prescription has been saved successfully!'
-            ]);
+            ]);;
+
+        // return redirect()
+        //     ->intended(route('patients.show', ['id' => $data['patient_id']]))
+        //     ->with('ACTION_RESULT', [
+        //         'type' => 'success', 
+        //         'message' => 'New prescription has been saved successfully!'
+        //     ]);
     }
 
     /**

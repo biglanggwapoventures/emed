@@ -22,6 +22,7 @@ class UserRolesController extends Controller
         return view('userroles.list', ["roles" => $allRoles, "all_permissions" => $allRolesPermissions]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

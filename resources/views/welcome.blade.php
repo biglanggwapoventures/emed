@@ -79,7 +79,8 @@
             <param name="onload" value="pluginLoaded" />
         </object>
         <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-        <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <!-- <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script> -->
+        <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
@@ -103,7 +104,6 @@
             });
             $(document).ready(pluginLoaded)
             function pluginLoaded() {
-                console.log("asdasd")
                 window.webcard = document.getElementById("webcard");
                 if (webcard.attachEvent) {
                     webcard.attachEvent("oncardpresent", cardPresent);
