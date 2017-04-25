@@ -29,7 +29,7 @@ class PasswordChangeController extends Controller
 
         $validator = Validator::make($password, [
             'current_password' => 'required|current_password_match',
-            'new_password'     => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/|confirmed',
+            'new_password'     => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[@!$#%]).*$/|confirmed',
 
             ]);
 
