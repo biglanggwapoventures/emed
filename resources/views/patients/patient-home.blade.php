@@ -32,7 +32,7 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                        <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" >center>
 
                         <h3 class="profile-username text-center"> </h3>
 
@@ -358,6 +358,10 @@
     });
 }, 1000);
 </script>
-
-
+<style type="text/css">
+    .img-circle {
+    border-radius: 50%;
+    margin-left: 39px;
+}
+</style>
 @endsection

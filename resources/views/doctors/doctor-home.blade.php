@@ -24,7 +24,7 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <center>
-                            <img alt="User Pic" src="{{ " storage/{$docs->userInfo->avatar}" }}" style="width 150px; height 150px;" class="img-circle img-responsive"><br>
+                            <img alt="User Pic" src="{{ " storage/{$docs->userInfo->avatar}" }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
                             <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}" class="btn btn-info btn-sm ">Edit Picture</a></center>
                         <!--  <a href="{{ route('doctors.edit', ['id' => $docs->user_id]) }}" class="btn btn-info btn-sm ">Edit Picture</a> -->
 

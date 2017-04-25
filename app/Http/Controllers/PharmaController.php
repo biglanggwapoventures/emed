@@ -98,7 +98,7 @@ class PharmaController extends Controller
         // save to DB (pharmas)       
         $pharmacist = [
             'drugstore' => $request->drugstore,
-            'drugstore_address' => $request->drugstore_address,
+            'drugstore_branch' => $request->drugstore_branch,
             'license' => $request->license,
             'user_id' => $user->id
         ];
@@ -157,8 +157,8 @@ class PharmaController extends Controller
         $pharma->fill([
             'license' => $request->license,
             'drugstore' => $request->clinic,
-            'drugstore_address'=> $request->clinic_address,
-            'user_id' => $user->id
+            'drugstore_branch'=> $request->drugstore_branch,
+            
         ]);
         $pharma->save();
 
