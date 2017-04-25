@@ -20,7 +20,7 @@
     <!-- Main content -->
     <section class="content">
 
-     @if(session('ACTION_RESULT'))
+                                        @if(session('ACTION_RESULT'))
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
                                                 <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
