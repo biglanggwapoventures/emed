@@ -82,6 +82,15 @@ class PasswordChangeController extends Controller
 
         }
             
+        else if(Auth::user()->user_type === "PHARMA")
+        {
+           return redirect('/pharmacists-home')->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Password change successful!'
+            ]);
+            return redirect('/pharmacists-home')->with('success', 0);
+
+        }
     }
 
 
