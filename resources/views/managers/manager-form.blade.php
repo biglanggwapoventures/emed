@@ -114,14 +114,16 @@
                                     <tbody data-pharmacy-branches="{{ json_encode($pharmacyBranches) }}">
                                         <tr>
                                             <td>
-                                                {!! Form::select('pharmacies[0][pharmacy_id]', $pharmacies, null, ['class' => 'form-control pha', 'data-name' => 'pharmacies[idx][pharmacies_id]', 'placeholder' => 'Select Pharmacy']) !!}
+                                                {{-- Form::select('pharmacies[0][pharmacy_id]', $pharmacies, null, ['class' => 'form-control pha', 'data-name' => 'pharmacies[idx][pharmacies_id]', 'placeholder' => 'Select Pharmacy']) --}}
+                                                {!! Form::select('drugstore', $pharmacies, null, ['class' => 'form-control pha', 'data-name' => 'pharmacies[idx][pharmacies_id]', 'placeholder' => 'Select Pharmacy']) !!}
                                             </td>
                                             <td>
-                                                {!! Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][pharmacy_id]' ]) !!}
+                                                {{-- Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][pharmacy_id]' ]) --}}
+                                                {!! Form::select('drugstore_branch', [], null, ['class' => 'form-control pharmacy-branch', 'data-name' => 'pharmacies[idx][pharmacy_id]' ]) !!}
                                             </td>
                                             <td data-pharmacy-addresses="{{ json_encode($pharmacyAddress) }}">
-                                                {{-- Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-address', 'data-name' => 'pharmacies[idx][pharmacy_id]','readonly' => 'true' ]) --}}
-                                                {{ Form::bsText('pharmacy-branch-address') }}
+                                                {{ Form::select('pharmacies[0][pharmacy_id]', [], null, ['class' => 'form-control pharmacy-address', 'data-name' => 'pharmacies[idx][pharmacy_id]','readonly' => 'true' ]) }}
+                                                {{-- Form::bsText('pharmacy-branch-address') --}}
                                             </td>
                                             <td>
                                             <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
@@ -206,14 +208,15 @@
 
                 console.log(val);
             if (val) {
-                var optionsEl = '<option disabled selected>address</option>';
+                // var optionsEl = '<option disabled selected>address</option>';
                 var phar_branch_address = phaAddresses[val];
+                console.log(phaAddresses);
                 // $(phaAddresses[val]).each(function(i, v) 
                 // {
                    
-                //     optionsEl += '<option value="' + v.pharmacy_id + '">' + v.address + '</option>'
+                var optionsEl = '<option value="' + val + '">' + phar_branch_address + '</option>'
                 // });
-                $("input[name=pharmacy-branch-address]").val(phar_branch_address);
+                // $("input[name=pharmacy-branch-address]").val(phar_branch_address);
                 phaBranchEl.html(optionsEl);
             } else {
                 phaBranchEl.html('');

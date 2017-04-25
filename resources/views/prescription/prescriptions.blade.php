@@ -45,6 +45,16 @@
                     </div>
                     @endif {!! Form::open(['url' => route('prescription.store'), 'method' => 'POST']) !!} {!! Form::hidden('patient_id', request()->input('patient_id')) !!} {!! Form::hidden('consultation_id', request()->input('consultation_id')) !!}
 
+                     @if(session('ACTION_RESULT'))
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                    {{ session('ACTION_RESULT')['message'] }}
+
+                                </div>
+                            </div>
+                        </div>
+                        @endif
 
 
                     <div class="row col-md-offset-1 ">
@@ -104,13 +114,57 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Prescriptions</h3>
 
+                    <?php
+                        $oPrescriptions = json_decode(json_encode($prescriptions), true);
+                        $prescription = $oPrescriptions[0];
+
+                        $end =  $prescription['end'];
+                        $end = '2017-04-25';
+                        if(strtotime($end) > strtotime(date('Y-M-d')))
+                        {
+                            echo 'greater';
+                        }
+                        else
+                        {
+                            echo 'lesser';
+                        }
+                    ?>
+
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
                     </div>
                 </div>
                 <div class="box-body">
-                    Insert prescriptions here
+                    <div class="table-responsive">
+                        <table class="table-condensed table-bordered table-striped" width="100%">
+                            <tr>
+                                <th>Generic Name</th>
+                                <th>Brand Name</th>
+                                <th>Dosage</th>
+                                <th>Frequency</th>
+                                <th>Quantity</th>
+                                <th>Start</th>
+                                <th>End</th>
+                            </tr>
+                            @forelse($prescriptions as $prescription)
+                                <?php $today = date('Y-m-d'); ?>
+                                <tr>
+                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->genericname }}</td>
+                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->brand }}</td>
+                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->dosage }}</td>
+                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->frequency }}</td>
+                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->quantity }}</td>
+                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->start }}</td>
+                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->end }}</td>
+                                </tr>
+                                    
+                            @empty
+                                <tr><td colspan="7">No prescription data</tr></td>
+                            @endforelse
+                        </table>
+                    </div>
+                        
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
@@ -128,43 +182,81 @@
 <script type="text/javascript">
     $(document).ready(function() 
     {
+        $("input[name=duration]").focusout(function()
+        {
+            var duration = $(this).val();
+            if($.isNumeric(duration))
+            {
+                duration = parseInt(duration);
+
+                var strStartDate = $("input[name=start]").val(),
+                    startDate = new Date(strStartDate);
+
+                if(!isNaN(startDate))
+                {
+                    var retEndDate = computeEndDate(duration, startDate);
+                    $("input[name=end]").val(retEndDate);
+                }
+            }
+        });
+
         $("input[name=start]").focusout(function()
         {
-            var strStartDate = $(this).val(),
-                startDate = new Date(strStartDate);
-
-            if(!isNaN(startDate))
+            var duration = $("input[name=duration]").val();
+            if($.isNumeric(duration))
             {
-                var year = startDate.getFullYear();
-                var month = startDate.getMonth() + 1;
-                var currDay = startDate.getDate();
-                var endDay = startDate.getDate() + 5;
-                var maxDaysInTheMonth = new Date(year, month, 0).getDate();
+                duration = parseInt(duration);
 
-                if(endDay > maxDaysInTheMonth)
+                var strStartDate = $(this).val(),
+                    startDate = new Date(strStartDate);
+
+                if(!isNaN(startDate))
                 {
-                    endDay = endDay - maxDaysInTheMonth;
-                    month++;
+                    var retEndDate = computeEndDate(duration, startDate);
+                    $("input[name=end]").val(retEndDate);
                 }
-
-                if(month > 12)
-                {
-                    month = month - 12;
-                    year++;
-                }
-
-                // var strEndDate = month + "/" + endDay + "/" + year,
-                var strEndDate = year + "/" + month + "/" + endDay,
-                    endDate = new Date(strEndDate);
-                console.log(strEndDate);
-                $("input[name=end]").val(strEndDate);
             }
-
-                
-            // console.log(startDate.getDate());
-            // console.log(startDate.getDate() + 5);
         });
-    })
+    });
+
+    function computeEndDate(duration, startDate)
+    {
+        var year = startDate.getFullYear();
+        var month = startDate.getMonth() + 1;
+        var currDay = startDate.getDate();
+        var endDay = startDate.getDate() + duration;
+        var maxDaysInTheMonth = new Date(year, month, 0).getDate();
+
+
+        if(endDay > maxDaysInTheMonth)
+        {
+            endDay = endDay - maxDaysInTheMonth;
+            month++;
+        }
+
+        if(month > 12)
+        {
+            month = month - 12;
+            year++;
+        }
+
+        // var strEndDate = month + "/" + endDay + "/" + year,
+
+        var actualEndMonth = (month < 10 ? ('0' + month) : month),
+            actualEndDay = (endDay < 10 ? ('0' + endDay) : endDay);
+
+        var strEndDate = year + "-" + actualEndMonth + "-" + actualEndDay,
+            endDate = new Date(strEndDate);
+
+        console.log(strEndDate);
+        return strEndDate;
+    }
+
+     window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 1000);
 </script>
 
 </div>

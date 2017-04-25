@@ -22,228 +22,126 @@
 
 </head>
 
-@if(Auth::check()) @if(Auth::user()->user_type === 'ADMIN')
+@if(Auth::check()) 
+    <body class="hold-transition skin-blue-light fixed sidebar-mini">
+        <div class="wrapper">
+            @include('partials.common-navbar') 
+@else
 
-<body class="hold-transition skin-blue-light fixed sidebar-mini">
-    <div class="wrapper">
-        @include('partials.admin-navbar') @elseif(Auth::user()->user_type === 'DOCTOR')
+    <body>
+        <div class="container-fluid">
 
-        <body class="hold-transition skin-blue-light fixed sidebar-mini">
-            <div class="wrapper">
-                @include('partials.doctor-navbar') @elseif(Auth::user()->user_type === 'PATIENT')
+            <div class="text-center loginpage">
+                <div class="login-logo">login</div>
+                <!-- Main Form -->
+                <div class="login-form-1">
+                    <form action="{{ url('/login') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="login-form-main-message"></div>
+                        <div class="main-login-form">
+                            <div class="login-group">
+                                <div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
+                                    <label class="control-label">Username</label>
+                                    <input type="text" name="username" class="form-control"> 
+                                    @if($errors->has('username'))
+                                        <span class="help-block">{{ $errors->first('username') }}</span> 
+                                    @endif
+                                </div>
+                                <div class="form-group {{ $errors->has('password') || isset($wrongPassword) ? 'has-error' : '' }}">
+                                    <label class="control-label">Password</label>
+                                    <input type="password" name="password" class="form-control"> 
+                                        @if($errors->has('password'))
+                                            <span class="help-block">{{ $errors->first('password') }}</span> 
+                                        @endif 
 
-                <body class="hold-transition skin-blue-light fixed sidebar-mini">
-                    <div class="wrapper">
-                        @include('partials.patient-navbar') @elseif(Auth::user()->user_type === 'PMANAGER')
+                                        @if(isset($wrongPassword))
+                                            <span class="help-block">{{ $wrongPassword }}</span> 
+                                        @endif
+                                </div>
+                                <div class="form-group login-group-checkbox">
+                                    <input type="checkbox" id="lg_remember" name="lg_remember">
+                                    <label for="lg_remember">remember</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                        </div>
+                        <div class="etc-login-form">
+                            <p>forgot your password? <a href="#">Click here</a></p>
+                        </div>
+                    </form>
+                </div>
+                <!-- end:Main Form -->
+            </div>
+        </div>
+        @include('partials.navbar') 
+    @endif @yield('body')
+        <object id="webcard" type="application/x-webcard" width="0" height="0">
+            <param name="onload" value="pluginLoaded" />
+        </object>
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <!-- <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script> -->
+        <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('dist/js/app.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('dist/js/demo.js') }}"></script>
 
-                        <body class="hold-transition skin-blue-light fixed sidebar-mini">
-                            <div class="wrapper">
-                                @include('partials.manager-navbar') @elseif(Auth::user()->user_type === 'SECRETARY')
+        <script type="text/javascript">
+            $(function() {
+                $("#example1").DataTable();
+                $("#example2").DataTable();
+                $("#example3").DataTable();
+                // $('#example1').DataTable({
+                //   "paging": true,
+                //   "lengthChange": false,
+                //   "searching": true,
+                //   "ordering": true,
+                //   "info": true,
+                //   "autoWidth": false
+            });
+            $(document).ready(pluginLoaded)
+            function pluginLoaded() {
+                window.webcard = document.getElementById("webcard");
+                if (webcard.attachEvent) {
+                    webcard.attachEvent("oncardpresent", cardPresent);
+                    webcard.attachEvent("oncardremoved", cardRemoved);
+                } else {
+                    webcard.addEventListener("cardpresent", cardPresent, false);
+                    webcard.addEventListener("cardremoved", cardRemoved, false);
+                }
+            }
+            function cardPresent(reader) {
+                reader.connect(2); // 1-Exclusive, 2-Shared
+                var apdu = "FFCA000000";
+                var uid = reader.transcieve(apdu);
+                // console.log(window.location)
+                var url = window.location.href.replace('http://', '').split('/');
+                // console.log(url);
+                if (url[1] === 'patients' && url[2] === 'create') {
+                    $('#rfid-uid').val(uid)
+                } else {
+                    scan(uid);
+                }
+                reader.disconnect();
+            }
+            function cardRemoved(reader) {
+            }
+            function scan(uid) {
+                $.post('{{ url("/scan") }}', {
+                    uid: uid,
+                    _token: '{{ csrf_token() }}'
+                }).done(function(res) {
+                    if (res.result) {
+                        window.location.href = res.url;
+                    }
+                })
+            }
+        </script>
+        @stack('scripts')
 
-                                <body class="hold-transition skin-blue-light fixed sidebar-mini">
-                                    <div class="wrapper">
-                                        @include('partials.secretary-navbar') @elseif(Auth::user()->user_type === 'PHARMA')
+    </body>
 
-                                        <body class="hold-transition skin-blue-light fixed sidebar-mini">
-                                            <div class="wrapper">
-                                                @include('partials.pharma-navbar') @endif @else
-
-                                                <body>
-                                                    <div class="container-fluid">
-
-                                                        <div class="text-center changepage">
-                                                            <div class="login-logo">login</div>
-                                                            <!-- Main Form -->
-                                                            <div class="login-form-1">
-                                                                <form action="{{ url('/login') }}" method="POST">
-                                                                    {{ csrf_field() }}
-                                                                    <div class="login-form-main-message"></div>
-                                                                    <div class="main-login-form">
-                                                                        <div class="login-group">
-                                                                            <div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
-                                                                                <label class="control-label">Username</label>
-                                                                                <input type="text" name="username" class="form-control"> @if($errors->has('username'))
-                                                                                <span class="help-block">{{ $errors->first('username') }}</span> @endif
-                                                                            </div>
-                                                                            <div class="form-group {{ $errors->has('password') || isset($wrongPassword) ? 'has-error' : '' }}">
-                                                                                <label class="control-label">Password</label>
-                                                                                <input type="password" name="password" class="form-control"> @if($errors->has('password'))
-                                                                                <span class="help-block">{{ $errors->first('password') }}</span> @endif @if(isset($wrongPassword))
-                                                                                <span class="help-block">{{ $wrongPassword }}</span> @endif
-                                                                            </div>
-                                                                            <div class="form-group login-group-checkbox">
-                                                                                <input type="checkbox" id="lg_remember" name="lg_remember">
-                                                                                <label for="lg_remember">remember</label>
-                                                                            </div>
-                                                                            <div class="etc-login-form">
-                                                                                 <p>forgot your password? <a href="#">Click here</a></p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <button type="submit" class="login-button "><i class="glyphicon glyphicon-chevron-right"></i></button>
-                                                                    </div>
-                                                                    
-                                                                </form>
-                                                            </div>
-                                                            <!-- end:Main Form -->
-                                                        </div>
-                                                    </div>
-                                            </div>
-
-                                            @include('partials.navbar') @endif @yield('body')
-                                            <object id="webcard" type="application/x-webcard" width="0" height="0">
-    <param name="onload" value="pluginLoaded" />
-    </object>
-                                            <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-                                            <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-                                            <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-                                            <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-                                            <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
-                                            <script type="text/javascript" src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-                                            <script type="text/javascript" src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
-                                            <script type="text/javascript" src="{{ asset('dist/js/app.min.js') }}"></script>
-                                            <script type="text/javascript" src="{{ asset('dist/js/demo.js') }}"></script>
-
-                                            <script type="text/javascript">
-                                                $(function() {
-                                                    $("#example1").DataTable();
-                                                    $("#example2").DataTable();
-                                                    $("#example3").DataTable();
-                                                    // $('#example1').DataTable({
-                                                    //   "paging": true,
-                                                    //   "lengthChange": false,
-                                                    //   "searching": true,
-                                                    //   "ordering": true,
-                                                    //   "info": true,
-                                                    //   "autoWidth": false
-
-                                                });
-
-                                                $(document).ready(pluginLoaded)
-
-                                                function pluginLoaded() {
-                                                    console.log("asdasd")
-                                                    window.webcard = document.getElementById("webcard");
-                                                    if (webcard.attachEvent) {
-                                                        webcard.attachEvent("oncardpresent", cardPresent);
-                                                        webcard.attachEvent("oncardremoved", cardRemoved);
-                                                    } else {
-                                                        webcard.addEventListener("cardpresent", cardPresent, false);
-                                                        webcard.addEventListener("cardremoved", cardRemoved, false);
-                                                    }
-                                                }
-
-                                                function cardPresent(reader) {
-                                                    reader.connect(2); // 1-Exclusive, 2-Shared
-                                                    var apdu = "FFCA000000";
-                                                    var uid = reader.transcieve(apdu);
-                                                    // console.log(window.location)
-                                                    var url = window.location.href.replace('http://', '').split('/');
-                                                    // console.log(url);
-
-                                                    if (url[1] === 'patients' && url[2] === 'create') {
-                                                        $('#rfid-uid').val(uid)
-                                                    } else {
-                                                        scan(uid);
-                                                    }
-
-                                                    reader.disconnect();
-                                                }
-
-                                                function cardRemoved(reader) {
-
-                                                }
-
-                                                function scan(uid) {
-                                                    $.post('{{ url("/scan") }}', {
-                                                        uid: uid,
-                                                        _token: '{{ csrf_token() }}'
-                                                    }).done(function(res) {
-                                                        if (res.result) {
-                                                            window.location.href = res.url;
-                                                        }
-                                                    })
-                                                }
-
-                                            </script>
-                                            @stack('scripts')
-
-                                            </body>
-                                            <style type="text/css">
-    .changepage {
-    padding: 12px 0px;
-    height: 60%;
-    width: 25%;
-    position: absolute;
-    background-color: whitesmoke;
-    margin-top: 106px;
-    margin-left: 37%;
-    border-radius: 20px;
-    /* opacity: 0.8; */
-}
-.login-form-1 {
-    max-width: 5px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: -7%;
-    margin-left: -85%;
-}
-@media only screen and (max-device-width: 480px) {
-     .changepage {
-       padding: 12px 0px;
-    height: 57%;
-    width: 90%;
-    position: absolute;
-    background-color: whitesmoke;
-    margin-top: 80px;
-    margin-left: 1%;
-    border-radius: 20px;
-    /* opacity: 0.8; */
-}
-.login-form-1 {
-    max-width: 5px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: -18px;
-    margin-left: -296px;
-}
-    }
-
-@media only screen and (max-device-width: 320px) {
-     .changepage {
-    padding: 12px 0px;
-    height: 66%;
-    width: 98%;
-    position: absolute;
-    background-color: whitesmoke;
-    margin-top: 76px;
-    margin-left: -4%;
-    border-radius: 20px;
-    /* opacity: 0.8; */
-}
-.login-form-1 {
-    max-width: 5px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: -18px;
-    margin-left: -296px;
-}
-    }
-
-.login-form-1 .login-button {
-    position: absolute;
-    right: -288px;
-    top: 50%;
-    background: #ffffff;
-    color: #999999;
-    padding: 11px 0;
-    width: 50px;
-    height: 50px;
-    margin-top: -50px;
-    border: 5px solid #efefef;
-    border-radius: 50%;
-    transition: all ease-in-out 500ms;
-    /* margin-left: 97%; */
-}
-
-</style>
 </html>

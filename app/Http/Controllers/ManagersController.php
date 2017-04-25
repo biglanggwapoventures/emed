@@ -10,6 +10,8 @@ use App\Http\Requests\ManagerRequest;
 use App\User;
 use Auth;
 
+use Log;
+
 class ManagersController extends Controller
 {
     /**
@@ -81,6 +83,8 @@ class ManagersController extends Controller
      */
     public function store(ManagerRequest $request)
     {
+        Log::info('nisud ko diri sure ko');
+        Log::info($request);
 
         // get fields for user table
        $input = $request->only([
@@ -94,6 +98,9 @@ class ManagersController extends Controller
             'email',
             'address'
         ]);
+
+       Log::info($input);
+
         // verify if username exists
         $credentials = $request->only(['username']);
 
@@ -106,19 +113,21 @@ class ManagersController extends Controller
 
         // save to DB (managers)       
         $user->manager()->create([
-            // 'drugstore' => $request->drugstore,
-            // 'drugstore_branch' => $request->drugstore_branch,
+            'drugstore' => $request->drugstore,
+            'drugstore_branch' => $request->drugstore_branch,
             'license' => $request->license
         ]);
 
-        $pharmacies = [];
-        foreach(request()->input('pharmacies') AS $pharm){
-            $pharmacies[$aff['pharmacy_id']] = [
-                'pharmacy_branch_id' => $aff['branch_id'],
-                'address' => $pharm['clinic_hours'],
-            ];
-        }
-        $doctor->affiliations()->sync($affiliations);
+        // $pharmacies = [];
+
+        // foreach($request()->input('pharmacies') AS $pharm){
+        //     $pharmacies[$aff['pharmacy_id']] = [
+        //         'pharmacy_branch_id' => $aff['branch_id'],
+        //         'address' => $pharm['clinic_hours'],
+        //     ];
+        // }
+
+        // $doctor->affiliations()->sync($affiliations);
 
        return redirect()->route('admin.index');
     }

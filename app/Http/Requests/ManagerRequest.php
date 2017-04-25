@@ -7,6 +7,8 @@ use Auth;
 use Illuminate\Validation\Rule;
 use App\User;
 
+use Log;
+
 class ManagerRequest extends FormRequest
 {
     /**
