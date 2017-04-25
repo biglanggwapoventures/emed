@@ -128,43 +128,74 @@
 <script type="text/javascript">
     $(document).ready(function() 
     {
+        $("input[name=duration]").focusout(function()
+        {
+            var duration = $(this).val();
+            if($.isNumeric(duration))
+            {
+                duration = parseInt(duration);
+
+                var strStartDate = $("input[name=start]").val(),
+                    startDate = new Date(strStartDate);
+
+                if(!isNaN(startDate))
+                {
+                    var retEndDate = computeEndDate(duration, startDate);
+                    $("input[name=end]").val(retEndDate);
+                }
+            }
+        });
+
         $("input[name=start]").focusout(function()
         {
-            var strStartDate = $(this).val(),
-                startDate = new Date(strStartDate);
-
-            if(!isNaN(startDate))
+            var duration = $("input[name=duration]").val();
+            if($.isNumeric(duration))
             {
-                var year = startDate.getFullYear();
-                var month = startDate.getMonth() + 1;
-                var currDay = startDate.getDate();
-                var endDay = startDate.getDate() + 5;
-                var maxDaysInTheMonth = new Date(year, month, 0).getDate();
+                duration = parseInt(duration);
 
-                if(endDay > maxDaysInTheMonth)
+                var strStartDate = $(this).val(),
+                    startDate = new Date(strStartDate);
+
+                if(!isNaN(startDate))
                 {
-                    endDay = endDay - maxDaysInTheMonth;
-                    month++;
+                    var retEndDate = computeEndDate(duration, startDate);
+                    $("input[name=end]").val(retEndDate);
                 }
-
-                if(month > 12)
-                {
-                    month = month - 12;
-                    year++;
-                }
-
-                // var strEndDate = month + "/" + endDay + "/" + year,
-                var strEndDate = year + "/" + month + "/" + endDay,
-                    endDate = new Date(strEndDate);
-                console.log(strEndDate);
-                $("input[name=end]").val(strEndDate);
             }
-
-                
-            // console.log(startDate.getDate());
-            // console.log(startDate.getDate() + 5);
         });
-    })
+    });
+
+    function computeEndDate(duration, startDate)
+    {
+        var year = startDate.getFullYear();
+        var month = startDate.getMonth() + 1;
+        var currDay = startDate.getDate();
+        var endDay = startDate.getDate() + duration;
+        var maxDaysInTheMonth = new Date(year, month, 0).getDate();
+
+        if(endDay > maxDaysInTheMonth)
+        {
+            endDay = endDay - maxDaysInTheMonth;
+            month++;
+        }
+
+        if(month > 12)
+        {
+            month = month - 12;
+            year++;
+        }
+
+        // var strEndDate = month + "/" + endDay + "/" + year,
+
+        var actualEndMonth = (month < 10 ? ('0' + month) : month),
+            actualEndDay = (endDay < 10 ? ('0' + endDay) : endDay);
+
+        var strEndDate = year + "-" + actualEndMonth + "-" + actualEndDay,
+            endDate = new Date(strEndDate);
+
+        console.log(strEndDate);
+        return strEndDate;
+    }
 </script>
 
 </div>

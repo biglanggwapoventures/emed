@@ -73,3 +73,9 @@ Route::post('/scan', 'RFIDController@scan');
 Route::post('/detach-patient/{patientId}', 'PatientActionController@detachPatient');
 Route::post('/attach-patient/{patientId}', 'PatientActionController@attachPatient');
 
+
+Route::get('custom-role/create/{roleId}', 'CustomUserController@create');
+Route::get('custom-role/edit/{userId}', 'CustomUserController@edit');
+
+Route::post('custom-role/store/{roleId}', 'CustomUserController@store');
+Route::post('custom-role/update/{userId}', 'CustomUserController@edit');

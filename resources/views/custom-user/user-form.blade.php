@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Patient Form
+            {{ session('custom_role') }} Form
             <small></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Add Patient</a></li>
+            <li><a href="#">Add {{ session('custom_role') }}</a></li>
 
         </ol>
     </section>
@@ -32,7 +32,7 @@
                                 <li>{{ $errors->first('avatar') }}</li>
                             </ul>
                         </div>
-                        @endif {!! Form::open(['url' => route ('patients.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        @endif {!! Form::open(['url' => 'custom-role/store/' . $id, 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
                         <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
                         <input type="file" class="upload" name="avatar">
@@ -165,13 +165,6 @@
                             </div>
                             <div class="col-md-4">
                                 {!! Form::bsText('enumber', 'Contact Number') !!}
-                            </div>
-                        </div>
-                        <h4>RFID</h4>
-                        <hr class="third">
-                        <div class="row">
-                            <div class="col-md-4">
-                                {!! Form::bsText('uid', 'RFID UID', null, ['readonly' => 'readonly', 'id' => 'rfid-uid']) !!}
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Register</button>

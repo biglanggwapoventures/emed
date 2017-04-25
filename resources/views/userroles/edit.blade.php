@@ -17,7 +17,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            {!! Form::open(['url' => route ('userroles.update', ['id' => $roleData->id]), 'method' => 'POST']) !!}
+            {!! Form::open(['url' => route ('userroles.update', ['id' => $roleData->id]), 'method' => 'PATCH', 'id' => 'fUserRole']) !!}
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
@@ -29,13 +29,13 @@
                         {{csrf_field()}}
 
                         <div class="form-group">
-                             {!! Form::bsText('name', 'Role Name', $roleData->name) !!}
+                             {!! Form::bsText('name', 'Role Name', $roleData->name, ['disabled' => 'disabled']) !!}
                         </div>
                         <div class="form-group">
-                              {!! Form::bsText('namedisplay', 'Display Name', $roleData->display_name) !!}
+                              {!! Form::bsText('namedisplay', 'Display Name', $roleData->display_name, ['disabled' => 'disabled']) !!}
                         </div>
                         <div class="form-group">
-                              {!! Form::bsText('description', 'Description', $roleData->description) !!}
+                              {!! Form::bsText('description', 'Description', $roleData->description, ['disabled' => 'disabled']) !!}
                         </div>
 
                         <div class="form-group text-left">

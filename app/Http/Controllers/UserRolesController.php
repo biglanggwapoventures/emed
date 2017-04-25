@@ -97,10 +97,17 @@ class UserRolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['permissions' => 'required'], ['permissions.required' => 'Please select at least one permission.']);
+        $this->validate($request, ['permissions' => 'required'], ['permissions.required' => 'Please select at least one permission. The current setup will be retained.']);
 
-        $input = $request->all();
-        Log::info($input);
+        $permissionsList = $request->all()['permissions'];
+
+        Permissions::deletePermissions($id);
+        foreach ($permissionsList as $permission) 
+        {
+            Permissions::assignToRole($permission, $id);
+        }
+
+        return redirect('userroles');
     }
 
     /**

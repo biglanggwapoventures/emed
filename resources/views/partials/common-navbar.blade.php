@@ -149,7 +149,7 @@
 
 
 
-            @if(EMedHelper::hasAddUserPermission())
+            @if(EMedHelper::hasAddUserPermission() || EMedHelper::hasAddCustomUserPermission())
                 <li class="treeview ">
                     <a href="# ">
                         <i class="fa fa-dashboard "/></i>
@@ -163,9 +163,21 @@
                         @foreach(EMedHelper::getAddUserPermissions() as $data)
                             @if(EMedHelper::hasUrlPermission($data->route))
                                 <li>
-                                    <a href="{{ route($data->route) }} ">
+                                    <a href="{{ route($data->route) }}">
                                         <i class="fa fa-circle-o "></i> 
                                         {{ $data->display_name }}
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
+
+                        @foreach(EMedHelper::getAddCustomUserPermissions() as $customdata)
+                            @if(EMedHelper::hasPermissionId($customdata->id, session('user_type_id')))
+                                <li>
+                                    <a href="{{ url('custom-role/create', EMedHelper::retrieveRoleIdByName($customdata->name)) }}">
+                                    <!-- <a href="{{-- url('custom-role/create', $customdata->id) --}}"> -->
+                                        <i class="fa fa-circle-o "></i> 
+                                        {{ $customdata->display_name }}
                                     </a>
                                 </li>
                             @endif
@@ -173,6 +185,7 @@
                     </ul>
                 </li>
             @endif
+
 
             <li>
                 <a href="{{ url('ChangePass') }}">

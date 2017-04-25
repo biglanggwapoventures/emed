@@ -17,7 +17,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            {!! Form::open(['url' => route ('userroles.store'), 'method' => 'POST', 'id' => 'doc']) !!}
+            {!! Form::open(['url' => route ('userroles.store'), 'method' => 'POST', 'id' => 'fUserRole']) !!}
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->

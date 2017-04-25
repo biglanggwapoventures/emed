@@ -44,9 +44,26 @@
 <body>
     <div class="container">
         <div class="content">
-            <div class="title">You don't have access rights to this page/action.</div>
+            <div class="title">
+                <span style="font-size:50% !important">
+                    Either you don't have access rights to this page/action or it does not exist in the system.
+                </span><
+            </div>
+            <!-- <span style="font-size:150% !important">You will be redirected after five (5) seconds.</span> -->
         </div>
     </div>
 </body>
+@push('scripts')
+    <<!-- script type="text/javascript">
+        $(document).ready(function () 
+        {
+            window.setTimeout(function () 
+            {
+                window.history.back();
+                
+            }, 5000);
+        });
+    </script> -->
+@endpush
 
 </html>

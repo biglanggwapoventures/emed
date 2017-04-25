@@ -45,6 +45,8 @@ class LoginController extends Controller
             Session::put('user_type', strtoupper($user->user_type));
             Session::put('user_type_id', $roleId);
 
+            Log::info(Session::all());
+
             if($user->user_type === 'ADMIN')
             {
                 return redirect('admin');

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Permissions;
+
 use DB;
 
 class UserRoles
@@ -24,7 +26,7 @@ class UserRoles
 
         foreach($permissions as $permission)
         {
-            DB::table('permission_role')->insert(['permission_id' => $permission, 'role_id' => $newRoleId]);
+            Permissions::assignToRole($permission, $newRoleId);
         }
 
         $newPermission = 
@@ -41,6 +43,9 @@ class UserRoles
 
         DB::table('permissions')->insert($newPermission);
 
+        $newPermissionId = Permissions::getLastPermissionId();
+        Permissions::assignToRole($newPermissionId, 1);
+
         $newPermission = 
         [
             "name"          => "ADD_CUSTOM_USER_" . strtoupper($data['name']),
@@ -54,6 +59,9 @@ class UserRoles
         ];
 
         DB::table('permissions')->insert($newPermission);
+
+        $newPermissionId = Permissions::getLastPermissionId();
+        Permissions::assignToRole($newPermissionId, 1);
 
         $newPermission = 
         [
@@ -69,6 +77,9 @@ class UserRoles
 
         DB::table('permissions')->insert($newPermission);
 
+        $newPermissionId = Permissions::getLastPermissionId();
+        Permissions::assignToRole($newPermissionId, 1);
+
         $newPermission = 
         [
             "name"          => "VIEW_CUSTOM_USER_" . strtoupper($data['name']),
@@ -83,6 +94,9 @@ class UserRoles
 
         DB::table('permissions')->insert($newPermission);
 
+        $newPermissionId = Permissions::getLastPermissionId();
+        Permissions::assignToRole($newPermissionId, 1);
+
         $newPermission = 
         [
             "name"          => "DELETE_CUSTOM_USER_" . strtoupper($data['name']),
@@ -96,6 +110,9 @@ class UserRoles
         ];
 
         DB::table('permissions')->insert($newPermission);
+
+        $newPermissionId = Permissions::getLastPermissionId();
+        Permissions::assignToRole($newPermissionId, 1);
     }
 
     public static function getLastUserRoleId()
@@ -111,6 +128,11 @@ class UserRoles
     public static function getRole($id)
     {
         return DB::table('roles')->where('id', $id)->first();
+    }
+
+    public static function getRoleByName($name)
+    {
+        return DB::table('roles')->where('name', $name)->first();
     }
 
     public static function destroy($id)
