@@ -51,9 +51,6 @@
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#activity" data-toggle="tab">Profile</a></li>
-                    </ul>
                     <div class="tab-content">
                         <!-- tab start -->
                         <div class="active tab-pane" id="activity">
