@@ -1,5 +1,15 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
+ <section class="content-header">
+        <h1>
+            Secretary List
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'secretary.index') }} ">Secretary List</a></li>
+        </ol>
+    </section>
    <!--  <div class="box">
         <div class="box-body"> -->
         <section class="content">
@@ -8,7 +18,7 @@
                     <!-- <div class="box"> -->
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding"><br>
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr class="active">
                                         <th>Last Name</th>
@@ -24,7 +34,7 @@
                                         <td>{{ $i->userInfo->firstname}}</td>
                                         <td>{{ $i->userInfo->username}}</td>
                                         <td>
-                                            <form action="{{ route('users.destroy', ['id' => $i->userInfo->id, 'info' => $i->userInfo]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                            <form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                                                 <a href="{{ route('secretary.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>

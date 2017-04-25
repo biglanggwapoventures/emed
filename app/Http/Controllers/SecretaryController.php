@@ -13,16 +13,6 @@ use Auth;
 class SecretaryController extends Controller
 {
     /**
-     *  Sets the middleware which checks the permissions of each URL request
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
-    }
-    
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -30,19 +20,12 @@ class SecretaryController extends Controller
 
     public function showHomepage()
     {
-        if(session('user_type') === 'SECRETARY')
-        {
-            $items = Secretary::with('userInfo')->get();
-            // dd($items);
-            return view('secretary.secretary-home', [
-                'items' => $items
-            ]);
-        }
-        else
-        {
-            Log::error('ACCESS DENIED. User tries to access Secreatary\'s Homepage but is not included in the current user\'s list of permissions.');
-            abort(503);
-        }
+
+        $items = Secretary::with('userInfo')->get();
+        // dd($items);
+        return view('secretary.secretary-home', [
+            'items' => $items
+        ]);
 
            
     }
@@ -50,19 +33,30 @@ class SecretaryController extends Controller
     public function index(Request $request)
     {
 
-        $items = Auth::user()->doctor->secretaries();
-        $search =  $request->input('search');
+        // $search =  $request->input('search');
         
         
-        if(trim($search)){
-            $items->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
-        }
+        // if(trim($search)){
+        //     $items->whereHas('userInfo', function($q) USE($search){
+        //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+        //     });
+        // }
 
+        if(Auth::user()->user_type === "DOCTOR")
+        {
+            $items = Auth::user()->doctor->secretaries();
             return view('secretary.list', [
                 'items' => $items->get()
             ]);
+        }
+
+        else if(Auth::user()->user_type === "SECRETARY")
+        {
+            $patients = Auth::user()->secretary->doctor->patients();
+            return view('patients.list', [
+                'patients' => $patients->get()
+            ]);
+        }
     }
 
     

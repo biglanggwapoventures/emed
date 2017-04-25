@@ -18,8 +18,7 @@
         <ol class="breadcrumb">
             <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('patients.index') }}">Patients</a></li>
-            <li class="active">{{ $patients->userInfo->fullname() }} </li>
-        </ol>
+            <li><a href="#"><i class="fa fa-user"></i> {{ $patients->userInfo->fullname() }} </a></li>
     </section>
 
     <!-- Main content -->
@@ -31,18 +30,19 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="{{ " /storage/{$patients->userInfo->avatar}" }}" alt="User profile picture">
+                        <img class="img-responsive img-circle" src="{{ " /storage/{$patients->userInfo->avatar}" }}" alt="User profile picture">
 
                         <h3 class="profile-username text-center">{{ $patients->userInfo->fullname() }} </h3>
 
                         <p class="text-muted text-center">Patient</p>
 
                         <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
+                           <!--  <li class="list-group-item">
                                 <i class="fa fa-envelope-o" aria-hidden="true"></i> <b>{{$patients->userInfo->email}}</b>
-                            </li>
-                            <li class="list-group-item">
+                            </li> -->
+                            <!-- <li class="list-group-item">
                                 <i class="fa fa-home" aria-hidden="true"></i><b>{{ $patients->userInfo->address }}</b>
+                            </li> -->
                         </ul>
                         @can('detach-patient', $patients) {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
                         <button class="btn btn-danger btn-block" type="submit">Remove patient</button> {!! Form::close() !!} @endcan @can('attach-patient', $patients) {!! Form::open(['url' => url('/attach-patient', ['patientId' => $patients->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
@@ -76,7 +76,7 @@
                                         @if(session('ACTION_RESULT'))
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
                                                     {{ session('ACTION_RESULT')['message'] }}
 
                                                 </div>
@@ -86,7 +86,7 @@
                                     </tr>
                                     <tr><b><h3>Personal information</h3></tr></b></tr>
                                     <tr>
-                                        <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username</b> <br> {{ $patients->userInfo->username }} </td>
+                                        <td><span class="glyphicon glyphicon-home"></span> &nbsp<b>Address</b> <br> {{ $patients->userInfo->address }} </td>
                                         <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$patients->userInfo->email}}</td>
                                         <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth</b><br> {{ $patients->userInfo->birthdate }}</td>
                                     </tr>
@@ -377,7 +377,13 @@
     <!-- /.content -->
     </div>
 
-
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
 
 
     @endsection

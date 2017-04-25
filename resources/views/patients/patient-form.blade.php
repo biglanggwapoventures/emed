@@ -34,9 +34,8 @@
                         </div>
                         @endif {!! Form::open(['url' => route ('patients.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
-                        <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                        <input type="file" class="upload" name="avatar">
-
+                        <img alt="User Pic" src="{{ "/storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
+                        <input type="file" onchange="readURL(this)" class="upload" name="avatar" />
 
                         <h4>Personal Information</h4>
                         <hr class="third">
@@ -197,5 +196,19 @@
     }
 
 </style>
+
+<script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#dp').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 @endsection

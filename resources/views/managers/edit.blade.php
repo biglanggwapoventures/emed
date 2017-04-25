@@ -1,6 +1,17 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
+<section class="content-header">
+        <h1>
+            Manager Edit
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/pmanager-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Edit Manager</a></li>
+
+        </ol>
+    </section>
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">

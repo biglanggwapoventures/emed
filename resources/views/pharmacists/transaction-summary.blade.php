@@ -34,35 +34,25 @@
                        
                         <tbody>
                     <tr>
-                        <td colspan="9">Dr. Gladys SLut  &nbsp &nbsp &nbsp &nbsp
-                     <b> PRC: </b> 12321  &nbsp &nbsp <b>S2:</b> 124124 </b> &nbsp &nbsp <b>PRC:</b> 2345235</b>
-
+                        <td colspan="9">Transaction Summary
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
-                        <td>Brand</td>
-                        <td>Generic Name</td>
-                        <td>Frequency</td>
-                        <td>Dosage</td>
-                        <td>Duration</td>
-                        <td>Quantity</td>
-                        <td style="width:10%"></td>
+                        <td>Name</td>
+                        <td>Quantity Purchased</td>
+                        <td>Available Quantity</td>
+                        <td>Pharmacist </td>
+                        <td>Time</td>
+                        <td></td>
                     </tr>
                 
                     <tr>
-                      
-
-                        <td colspan="2"></td>
-                        <td>Sample</td>
-                        <td>Sample</td>
-                        <td>Sample</td>
-                        <td>Sample</td>
-                        <td></td>
-                        <td>Sample</td>
-                        <td>
-                           {!! Form::bsText('quantity', 'Quantitiy') !!}
-                        </td>
+                
+                        <td>Biogesic</td>
+                        <td>4</td>
+                        <td>5</td>
+                       <td>Pharmacist name</td>
+                       <td>Time</td>
                     </tr>
                    </tbody> 
              
@@ -70,7 +60,7 @@
                     </table>
                 </div>
                 <div class="text-right">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> proceed</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
             </div>
                 <!-- /.box-body -->
             </div>

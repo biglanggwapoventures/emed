@@ -7,7 +7,7 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Edit Doctor</a></li>
         </ol>
     </section>
@@ -28,8 +28,9 @@
                                         </div>
                                             @endif
                          </center> -->
-                            <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
-                            {{Form::file('avatar')}}
+                            <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" id="dp"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
+                            <!-- {{Form::file('avatar')}} -->
+                            <input type="file" onchange="readURL(this)" class="upload" name="avatar" />
                             <input type="submit" class="btn btn-sm btn-primary"> {!! Form::close() !!}
                         </div>
 
@@ -381,5 +382,18 @@
 
 </style>
 
+<script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#dp').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 @endsection

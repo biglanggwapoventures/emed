@@ -5,13 +5,14 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <!-- <h1>
-            Manage Organization
+        <h1>
+            Organizations 
+            <small></small>
+        </h1>
 
-        </h1> -->
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Organizations</a></li>
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'organizations.index')}}">Organizations</a></li>
 
         </ol>
     </section>
@@ -22,7 +23,8 @@
      @if(session('ACTION_RESULT'))
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                              
                                                     {{ session('ACTION_RESULT')['message'] }}
 
                                                 </div>
@@ -78,7 +80,7 @@
 
         <!-- //////////////////// -->
          <div class="box-body table-responsive no-padding">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped">
 
             <thead>
                 <tr class="active">
@@ -98,8 +100,9 @@
                             <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                         </form>
 
-                        <a href="{{ route('organizations.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+                        <a href="{{ route('organizations.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a></span>
                     </td>
+
                 </tr>
 
 
@@ -108,6 +111,8 @@
                     <td colspan="4" class="text-center">No records</td>
                 </tr>
                 @endforelse
+                
+                </tbody>
         </table>
         </div>
 </div>
@@ -130,5 +135,12 @@
     background-color: #ecf0f5;
 }
 </style>
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
 @endsection
 <span style="font-weight:bold;"></span>

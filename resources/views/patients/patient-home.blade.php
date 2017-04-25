@@ -11,10 +11,16 @@
     </div>
     @endif
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+   <section class="content-header">
         <h1>
-            User Profile
+           User Profile
+            <small></small>
         </h1>
+        <ol class="breadcrumb">
+            <li><a href="/patient-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/patient-home"><i class="fa fa-user"></i> {{ $items->userInfo->fullname()}} </a></li>
+            
+        </ol>
     </section>
 
     <!-- Main content -->

@@ -1,6 +1,15 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
+<section class="content-header">
+        <h1>
+            User Profile
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/secretary-home"><i class="fa fa-dashboard"></i> Home</a></li>
+          
+            <li><a href="#"><i class="fa fa-user"></i> {{ Auth::user()->fullname() }} </a></li>
+    </section>
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">

@@ -8,8 +8,8 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Add Manager</a></li>
+            <li><a href="/pmanager-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route( 'managers.create') }}">Add Manager</a></li>
 
         </ol>
     </section>

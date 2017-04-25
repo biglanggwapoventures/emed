@@ -1,10 +1,17 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+   <section class="content-header">
         <h1>
-            User Profile
+           User Profile
+            <small></small>
         </h1>
+        <ol class="breadcrumb">
+            <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/doctor-home"><i class="fa fa-user"></i> Dr. {{ $docs->userInfo->fullname() }}</a></li>
+           
+
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -23,7 +30,7 @@
 
                         <h3 class="profile-username text-center">Dr. {{ $docs->userInfo->fullname() }} </h3>
 
-                        <p class="text-muted text-center">Doctor</p>
+                        <!-- <p class="text-muted text-center">Doctor</p> -->
 
                         <!-- <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
@@ -42,9 +49,9 @@
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
+                    <!-- <ul class="nav nav-tabs">
                         <li class="active"><a href="#activity" data-toggle="tab">Profile</a></li>
-                    </ul>
+                    </ul> -->
                     <div class="tab-content">
                         <!-- tab start -->
                         <div class="active tab-pane" id="activity">
@@ -97,13 +104,15 @@
                                             <thead><tr><th>Clinic</th><th>Branch</th><th>Clinic Hours</th></tr></thead>
                                             <tbody>
                                                 @forelse($docs->affiliations AS $aff)
-                                                    {{ $start = $aff->pivot->clinic_start }}
-                                                    {{ $end =  $aff->pivot->clinic_end }}
-                                                    {{ $start_time = date("g:i A", strtotime("$start")) }}
-                                                    {{ $end_time = date("g:i A", strtotime("$end")) }}
+                                                    <?php
+                                                        $start = $aff->pivot->clinic_start;
+                                                        $end =  $aff->pivot->clinic_end;
+                                                        $start_time = date("g:i A", strtotime("$start"));
+                                                        $end_time = date("g:i A", strtotime("$end"));
+                                                    ?>
                                                     <tr>
                                                         <td>{{ $aff->name }}</td>
-                                                        <td>{{ '' }}</td>
+                                                        <td>{{ $aff->pivot->affiliation_branch_id }}</td>
                                                         <td>{{ $start_time }} - {{ $end_time }}</td>
                                                     </tr>
                                                 @empty
