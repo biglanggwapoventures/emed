@@ -45,9 +45,13 @@
     <div class="container">
         <div class="content">
             <div class="title">
-                <span style="font-size:50% !important">
-                    Either you don't have access rights to this page/action or it does not exist in the system.
-                </span><
+                <span style="font-weight:bold;font-size:50% !important">
+                    @if(Session::has('503_msg'))
+                        {{ session('503_msg') }}
+                    @else
+                        Either you don't have access rights to this page/action;<br/> or it does not exist in the system.
+                    @endif
+                </span>
             </div>
             <!-- <span style="font-size:150% !important">You will be redirected after five (5) seconds.</span> -->
         </div>

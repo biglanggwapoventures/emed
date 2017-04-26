@@ -8,7 +8,10 @@
             </div>
 
 
-            <a class="btn btn-primary pull-right" href="{{ route('managers.create')}}">Add new pharmacy manager</a>
+            @if(EMedHelper::hasUrlPermission('managers.create'))
+                <a class="btn btn-primary pull-right" href="{{ route('managers.create')}}">Add new pharmacy manager</a>
+            @endif
+
             <form class="navbar-form navbar-right">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">

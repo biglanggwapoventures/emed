@@ -17,13 +17,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-               <table>
-                   <thead>
-                       <tr>
-                           <th> <a class="btn btn-primary pull-right" href="{{ route('pharmacy.create')}}" style="margin-bottom:10px;margin-top:10px;"><span class="glyphicon glyphicon-plus"></span> New drugstore</a></th>
-                       </tr>
-                   </thead>
-               </table>
+                @if(EMedHelper::hasUrlPermission('pharmacy.create'))
+                   <table>
+                       <thead>
+                           <tr>
+                               <th> <a class="btn btn-primary pull-right" href="{{ route('pharmacy.create')}}" style="margin-bottom:10px;margin-top:10px;"><span class="glyphicon glyphicon-plus"></span> New drugstore</a></th>
+                           </tr>
+                       </thead>
+                    </table>
+                @endif
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-bordered table-striped">
                     <thead>

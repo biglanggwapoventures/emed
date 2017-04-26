@@ -71,9 +71,12 @@
             <div class="col-xs-12">
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                    <a class="btn btn-primary" href="{{ route('userroles.create')}}" style="margin-bottom:10px;margin-top:10px;">
-                        <span class="glyphicon glyphicon-plus"></span> New user role
-                    </a>
+                    @if(EMedHelper::hasUrlPermission('userroles.create'))
+                        <a class="btn btn-primary" href="{{ route('userroles.create')}}" style="margin-bottom:10px;margin-top:10px;">
+                            <span class="glyphicon glyphicon-plus"></span> New user role
+                        </a>
+                    @endif
+                        
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>

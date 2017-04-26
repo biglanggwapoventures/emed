@@ -64,6 +64,13 @@
                         <span>{{ Auth::user()->fullname() }}</span>
                     </a>
                 </li>
+            @else
+                <li>
+                    <a href="{{ url('home', session('user_type_id')) }} ">
+                        <i class="fa fa-user-md "></i>
+                        <span>{{ Auth::user()->fullname() }}</span>
+                    </a>
+                </li>
             @endif
 
             @if(EMedHelper::hasUrlPermission('admin.index'))

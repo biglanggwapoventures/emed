@@ -32,7 +32,11 @@
                                         </div>
                                         @endif
 
-        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>Add Organization</button><br><br>
+        @if(EMedHelper::hasUrlPermission('organizations.create'))
+            <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-plus"></span>Add Organization
+            </button><br><br>
+        @endif
 
         <!-- Modal -->
         <!-- Trigger the modal with a button -->
