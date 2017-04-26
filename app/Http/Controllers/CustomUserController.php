@@ -32,22 +32,23 @@ class CustomUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showHomepage()
+    public function showHomepage($id)
     {
-
-        if(session('user_type') === 'PATIENT')
+        
+        if(session('user_type_id') == $id)
         {
-            $items = Auth::user()->patient;
-            return view('patients.patient-home', [
-                'items' => $items
+            $user = Auth::user();
+            $data = CustomUser::retrieveData($user->id);
+            Log::info(json_encode($data));
+            return view('custom-user.homepage', [
+                'data' => $data
             ]);
         }
         else
         {
-            Log::error('ACCESS DENIED. User tries to access Patient\'s Homepage but is not included in the current user\'s list of permissions.');
+            Log::error('ACCESS DENIED. User tries to access a custom user\'s homepage that is not included in the current user\'s list of permissions.');
             abort(503);
         }
-    
     }
     
     public function index(Request $request, $id)
@@ -157,6 +158,7 @@ class CustomUserController extends Controller
         $credentials = $request->only(['username']);
 
         // assign password: default is firstname+lastname lowercase
+        Log::info(strtolower($input['firstname']).strtolower($input['lastname']));
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         
         // assign user type

@@ -36,7 +36,7 @@ class UserRoles
             "description"   => "List of " . $data['namedisplay'],
             "is_view"       => 1,
             "is_modal"      => 0,
-            "route"         => "SELECT id FROM permissions WHERE route", //this should be generic, something like role.index or something
+            "route"         => "role.list", //this should be generic, something like role.index or something
             "created_at"    => date("Y-m-d H:i:s"),
             "updated_at"    => date("Y-m-d H:i:s")
         ];
@@ -79,6 +79,7 @@ class UserRoles
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
+        Permissions::assignToRole($newPermissionId, $newRoleId);
 
         $newPermission = 
         [

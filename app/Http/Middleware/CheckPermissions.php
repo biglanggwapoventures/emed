@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Log;
 use Session;
-use Route, Request, EMedHelper;
+use Route, Request, EMedHelper, Auth;
 
 use App\Permissions;
 use App\UserRoles;
@@ -54,40 +54,72 @@ class CheckPermissions
             }
             elseif(strpos($currentRoute, 'edit') !== false)
             {
-                $userData = CustomUser::retrieveData($id);
+                $continue = true;
 
-
-                if(is_null($userData))
+                if(session('user_type_id') != 1)
                 {
-                    Log::error('ACCESS DENIED. User tries to access data for custom UserId=' . $id . ' but does not exist in the system.');
-                    abort(503);
-                }
-                else
-                {  
-                    if(is_null($userData->user_type_id))
-                    {
-                        $roleData = UserRoles::getRoleByName($userData->user_type);   
-                    }
-                    else
-                    {
-                        $roleData = UserRoles::getRole($userData->user_type_id);  
-                    }
+                    $user = Auth::user();
 
-                    if(is_null($roleData))
+                    if($id != $user->id)
                     {
                         $continue = false;
-                        $msg = 'SYSTEM PROBLEM. User is linked to a custom RoleId=' . $id . ' that does not exist in the system.';
-                    }
-                    else
-                    {   
-                        $roleName = $roleData->name;
-                        $roleClause = EMedHelper::getEditPermissionClauseForRole($roleName);
                     }
                 }
+
+                if($continue)
+                {
+                    $userData = CustomUser::retrieveData($id);
+
+                    if(is_null($userData))
+                    {
+                        $msg = 'ACCESS DENIED. User tries to access data for custom UserId=' . $id . ' but does not exist in the system.';
+
+                        Session::flash('503_msg', $msg);
+                        Log::error($msg);
+
+                        abort(503);
+                    }
+                    else
+                    {  
+                        if(is_null($userData->user_type_id))
+                        {
+                            $roleData = UserRoles::getRoleByName($userData->user_type);   
+                        }
+                        else
+                        {
+                            $roleData = UserRoles::getRole($userData->user_type_id);  
+                        }
+
+                        if(is_null($roleData))
+                        {
+                            $continue = false;
+                            $msg = 'SYSTEM PROBLEM. User is linked to a custom RoleId=' . $id . ' that does not exist in the system.';
+                        }
+                        else
+                        {   
+                            $roleName = $roleData->name;
+                            $roleClause = EMedHelper::getEditPermissionClauseForRole($roleName);
+                        }
+                    }
+                }
+                else
+                {
+                    $msg = 'ACCESS DENIED. User tries to access data for custom UserId=' . $id . ' but is not included in the current user\'s list of permissions.';
+
+                    Session::flash('503_msg', $msg);
+                    Log::error($msg);
+
+                    abort(503);
+                }
+                    
             }
             else
             {
-                Log::error('SYSTEM PROBLEM. This should not happen. Check route and confirm as to why this occurred.');
+                $msg = 'SYSTEM PROBLEM. This should not happen. Check route and confirm as to why this occurred.';
+
+                Session::flash('503_msg', $msg);
+                Log::error($msg);
+
                 abort(503);
             }
 
@@ -101,6 +133,7 @@ class CheckPermissions
             }
             else
             {
+                Session::flash('503_msg', $msg);
                 Log::error($msg);
                 abort(503);
             }
@@ -111,7 +144,6 @@ class CheckPermissions
         }
         
         Log::info(session('custom_role'));
-
 
         Log::info('Route accessed: ' . $currentRoute);
 
@@ -124,7 +156,11 @@ class CheckPermissions
         }
         else
         {
-            Log::error('ACCESS DENIED. User tries to access Route=' . $currentRoute . ' but is not included in the current user\'s list of permissions.');
+            $msg = 'ACCESS DENIED. User tries to access Route=' . $currentRoute . ' but is not included in the current user\'s list of permissions.';
+
+            Session::flash('503_msg', $msg);
+            Log::error($msg);
+            
             abort(503);
         }
     }

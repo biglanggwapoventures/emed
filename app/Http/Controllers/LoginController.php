@@ -58,9 +58,14 @@ class LoginController extends Controller
                     $roleId = $roleData->id;
                 }
             }
+            else
+            {
+                $roleData = UserRoles::getRole($roleId);
+            }
 
             Session::put('user_type', strtoupper($user->user_type));
             Session::put('user_type_id', $roleId);
+            Session::put('user_type_name', $roleData->name);
 
             Log::info(Session::all());
 
@@ -87,8 +92,11 @@ class LoginController extends Controller
             }else if($user->user_type === 'PHARMA'){
 
                 return redirect('pharmacists-home');
+            }else {
+                return redirect('home/' . $roleId);
+            }
         }
- }
+ 
 
         else{
               return view('welcome', [
