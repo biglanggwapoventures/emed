@@ -1,21 +1,9 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
     <div class="container-fluid">
-         @if(session('ACTION_RESULT'))
-                                        <div class="row">
-                                            <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
-                                                    {{ session('ACTION_RESULT')['message'] }}
 
-                                                </div>
-                                            </div>
-                                        </div>
-             @endif
         <div class="text-center changepage" >
-       
             <div class="login-logo">Change Password</div>
-             
-    </section>
             <!-- Main Form -->
             <div class="login-form-1">
                 {!! Form::open(['url' => route('ChangePass'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
@@ -142,11 +130,4 @@
 
 
 </style>
-<script type="text/javascript">
- window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-}, 2000);
-</script>
 @endsection
