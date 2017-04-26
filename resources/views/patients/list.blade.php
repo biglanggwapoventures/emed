@@ -39,27 +39,23 @@
                                 <td>{{ $patient->bloodtype }}</td>
                                 <td>{{ $patient->occupation }}</td>
                                 <td>
-                                <table>
-                                <tr>
                                     @if(Auth::user()->user_type === "DOCTOR")
                                         @can('detach-patient', $patient) 
                                             {!! Form::open(['url' => url('/detach-patient', ['patientId' => $patient->id]), 'method' => 'POST', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
-                                                <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-magnet"></span></button> 
+                                                <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span></button> 
                                             {!! Form::close() !!} 
                                         @endcan
                                     @elseif(Auth::user()->user_type === "SECRETARY")
                                         <button type="submit" class="btn btn-danger" disabled><span class="glyphicon glyphicon-trash"></button> 
                                     @endif
-                                    
+                                        
                                     <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a> 
                                         
                                     @if(Auth::user()->user_type === "DOCTOR")
-                                        <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-warning"><span class="glyphicon glyphicon-eye-open"></a> 
+                                        <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-warning">View Patient</a> 
                                     @elseif(Auth::user()->user_type === "SECRETARY")
-                                        <button type="button" class="btn btn-warning" disabled><span class="glyphicon glyphicon-eye"></button> 
+                                        <button type="button" class="btn btn-warning" disabled>View Patient</button> 
                                     @endif
-                                    <tr>
-                                    </table>
                                 </td>
                             </tr>
                             @empty
