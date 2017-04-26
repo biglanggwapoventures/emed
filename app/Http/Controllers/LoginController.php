@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 
 use App\Permissions;
+use App\UserRoles;
 use Session, Log;
 
 class LoginController extends Controller
@@ -42,6 +43,22 @@ class LoginController extends Controller
             $user = Auth::user();
 
             $roleId = $user->user_type_id;
+            if(is_null($roleId))
+            {
+                $roleName = $user->user_type;
+                $roleData = UserRoles::getRoleByName($roleName);
+
+                if(is_null($roleData))
+                {
+                    Log::error('This user is assigned to a non-existing role. Contact with administrator.');
+                    Auth::logout();
+                }
+                else
+                {
+                    $roleId = $roleData->id;
+                }
+            }
+
             Session::put('user_type', strtoupper($user->user_type));
             Session::put('user_type_id', $roleId);
 
