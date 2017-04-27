@@ -238,6 +238,7 @@
                                                             <td>{{ $consultation->end }}</td>
                                                         </tr>
                                                             @empty @endforelse
+                                                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                                                         </tbody>
                                                     </table>
                                                     </div>
@@ -279,6 +280,9 @@
                                                 <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </button>
+                                                <a href="{{ route('doctors.show', ['id' => $item->id]) }}"><button type="button" class="btn btn-info btn-default-sm">
+                                                <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" id="myTooltip" title="View Profile">
+                                            </button></a>
                                                 <div class="modal fade" id="infoModal_{{ $item->id }}" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
@@ -332,6 +336,7 @@
                                         </tr>
                                         @empty
                                         <tr>
+                                        <td></td><td></td><td></td><td></td>
                                             <td colspan="4" class="text-center">No doctors recorded</td>
                                         </tr>
                                         @endforelse
@@ -439,6 +444,7 @@
                                         </tr>
                                         @empty
                                         <tr>
+                                        <td></td><td></td><td></td><td></td>
                                             <td colspan="4" class="text-center">No consultations recorded</td>
                                         </tr>
                                         @endforelse

@@ -261,8 +261,11 @@
 
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
-                                    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">
-                              </button>
+                                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">
+                                            </button>
+                                            <a href="{{ route('doctors.show', ['id' => $items->id]) }}"><button type="button" class="btn btn-info btn-default-sm">
+                                                <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" id="myTooltip" title="View Profile">
+                                            </button></a>
 
                             <div class="modal fade" id="infoModal_{{ $item->id }}" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">

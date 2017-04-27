@@ -19,7 +19,7 @@ class DoctorsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'show']]);
     }
     
     /**
@@ -167,8 +167,10 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
-
-        
+        $doctors = Doctor::find($id);
+            return view('doctors.doc-home', [
+                'doctors' => $doctors
+            ]);        
     }
 
     /**
