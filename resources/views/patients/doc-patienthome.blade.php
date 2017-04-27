@@ -196,6 +196,65 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
+                                                    <span class="glyphicon glyphicon-eye-open">History</span>
+                                                </button>
+                                                <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
+                                            <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                                                
+                                                <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                                                    Prescription History of {{ $patients->userInfo->fullname() }} 
+                                                </h3>
+
+                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
+
+                                                <div class="row">
+                                                <div class="box-body table-responsive no-padding">
+                                                   <table id="example4" class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr class="active">
+                                                            <th>Doctor</th>
+                                                            <th>Generic Name</th>
+                                                            <th>Brand name</th>
+                                                            <th>Dosage</th>
+                                                            <th>Frequency</th>
+                                                            <th>Available</th>
+                                                            <th>Start</th>
+                                                            <th>end</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse($patients->prescriptions AS $consultation)
+                                                        <tr>
+                                                            <td>{{ $consultation->doctor->userInfo->fullname() }}</td>
+                                                            <td>{{ $consultation->genericname }}</td>
+                                                            <td>{{ $consultation->brand }}</td>
+                                                            <td>{{ $consultation->dosage }}</td>
+                                                            <td>{{ $consultation->frequency }}</td>
+                                                            <td>{{ $consultation->quantity }}</td>
+                                                            <td>{{ $consultation->start }}</td>
+                                                            <td>{{ $consultation->end }}</td>
+                                                        </tr>
+                                                            @empty @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12">
+                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                            Close 
+                                                        </button>
+                                                    </div>
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="doctor">
