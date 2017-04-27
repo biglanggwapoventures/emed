@@ -320,6 +320,7 @@
                                     </tr>
                                     @empty
                                     <tr>
+                                        <td></td><td></td>
                                         <td colspan="4" class="text-center">No doctors recorded</td>
                                     </tr>
                                     @endforelse
@@ -464,6 +465,7 @@
                                     </tr>
                                     @empty
                                     <tr>
+                                        <td></td><td></td><td></td>
                                         <td colspan="4" class="text-center">No consultations recorded</td>
                                     </tr>
                                     @endforelse

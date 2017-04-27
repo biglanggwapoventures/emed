@@ -220,6 +220,7 @@
                                                             <th>Brand name</th>
                                                             <th>Dosage</th>
                                                             <th>Frequency</th>
+                                                            <th>Duration</th>
                                                             <th>Available</th>
                                                             <th>Start</th>
                                                             <th>end</th>
@@ -233,12 +234,13 @@
                                                             <td>{{ $consultation->brand }}</td>
                                                             <td>{{ $consultation->dosage }}</td>
                                                             <td>{{ $consultation->frequency }}</td>
+                                                            <td>{{ $consultation->duration }}</td>
                                                             <td>{{ $consultation->quantity }}</td>
                                                             <td>{{ $consultation->start }}</td>
                                                             <td>{{ $consultation->end }}</td>
                                                         </tr>
                                                             @empty @endforelse
-                                                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                                                         </tbody>
                                                     </table>
                                                     </div>
