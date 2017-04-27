@@ -45,7 +45,7 @@
                             <li class="list-group-item">
                                 <i class="fa fa-home" aria-hidden="true"></i><b>{{ $items->userInfo->address }}</b>
                                 <li class="list-group-item">
-                                    <center><a href="{{ route( 'patients.edit', [ 'id'=> $items->id]) }}" class= "btn btn-info"><i class="fa fa-pencil"></i> <span>Edit Profile</span></a></center>
+                                    <center><a href="{{ route( 'patients.edit', [ 'id'=> $items->id]) }}" class= "btn btn-info"><i class="fa fa-pencil" ></i> <span>Edit Profile</span></a></center>
                 
                                 </li>
                         </ul>
@@ -184,7 +184,7 @@
                                 </tbody>
                             </table>
                              <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
-                                                    <span class="glyphicon glyphicon-eye-open">History</span>
+                                                    <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" id="myTooltip" title="View Prescription History">History</span>
                                                 </button>
                                                 <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
@@ -261,7 +261,7 @@
 
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
-                                    <span class="glyphicon glyphicon-info-sign">
+                                    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">
                               </button>
 
                             <div class="modal fade" id="infoModal_{{ $item->id }}" tabindex="-1" role="basic" aria-hidden="true">
@@ -345,7 +345,7 @@
                                         <td>{{ $a->doctor->clinic }}</td>
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
-                              <span class="glyphicon glyphicon-info-sign">
+                              <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">
                             </button>
 
                                             <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="basic" aria-hidden="true">
