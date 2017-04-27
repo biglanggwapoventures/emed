@@ -170,26 +170,28 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="active">
-                                            <th>Generic Name</th>
-                                            <th>Brand name</th>
-                                            <th>Dosage</th>
-                                            <th>Frequency</th>
-                                            <th>Available</th>
-                                            <th>Start</th>
-                                            <th>end</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($patients->prescriptions AS $consultation)
-                                        <tr>
-                                            <td>{{ $consultation->genericname }}</td>
-                                            <td>{{ $consultation->brand }}</td>
-                                            <td>{{ $consultation->dosage }}</td>
-                                            <td>{{ $consultation->frequency }}</td>
-                                            <td>{{ $consultation->quantity }}</td>
-                                            <td>{{ $consultation->start }}</td>
-                                            <td>{{ $consultation->end }}</td>
-                                        </tr>
+                                        <th>Doctor</th>
+                                        <th>Generic Name</th>
+                                        <th>Brand name</th>
+                                        <th>Dosage</th>
+                                        <th>Frequency</th>
+                                        <th>Available</th>
+                                        <th>Start</th>
+                                        <th>end</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($patients->prescriptions AS $consultation)
+                                    <tr>
+                                        <td>{{ $consultation->doctor->userInfo->fullname() }}</td>
+                                        <td>{{ $consultation->genericname }}</td>
+                                        <td>{{ $consultation->brand }}</td>
+                                        <td>{{ $consultation->dosage }}</td>
+                                        <td>{{ $consultation->frequency }}</td>
+                                        <td>{{ $consultation->quantity }}</td>
+                                        <td>{{ $consultation->start }}</td>
+                                        <td>{{ $consultation->end }}</td>
+                                    </tr>
                                         @empty @endforelse
                                     </tbody>
                                 </table>
@@ -212,53 +214,61 @@
                                         <tr>
                                             <td>{{ $item->userInfo->fullname() }}</td>
                                             <td>{{ $item->specialization->name }}</td>
-                                            <td>{{ $item->clinic_address }}</td>
+                                            <td>{{ $item->userInfo->address }}</td>
 
                                             <td>
                                                 <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </button>
-                                                <div class="modal fade" id="infoModal_{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                                <h4 class="modal-title" id="favoritesModalLabel">{{ $item->userInfo->fullname() }}, {{ $item->title }}</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <table class="table table-user-information">
-                                                                    <center><img alt="User Pic" src="{{ " /storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td><b>Clinic:</b>&#09;{{ $item->clinic }}, {{ $item->clinic_address }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td><b>Gender:</b>&#09;{{ $item->userInfo->sex}} </td>
-                                                                        </tr>
+                                                <div class="modal fade" id="infoModal_{{ $item->id }}" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
+                                            <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                                                <center><img alt="User Pic" src="{{ " storage/{$item->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                                                <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                                                    {{ $item->userInfo->fullname() }}
+                                                </h3>
 
-                                                                        <tr>
-                                                                            <tr>
-                                                                                <td><b>Clinic Hours:</b>&#09;{{ $item->clinic_hours }}</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td><b>Email:</b>&#09;{{ $item->userInfo->email }}</td>
-                                                                            </tr>
-                                                                            <td><b>Phone Number:</b>&#09;{{ $item->userInfo->contact_number }}<br>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td><b>PRC License:</b>&#09;{{ $item->prc }}<br>
-                                                                            </td>
-                                                                        </tr>
+                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
 
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="form-body">
+                                                        <h4 class="form-section" style="padding-left:10px;">User Information</h4>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Date of Birth</label><br/>
+                                                        <span> {{ $item->userInfo->birthdate }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Gender</label><br/>
+                                                        <span> {{ $item->userInfo->sex }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Home Address</label><br/>
+                                                        <span>{{ $item->userInfo->address }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Email</label><br/>
+                                                        <span>{{ $item->userInfo->email }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Phone Number</label><br/>
+                                                        <span> {{ $item->userInfo->contact_number }}</span>
                                                     </div>
                                                 </div>
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12">
+                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                            Close 
+                                                        </button>
+                                                    </div>
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                             </td>
                                         </tr>
                                         @empty
@@ -307,56 +317,65 @@
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </button>
 
-                                                <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            <h4 class="modal-title" id="favoritesModalLabel">{{ $patients->userInfo->fullname() }}</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <table class="table table-user-information">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td><b>Weight:</b>&#09;{{ $a->weight }} kgs</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><b>Height:</b>&#09;{{ $a->height }} cm</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><b>Blood Pressure:</b>&#09;{{ $a->bloodpressure}} mmHg</td>
-                                                                    </tr>
+                                <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
+                                            <div class="modal-body">
+                                            <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                                                    Consultation Summary
+                                                </h3>
+                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
 
-                                                                    <tr>
-                                                                        <tr>
-                                                                            <td><b>Temperature:</b>&#09;{{ $a->temperature }} C</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td><b>Pulse Rate:</b>&#09;{{ $a->pulserate }} bpm</td>
-                                                                        </tr>
-                                                                        <td><b>Respiratory Rate:</b>&#09;{{ $a->resprate }} cpm<br>
-                                                                        </td>
-                                                                        <tr>
-                                                                            <td><b>Chief Complaints:</b>&#09;<br>{{ $a->chiefcomplaints }}</td>
-                                                                        </tr>
-                                                                        <td><b>Diagnosis:</b><br>{{ $a->notes }}</td>
-                                                                    </tr>
-
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <span class="pull-right">
-                                                <button type="button" 
-                                                  class="btn btn-default" 
-                                                  data-dismiss="modal">Close</button>
-                                            </span>
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="form-body">
+                                                        <h4 class="form-section" style="padding-left:10px;">User Information</h4>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Weight</label><br/>
+                                                        <span> {{ $a->weight  }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Height</label><br/>
+                                                        <span> {{ $a->height }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Blood Pressure</label><br/>
+                                                        <span>{{ $a->bloodpressure }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Temperature</label><br/>
+                                                        <span>{{ $a->temperature }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Respiratory Rate</label><br/>
+                                                        <span> {{ $a->resprate }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Pulse Rate</label><br/>
+                                                        <span> {{ $a->pulserate }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Chief Complaints</label><br/>
+                                                        <span> {{ $a->chiefcomplaints }}</span>
+                                                    </div>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Diagnosis</label><br/>
+                                                        <span> {{ $a->notes }}</span>
                                                     </div>
                                                 </div>
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12">
+                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                            Close 
+                                                        </button>
+                                                    </div>
+                                                        
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
                                             </td>
                                         </tr>
                                         @empty
