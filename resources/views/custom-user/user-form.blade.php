@@ -34,7 +34,7 @@
                         </div>
                         @endif {!! Form::open(['url' => 'custom-role/store/' . $id, 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
-                        <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
+                        <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
                          <input type="file" onchange="readURL(this)" class="upload" name="avatar" />
                         
 
@@ -192,4 +192,17 @@
 
 </style>
 
+<script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#dp').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 @endsection
