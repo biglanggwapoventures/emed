@@ -439,6 +439,7 @@
                                         </tr>
                                         @empty
                                         <tr>
+                                        <td></td><td></td><td></td>
                                             <td colspan="4" class="text-center">No consultations recorded</td>
                                         </tr>
                                         @endforelse
