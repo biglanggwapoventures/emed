@@ -298,10 +298,10 @@
                                             <td>
                                                 <form action="{{ route('consultations.destroy', ['id' => $a->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
                                                     {{ csrf_field() }} {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                                    <button type="submit" class="btn btn-danger" data-toggle="tooltip" id="myTooltip" title="Delete Consultation"><span class="glyphicon glyphicon-trash"></span></button>
                                                 </form>
 
-                                                <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info" style=""><b>P</b></a>
+                                                <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info" style="" data-toggle="tooltip" id="myTooltip" title="Add Prescriptions"><b>P</b></a>
 
                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
