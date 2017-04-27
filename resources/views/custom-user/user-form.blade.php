@@ -35,7 +35,8 @@
                         @endif {!! Form::open(['url' => 'custom-role/store/' . $id, 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
                         <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                        <input type="file" class="upload" name="avatar">
+                         <input type="file" onchange="readURL(this)" class="upload" name="avatar" />
+                        
 
 
                         <h4>Personal Information</h4>
