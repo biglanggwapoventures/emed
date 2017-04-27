@@ -12,7 +12,7 @@
            
 
         </ol>
-         @if(session('ACTION_RESULT'))
+                                          @if(session('ACTION_RESULT'))
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
                                                 <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
@@ -28,7 +28,10 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="input-group input-group-sm">
-                    {!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!} {!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
+                    {!! Form::open(['method'=>'GET','url'=>'admin','class'=>'navbar-form navbar-left','role'=>'search']) !!} 
+
+                    {!! Form::select('user_type', ['' => '**ALL**', 'DOCTOR' => 'Doctors', 'PMANAGER' => 'Pharmacy Manager','PATIENT' => 'Patient','PHARMA' => 'Pharmacist','SECRETARY' => 'Secretary'], request()->input('user_type'), ['class' => 'form-control']) !!}
+                    
                     <div class="input-group custom-search-form pull-right">
                         <span class="input-group-btn">
                                 <button type="submit" class="btn btn-default-sm">
