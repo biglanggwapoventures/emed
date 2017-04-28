@@ -25,7 +25,11 @@
                         {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
 
                         <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
+
+                       @if(Auth::check()) @if(Auth::user()->user_type != 'PATIENT' )
                         <input type="file" onchange="readURL(this)" class="upload" name="avatar">
+                        @endif
+                    @endif
 
                         <h4>Personal Information</h4>
                         <hr class="third">
