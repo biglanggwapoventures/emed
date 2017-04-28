@@ -16,6 +16,19 @@
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="inside">
+
+                          @if(session('ACTION_RESULT'))
+                             
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                                    {{ session('ACTION_RESULT')['message'] }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                @endif
                         <div class="col-md-9" style="margin-left: 40%">
                        <!--  <center>
                                                             @if (count($errors) > 0)
@@ -28,6 +41,8 @@
                                         </div>
                                             @endif
                          </center> -->
+                     
+
                             <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" id="dp"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
                             <!-- {{Form::file('avatar')}} -->
                             <input type="file" onchange="readURL(this)" class="upload" name="avatar" />
@@ -394,6 +409,13 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+</script>
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
 </script>
 
 @endsection

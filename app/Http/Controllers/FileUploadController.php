@@ -36,7 +36,11 @@ class FileUploadController extends Controller
         $user->avatar = $path;
         $user->save();
 
-        return redirect()->back();
+        return redirect()->back()
+        ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Image Uploaded!'
+            ]);
       }
       else{
          return redirect()->back()
