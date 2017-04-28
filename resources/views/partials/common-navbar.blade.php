@@ -28,7 +28,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu ">
             <li class="header ">MENU</li>
-
+            
             @if(Session::get('user_type') === 'DOCTOR')
                 <li>
                     <a href="{{ url('doctor-home') }} ">
@@ -43,6 +43,22 @@
                         <span>{{ Auth::user()->fullname() }}</span>
                     </a>
                 </li>
+            @elseif(Session::get('user_type') === 'ADMIN')
+                <li class="treeview ">
+                  <a href="# ">
+                    <i class="fa fa-list "></i> <span>Lists</span>
+                    <span class="pull-right-container ">
+                      <i class="fa fa-angle-left pull-right "></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu ">
+                    <li><a href="{{ route( 'list.index') }} "><i class="fa fa-user"></i> ALL Patients</a></li>
+                    <li><a href="{{ url( 'doctorlist') }} "><i class="fa fa-user "></i> ALL Doctors</a></li>
+                    <li><a href="{{ url( 'managerList') }} "><i class="fa fa-user "></i> ALL Managers</a></li>
+                     <li><a href="{{ url( 'secretaryList') }} "><i class="fa fa-user "></i> ALL Secretary</a></li>
+                    <li><a href="{{ url( 'pharmacistList') }} "><i class="fa fa-user "></i> ALL Pharmacists</a></li>
+                  </ul>
+                  <li class="list-group-item"></li>
             @elseif(Session::get('user_type') === 'PATIENT')
                 <li>
                     <a href="{{ url('patient-home') }} ">
