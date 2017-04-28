@@ -27,7 +27,7 @@
                          @if($items->userInfo->username === Auth::user()->username)
                         <h3 class="profile-username text-center">{{ $items->userInfo->fullname()}} </h3>
 
-                        <p class="text-muted text-center">Manager</p>
+                        <p class="text-muted text-center">Pharmacist</p>
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
