@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Patient Form
+            Edit Profile
             <small></small>
         </h1>
         <ol class="breadcrumb">
@@ -17,21 +17,31 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="inside">
-                        {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
+                
+                    
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">User Profile</a></li>
+              <li><a href="#settings" data-toggle="tab">Medical History</a></li>
+              <li><a href="#info" data-toggle="tab">Account Information</a></li>
+             
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
 
                         <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
 
                        @if(Auth::check()) @if(Auth::user()->user_type != 'PATIENT' )
                         <input type="file" onchange="readURL(this)" class="upload" name="avatar">
                         @endif
-                    @endif
-
-                        <h4>Personal Information</h4>
+                     @endif
+                <h4>Personal Information</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
@@ -132,7 +142,13 @@
                             </div>
 
                         </div>
-                        <h4>Account Information</h4>
+                       
+                          
+              </div>
+              <!-- /.tab-pane -->
+              
+              <div class="tab-pane" id="info">
+                 <h4>Account Information</h4>
                         <hr class="third">
 
                         <div class="row">
@@ -186,7 +202,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h4>Medical Profile</h4>
+              </div>
+              <!-- /.tab-pane -->
+
+              <div class="tab-pane" id="settings">
+                <h4>Medical Profile</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
@@ -245,18 +265,43 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button> {!! Form::close() !!}
+                   
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
 
-                        </form>
-                    </div>
-                    <!-- /.box -->
+                
+  <!--/.col (right) -->
+               <div class="col-md-3 ">
 
-                </div>
+          <!-- Profile Image -->
+          <div class="box box-primary" style="height: 170px">
+            <div class="box-body box-profile">
 
+              <h3 class="profile-username text-center">Edit Profile</h3>
+
+             <a href="#activity" data-toggle="tab"><i class="fa fa-stethoscope "></i>&nbsp &nbspUser Profile </a><br>
+              <a href="#settings" data-toggle="tab"><i class="fa fa-hospital-o "></i> &nbsp  &nbspMedical History</a><br>
+              <a href="#info" data-toggle="tab"><i class="fa fa-sitemap "></i>&nbsp  &nbspAccount Information </a>
+
+            </div>
+            <center><button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> {!! Form::close() !!}</center>
+            
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          
+          <!-- /.box -->
+        </div>
             </div>
             <!--/.col (left) -->
 
-            <!--/.col (right) -->
+          
         </div>
         <!-- /.row -->
     </section>
@@ -267,6 +312,17 @@
     .inside {
         padding: 12px;
     }
+    .nav-tabs-custom {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 3px;
+    margin-top: 11px;
+}
+.col-md-3 {
+    width: 25%;
+    margin-top: 12px;
+}
 
 </style>
 

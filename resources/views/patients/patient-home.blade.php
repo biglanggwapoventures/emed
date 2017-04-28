@@ -365,9 +365,15 @@
 
                                                 <div class="row">
                                                     <div class="form-body">
-                                                        <h4 class="form-section" style="padding-left:10px;">User Information</h4>
+                                                    <table style="padding-left:10px;">
+                                                        <tr>
+                                                          <h4 class="form-section" style="padding-left:10px;">{{ $items->userInfo->fullname()}} <p style="padding-left:10px" class="pull-right">{{ $a->created_at  }}</p> </h4>
+                                                         
+                                                        </tr>
+                                                    </table>
+                                                        
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="padding-left:10px">
                                                         <tr>
                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                              <label>Weight</label><br/>
@@ -393,22 +399,23 @@
                                                         </tr>
                                                         <tr>
                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Respiratory Rate</label><br/>
-                                                        <span> {{ $a->resprate }}</span>
-                                                    </div></td>
+                                                                 <label>Respiratory Rate</label><br/>
+                                                                <span> {{ $a->resprate }}</span>
+                                                                </div></td>
                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Pulse Rate</label><br/>
-                                                        <span> {{ $a->pulserate }}</span>
-                                                    </div></td>
+                                                                  <label>Pulse Rate</label><br/>
+                                                                <span> {{ $a->pulserate }}</span>
+                                                                </div>
+                                                            </td>
                                                         </tr>
-                                                         <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
-                                                        <label>Chief Complaints</label><br/>
-                                                        <span> {{ $a->chiefcomplaints }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px; background-color: whitesmoke">
-                                                        <label>Diagnosis</label><br/>
-                                                        <span> {{ $a->notes }}</span>
-                                                    </div>
+                                                                <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
+                                                                <label>Chief Complaints</label><br/>
+                                                                <span> {{ $a->chiefcomplaints }}</span>
+                                                                 </div>
+                                                                <div class="form-body" style="padding-left:10px;margin-bottom:13px; background-color: whitesmoke">
+                                                                <label>Diagnosis</label><br/>
+                                                                <span> {{ $a->notes }}</span>
+                                                                 </div>
                                                     </table>                                                     
                                                 </div>
 

@@ -407,9 +407,14 @@
 
                                                 <div class="row">
                                                     <div class="form-body">
-                                                        <h4 class="form-section" style="padding-left:10px;">User Information</h4>
+                                                    <table style="padding-left:10px">
+                                                    <tr>
+                                                        <h4 class="form-section" style="padding-left:10px;">{{ $patients->userInfo->fullname()}} <p style="padding-left:10px" class="pull-right">{{ $a->created_at  }}</p></h4>
+                                                        
+                                                    </tr>
+                                                     </table>
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="padding-left:10px">
                                                    <tr>
                                                    <td>
                                                     <div class="form-body" style="padding-left:10px;margin-bottom:13px">
