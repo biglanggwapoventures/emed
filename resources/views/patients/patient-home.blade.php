@@ -217,14 +217,14 @@
                                                     <tbody>
                                                         @forelse($items->prescriptions AS $consultation)
                                                         <tr>
-                                                            <td>{{ $consultation->doctor->userInfo->fullname() }}</td>
-                                                            <td>{{ $consultation->genericname }}</td>
-                                                            <td>{{ $consultation->brand }}</td>
-                                                            <td>{{ $consultation->dosage }}</td>
-                                                            <td>{{ $consultation->frequency }}</td>
-                                                            <td>{{ $consultation->quantity }}</td>
-                                                            <td>{{ $consultation->start }}</td>
-                                                            <td>{{ $consultation->end }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->doctor->userInfo->fullname() }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->genericname }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->brand }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->dosage }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->frequency }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->quantity }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->start }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->end }}</td>
                                                         </tr>
                                                             @empty @endforelse
                                                         </tbody>

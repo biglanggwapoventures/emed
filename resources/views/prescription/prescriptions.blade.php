@@ -147,20 +147,24 @@
                                 <th>Start</th>
                                 <th>End</th>
                             </tr>
-                            @forelse($prescriptions as $prescription)
-                                <?php $today = date('Y-m-d'); ?>
+                            <?php $today = date('Y-m-d'); ?>
+                            @forelse($prescriptions as $prescription)@if($prescription->end > $today)
+                                
                                 <tr>
-                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->genericname }}</td>
-                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->brand }}</td>
-                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->dosage }}</td>
-                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->frequency }}</td>
-                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->quantity }}</td>
-                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->start }}</td>
-                                    <td style="{{ strtotime($prescription->end) < strtotime($today) ? 'color:red' : '' }}">{{ $prescription->end }}</td>
+                                   
+                                        <td>{{ $prescription->genericname }}</td>
+                                        <td>{{ $prescription->brand }}</td>
+                                        <td>{{ $prescription->dosage }}</td>
+                                        <td>{{ $prescription->frequency }}</td>
+                                        <td>{{ $prescription->quantity }}</td>
+                                        <td>{{ $prescription->start }}</td>
+                                        <td>{{ $prescription->end }}</td>
                                 </tr>
-                                    
+                                @endif    
                             @empty
-                                <tr><td colspan="7">No prescription data</tr></td>
+                                <tr>
+                                <td></td><td></td><td></td><td></td><td></td><td></td>
+                                <td colspan="7">No prescription data</td></tr>
                             @endforelse
                         </table>
                     </div>
