@@ -45,8 +45,12 @@
 
                             <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" id="dp"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
                             <!-- {{Form::file('avatar')}} -->
-                            <input type="file" onchange="readURL(this)" class="upload" name="avatar" />
-                            <input type="submit" class="btn btn-sm btn-primary"> {!! Form::close() !!}
+                            <input type="file" onchange="readURL(this)" class="upload" name="avatar"/>
+                            <p>Image must not exceed 2048</p>
+                            <input type="submit" class="btn btn-sm btn-primary">
+
+
+                             {!! Form::close() !!}
                         </div>
 
                         {!! Form::open(['url' => route('doctors.update', ['id' => $data->id]), 'method' => 'PUT', 'id' => 'doc']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}

@@ -45,7 +45,11 @@ class FileUploadController extends Controller
       else{
          return redirect()->back()
                         ->withErrors($validator)
-                        ->withInput();
+                        ->withInput()
+                        ->with('ACTION_RESULT', [
+                'type' => 'error', 
+                'message' => 'Image too big to Upload!'
+            ]);
       }
 
 
