@@ -367,38 +367,49 @@
                                                     <div class="form-body">
                                                         <h4 class="form-section" style="padding-left:10px;">User Information</h4>
                                                     </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Weight</label><br/>
-                                                        <span> {{ $a->weight  }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Height</label><br/>
-                                                        <span> {{ $a->height }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Blood Pressure</label><br/>
-                                                        <span>{{ $a->bloodpressure }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Temperature</label><br/>
-                                                        <span>{{ $a->temperature }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                             <label>Weight</label><br/>
+                                                                 <span> {{ $a->weight  }}</span>
+                                                            </div>
+                                                            </td>
+                                                             <td>
+                                                            <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                            <label>Height</label><br/>
+                                                            <span> {{ $a->height }}</span>
+                                                            </div>
+                                                            </td>
+                                                            </tr>
+                                                         <tr>
+                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                <label>Blood Pressure</label><br/>
+                                                                <span>{{ $a->bloodpressure }}</span>
+                                                            </div></td>
+                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                <label>Temperature</label><br/>
+                                                                <span>{{ $a->temperature }}</span>
+                                                            </div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Respiratory Rate</label><br/>
                                                         <span> {{ $a->resprate }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                    </div></td>
+                                                            <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Pulse Rate</label><br/>
                                                         <span> {{ $a->pulserate }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                    </div></td>
+                                                        </tr>
+                                                         <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
                                                         <label>Chief Complaints</label><br/>
                                                         <span> {{ $a->chiefcomplaints }}</span>
                                                     </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px; background-color: whitesmoke">
                                                         <label>Diagnosis</label><br/>
                                                         <span> {{ $a->notes }}</span>
                                                     </div>
+                                                    </table>                                                     
                                                 </div>
 
                                                 <div class="row" style="margin-top:10px;">
