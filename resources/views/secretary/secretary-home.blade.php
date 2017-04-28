@@ -1,44 +1,112 @@
 @extends('welcome') @section('body')
-
 <div class="content-wrapper">
-<section class="content-header">
+    <!-- Content Header (Page header) -->
+     <section class="content-header">
         <h1>
-            User Profile
+             User Profile  
+            <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/secretary-home"><i class="fa fa-dashboard"></i> Home</a></li>
-          
-            <li><a href="#"><i class="fa fa-user"></i> {{ Auth::user()->fullname() }} </a></li>
+            <li><a href="/pmanager-home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/pmanager-home"><i class="fa fa-user"></i> {{ Auth::user()->fullname() }} </a></li>
+            
+        </ol>
     </section>
-    <div class="container-fluid">
-        <div class="row-bod">
-            <div class="col-md-9 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Welcome {{ Auth::user()->fullname() }} </h4>
-                    </div>
-                    {{ csrf_field() }}
-                    <div class="panel-body">
-                        @if(session('ACTION_RESULT'))
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
-                                    {{ session('ACTION_RESULT')['message'] }}
 
-                                </div>
-                            </div>
-                        </div>
-                        @endif @forelse($items AS $d) @if($d->userInfo->username === Auth::user()->username)
-                        <strong>Name:</strong>{{ $d->userInfo->fullname() }} <br>
-                        <strong>Attainment:</strong>{{ $d->attainment }} <br> @endif @empty
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+
+                          @forelse($items AS $d) @if($d->userInfo->username === Auth::user()->username)
+                        <h3 class="profile-username text-center">{{ $d->userInfo->fullname()}} </h3>
+
+                        <p class="text-muted text-center">Secretary</p>
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i> <b>{{$d->userInfo->email}}</b>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-home" aria-hidden="true"></i><b>{{ $d->userInfo->address }}</b>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-phone" aria-hidden="true"></i><b>{{ $d->userInfo->contact_number }}</b>
+                            </li>
+                        </ul>
+                        @endif @empty
                         <p>There are no users yet!</p>
                         @endforelse
                     </div>
+                    <!-- /.box-body -->
                 </div>
+                <!-- /.box -->
+
+
+                <!-- /.box -->
             </div>
-        </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="nav-tabs-custom">
+                    <div class="tab-content">
+                        <!-- tab start -->
+                        <div class="active tab-pane" id="activity">
+                            <a href="{{ route('managers.edit', ['id' => $d->userInfo->id]) }}" class="btn btn-info pull-right" data-toggle="tooltip" id="myTooltip" title="Edit Profile"><span class="glyphicon glyphicon-edit"></a>
+                            <table class="table table-user-information">
+                                <tbody>
+
+                                    <tr>
+                                        @if(session('ACTION_RESULT'))
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                               <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                                    {{ session('ACTION_RESULT')['message'] }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    </tr>
+                                    <tr><b><h3>Personal information</h3></tr></b></tr>
+                                    <tr>
+                                        <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username:</b> <br> {{ $d->userInfo->username }}</td>
+                                        <td><span class="glyphicon glyphicon-envelope"></span> <b>Email:</b> <br> {{$d->userInfo->email}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth:</b><br> {{ $d->userInfo->birthdate }}</td>
+                                        <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender:</b> <br>{{ $d->userInfo->sex }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="glyphicon glyphicon-phone"></span> <b>Drugstore:</b> <br> {{ $d->drugstore}}</td>
+                                        <td><i class="fa fa-user-md" aria-hidden="true"></i></span> <b>Drugstore:</b> <br> {{ $d->drugstore_branch }}</td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+
+
+                        <!-- /.tab-content -->
+                    </div>
+                    <!-- /.nav-tabs-custom -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+    </section>
+    <!-- /.content -->
     </div>
-</div>
 <script type="text/javascript">
  window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -47,4 +115,7 @@
 }, 1000);
 </script>
 
-@endsection
+
+
+
+    @endsection
