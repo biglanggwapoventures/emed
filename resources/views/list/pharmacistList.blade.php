@@ -43,8 +43,8 @@
                                         
                                    
                                              <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $items->id }}">
-                        <span class="glyphicon glyphicon-info-sign">
-                    </button>
+                                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">
+                                            </button>
 
 
                                 <div class="modal fade" id="infoModal_{{ $items->id }}" tabindex="-1" role="basic" aria-hidden="true">
