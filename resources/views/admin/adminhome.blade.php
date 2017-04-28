@@ -37,11 +37,9 @@
                                 <button type="submit" class="btn btn-default-sm">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
-                            </span>
-                    </div>
+                            </span> </div>
 
-                    {!! Form::close() !!}
-                </div>
+                    {!! Form::close() !!} </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                     <table id="example1" class="table table-bordered table-striped">
@@ -52,8 +50,7 @@
                                 <th>Username</th>
                                 <th>User Type</th>
                                 <th>Manage</th>
-                            </tr>
-                        </thead>
+                            </tr> </thead>
                         <tbody>
 
                             @forelse($items AS $i) @if($i->user_type != "ADMIN")
@@ -80,8 +77,8 @@
 
 
                                     <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $i->id }}">
-                        <span class="glyphicon glyphicon-info-sign">
-                    </button>
+                                    <span class="glyphicon glyphicon-info-sign">
+                                   </button>
 
 
                                 <div class="modal fade" id="infoModal_{{ $i->id }}" tabindex="-1" role="basic" aria-hidden="true">
@@ -148,7 +145,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
+                                                      <span aria-hidden="true">&times;</span></button>
                                                     <h4 class="modal-title" id="favoritesModalLabel">{{ $i->fullname() }}</h4>
                                                 </div>
                                                 <div class="modal-body">
@@ -181,10 +178,10 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <span class="pull-right">
-                          <button type="button" 
-                             class="btn btn-default" 
-                             data-dismiss="modal">Close</button>
-                          </span>
+                                            <button type="button" 
+                                             class="btn btn-default" 
+                                             data-dismiss="modal">Close</button>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -194,6 +191,7 @@
                             </tr>
                             @endif @empty
                             <tr>
+                                <td></td><td></td><td></td><td></td>
                                 <td colspan="4" class="text-center">No users recorded</td>
                             </tr>
                             @endforelse
