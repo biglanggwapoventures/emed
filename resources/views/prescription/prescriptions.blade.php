@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    @if(count($errors->all()))
+                   <!--  @if(count($errors->all()))
                     <div class="alert alert-danger">
                         <ul class="list-unstyled">
                             @foreach($errors->all() AS $err)
@@ -43,7 +43,9 @@
                             @endforeach
                         </ul>
                     </div>
-                    @endif {!! Form::open(['url' => route('prescription.store'), 'method' => 'POST']) !!} {!! Form::hidden('patient_id', request()->input('patient_id')) !!} {!! Form::hidden('consultation_id', request()->input('consultation_id')) !!}
+                    @endif -->
+
+                     {!! Form::open(['url' => route('prescription.store'), 'method' => 'POST']) !!} {!! Form::hidden('patient_id', request()->input('patient_id')) !!} {!! Form::hidden('consultation_id', request()->input('consultation_id')) !!}
 
                      @if(session('ACTION_RESULT'))
                         <div class="row">
@@ -69,10 +71,10 @@
                     </div>
                     <div class="row col-md-offset-1 ">
                         <div class="col-md-5">
-                            {!! Form::bsText('quantity', 'Quantity', null) !!}
+                            {!! Form::bsText('quantity', 'Quantity', null,['placeholder'=> 'pcs']) !!}
                         </div>
                         <div class="col-md-5  ">
-                            {!! Form::bsText('dosage', 'Dosage', null) !!}
+                            {!! Form::bsText('dosage', 'Dosage', null,['placeholder'=> 'mg']) !!}
                         </div>
                     </div>
                     <div class="row col-md-offset-1 ">

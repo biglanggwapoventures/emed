@@ -182,7 +182,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $today = date('Y-m-d'); ?>
-                                    @forelse($patients->prescriptions AS $consultation)@if($consultation->end > $today)
+                                    @forelse($patients->prescriptions AS $consultation)@if($consultation->end >= $today)
                                     
                                     <tr>
                                         <td>{{ $consultation->doctor->userInfo->fullname() }}</td>
@@ -236,7 +236,7 @@
                                                     <tbody>
 
                                                     <?php $today = date('Y-m-d'); ?>
-                                                        @forelse($patients->prescriptions AS $consultation)
+                                                        @forelse($patients->prescriptions AS $consultation) @if($consultation->end > $today)
                                                         <tr>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->doctor->userInfo->fullname() }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->genericname }}</td>
@@ -248,6 +248,7 @@
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->start }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->end }}</td>
                                                         </tr>
+                                                        @endif
                                                             @empty
                                                             <tr>
                                                               <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>  

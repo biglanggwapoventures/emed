@@ -170,7 +170,7 @@
                                 </thead>
                                 <tbody>
                                 <?php $today = date('Y-m-d'); ?>
-                                    @forelse($items->prescriptions AS $consultation) @if($consultation->end > $today)
+                                    @forelse($items->prescriptions AS $consultation) @if($consultation->end >= $today)
                                     <tr>
                                         <td>{{ $consultation->doctor->userInfo->fullname() }}</td>
                                         <td>{{ $consultation->genericname }}</td>

@@ -19,9 +19,9 @@
         <div class="row">
 
             <!-- left column -->
-            <div class="col-md-12">
+            
                 <!-- general form elements -->
-                <div class="inside">
+                
                     
                 <div class="col-md-9">
                   <div class="nav-tabs-custom">
@@ -345,12 +345,7 @@
                     <center><button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> {!! Form::close() !!}</center>
                     
                     <!-- /.box-body -->
-                  </div>
-                  <!-- /.box -->
-
-                  
-                  <!-- /.box -->
-                </div>
+                 
         <!-- row12 -->
          </div>
 
@@ -374,7 +369,7 @@
 }
 .col-md-3 {
     width: 25%;
-    margin-top: 12px;
+    margin-top: 0px;
 }
 
 </style>

@@ -57,13 +57,14 @@ class PrescriptionController extends Controller
             'duration' => 'required',
             'dosage' => 'required',
             'frequency' => 'required',
-            'start' => 'required|date_format:"Y-m-d"',
+            'start' => 'required|date_format:"Y-m-d"|after:today',
             'end' => 'required|date_format:"Y-m-d"',
             'notes' => 'present'
         ];
 
         $this->validate($request, $rules, [
             'start.date_format' => 'The start date must be of format MM/DD/YYYY',
+            'start.after' => 'The start date is already expired',
             'end.date_format' => 'The end date must be of format MM/DD/YYYY'
         ]);
 
