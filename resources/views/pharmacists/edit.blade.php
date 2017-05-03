@@ -9,7 +9,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="/pharma-home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">edit Manager</a></li>
+            <li><a href="{{ route('pharmacists.index') }}"><i class="fa fa-user"></i> Pharmacists </a></li>
+            <li><a href="#">Edit Pharmacist</a></li>
 
         </ol>
         @if (count($errors) > 0)

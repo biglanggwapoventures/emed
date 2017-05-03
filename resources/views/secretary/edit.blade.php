@@ -1,5 +1,13 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
+<section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route('secretary.index') }}"><i class="fa fa-user"></i> Secretaries </a></li>
+            <li><a href="#">Edit Secretary</a></li>
+
+        </ol>
+    </section>
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">
@@ -15,7 +23,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('firstname') ? 'has-error' : '' }}">
-                                    <label class="control-label">First Name</label> {!! Form::text('firstname', $data->userInfo->firstname, ['class' => 'form-control']) !!} @if($errors->has('firstname'))
+                                    <label class="control-label">First Name</label> <span style="color: red">*</span> {!! Form::text('firstname', $data->userInfo->firstname, ['class' => 'form-control']) !!} @if($errors->has('firstname'))
                                     <span class="help-block">{{ $errors->first('firstname') }}</span> @endif
                                 </div>
                             </div>
@@ -75,14 +83,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
-                                    <label class="control-label">Username</label> {!! Form::text('username', $data->userInfo->username, ['class' => 'form-control']) !!} @if($errors->has('username'))
+                                    <label class="control-label">Username</label><span style="color: red">*</span>  {!! Form::text('username', $data->userInfo->username, ['class' => 'form-control']) !!} @if($errors->has('username'))
                                     <span class="help-block">{{ $errors->first('username') }}</span> @endif
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                                    <label class="control-label">Email</label> {!! Form::text('email', $data->userInfo->email, ['class' => 'form-control']) !!} @if($errors->has('email'))
+                                    <label class="control-label">Email</label><span style="color: red">*</span>  {!! Form::text('email', $data->userInfo->email, ['class' => 'form-control']) !!} @if($errors->has('email'))
                                     <span class="help-block">{{ $errors->first('email') }}</span> @endif
                                 </div>
                             </div>

@@ -57,10 +57,10 @@
                                         <td>
                                             <form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
                                                 {{ csrf_field() }} {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                                <button type="submit" class="btn btn-danger" data-toggle="tooltip" id="myTooltip" title="Delete Pharmacist"><span class="glyphicon glyphicon-trash"></span></button>
                                             </form>
 
-                                            <a href="{{ route('pharmacists.edit', ['id' => $i->user_id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="{{ route('pharmacists.edit', ['id' => $i->user_id]) }}" class="btn btn-info" data-toggle="tooltip" id="myTooltip" title="Edit Pharmacist"><span class="glyphicon glyphicon-edit"></span></a>
                                         </td>
                                     </tr>
                                     @empty

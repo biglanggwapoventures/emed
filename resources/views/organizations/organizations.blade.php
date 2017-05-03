@@ -83,8 +83,8 @@
 
 
         <!-- //////////////////// -->
-         <div class="box-body table-responsive no-padding">
-                    <table class="table table-bordered table-striped">
+        <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-bordered table-striped">
 
             <thead>
                 <tr class="active">

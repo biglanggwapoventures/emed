@@ -40,6 +40,10 @@ Route::get('/faq', 'OtherController@faq');
 // Route::get('/ChangePass', 'OtherController@ChangePass');
 
 Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
+Route::get('/doctorlist', 'ListController@doctorList');
+Route::get('/managerList', 'ListController@pmanagerList');
+Route::get('/secretaryList', 'ListController@secretaryList');
+Route::get('/pharmacistList', 'ListController@pharmaList');
 // Route::get('/edit-doc', 'AdminController@editDoc');
 //process login data
 Route::post('/login', 'LoginController@doLogin');
@@ -60,6 +64,7 @@ Route::resource('pharmacy', 'PharmacyController');
 Route::resource('affiliations', 'AffiliationsController');
 Route::resource('organizations', 'OrganizationsController');
 Route::resource('userroles', 'UserRolesController');
+Route::resource('list', 'ListController');
 
 // Route::resource('pharmacists', 'PharmaController');
 
@@ -67,6 +72,7 @@ Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')-
 
 Route::post('/ChangePass', 'PasswordChangeController@postUpdatePassword')->name('ChangePass');
 Route::get('/ChangePass', 'PasswordChangeController@showHomepage')->middleware('auth');
+
 
 Route::post('/scan', 'RFIDController@scan');
 
