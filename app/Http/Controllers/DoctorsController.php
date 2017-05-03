@@ -10,6 +10,8 @@ use App\User;
 use App\Patient;
 use Auth;
 
+use Log;
+
 class DoctorsController extends Controller
 {
     /**
@@ -18,8 +20,8 @@ class DoctorsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        // $this->middleware('auth');
+        // $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
     }
     
     /**
@@ -43,6 +45,7 @@ class DoctorsController extends Controller
     public function index()
     {
         $items = Doctor::with('userInfo')->get();
+        Log::info($items);
         // dd($items);
         return view('doctors.list', [
             'items' => $items
@@ -57,10 +60,18 @@ class DoctorsController extends Controller
      */
     public function create()
     {
+        $orgs = \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id');
+        $affiliations = \App\Affiliation::orderBy('name')->get()->pluck('name', 'id');
+        $affiliationBranches = \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id');
+
+        Log::info(json_encode($orgs));
+        Log::info(json_encode($affiliations));
+        Log::info(json_encode($affiliationBranches));
+
         return view('doctors.doctor-form', [
-            'orgs' => \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id'),
-            'affiliations' => \App\Affiliation::orderBy('name')->get()->pluck('name', 'id'),
-            'affiliationBranches' => \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id')
+            'orgs' => $orgs,
+            'affiliations' => $affiliations,
+            'affiliationBranches' => $affiliationBranches
         ]);
     }
 
@@ -73,6 +84,8 @@ class DoctorsController extends Controller
     public function store(DoctorRequest $request)
     {
         // dd($request->all());
+        $function = 'DoctorsController@store';
+        Log::info($function . '\t' . 'Attempting to store doctor data.');
 
         $this->validate($request, [
                 'firstname' => 'required',
@@ -94,6 +107,8 @@ class DoctorsController extends Controller
                 'contact_number.required' => 'Please enter your contact number.'
            ]);
 
+        Log::info($function . '\t' . 'Passed data validation.');
+
         // get fields for user table
         $input = $request->only([
             'username', 
@@ -114,6 +129,8 @@ class DoctorsController extends Controller
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
         $input['user_type'] = 'DOCTOR';
+
+        Log::info($function . '\t' . 'Attempting to create user.');
         //save to DB (users)
         $user = User::create($input);
 
@@ -149,6 +166,8 @@ class DoctorsController extends Controller
             ];
         }
         $doctor->affiliations()->sync($affiliations);
+
+        Log::info($function . '\t' . 'Storing data has been successful.');
         
 
        // $user ['subspecialty'] = json_encode($input['subspecialty']);

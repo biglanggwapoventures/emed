@@ -21,7 +21,7 @@ class ManagersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'show', 'index', 'transaction']]);
     }
     
     /**
@@ -43,6 +43,8 @@ class ManagersController extends Controller
         ]);
     }
 
+    
+
     public function showHomepage()
     {
 
@@ -50,6 +52,7 @@ class ManagersController extends Controller
         // dd($items);
         return view('managers.pmanager-home', [
             'items' => $items
+
         ]);
     }
 

@@ -13,7 +13,7 @@ use App\UserRoles;
 use App\CustomUser;
 use Auth;
 
-use Log;
+use Log, EMedHelper;
 
 class CustomUserController extends Controller
 {
@@ -53,38 +53,69 @@ class CustomUserController extends Controller
     
     public function index(Request $request, $id)
     {
+        if(session('user_type_id') == $id)
+        {
+            Log::error('ACCESS DENIED. User tries to access a custom user\'s list of its own and it\'s not allowed');
+            abort(503);
+        }
+        else
+        {
+            $roleData = UserRoles::getRole($id);
+            $allowAccess = EMedHelper::showListOfTarget($roleData->name);
 
-        $user = Auth::user();
-        $search =  $request->input('search');
+            if($allowAccess)
+            {
+                $hasListPermission = EMedHelper::hasTargetActionPermission($roleData->name, 'LIST');
+                // this is where the limitations will come - but "addedby" column should be added in the respective tables
+
+                $data = CustomUser::retrieveRoleList($roleData->name);
+            }
+            else
+            {
+                Log::error('ACCESS DENIED. User tries to access a custom user\'s list that is not included in the current user\'s list of permissions.');
+                abort(503);
+            }
+
+            // $user = Auth::user();
+            // $data = CustomUser::retrieveData($user->id);
+            // Log::info(json_encode($data));
+            Log::info(json_encode($data));
+            return view('custom-user.list', [
+                'role'  => $roleData,
+                'data'  => $data
+            ]);
+        }
+        // $user = Auth::user();
+        // $search =  $request->input('search');
        
 
-        if($user->user_type === "DOCTOR"){
-            $patients = Auth::user()->doctor->patients();
+        // if($user->user_type === "DOCTOR"){
+        //     $patients = Auth::user()->doctor->patients();
 
-        if(trim($search)){
-            $patients->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
-        }
+        // if(trim($search)){
+        //     $patients->whereHas('userInfo', function($q) USE($search){
+        //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+        //     });
+        // }
 
-            return view('patients.list', [
-                'patients' => $patients->get()
-            ]);
-        }
+        //     return view('patients.list', [
+        //         'patients' => $patients->get()
+        //     ]);
+        // }
 
-        else if($user->user_type === "SECRETARY"){
-            $patients = Auth::user()->secretary->doctor->patients();
+        // else if($user->user_type === "SECRETARY"){
+        //     $patients = Auth::user()->secretary->doctor->patients();
 
-        if(trim($search)){
-            $patients->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
-        }
+        // if(trim($search)){
+        //     $patients->whereHas('userInfo', function($q) USE($search){
+        //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+        //     });
+        // }
 
-            return view('patients.list', [
-                'patients' => $patients->get()
-            ]);
-        }
+        //     return view('patients.list', [
+        //         'patients' => $patients->get()
+        //     ]);
+        // }
     }
 
     /**

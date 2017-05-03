@@ -11,6 +11,9 @@ use App\Secretary;
 use Validator;
 use Auth;
 
+use App\Common;
+use Log;
+
 class PatientsController extends Controller
 {
     /**
@@ -20,7 +23,7 @@ class PatientsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'list']]);
     }
     
     /**
@@ -36,10 +39,15 @@ class PatientsController extends Controller
         ]);
     
     }
+
+    public function list()
+    {
+        
+    }
     
     public function index(Request $request)
     {
-
+        
         $user = Auth::user();
         $search =  $request->input('search');
        
@@ -224,6 +232,8 @@ class PatientsController extends Controller
         if(Auth::user()->user_type === 'DOCTOR')
         {
             $patients = Patient::find($id);
+            $validPrescriptions = Common::retrieveValidPrescriptions($patients->id);
+            Log::info(json_encode($validPrescriptions));
             return view('patients.doc-patienthome', [
                 'patients' => $patients
             ]);
@@ -231,6 +241,8 @@ class PatientsController extends Controller
         else if(Auth::user()->user_type === 'PATIENT' || Auth::user()->user_type === 'SECRETARY')
         {
             $items = Patient::find($id);
+            $validPrescriptions = Common::retrieveValidPrescriptions($items->id);
+            Log::info(json_encode($validPrescriptions));
             return view('patients.patient-home', [
                 'items' => $items
             ]);

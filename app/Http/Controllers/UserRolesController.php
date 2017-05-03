@@ -65,7 +65,7 @@ class UserRolesController extends Controller
            ]);
 
         $input = $request->all();
-        Log::info($input);
+        // Log::info($input);
         UserRoles::saveUserRoles($input);
 
         return redirect('userroles');
