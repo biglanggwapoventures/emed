@@ -1,70 +1,245 @@
-@extends('welcome') @section('body')
-
-<div class="container">
-    <div class="row-bod">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>PHARMACY MANAGER</h1>
+@extends('welcome') 
+@section('body')
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div style="margin-top:10px">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">Pharmacy Manager List</li>
+                </ol>
             </div>
+            <h1>
+                <span style="font-size:80% !important;">
+                    <span class="fa fa-address-book-o" style="font-size:135%!important"></span>
+                    &nbsp;List of Pharmacy Managers
+                </span>
+            </h1>
+        </section>
 
-
-            @if(EMedHelper::hasRoutePermission('managers.create'))
-                <a class="btn btn-primary pull-right" href="{{ route('managers.create')}}">Add new pharmacy manager</a>
-            @endif
-
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    @if(EMedHelper::hasRoutePermission('managers.create'))
+                        <a href="{{ route('managers.create') }}" class="btn btn-info btn-md add-button">
+                            <span class="fa fa-plus" style="margin-right:5px;font-size:110%"></span>
+                            Add Pharmacy Manager
+                        </a>
+                    @endif
                 </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            </form>
-            <table class="table">
-                <thead>
-                    <tr class="active">
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Drugstore</th>
-                        <th>Manage</th>
+                <div class="hidden-xl hidden-lg hidden-md hidden-sm">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box-body table-responsive no-padding"><br>
+                        <table class="table table-bordered table-striped"">
+                            <thead>
+                                <tr class="active" style="height: 50px">
+                                    <th class="align-th">Last Name</th>
+                                    <th class="align-th">First Name</th>
+                                    <th class="align-th">Gender</th>
+                                    <th class="align-th">Contact No.</th>
+                                    <th class="align-th">Email</th>
+                                    <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="userdata">
+                                @forelse($items AS $manager)
+                                    <tr name="manager{{ $manager->id }}" data-user-info="{{ json_encode($manager->userInfo) }}">
+                                        <td class="align-pt">
+                                            {{ $manager->userInfo->lastname }}
+                                        </td>
+                                        <td class="align-pt">
+                                            {{ $manager->userInfo->firstname }}
+                                        </td>
+                                        <td class="align-pt">
+                                            {{ $manager->userInfo->sex }}
+                                        </td>
+                                        <td class="align-pt">
+                                            {{ $manager->userInfo->contact_number }}
+                                        </td>
+                                        <td class="align-pt">
+                                            {{ $manager->userInfo->email }}
+                                        </td>
+                                        <td class="text-center">
+                                            <form action="{{ route('users.destroy', ['id' => $manager->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                                {{ csrf_field() }} 
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PMANAGER", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
+                                                    <span class="glyphicon glyphicon-trash action-icon"></span>
+                                                </button>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($items AS $i)
-                    <tr>
-                        <td>{{ $i->userInfo->fullname() }}</td>
-                        <td>{{ $i->userInfo->username}}</td>
-                        <td>{{ $i->drugstore}}</td>
+                                                @if(EMedHelper::hasTargetActionPermission("PMANAGER", "EDIT"))
+                                                    <a href="{{ route('managers.edit', ['id' => $manager->id]) }}" class="btn btn-info">
+                                                        <span class="glyphicon glyphicon-edit action-icon"></span>
+                                                    </a>
+                                                @else
+                                                    <a href="#" class="btn btn-info" disabled='disabled' style='opacity:0.50'>
+                                                        <span class="glyphicon glyphicon-edit action-icon"></span>
+                                                    </a>
+                                                @endif
+                                                <a name="viewInfo" data-id="{{ $manager->id }}" href="#" class="btn btn-warning">
+                                                    <span class="fa fa-info-circle"></span>
+                                                </a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">No secretaries found.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
+    <div class="modal fade" id="viewUserInfo" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" style="padding:20px 40px 20px 60px;">
+                <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                    <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                        <span id="mdl_userName"></span><br/>
+                        <small class="sbold" style="margin-left:3px;">Basic information</small>
+                    </h3>
 
-                        <td>
-                            <form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
-                                {{ csrf_field() }} {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                    <hr style="margin-top:-5px;margin-bottom:5px;"/>
 
+                    <div class="row">
+                        <div class="form-body">
+                            <h4 class="form-section" style="padding-left:10px;">User Information</h4>
+                        </div>
+                        
+                        <div class="form-body col-md-6" style="margin-left:-5px;margin-top:-7px">
+                           <div class="form-group">
+                                <h5 style="font-weight: bold">Username</h5>
+                                <div id="mdl_user_name" style="margin-top:-8px;"></div>  
+                            </div>
+                        </div>
+                        <div class="form-body col-md-6" style="margin-left:-5px;margin-top:-7px">
+                           <div class="form-group">
+                                <h5 style="font-weight: bold">Email Address</h5>
+                                <div id="mdl_email" style="margin-top:-8px;"></div>  
+                            </div>
+                        </div>
+                    </div>
 
-                                <a href="{{ route('managers.edit', ['id' => $i->id]) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></a>
+                    <hr style="margin-top:5px;" />
 
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
+                    <div class="row" style="margin-top:-20px">
+                        <div class="form-body">
+                            <h4 class="form-section" style="padding-left:10px;">Personal Information</h4>
+                        </div>
+                        
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
+                           <div class="form-group">
+                                <h5 style="font-weight: bold">Gender</h5>
+                            </div>
+                        </div>
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
+                           <div class="form-group">
+                                <div id="mdl_gender" style="margin-top:-8px;"></div>  
+                            </div>
+                        </div>
 
-                        <td colspan="4" class="text-center">No pharmacy managers recorded</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                           <div class="form-group">
+                                <h5 style="font-weight: bold">Address</h5>
+                            </div>
+                        </div>
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
+                           <div class="form-group">
+                                <div id="mdl_address" style="margin-top:-8px;"></div>  
+                            </div>
+                        </div>
+
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                           <div class="form-group">
+                                <h5 style="font-weight: bold">Contact No.</h5>
+                            </div>
+                        </div>
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
+                           <div class="form-group">
+                                <div id="mdl_contactno" style="margin-top:-8px;"></div>  
+                            </div>
+                        </div>
+
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                           <div class="form-group">
+                                <h5 style="font-weight: bold">Birthdate</h5>
+                            </div>
+                        </div>
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
+                           <div class="form-group">
+                                <div id="mdl_birthdate" style="margin-top:-8px;"></div>  
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12">
+                            <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                Close 
+                            </button>
+                        </div>
+                            
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<style type="text/css">
-    .col-md-12 {
-        width: 100%;
-        background-color: whitesmoke;
-        border-radius: 12px;
-    }
 
-</style>
+    <style type="text/css">
+        .align-th {
+            font-size:98% !important;
+        }
+        .align-pt {
+            font-size:98% !important;
+            padding-top:15px !important;
+        }
+        .add-button {
+            width:210px !important;
+            height:40px !important;
+            padding-top:10px !important
+        }
+        .action-icon {
+            font-size: 85% !important;
+        }
+    </style>
 
+    @push('scripts')
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("a[name=viewInfo]").click(function()
+                {
+                    var userid = $(this).data('id');
+                    var userdata = $("tr[name=manager" + userid + "]").data('user-info');
+                    var fname, lastname, sex, username, email, username, address, contactno, birthdate;
+
+                    fname = userdata.firstname;
+                    lastname = userdata.lastname;
+                    sex = userdata.sex;
+                    username = userdata.username;
+                    email = userdata.email;
+                    address = userdata.address;
+                    contactno = userdata.contact_number;
+                    birthdate = userdata.birthdate;
+
+                    $("#mdl_userName").text(lastname + ", " + fname);
+                    $("#mdl_user_name").text(username);
+                    $("#mdl_email").text(email);
+                    $("#mdl_gender").text(sex);
+                    $("#mdl_address").text(address);
+                    $("#mdl_contactno").text(contactno);
+                    $("#mdl_birthdate").text(birthdate);
+
+                    $("#viewUserInfo").modal();
+                });
+            });
+        </script>
+    @endpush
 @endsection

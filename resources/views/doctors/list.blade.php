@@ -67,9 +67,15 @@
                                                 <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("DOCTOR", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
                                                     <span class="glyphicon glyphicon-trash action-icon"></span>
                                                 </button>
-                                                <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info" {{ EMedHelper::hasTargetActionPermission("DOCTOR", "EDIT") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
-                                                    <span class="glyphicon glyphicon-edit action-icon"></span>
-                                                </a>
+                                                @if(EMedHelper::hasTargetActionPermission("DOCTOR", "EDIT"))
+                                                    <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info">
+                                                        <span class="glyphicon glyphicon-edit action-icon"></span>
+                                                    </a>
+                                                @else
+                                                    <a href="#" class="btn btn-info" disabled='disabled' style='opacity:0.50'>
+                                                        <span class="glyphicon glyphicon-edit action-icon"></span>
+                                                    </a>
+                                                @endif
                                                 <a name="viewInfo" data-id="{{ $i->id }}" href="#" class="btn btn-warning">
                                                     <span class="fa fa-info-circle"></span>
                                                 </a>
@@ -78,7 +84,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">ERROR: No doctors found. This is an critical.</td>
+                                        <td colspan="6" class="text-center">ERROR: No doctors found. This is critical.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

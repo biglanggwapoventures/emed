@@ -21,7 +21,7 @@ class ManagersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'show', 'index', 'transaction']]);
+        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'show', 'transaction']]);
     }
     
     /**
@@ -142,7 +142,7 @@ class ManagersController extends Controller
 
         // $doctor->affiliations()->sync($affiliations);
 
-       return redirect()->route('admin.index');
+       return redirect()->route('managers.index');
     }
 
     /**

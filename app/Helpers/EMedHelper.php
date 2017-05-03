@@ -11,7 +11,7 @@
         public static function hasRoutePermission($route)
         {
             $data = Permissions::retrieveByRoute($route);
-            return is_null($data) ? false : true;
+            return count($data) > 0;
         }
 
         public static function showListOfTarget($target)
@@ -46,7 +46,7 @@
         public static function hasTargetActionPermission($target, $action)
         {
             $data = Permissions::retriveByTargetAndAction($target, $action);
-            return is_null($data) ? false : true;
+            return count($data) > 0;
         }
 
         public static function getCustomRoles()

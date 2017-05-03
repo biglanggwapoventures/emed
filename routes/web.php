@@ -39,7 +39,7 @@ Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
 // Route::get('/ChangePass', 'OtherController@ChangePass');
 
-Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
+// Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
 Route::get('/doctorlist', 'ListController@doctorList');
 Route::get('/managerList', 'ListController@pmanagerList');
 Route::get('/secretaryList', 'ListController@secretaryList');
@@ -49,7 +49,7 @@ Route::get('/pharmacistList', 'ListController@pharmaList');
 Route::post('/login', 'LoginController@doLogin');
 
 Route::resource('doctors', 'DoctorsController');
-Route::resource('admin', 'AdminController');
+// Route::resource('admin', 'AdminController');
 Route::resource('users', 'UsersController');
 Route::resource('managers', 'ManagersController');
 Route::resource('patients', 'PatientsController');

@@ -10,6 +10,8 @@ use App\User;
 use App\Patient;
 use Auth;
 
+use Log, EMedHelper;
+
 class DoctorsController extends Controller
 {
     /**
@@ -42,11 +44,22 @@ class DoctorsController extends Controller
 
     public function index()
     {
-        $items = Doctor::with('userInfo')->get();
-        // dd($items);
-        return view('doctors.list', [
-            'items' => $items
-        ]);
+        if(EMedHelper::hasTargetActionPermission('DOCTOR', 'LIST'))
+        {
+            $items = Doctor::with('userInfo')->get();
+            return view('doctors.list', [
+                'items' => $items
+            ]);
+        }
+        else
+        {
+            // this is where only the data saved by this particular user will be shown
+            $items = [];
+            return view('doctors.list', [
+                'items' => $items
+            ]);
+        }
+            
     }
 
     
@@ -153,7 +166,7 @@ class DoctorsController extends Controller
 
        // $user ['subspecialty'] = json_encode($input['subspecialty']);
        return response()->json([
-            'url' => route('admin.index') 
+            'url' => route('doctors.index') 
        ]);
     }
 

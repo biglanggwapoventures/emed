@@ -3,15 +3,21 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('userroles') }}">User Roles List</a>
+                </li>
+                <li class="breadcrumb-item active">Edit User Role</li>
+            </ol>
+        </div>
         <h1>
-            User Roles Form
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-universal-access" style="font-size:135%!important"></span>
+                &nbsp;User Role Form
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Edit Custom User Role</a></li>
-
-        </ol>
     </section>
 
     <!-- Main content -->
@@ -60,7 +66,7 @@
                                             @endif
 
                                             @if($permission->allow_in_custom == 1 && $permission->target != session('user_type_name'))
-                                                <td><input type="checkbox" name="permissions[]" value="{{ $permission->id }}" style="font-size:97%!important">
+                                                <td><input type="checkbox" name="permissions[]" value="{{ $permission->id }}" style="font-size:97%!important" {{ EMedHelper::hasPermissionId($permission->id, $roleData->id) ? "checked='checked'" : "" }}>
                                                     &nbsp;{{ $permission->display_name }}
                                                 </td>
                                                 <?php $tdCount++; ?>
@@ -74,7 +80,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> 
 
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>

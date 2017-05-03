@@ -52,32 +52,45 @@ class PatientsController extends Controller
         $search =  $request->input('search');
        
 
-        if($user->user_type === "DOCTOR"){
+        if($user->user_type === "DOCTOR")
+        {
             $patients = Auth::user()->doctor->patients();
 
-        if(trim($search)){
-            $patients->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
-        }
+            if(trim($search))
+            {
+                $patients->whereHas('userInfo', function($q) USE($search)
+                {
+                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+                });
+            }
 
             return view('patients.list', [
                 'patients' => $patients->get()
             ]);
         }
 
-        else if($user->user_type === "SECRETARY"){
+        else if($user->user_type === "SECRETARY")
+        {
             $patients = Auth::user()->secretary->doctor->patients();
 
-        if(trim($search)){
-            $patients->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
-        }
+            if(trim($search))
+            {
+                $patients->whereHas('userInfo', function($q) USE($search)
+                {
+                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+                });
+            }
 
             return view('patients.list', [
                 'patients' => $patients->get()
             ]);
+        }
+        else if($user->user_type === 'ADMIN')
+        {
+            $items = Common::retrieveAllUsers('PATIENT');
+            return view('patients.list', [
+                    'patients' => $items
+                ]);
         }
     }
 

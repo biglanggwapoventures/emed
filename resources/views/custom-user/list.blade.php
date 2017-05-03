@@ -84,9 +84,15 @@
                                                 <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission($role->name, "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
                                                     <span class="glyphicon glyphicon-trash action-icon"></span>
                                                 </button>
-                                                <a href="{{ url('custom-role/edit', ['id' => $i->id]) }}" class="btn btn-info" {{ EMedHelper::hasTargetActionPermission($role->name, "EDIT") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
-                                                    <span class="glyphicon glyphicon-edit action-icon"></span>
-                                                </a>
+                                                @if(EMedHelper::hasTargetActionPermission($role->name, "EDIT"))
+                                                    <a href="{{ url('custom-role/edit', ['id' => $i->id]) }}" class="btn btn-info">
+                                                        <span class="glyphicon glyphicon-edit action-icon"></span>
+                                                    </a>
+                                                @else
+                                                    <a href="#" class="btn btn-info" disabled='disabled' style='opacity:0.50'>
+                                                        <span class="glyphicon glyphicon-edit action-icon"></span>
+                                                    </a>
+                                                @endif
                                                 <a name="viewInfo" data-id="{{ $i->id }}" href="#" class="btn btn-warning">
                                                     <span class="fa fa-info-circle"></span>
                                                 </a>

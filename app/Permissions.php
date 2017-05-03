@@ -57,6 +57,14 @@ class Permissions
                 ->first();
     }
 
+    public static function retrieveDataByRouteOnly($route)
+    {
+        return  DB::table('permissions')
+                ->where('route', $route)
+                // ->whereRaw(DB::raw("route = '" . $route . "' AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . session('user_type_id') . ")"))
+                ->first();
+    }
+
     public static function retriveByTargetAndAction($target, $action)
     {
         return  DB::table('permissions')
