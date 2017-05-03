@@ -1,5 +1,13 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
+<section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route('secretary.index') }}"><i class="fa fa-user"></i> Secretaries </a></li>
+            <li><a href="#">Edit Secretary</a></li>
+
+        </ol>
+    </section>
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">

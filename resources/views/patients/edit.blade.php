@@ -9,6 +9,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route('patients.show', ['id' => $data->id]) }}"><i class="fa fa-user"></i> {{ $data->userInfo->fullname() }}'s Profile</a></li>
             <li><a href="#">Edit Patient</a></li>
 
         </ol>
@@ -289,7 +290,8 @@
               <a href="#info" data-toggle="tab"><i class="fa fa-sitemap "></i>&nbsp  &nbspAccount Information </a>
 
             </div>
-            <center><button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> {!! Form::close() !!}</center>
+            <center><button type="submit" class="btn btn-primary"  style="margin-right: 10px;">Update</button> {!! Form::close() !!}
+            <a href="{{ route('patients.show', ['id' => $data->id]) }}" class="btn btn-success">Patient's Profile</a></center>
             
             <!-- /.box-body -->
           </div>
