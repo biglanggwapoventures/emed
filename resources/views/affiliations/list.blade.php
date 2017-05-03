@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                @if(EMedHelper::hasUrlPermission('affiliations.create'))
+                @if(EMedHelper::hasRoutePermission('affiliations.create'))
                     <table>
                         <thead>
                             <tr>

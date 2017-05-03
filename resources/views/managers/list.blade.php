@@ -8,7 +8,7 @@
             </div>
 
 
-            @if(EMedHelper::hasUrlPermission('managers.create'))
+            @if(EMedHelper::hasRoutePermission('managers.create'))
                 <a class="btn btn-primary pull-right" href="{{ route('managers.create')}}">Add new pharmacy manager</a>
             @endif
 

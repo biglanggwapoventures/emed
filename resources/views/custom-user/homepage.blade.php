@@ -11,16 +11,18 @@
     </div>
     @endif
     <!-- Content Header (Page header) -->
-   <section class="content-header">
+    <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Home</li>
+            </ol>
+        </div>
         <h1>
-           {{ session('user_type_name') }} Profile
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-drupal" style="font-size:135%!important"></span>
+                &nbsp;{{ session('custom_role') }} Profile
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/patient-home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="/patient-home"><i class="fa fa-user"></i> {{ $data->fullname }} </a></li>
-            
-        </ol>
     </section>
 
     <!-- Main content -->

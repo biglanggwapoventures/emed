@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                @if(EMedHelper::hasUrlPermission('pharmacy.create'))
+                @if(EMedHelper::hasRoutePermission('pharmacy.create'))
                    <table>
                        <thead>
                            <tr>

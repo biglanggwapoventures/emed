@@ -190,7 +190,11 @@
                                             <td>{{ $consultation->start }}</td>
                                             <td>{{ $consultation->end }}</td>
                                         </tr>
-                                        @empty @endforelse
+                                        @empty 
+                                        <tr>
+                                            <td colspan="7">No prescription records for this patient.</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

@@ -5,13 +5,13 @@
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Patients List</li>
+                    <li class="breadcrumb-item active">Doctors List</li>
                 </ol>
             </div>
             <h1>
                 <span style="font-size:80% !important;">
-                    <span class="fa fa-qq" style="font-size:135%!important"></span>
-                    &nbsp;List of Patients
+                    <span class="fa fa-ioxhost" style="font-size:135%!important"></span>
+                    &nbsp;List of Doctors
                 </span>
             </h1>
         </section>
@@ -19,10 +19,10 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    @if(EMedHelper::hasRoutePermission('patients.create'))
-                        <a href="{{ route('patients.create') }}" class="btn btn-info btn-md add-button">
+                    @if(EMedHelper::hasRoutePermission('doctors.create'))
+                        <a href="{{ route('doctors.create') }}" class="btn btn-info btn-md add-button">
                             <span class="fa fa-plus" style="margin-right:5px;font-size:110%"></span>
-                            Add Patient
+                            Add Doctor
                         </a>
                     @endif
                 </div>
@@ -42,54 +42,43 @@
                                     <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
                                 </tr>
                             </thead>
-                            <tbody id="userdata">
-                                @forelse($patients AS $patient)
-                                    <tr name="patient{{ $patient->id }}" data-user-info="{{ json_encode($patient->userInfo) }}">
+                            <tbody id="userdata" data-user-info="{{ json_encode($items) }}">
+                                @forelse($items AS $i)
+                                    <tr>
                                         <td class="align-pt">
-                                            {{ $patient->userInfo->lastname }}
+                                            {{ $i->userInfo->lastname }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $patient->userInfo->firstname }}
+                                            {{ $i->userInfo->firstname }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $patient->userInfo->sex }}
+                                            {{ $i->userInfo->sex }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $patient->userInfo->contact_number }}
+                                            {{ $i->userInfo->contact_number }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $patient->userInfo->email }}
+                                            {{ $i->userInfo->email }}
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('users.destroy', ['id' => $patient->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                            <form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} 
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PATIENT", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
+                                                <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("DOCTOR", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
                                                     <span class="glyphicon glyphicon-trash action-icon"></span>
                                                 </button>
-                                                <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info" {{ EMedHelper::hasTargetActionPermission("PATIENT", "EDIT") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
+                                                <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info" {{ EMedHelper::hasTargetActionPermission("DOCTOR", "EDIT") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
                                                     <span class="glyphicon glyphicon-edit action-icon"></span>
                                                 </a>
-                                                <a name="viewInfo" data-id="{{ $patient->id }}" href="#" class="btn btn-warning">
+                                                <a name="viewInfo" data-id="{{ $i->id }}" href="#" class="btn btn-warning">
                                                     <span class="fa fa-info-circle"></span>
                                                 </a>
-
-                                                @if(EMedHelper::hasTargetActionPermission("PATIENT", "PROFILE_BASIC"))
-                                                    <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-default" style="background-color:#999;color:#FFF;margin-left:15px">
-                                                        <span class="fa fa-bars action-icon"></span>
-                                                    </a>
-                                                @else(EMedHelper::hasTargetActionPermission("PATIENT", "PROFILE_FULL"))
-                                                    <a href="{{ route('patients.show', ['id' => $patient->id]) }}" class="btn btn-default" style="background-color:#999;color:#FFF;margin-left:15px">
-                                                        <span class="fa fa-bars action-icon"></span>
-                                                    </a>
-                                                @endif
-                                                
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">No patients found.</td>
+                                        <td colspan="6" class="text-center">ERROR: No doctors found. This is an critical.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -221,17 +210,26 @@
                 $("a[name=viewInfo]").click(function()
                 {
                     var userid = $(this).data('id');
-                    var userdata = $("tr[name=patient" + userid + "]").data('user-info');
+                    var userdata = $("#userdata").data('user-info');
                     var fname, lastname, sex, username, email, username, address, contactno, birthdate;
 
-                    fname = userdata.firstname;
-                    lastname = userdata.lastname;
-                    sex = userdata.sex;
-                    username = userdata.username;
-                    email = userdata.email;
-                    address = userdata.address;
-                    contactno = userdata.contact_number;
-                    birthdate = userdata.birthdate;
+                    $.each(userdata, function(i, item)
+                    {
+                        if(item.id === userid)
+                        {
+                            fname = item.user_info.firstname;
+                            lastname = item.user_info.lastname;
+                            sex = item.user_info.sex;
+                            username = item.user_info.username;
+                            email = item.user_info.email;
+                            address = item.user_info.address;
+                            contactno = item.user_info.contact_number;
+                            birthdate = item.user_info.birthdate;
+
+                            $.break;
+                        }
+                        
+                    });
 
                     $("#mdl_userName").text(lastname + ", " + fname);
                     $("#mdl_user_name").text(username);

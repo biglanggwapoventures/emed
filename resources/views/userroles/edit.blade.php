@@ -59,11 +59,12 @@
                                                 <tr>
                                             @endif
 
-                                            <td>
-                                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ EMedHelper::hasPermissionId($permission->id, $roleData->id) ? "checked='checked'" : "" }} >
-                                                {{ $permission->display_name }}
-                                            </td>
-                                            <?php $tdCount++; ?>
+                                            @if($permission->allow_in_custom == 1 && $permission->target != session('user_type_name'))
+                                                <td><input type="checkbox" name="permissions[]" value="{{ $permission->id }}" style="font-size:97%!important">
+                                                    &nbsp;{{ $permission->display_name }}
+                                                </td>
+                                                <?php $tdCount++; ?>
+                                            @endif
 
                                             @if($tdCount > 4)
                                                 </tr>
