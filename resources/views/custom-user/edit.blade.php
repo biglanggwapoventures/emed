@@ -17,6 +17,16 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+        @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
@@ -203,5 +213,12 @@
     }
 
 </style>
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
 
 @endsection

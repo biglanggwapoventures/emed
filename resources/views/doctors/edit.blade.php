@@ -34,6 +34,7 @@
                        <li><a href="#license" data-toggle="tab">License</a></li>
                      @endif
                      @endif
+                     <li><a href="#license" data-toggle="tab">License</a></li>
                     </ul>
                     <div class="tab-content">
                     <!--  -->
@@ -281,7 +282,7 @@
                             </div>
                         </div>
                       </div>
-                       @if(Auth::check()) @if(Auth::user()->user_type === 'ADMIN')
+                      @if(Auth::user()->user_type === 'ADMIN')
                       <div class="tab-pane" id="license">
                         <h4>Licenses</h4>
                         <hr class="third">
@@ -308,9 +309,32 @@
                             </div>
                         </div>
                         @endif
-                        @endif
 
-
+                        <div class="tab-pane" id="license">
+                        <h4>Licenses</h4>
+                        <hr class="third">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group {{ $errors->has('prc') ? 'has-error' : '' }}">
+                                    <label class="control-label">PRC License Number</label>
+                                    <span style="color: red">*</span> {!! Form::text('prc', $data->prc, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('prc'))
+                                    <span class="help-block">{{ $errors->first('prc') }}</span> @endif
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group {{ $errors->has('ptr') ? 'has-error' : '' }}">
+                                    <label class="control-label">PTR Number</label>
+                                    <span style="color: red">*</span> {!! Form::text('ptr', $data->ptr, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('ptr'))
+                                    <span class="help-block">{{ $errors->first('ptr') }}</span> @endif
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group {{ $errors->has('s2') ? 'has-error' : '' }}">
+                                    <label class="control-label">S2 Number</label> {!! Form::text('s2', $data->s2, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('s2'))
+                                    <span class="help-block">{{ $errors->first('s2') }}</span> @endif
+                                </div>
+                            </div>
+                        </div>
                       </div>
                       <!-- another -->
 
@@ -330,17 +354,18 @@
                     <div class="box-body box-profile">
 
                       <h3 class="profile-username text-center">Edit Profile</h3>
-                       <a href="#pic" data-toggle="tab"><i class="fa fa-stethoscope "></i>&nbsp&nbspProfile Picture </a>
+                       <a href="#pic" data-toggle="tab"><i class="fa fa-user "></i>&nbsp&nbspProfile Picture </a>
                        <br>
                       <a href="#activity" data-toggle="tab"><i class="fa fa-hospital-o "></i>&nbsp&nbspUser Profile</a>
                       <br>
-                      <a href="#settings" data-toggle="tab"><i class="fa fa-sitemap "></i>&nbsp&nbspProfessional stuff </a><br>
+                      <a href="#settings" data-toggle="tab"><i class="fa fa-stethoscope"></i>&nbsp&nbspProfessional stuff </a><br>
                      <a href="#info" data-toggle="tab"><i class="fa fa-stethoscope "></i>&nbsp&nbspAccount Settings </a>
                      <br>
-                      @if(Auth::check()) @if(Auth::user()->user_type === 'ADMIN')
-                       <li><a href="#license" data-toggle="tab"><i class="fa fa-sitemap ">&nbsp&nbspLicense</a></li>
+                       @if(Auth::user()->user_type === 'ADMIN')
+                   <a href="#license" data-toggle="tab"><i class="fa fa-sitemap"></i>License</a>
                      @endif
-                     @endif
+
+                     <a href="#license" data-toggle="tab"><i class="fa fa-users"></i>&nbsp&nbspLicense</a>
                     </div>
                     <center><button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> {!! Form::close() !!}</center>
                     
