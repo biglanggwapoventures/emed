@@ -32,6 +32,20 @@ class UserRoles
             Permissions::assignToRole($permission, $newRoleId);
         }
 
+        // If there edit/delete permissions for a certain target, the list permission
+        // of that certain target will be automatically granted
+        $editDeletePermissions = Permissions::getEditDeleteActionsOfRole($newRoleId);
+        foreach ($editDeletePermissions as $permission) 
+        {
+            $target = $permission->target;
+            $listPermission = Permissions::getListOfTarget($target, $newRoleId);
+            if(count($listPermission) === 0)
+            {
+                $oListPermission = Permission::retriveByTargetAndAction($target, 'LIST');
+                Permissions::assignToRole($oListPermission->id, $newRoleId);
+            }
+        }
+
         Log::info('Selected roles have now been mapped to new user role' . json_encode($permissions));
 
         $newPermission = [

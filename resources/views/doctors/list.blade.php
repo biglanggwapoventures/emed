@@ -68,7 +68,7 @@
                                                     <span class="glyphicon glyphicon-trash action-icon"></span>
                                                 </button>
                                                 @if(EMedHelper::hasTargetActionPermission("DOCTOR", "EDIT"))
-                                                    <a href="{{ route('doctors.edit', ['id' => $i->id]) }}" class="btn btn-info">
+                                                    <a href="{{ route('doctors.edit', ['id' => $i->userInfo->id]) }}" class="btn btn-info">
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
                                                     </a>
                                                 @else
@@ -143,7 +143,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Address</h5>
                             </div>
@@ -154,7 +154,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Contact No.</h5>
                             </div>
@@ -165,7 +165,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Birthdate</h5>
                             </div>

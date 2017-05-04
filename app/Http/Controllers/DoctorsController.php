@@ -54,7 +54,7 @@ class DoctorsController extends Controller
         else
         {
             // this is where only the data saved by this particular user will be shown
-            $items = [];
+            $items = Common::retrieveUsersOfCurrentUser('DOCTOR');
             return view('doctors.list', [
                 'items' => $items
             ]);
@@ -127,6 +127,9 @@ class DoctorsController extends Controller
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
         $input['user_type'] = 'DOCTOR';
+        $input['user_type_id'] = 2;
+        $input['added_by'] = session('user_id');
+        
         //save to DB (users)
         $user = User::create($input);
 
@@ -194,11 +197,17 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {   
+        $data = Doctor::whereUserId($id)->with(['userInfo', 'subspecializations', 'organizations', 'affiliations'])->first();
+        Log::info('EDIT: ' . json_encode($data));
+        $orgs = \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id');
+        $affiliations = \App\Affiliation::orderBy('name')->get()->pluck('name', 'id');
+        $affiliationBranches = \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id');
+
         return view('doctors.edit', [
-            'data' => Doctor::whereUserId($id)->with(['userInfo', 'subspecializations', 'organizations', 'affiliations'])->first(),
-            'orgs' => \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id'),
-            'affiliations' => \App\Affiliation::orderBy('name')->get()->pluck('name', 'id'),
-            'affiliationBranches' => \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id')
+            'data' => $data,
+            'orgs' => $orgs,
+            'affiliations' => $affiliations,
+            'affiliationBranches' => $affiliationBranches
         ]);
       }
 

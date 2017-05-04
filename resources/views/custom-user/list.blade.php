@@ -59,7 +59,7 @@
                                     <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
                                 </tr>
                             </thead>
-                            <tbody id="userdata" data-user-info="{{ json_encode($data) }}">
+                            <tbody>
                                 @forelse($data AS $i)
                                     <tr>
                                         <td class="align-pt">
@@ -93,7 +93,7 @@
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
                                                     </a>
                                                 @endif
-                                                <a name="viewInfo" data-id="{{ $i->id }}" href="#" class="btn btn-warning">
+                                                <a name="viewInfo" data-id="{{ $i->id }}" data-user-info="{{ json_encode($i) }}" href="#" class="btn btn-warning">
                                                     <span class="fa fa-info-circle"></span>
                                                 </a>
                                             </form>
@@ -160,7 +160,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Address</h5>
                             </div>
@@ -171,7 +171,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Contact No.</h5>
                             </div>
@@ -182,7 +182,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Birthdate</h5>
                             </div>
@@ -232,26 +232,17 @@
                 $("a[name=viewInfo]").click(function()
                 {
                     var userid = $(this).data('id');
-                    var userdata = $("#userdata").data('user-info');
+                    var userdata = $(this).data('user-info');
                     var fname, lastname, sex, username, email, username, address, contactno, birthdate;
-
-                    $.each(userdata, function(i, item)
-                    {
-                        if(item.id === userid)
-                        {
-                            fname = item.firstname;
-                            lastname = item.lastname;
-                            sex = item.sex;
-                            username = item.username;
-                            email = item.email;
-                            address = item.address;
-                            contactno = item.contact_number;
-                            birthdate = item.birthdate;
-
-                            $.break;
-                        }
-                        
-                    });
+                     
+                    fname = userdata.firstname;
+                    lastname = userdata.lastname;
+                    sex = userdata.sex;
+                    username = userdata.username;
+                    email = userdata.email;
+                    address = userdata.address;
+                    contactno = userdata.contact_number;
+                    birthdate = userdata.birthdate;
 
                     $("#mdl_userName").text(lastname + ", " + fname);
                     $("#mdl_user_name").text(username);

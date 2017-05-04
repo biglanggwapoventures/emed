@@ -27,6 +27,18 @@ class LoginController extends Controller
         return view('login');
     }
 
+    public function redirectDefaultPage()
+    {
+        if(Auth::check())
+        {
+            return redirect(session('homepage'));
+        }
+        else
+        {
+            return view('login');
+        }
+    }
+
     public function doLogin(Request $request)
     {
         $this->validate($request, [
@@ -63,7 +75,7 @@ class LoginController extends Controller
                 $roleData = UserRoles::getRole($roleId);
             }
 
-            Session::put('user_id', strtoupper($user->id));
+            Session::put('user_id', $user->id);
             Session::put('user_type', strtoupper($user->user_type));
             Session::put('user_type_id', $roleId);
             Session::put('user_type_name', $roleData->name);

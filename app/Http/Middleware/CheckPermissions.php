@@ -99,6 +99,15 @@ class CheckPermissions
             if(is_null($data))
             {
                 $permission = Permissions::retrieveDataByRouteOnly($currentRoute);
+                if(is_null($permission))
+                {
+                    $msg = 'ACCESS DENIED. User tries to access Route=' . $currentRoute . ' that does not exist .';
+
+                    Session::flash('503_msg', $msg);
+                    Log::error($msg);
+                    
+                    abort(503);
+                }
                 if($permission->action === 'LIST')
                 {
                     $data = EMedHelper::showListOfTarget($permission->target);

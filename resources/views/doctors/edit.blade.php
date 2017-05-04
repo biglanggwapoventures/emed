@@ -57,7 +57,8 @@
                                            <div class="col-md-9" style="margin-left: 3%; margin-top:2% ">
 
                                     
-                            <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" id="dp"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
+
+                            <img alt="User Pic" src="{{ '/storage/{$data->userInfo->avatar}' }}" style="width: 150px; height: 150px" class="img-circle img-responsive" id="dp"> {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
                             <!-- {{Form::file('avatar')}} -->
                             <input type="file" onchange="readURL(this)" class="upload" name="avatar" style="margin-top: 3%" />
                             <p>Image must not exceed 2048</p>

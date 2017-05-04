@@ -184,8 +184,7 @@
                     {
                         if(item.role_id === $roleId)
                         {
-                            console.log(item.display_name);
-                            $("#modalTable tr:last").after("<tr><td style='padding:5px'><span class='fa fa-check'><span>&nbsp;&nbsp;" + data[i].display_name + "</td></tr>");
+                            $("#modalTable tr:last").after("<tr><td style='padding:5px'><span class='fa fa-check'></span>&nbsp;&nbsp;<span>" + data[i].display_name + "</span></td></tr>");
                         }
                         
                     });

@@ -79,10 +79,17 @@ class Permissions
                 ->get();
     }
 
-    public static function getListOfTarget($target)
+    public static function getEditDeleteActionsOfRole($roleId = null)
     {
         return  DB::table('permissions')
-                ->whereRaw(DB::raw("target = '" . $target . "' AND action = 'LIST' AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . session('user_type_id') . ")"))
+                ->whereRaw(DB::raw("action IN ('EDIT', 'DELETE') AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . is_null($roleId) ? session('user_type_id') : $roleId . ")"))
+                ->get();
+    }
+
+    public static function getListOfTarget($target, $roleId = null)
+    {
+        return  DB::table('permissions')
+                ->whereRaw(DB::raw("target = '" . $target . "' AND action = 'LIST' AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . is_null($roleId) ? session('user_type_id') : $roleId. ")"))
                 ->first();
     }
 

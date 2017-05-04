@@ -39,6 +39,7 @@
                                     <th class="align-th">Gender</th>
                                     <th class="align-th">Contact No.</th>
                                     <th class="align-th">Email</th>
+                                    <th class="align-th">Status</th>
                                     <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
                                 </tr>
                             </thead>
@@ -59,6 +60,9 @@
                                         </td>
                                         <td class="align-pt">
                                             {{ $patient->userInfo->email }}
+                                        </td>
+                                        <td class="align-pt">
+                                            {{ EMedHelper::hasDoctorAttachment($patient->id) ? 'Attached' : 'Detached' }}
                                         </td>
                                         <td class="text-center">
                                             <form action="{{ route('users.destroy', ['id' => $patient->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
@@ -154,7 +158,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Address</h5>
                             </div>
@@ -165,7 +169,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Contact No.</h5>
                             </div>
@@ -176,7 +180,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Birthdate</h5>
                             </div>

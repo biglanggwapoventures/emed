@@ -12,7 +12,7 @@ use Validator;
 use Auth;
 
 use App\Common;
-use Log;
+use Log, EMedHelper;
 
 class PatientsController extends Controller
 {
@@ -47,7 +47,6 @@ class PatientsController extends Controller
     
     public function index(Request $request)
     {
-        
         $user = Auth::user();
         $search =  $request->input('search');
        
@@ -64,8 +63,13 @@ class PatientsController extends Controller
                 });
             }
 
+            $doctorId = Common::getDoctorId($user->id);
+            Log::info('DOCTOR_ID: ' . $doctorId);
+            $patients = Common::retrieveAttachedPatientsAndFloating($doctorId);
+
             return view('patients.list', [
-                'patients' => $patients->get()
+                // 'patients' => $patients->get()
+                'patients' => $patients
             ]);
         }
 
@@ -85,13 +89,39 @@ class PatientsController extends Controller
                 'patients' => $patients->get()
             ]);
         }
-        else if($user->user_type === 'ADMIN')
+        else
         {
-            $items = Common::retrieveAllUsers('PATIENT');
-            return view('patients.list', [
+            if(EMedHelper::hasTargetActionPermission('PATIENT', 'LIST'))
+            {
+                $items = Doctor::with('userInfo')->get();
+                return view('patients.list', [
                     'patients' => $items
                 ]);
-        }
+            }
+            else
+            {
+                // this is where only the data saved by this particular user will be shown
+                $items = Common::retrieveUsersOfCurrentUser('PATIENT');
+                return view('patients.list', [
+                    'patients' => $items
+                ]);
+            }
+        } 
+
+        //     if($user->user_type === 'ADMIN')
+        // {
+        //     $items = Common::retrieveAllUsers('PATIENT');
+        //     return view('patients.list', [
+        //             'patients' => $items
+        //         ]);
+        // }
+        // else
+        // {
+        //     $items = Common::retrieveUsersOfCurrentUser('PATIENT');
+        //     return view('patients.list', [
+        //             'patients' => $items
+        //         ]);
+        // }
     }
 
     /**
@@ -186,6 +216,8 @@ class PatientsController extends Controller
             $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
             // assign user type
             $input['user_type'] = 'PATIENT';
+            $input['user_type_id'] = 3;
+            $input['added_by'] = session('user_id');
             //save to DB (users)
             $user = User::create($input);
 
@@ -211,7 +243,7 @@ class PatientsController extends Controller
             // connect patient to doctor
             if(Auth::user()->user_type === 'DOCTOR')
                 $patient->doctors()->attach(Auth::user()->doctor->id);
-            else
+            elseif(Auth::user()->user_type === 'SECRETARY')
                 $patient->doctors()->attach(Auth::user()->secretary->doctor->id);            
 
             // save profile picture
@@ -222,15 +254,16 @@ class PatientsController extends Controller
             $user->save();
 
             // redirect
-            if(Auth::user()->user_type === "DOCTOR")
-            {
-                return redirect()->route('patients.index');
-            }
+            // if(Auth::user()->user_type === "DOCTOR")
+            // {
+            //     return redirect()->route('patients.index');
+            // }
 
-            else if(Auth::user()->user_type === "SECRETARY")
-            {
-                return redirect()->route('patients.index');
-            }
+            // else if(Auth::user()->user_type === "SECRETARY")
+            // {
+            //     return redirect()->route('patients.index');
+            // }
+            return redirect('patients');
         }
     }
 

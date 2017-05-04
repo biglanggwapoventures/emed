@@ -122,6 +122,8 @@ class SecretaryController extends Controller
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
         $input['user_type'] = 'SECRETARY';
+        $input['user_type_id'] = 4;
+        $input['added_by'] = session('user_id');
         //save to DB (users)
         $user = User::create($input);
 

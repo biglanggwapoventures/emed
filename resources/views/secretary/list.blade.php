@@ -137,7 +137,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Address</h5>
                             </div>
@@ -148,7 +148,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Contact No.</h5>
                             </div>
@@ -159,7 +159,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Birthdate</h5>
                             </div>

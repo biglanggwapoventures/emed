@@ -3,6 +3,7 @@
 
     use App\Permissions;
     use App\UserRoles;
+    use App\Common;
 
     use Log;
 
@@ -104,6 +105,12 @@
         public static function getDeletePermissionClauseForRole($roleName)
         {
             return "DELETE_CUSTOM_USER_" . strtoupper($roleName);
+        }
+
+        public static function hasDoctorAttachment($patientId)
+        {
+            $data = Common::getDoctorAttachments($patientId);
+            return count($data) > 0;
         }
     }
 ?>

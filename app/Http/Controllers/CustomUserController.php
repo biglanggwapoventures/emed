@@ -200,6 +200,7 @@ class CustomUserController extends Controller
         $userType = $roleData->name;
         $input['user_type_id'] = $id;
         $input['user_type'] = $userType;
+        $input['added_by'] = session('user_id');
         
         Log::info($input);
 

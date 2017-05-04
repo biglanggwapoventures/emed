@@ -10,7 +10,7 @@
             </div>
             <h1>
                 <span style="font-size:80% !important;">
-                    <span class="fa fa-address-book-o" style="font-size:135%!important"></span>
+                    <span class="fa fa-street-view" style="font-size:135%!important"></span>
                     &nbsp;List of Pharmacy Managers
                 </span>
             </h1>
@@ -144,7 +144,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Address</h5>
                             </div>
@@ -155,7 +155,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Contact No.</h5>
                             </div>
@@ -166,7 +166,7 @@
                             </div>
                         </div>
 
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-15px">
+                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
                            <div class="form-group">
                                 <h5 style="font-weight: bold">Birthdate</h5>
                             </div>
