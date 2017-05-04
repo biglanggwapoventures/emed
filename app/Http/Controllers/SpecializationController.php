@@ -53,11 +53,18 @@ class SpecializationController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), [
+        $rules = array(
             'name' => 'required|unique:specializations',
             'subs' => 'required|array',
-            'subs.*.name' => 'required',
-        ]);
+            'subs.*.name' => 'required|unique:subspecializations',
+        );
+
+        $messages = array(
+            'name.unique' => 'The specialization already exists.',
+            'subs.*.name.unique' => 'The subspecialization already exists.'
+        );
+        
+        $v = Validator::make($request->all(), $rules, $messages);
 
         if($v->fails()){
             return response()->json([
