@@ -273,7 +273,7 @@
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
                                             <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
-                                                <center><img alt="User Pic" src="{{ " storage/{$item->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                                                <center><img alt="User Pic" src="{{ " storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
                                                 <h3 class="page-title text-info sbold" style="margin-left:-7px;">
                                                     {{ $item->userInfo->fullname() }}
                                                 </h3>
@@ -377,13 +377,13 @@
                                                         <tr>
                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                              <label>Weight</label><br/>
-                                                                 <span> {{ $a->weight  }}</span>
+                                                                 <span> {{ $a->weight  }} kgs</span>
                                                             </div>
                                                             </td>
                                                              <td>
                                                             <div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                             <label>Height</label><br/>
-                                                            <span> {{ $a->height }}</span>
+                                                            <span> {{ $a->height }} ft.</span>
                                                             </div>
                                                             </td>
                                                             </tr>
@@ -394,17 +394,17 @@
                                                             </div></td>
                                                              <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                                 <label>Temperature</label><br/>
-                                                                <span>{{ $a->temperature }}</span>
+                                                                <span>{{ $a->temperature }} °C</span>
                                                             </div></td>
                                                         </tr>
                                                         <tr>
                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                                  <label>Respiratory Rate</label><br/>
-                                                                <span> {{ $a->resprate }}</span>
+                                                                <span> {{ $a->resprate }} cpm</span>
                                                                 </div></td>
                                                             <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                                   <label>Pulse Rate</label><br/>
-                                                                <span> {{ $a->pulserate }}</span>
+                                                                <span> {{ $a->pulserate }} bpm</span>
                                                                 </div>
                                                             </td>
                                                         </tr>

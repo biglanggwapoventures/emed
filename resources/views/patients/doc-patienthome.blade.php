@@ -185,7 +185,7 @@
                                     @forelse($patients->prescriptions AS $consultation)@if($consultation->end >= $today)
                                     
                                     <tr>
-                                        <td>{{ $consultation->doctor->userInfo->fullname() }}</td>
+                                        <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td>
                                         <td>{{ $consultation->genericname }}</td>
                                         <td>{{ $consultation->brand }}</td>
                                         <td>{{ $consultation->dosage }}</td>
@@ -196,9 +196,6 @@
                                     </tr>
                                         @endif
                                         @empty
-                                            <tr>
-                                                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                                            </tr>
                                          @endforelse
                                     </tbody>
                                 </table>
@@ -236,9 +233,9 @@
                                                     <tbody>
 
                                                     <?php $today = date('Y-m-d'); ?>
-                                                        @forelse($patients->prescriptions AS $consultation) @if($consultation->end > $today)
+                                                        @forelse($patients->prescriptions AS $consultation) 
                                                         <tr>
-                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->doctor->userInfo->fullname() }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}"> Dr.{{ $consultation->doctor->userInfo->fullname() }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->genericname }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->brand }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->dosage }}</td>
@@ -248,7 +245,7 @@
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->start }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->end }}</td>
                                                         </tr>
-                                                        @endif
+                                                      
                                                             @empty
                                                             <tr>
                                                               <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>  
@@ -303,7 +300,7 @@
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
                                             <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
-                                                <center><img alt="User Pic" src="{{ " storage/{$item->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                                                <center><img alt="User Pic" src="{{ " /storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
                                                 <h3 class="page-title text-info sbold" style="margin-left:-7px;">
                                                     {{ $item->userInfo->fullname() }}
                                                 </h3>
@@ -420,34 +417,34 @@
                                                    <td>
                                                     <div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Weight</label><br/>
-                                                        <span> {{ $a->weight  }}</span>
+                                                        <span> {{ $a->weight  }} kgs</span>
                                                     </div>
                                                     </td>
                                                     <td>
                                                     <div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Height</label><br/>
-                                                        <span> {{ $a->height }}</span>
+                                                        <span> {{ $a->height }} ft.</span>
                                                     </div>
                                                     </td>
                                                     </tr>
                                                     <tr>
                                                         <td> <div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Blood Pressure</label><br/>
-                                                        <span>{{ $a->bloodpressure }}</span>
+                                                        <span>{{ $a->bloodpressure }} mmHg</span>
                                                     </div></td>
                                                         <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Temperature</label><br/>
-                                                        <span>{{ $a->temperature }}</span>
+                                                        <span>{{ $a->temperature }} °C</span>
                                                     </div></td>
                                                     </tr>
                                                    <tr>
                                                        <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Respiratory Rate</label><br/>
-                                                        <span> {{ $a->resprate }}</span>
+                                                        <span> {{ $a->resprate }} cpm</span>
                                                     </div></td>
                                                        <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Pulse Rate</label><br/>
-                                                        <span> {{ $a->pulserate }}</span>
+                                                        <span> {{ $a->pulserate }} bpm</span>
                                                     </div></td>
                                                    </tr>
                                                     

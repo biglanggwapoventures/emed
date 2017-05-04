@@ -116,21 +116,21 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Prescriptions</h3>
 
-                    <?php
-                        $oPrescriptions = json_decode(json_encode($prescriptions), true);
-                        $prescription = $oPrescriptions[0];
+                   <?php
+                        // $oPrescriptions = json_decode(json_encode($prescriptions), true);
+                        // $prescription = $oPrescriptions[0];
 
-                        $end =  $prescription['end'];
-                        $end = '2017-04-25';
-                        if(strtotime($end) > strtotime(date('Y-M-d')))
-                        {
-                            echo 'greater';
-                        }
-                        else
-                        {
-                            echo 'lesser';
-                        }
-                    ?>
+                        // $end =  $prescription['end'];
+                        // $end = '2017-04-25';
+                        // if(strtotime($end) > strtotime(date('Y-M-d')))
+                        // {
+                        //     echo 'greater';
+                        // }
+                        // else
+                        // {
+                        //     echo 'lesser';
+                        // }
+                    ?> 
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
