@@ -41,7 +41,7 @@
                            
                            <img id="photo" src="{{ "/storage/avatars/default.jpg " }}" alt="photo avatar"  style="width: 150px; height: 150px;" class="img-circle img-responsive" >
                            <input type="file" onchange="readURL(this)" class="upload" name="avatar" accept="photo" />
-                           <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
+                           <button type="button" class="btn btn-warning btn-default-sm" style ="margin-top: 5px;" data-toggle="modal" data-target="#history">
                            <span class="glyphicon glyphicon-camera"></span>  Capture From Camera
                                                 </button>
 

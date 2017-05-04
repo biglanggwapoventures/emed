@@ -17,7 +17,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
                   <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                       <li class="active"><a href="#pic" data-toggle="tab">Profile Picture</a></li>
@@ -316,38 +316,12 @@
            </div>             
          <!-- 12 -->
           <!--/.col (right) -->
-                  <div class="col-md-3 ">
-
-                  <!-- Profile Image -->
-                  <div class="box box-primary pull-right" style="height: 200px" >
-                    <div class="box-body box-profile">
-
-                      <h3 class="profile-username text-center">Edit Profile</h3>
-                       <a href="#pic" data-toggle="tab"><i class="fa fa-user "></i>&nbsp&nbspProfile Picture </a>
-                       <br>
-                      <a href="#activity" data-toggle="tab"><i class="fa fa-hospital-o "></i>&nbsp&nbspUser Profile</a>
-                      <br>
-                      <a href="#settings" data-toggle="tab"><i class="fa fa-stethoscope"></i>&nbsp&nbspProfessional stuff </a><br>
-                     <a href="#info" data-toggle="tab"><i class="fa fa-stethoscope "></i>&nbsp&nbspAccount Settings </a>
-                     <br>
-                       @if(Auth::user()->user_type === 'ADMIN')
-                   <a href="#license" data-toggle="tab"><i class="fa fa-sitemap"></i>License</a>
-                     @endif
-
-                     <a href="#license" data-toggle="tab"><i class="fa fa-users"></i>&nbsp&nbspLicense</a>
-                    </div>
-                    <center><button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> {!! Form::close() !!}</center>
-                    
-                    <!-- /.box-body -->
-                 
-        <!-- row12 -->
-         </div>
-
-          </div>
       </div>  
+       <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> {!! Form::close() !!}
         <!-- /.row -->
     </section>
     <!-- /.content -->
+   
 </div>
 
 <style type="text/css">

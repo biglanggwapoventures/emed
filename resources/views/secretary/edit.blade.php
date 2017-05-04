@@ -2,7 +2,7 @@
 <div class="content-wrapper">
 <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ url('doctor-home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('secretary.index') }}"><i class="fa fa-user"></i> Secretaries </a></li>
             <li><a href="#">Edit Secretary</a></li>
 
