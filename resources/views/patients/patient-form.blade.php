@@ -32,10 +32,53 @@
                                 <li>{{ $errors->first('avatar') }}</li>
                             </ul>
                         </div>
-                        @endif {!! Form::open(['url' => route ('patients.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        @endif 
+                       <!-- test -->
 
-                        <img alt="User Pic" src="{{ "/storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
-                        <input type="file" onchange="readURL(this)" class="upload" name="avatar" />
+                        {!! Form::open(['url' => route ('patients.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+
+                      <!--  <div class="booth" style="width: 150px; background-color: #ccc; border: 10px solid #ddd; margin: 0 auto;"> -->
+                           
+                           <img id="photo" src="{{ "/storage/avatars/default.jpg " }}" alt="photo avatar"  style="width: 150px; height: 150px;" class="img-circle img-responsive" >
+                           <input type="file" onchange="readURL(this)" class="upload" name="avatar" accept="photo" />
+                           <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
+                           <span class="glyphicon glyphicon-camera"></span>  Capture From Camera
+                                                </button>
+
+                      <!--  </div> -->
+
+                        <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
+                                            <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                                                
+                                                <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                                                    Capture Image  
+                                                </h3>
+
+                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
+
+                                                <div class="row">
+                                                <div class="box-body table-responsive no-padding">
+                                                       <video id="video" width="150" height="150"></video>
+                                                       <a href="#" id="capture" class="btn btn-primary"> take photo</a>
+                                                       <canvas id="canvas" width="150" height="150"></canvas>
+                                                       <img id="photo" src="{{ "/storage/avatars/default.jpg " }}" alt="photo avatar"  style="width: 150px; height: 150px;" class="img-circle img-responsive" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12">
+                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                            Close 
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                         </div>
+                       <!-- test -->
 
                         <h4>Personal Information</h4>
                         <hr class="third">
@@ -194,7 +237,10 @@
     .inside {
         padding: 12px;
     }
-
+    
+    #canvas {
+        display: none;
+    }
 </style>
 
 <script type="text/javascript">
@@ -203,7 +249,7 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#dp').attr('src', e.target.result);
+                    $('#photo').attr('src', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
