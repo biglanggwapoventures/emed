@@ -53,12 +53,21 @@ class PharmacyController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), [
+        $rules = array(
             'name' => 'required|unique:pharmacies',
             'branch' => 'required|array',
             'branch.*.name' => 'required',
             'branch.*.address' => 'required',
-        ]);
+        );
+
+        $messages = array(
+            'name.required' => 'Please enter pharmacy name.',
+            'name.unique' => 'The pharmacy already exists.',
+            'branch.*.name.required' => 'Please enter branch name.',
+            'branch.*.address.required' => 'Please enter branch address.'
+        );
+
+        $v = Validator::make($request->all(), $rules, $messages);
 
         if($v->fails()){
             return response()->json([
