@@ -1,3 +1,5 @@
+
+    <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}">
 <nav class="navbar navbar-default" style="background-color: #3c8dbc;">
     <div onclick="location.href='/'" class="logo"> </div>
     <div class="container-fluid">
