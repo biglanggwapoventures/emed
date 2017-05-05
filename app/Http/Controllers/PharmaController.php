@@ -7,7 +7,10 @@ use App\Pharma;
 use App\PharmacyManager;
 use App\Http\Requests\PharmaRequest;
 use App\User;
+use App\Common;
 use Auth;
+
+use Log;
 
 class PharmaController extends Controller
 {
@@ -28,18 +31,29 @@ class PharmaController extends Controller
      */
     public function index(Request $request)
     {
-        $search =  $request->input('search');
-        $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
-
-        if(trim($search)){
-            $items->whereHas('userInfo', function($q) USE($search){
-                $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            });
+        if(Auth::user()->user_type === 'ADMIN')
+        {
+            $items = Common::retrieveAllPharmas();
+            return view('pharmacists.list', [
+                    'items' => $items
+                ]);
         }
+        else
+        {
+            $search =  $request->input('search');
+            $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
 
-        return view('pharmacists.list', [
-            'items' => $items->get()
-        ]);
+            if(trim($search)){
+                $items->whereHas('userInfo', function($q) USE($search){
+                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+                });
+            }
+
+            return view('pharmacists.list', [
+                'items' => $items->get()
+            ]);
+        }
+            
     }
 
     public function showHomepage()
@@ -102,6 +116,8 @@ class PharmaController extends Controller
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
         $input['user_type'] = 'PHARMA';
+        $input['user_type_id'] = 6;
+        $input['added_by'] = session('user_id');
         //save to DB (users)
         $user = User::create($input);
 

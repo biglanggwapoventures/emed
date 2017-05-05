@@ -27,6 +27,18 @@ class LoginController extends Controller
         return view('login');
     }
 
+    public function redirectDefaultPage()
+    {
+        if(Auth::check())
+        {
+            return redirect(session('homepage'));
+        }
+        else
+        {
+            return view('login');
+        }
+    }
+
     public function doLogin(Request $request)
     {
         $this->validate($request, [
@@ -63,38 +75,52 @@ class LoginController extends Controller
                 $roleData = UserRoles::getRole($roleId);
             }
 
+            Session::put('user_id', $user->id);
             Session::put('user_type', strtoupper($user->user_type));
             Session::put('user_type_id', $roleId);
             Session::put('user_type_name', $roleData->name);
+            Session::put('user_type_disp_name', $roleData->display_name);
 
             Log::info(Session::all());
 
             if($user->user_type === 'ADMIN')
             {
-                return redirect('admin');
+                $path = 'userroles';
+                // return redirect('userroles');
             }
             else if($user->user_type === 'DOCTOR')
             {
-                return redirect('doctor-home'); //test
-
-            }else if($user->user_type === 'PMANAGER'){
-
-                return redirect('pmanager-home'); //test
-
-            }else if($user->user_type === 'PATIENT'){
-
-                return redirect('patient-home'); //test
-
-            }else if($user->user_type === 'SECRETARY'){
-
-                return redirect('secretary-home'); //test
-
-            }else if($user->user_type === 'PHARMA'){
-
-                return redirect('pharmacists-home');
-            }else {
-                return redirect('home/' . $roleId);
+                $path = 'doctor-home';
+                // return redirect('doctor-home');
             }
+            else if($user->user_type === 'PMANAGER')
+            {
+                $path = 'pmanager-home'; 
+                // return redirect('pmanager-home'); 
+            }
+            else if($user->user_type === 'PATIENT')
+            {
+                $path = 'patient-home'; 
+                // return redirect('patient-home'); 
+            }
+            else if($user->user_type === 'SECRETARY')
+            {
+                $path = 'secretary-home'; 
+                // return redirect('secretary-home'); 
+            }
+            else if($user->user_type === 'PHARMA')
+            {
+                $path = 'pharmacists-home';
+                // return redirect('pharmacists-home');
+            }
+            else 
+            {
+                $path = 'home/' . $roleId;
+                // return redirect('home/' . $roleId);
+            }
+
+            Session::put('homepage', $path);
+            return redirect($path);
         }
  
 

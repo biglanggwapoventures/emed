@@ -99,7 +99,7 @@
                                                     ?>
                                                     <tr>
                                                         <td>{{ $aff->name }}</td>
-                                                        <td>{{ $aff->pivot->affiliation_branch_id }}</td>
+                                                        <td>{{ EMedHelper::retrieveAffiliationBranch($aff->pivot->affiliation_branch_id)->name }}</td>
                                                         <td>{{ $start_time }} - {{ $end_time }}</td>
                                                     </tr>
                                                 @empty

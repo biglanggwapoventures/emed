@@ -10,6 +10,9 @@ use App\User;
 use App\Doctor;
 use Auth;
 
+use Log;
+use App\Common;
+
 class SecretaryController extends Controller
 {
     /**
@@ -51,22 +54,33 @@ class SecretaryController extends Controller
         //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
         //     });
         // }
-
-        if(Auth::user()->user_type === "DOCTOR")
+        if(Auth::user()->user_type === "ADMIN")
         {
-            $items = Auth::user()->doctor->secretaries();
+            $items = Common::retrieveAllUsers('SECRETARY');
             return view('secretary.list', [
-                'items' => $items->get()
-            ]);
+                    'items' => $items
+                ]);
+        }
+        else
+        {
+            if(Auth::user()->user_type === "DOCTOR")
+            {
+                $items = Auth::user()->doctor->secretaries();
+                return view('secretary.list', [
+                    'items' => $items->get()
+                ]);
+            }
+
+            else if(Auth::user()->user_type === "SECRETARY")
+            {
+                $patients = Auth::user()->secretary->doctor->patients();
+                return view('patients.list', [
+                    'patients' => $patients->get()
+                ]);
+            }
         }
 
-        else if(Auth::user()->user_type === "SECRETARY")
-        {
-            $patients = Auth::user()->secretary->doctor->patients();
-            return view('patients.list', [
-                'patients' => $patients->get()
-            ]);
-        }
+            
     }
 
     
@@ -108,6 +122,8 @@ class SecretaryController extends Controller
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
         $input['user_type'] = 'SECRETARY';
+        $input['user_type_id'] = 4;
+        $input['added_by'] = session('user_id');
         //save to DB (users)
         $user = User::create($input);
 

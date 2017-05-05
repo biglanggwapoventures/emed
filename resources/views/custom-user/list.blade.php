@@ -4,14 +4,18 @@
         <section class="content-header">
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Pharmacy Manager List</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url(session('homepage') . '') }}">
+                            Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">{{ $role->display_name }} List</li>
                 </ol>
             </div>
             <h1>
                 <span style="font-size:80% !important;">
-                    <span class="fa fa-street-view" style="font-size:135%!important"></span>
-                    &nbsp;List of Pharmacy Managers
+                    <span class="fa fa-drupal" style="font-size:135%!important"></span>
+                    &nbsp;List of {{ $role->display_name }}
                 </span>
             </h1>
         </section>
@@ -19,10 +23,23 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    @if(EMedHelper::hasRoutePermission('managers.create'))
-                        <a href="{{ route('managers.create') }}" class="btn btn-info btn-md add-button">
+                    @if(EMedHelper::hasTargetActionPermission($role->name, 'ADD'))
+                        <?php
+                            $customButtonWidth = 140;
+                            $addtlWidth = 0;
+
+                            $dispNameLen = strlen($role->display_name);
+                            if($dispNameLen > 7)
+                            {
+                                $addtlWidth = ($dispNameLen - 7) * 6;
+                            }
+
+                            $customButtonWidth += $addtlWidth;
+
+                        ?>
+                        <a href="{{ url('custom-role/create', $role->id) }}" class="btn btn-info btn-md add-button" style="width:{{ $customButtonWidth }}px !important;">
                             <span class="fa fa-plus" style="margin-right:5px;font-size:110%"></span>
-                            Add Pharmacy Manager
+                            Add {{ $role->display_name }}
                         </a>
                     @endif
                 </div>
@@ -42,34 +59,33 @@
                                     <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
                                 </tr>
                             </thead>
-                            <tbody id="userdata">
-                                @forelse($items AS $manager)
-                                    <tr name="manager{{ $manager->id }}" data-user-info="{{ json_encode($manager->userInfo) }}">
+                            <tbody>
+                                @forelse($data AS $i)
+                                    <tr>
                                         <td class="align-pt">
-                                            {{ $manager->userInfo->lastname }}
+                                            {{ $i->lastname }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $manager->userInfo->firstname }}
+                                            {{ $i->firstname }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $manager->userInfo->sex }}
+                                            {{ $i->sex }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $manager->userInfo->contact_number }}
+                                            {{ $i->contact_number }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $manager->userInfo->email }}
+                                            {{ $i->email }}
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('users.destroy', ['id' => $manager->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                            <form action="{{ route('users.destroy', ['id' => $i->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} 
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PMANAGER", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
+                                                <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission($role->name, "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
                                                     <span class="glyphicon glyphicon-trash action-icon"></span>
                                                 </button>
-
-                                                @if(EMedHelper::hasTargetActionPermission("PMANAGER", "EDIT"))
-                                                    <a href="{{ route('managers.edit', ['id' => $manager->id]) }}" class="btn btn-info">
+                                                @if(EMedHelper::hasTargetActionPermission($role->name, "EDIT"))
+                                                    <a href="{{ url('custom-role/edit', ['id' => $i->id]) }}" class="btn btn-info">
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
                                                     </a>
                                                 @else
@@ -77,7 +93,7 @@
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
                                                     </a>
                                                 @endif
-                                                <a name="viewInfo" data-id="{{ $manager->id }}" href="#" class="btn btn-warning">
+                                                <a name="viewInfo" data-id="{{ $i->id }}" data-user-info="{{ json_encode($i) }}" href="#" class="btn btn-warning">
                                                     <span class="fa fa-info-circle"></span>
                                                 </a>
                                             </form>
@@ -85,7 +101,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">No secretaries found.</td>
+                                        <td colspan="6" class="text-center">ERROR: No {{ $role->display_name }} found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -202,7 +218,6 @@
             padding-top:15px !important;
         }
         .add-button {
-            width:210px !important;
             height:40px !important;
             padding-top:10px !important
         }
@@ -217,9 +232,9 @@
                 $("a[name=viewInfo]").click(function()
                 {
                     var userid = $(this).data('id');
-                    var userdata = $("tr[name=manager" + userid + "]").data('user-info');
+                    var userdata = $(this).data('user-info');
                     var fname, lastname, sex, username, email, username, address, contactno, birthdate;
-
+                     
                     fname = userdata.firstname;
                     lastname = userdata.lastname;
                     sex = userdata.sex;

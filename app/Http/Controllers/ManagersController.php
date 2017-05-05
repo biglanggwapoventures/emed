@@ -21,7 +21,7 @@ class ManagersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'show', 'transaction']]);
     }
     
     /**
@@ -43,6 +43,8 @@ class ManagersController extends Controller
         ]);
     }
 
+    
+
     public function showHomepage()
     {
 
@@ -50,6 +52,7 @@ class ManagersController extends Controller
         // dd($items);
         return view('managers.pmanager-home', [
             'items' => $items
+
         ]);
     }
 
@@ -93,9 +96,6 @@ class ManagersController extends Controller
      */
     public function store(ManagerRequest $request)
     {
-        Log::info('nisud ko diri sure ko');
-        Log::info($request);
-
         // get fields for user table
        $input = $request->only([
             'username', 
@@ -109,8 +109,6 @@ class ManagersController extends Controller
             'address'
         ]);
 
-       Log::info($input);
-
         // verify if username exists
         $credentials = $request->only(['username']);
 
@@ -118,6 +116,9 @@ class ManagersController extends Controller
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type
         $input['user_type'] = 'PMANAGER';
+        $input['user_type_id'] = 5;
+        $input['added_by'] = session('user_id'); 
+
         //save to DB (users)
         $user = User::create($input);
 
@@ -139,7 +140,7 @@ class ManagersController extends Controller
 
         // $doctor->affiliations()->sync($affiliations);
 
-       return redirect()->route('admin.index');
+       return redirect()->route('managers.index');
     }
 
     /**

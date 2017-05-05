@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                @if(EMedHelper::hasUrlPermission('specialization.create'))
+                @if(EMedHelper::hasRoutePermission('specialization.create'))
                     <table>
                         <thead>
                             <tr>

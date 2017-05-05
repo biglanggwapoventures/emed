@@ -5,6 +5,7 @@ namespace App;
 use App\Permissions;
 
 use DB;
+use Log;
 
 class UserRoles
 {
@@ -19,7 +20,9 @@ class UserRoles
             "updated_at"    => date("Y-m-d H:i:s")
         ];
 
+        Log::info('Attempting to add new role data: ' . json_encode($roleData));
         DB::table('roles')->insert($roleData);
+        Log::info('Successfully added new role data.');
 
         $permissions = $data['permissions'];
         $newRoleId = self::getLastUserRoleId();
@@ -29,50 +32,74 @@ class UserRoles
             Permissions::assignToRole($permission, $newRoleId);
         }
 
-        $newPermission = 
-        [
-            "name"          => "CUSTOM_" . strtoupper($data['name']) . "_LIST",
-            "display_name"  => "List of " . $data['namedisplay'],
-            "description"   => "List of " . $data['namedisplay'],
-            "is_view"       => 1,
-            "is_modal"      => 0,
-            "route"         => "role.list", //this should be generic, something like role.index or something
-            "created_at"    => date("Y-m-d H:i:s"),
-            "updated_at"    => date("Y-m-d H:i:s")
+        // If there edit/delete permissions for a certain target, the list permission
+        // of that certain target will be automatically granted
+        $editDeletePermissions = Permissions::getEditDeleteActionsOfRole($newRoleId);
+        foreach ($editDeletePermissions as $permission) 
+        {
+            $target = $permission->target;
+            $listPermission = Permissions::getListOfTarget($target, $newRoleId);
+            if(count($listPermission) === 0)
+            {
+                $oListPermission = Permission::retriveByTargetAndAction($target, 'LIST');
+                Permissions::assignToRole($oListPermission->id, $newRoleId);
+            }
+        }
+
+        Log::info('Selected roles have now been mapped to new user role' . json_encode($permissions));
+
+        $newPermission = [
+            "name"              => "CUSTOM_" . strtoupper($data['name']) . "_LIST",
+            "display_name"      => "List of All " . $data['namedisplay'],
+            "description"       => "List of All " . $data['namedisplay'],
+            "type"              => "page",
+            "target"            => strtoupper($data['name']),
+            "action"            => "LIST",
+            "route"             => "",
+            "url"               => "custom-role",
+            "allow_in_custom"   => 1,
+            "created_at"        => date("Y-m-d H:i:s"),
+            "updated_at"        => date("Y-m-d H:i:s")
         ];
 
         DB::table('permissions')->insert($newPermission);
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
+        Log::info('Custom user role list for ' . $data['namedisplay'] . ' permission has now been created and assigned to admin user.');
 
-        $newPermission = 
-        [
-            "name"          => "ADD_CUSTOM_USER_" . strtoupper($data['name']),
-            "display_name"  => "Add " . $data['namedisplay'],
-            "description"   => "Add " . $data['namedisplay'],
-            "is_view"       => 1,
-            "is_modal"      => 0,
-            "route"         => "role.create", //this should be generic, something like role.create or something
-            "created_at"    => date("Y-m-d H:i:s"),
-            "updated_at"    => date("Y-m-d H:i:s")
+        $newPermission = [
+            "name"              => "ADD_USER_CUSTOM_" . strtoupper($data['name']),
+            "display_name"      => "Add User " . $data['namedisplay'],
+            "description"       => "Add User " . $data['namedisplay'],
+            "type"              => "page",
+            "target"            => strtoupper($data['name']),
+            "action"            => "ADD",
+            "route"             => "",
+            "url"               => "custom-role/create",
+            "allow_in_custom"   => 1,
+            "created_at"        => date("Y-m-d H:i:s"),
+            "updated_at"        => date("Y-m-d H:i:s")
         ];
 
         DB::table('permissions')->insert($newPermission);
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
+        Log::info('Custom add user role for ' . $data['namedisplay'] . ' permission has now been created and assigned to admin user.');
 
-        $newPermission = 
-        [
-            "name"          => "EDIT_CUSTOM_USER_" . strtoupper($data['name']),
-            "display_name"  => "Edit " . $data['namedisplay'],
-            "description"   => "Edit " . $data['namedisplay'],
-            "is_view"       => 1,
-            "is_modal"      => 0,
-            "route"         => "role.edit", //this should be generic, something like role.edit or something
-            "created_at"    => date("Y-m-d H:i:s"),
-            "updated_at"    => date("Y-m-d H:i:s")
+        $newPermission = [
+            "name"              => "EDIT_USER_CUSTOM_" . strtoupper($data['name']),
+            "display_name"      => "Edit User " . $data['namedisplay'],
+            "description"       => "Edit User " . $data['namedisplay'],
+            "type"              => "page",
+            "target"            => strtoupper($data['name']),
+            "action"            => "EDIT",
+            "route"             => "",
+            "url"               => "custom-role/edit",
+            "allow_in_custom"   => 1,
+            "created_at"        => date("Y-m-d H:i:s"),
+            "updated_at"        => date("Y-m-d H:i:s")
         ];
 
         DB::table('permissions')->insert($newPermission);
@@ -80,40 +107,27 @@ class UserRoles
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
         Permissions::assignToRole($newPermissionId, $newRoleId);
+        Log::info('Custom edit user role for ' . $data['namedisplay'] . ' permission has now been created and assigned to new user role and admin user.');
 
-        $newPermission = 
-        [
-            "name"          => "VIEW_CUSTOM_USER_" . strtoupper($data['name']),
-            "display_name"  => "View " . $data['namedisplay'],
-            "description"   => "View " . $data['namedisplay'],
-            "is_view"       => 0,
-            "is_modal"      => 1,
-            "route"         => "modal", //this should be generic, something like role.show or something
-            "created_at"    => date("Y-m-d H:i:s"),
-            "updated_at"    => date("Y-m-d H:i:s")
+        $newPermission = [
+            "name"              => "DELETE_USER_CUSTOM_" . strtoupper($data['name']),
+            "display_name"      => "Delete User " . $data['namedisplay'],
+            "description"       => "Delete User " . $data['namedisplay'],
+            "type"              => "modal",
+            "target"            => strtoupper($data['name']),
+            "action"            => "DELETE",
+            "route"             => "users.destroy",
+            "url"               => "",
+            "allow_in_custom"   => 1,
+            "created_at"        => date("Y-m-d H:i:s"),
+            "updated_at"        => date("Y-m-d H:i:s")
         ];
 
         DB::table('permissions')->insert($newPermission);
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
-
-        $newPermission = 
-        [
-            "name"          => "DELETE_CUSTOM_USER_" . strtoupper($data['name']),
-            "display_name"  => "Delete " . $data['namedisplay'],
-            "description"   => "Delete " . $data['namedisplay'],
-            "is_view"       => 1,
-            "is_modal"      => 0,
-            "route"         => "role.destroy", //this should be generic, something like role.destroy or something
-            "created_at"    => date("Y-m-d H:i:s"),
-            "updated_at"    => date("Y-m-d H:i:s")
-        ];
-
-        DB::table('permissions')->insert($newPermission);
-
-        $newPermissionId = Permissions::getLastPermissionId();
-        Permissions::assignToRole($newPermissionId, 1);
+        Log::info('Custom delete user role for ' . $data['namedisplay'] . ' permission has now been created and assigned to admin user.');
     }
 
     public static function getLastUserRoleId()
@@ -134,6 +148,11 @@ class UserRoles
     public static function getRoleByName($name)
     {
         return DB::table('roles')->where('name', $name)->first();
+    }
+
+    public static function getCustomRoles()
+    {
+        return DB::table('roles')->where('id', '>', 6)->get();
     }
 
     public static function destroy($id)

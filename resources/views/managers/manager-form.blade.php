@@ -88,14 +88,6 @@
                         </div>
 
 
-<!-- 
-                            <div class="col-md-4">
-                                {!! Form::bsText('drugstore', 'Drugstore') !!}
-                            </div>
-
-                            <div class="col-md-4">
-                                {!! Form::bsText('drugstore_branch', 'Address') !!}
-                            </div> -->
 
                                <h4>Pharmacy</h4>
                         <hr class="third">

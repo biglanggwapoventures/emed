@@ -12,9 +12,10 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'LoginController@redirectDefaultPage');
 
 
 //show login page
@@ -39,7 +40,7 @@ Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
 // Route::get('/ChangePass', 'OtherController@ChangePass');
 
-Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
+// Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
 Route::get('/doctorlist', 'ListController@doctorList');
 Route::get('/managerList', 'ListController@pmanagerList');
 Route::get('/secretaryList', 'ListController@secretaryList');
@@ -49,7 +50,7 @@ Route::get('/pharmacistList', 'ListController@pharmaList');
 Route::post('/login', 'LoginController@doLogin');
 
 Route::resource('doctors', 'DoctorsController');
-Route::resource('admin', 'AdminController');
+// Route::resource('admin', 'AdminController');
 Route::resource('users', 'UsersController');
 Route::resource('managers', 'ManagersController');
 Route::resource('patients', 'PatientsController');
@@ -79,6 +80,7 @@ Route::post('/scan', 'RFIDController@scan');
 Route::post('/detach-patient/{patientId}', 'PatientActionController@detachPatient');
 Route::post('/attach-patient/{patientId}', 'PatientActionController@attachPatient');
 
+Route::get('custom-role/{roleId}', 'CustomUserController@index');
 Route::get('custom-role/create/{roleId}', 'CustomUserController@create');
 Route::get('custom-role/edit/{userId}', 'CustomUserController@edit');
 Route::get('home/{roleId}', 'CustomUserController@showHomepage');
