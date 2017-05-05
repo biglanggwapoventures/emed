@@ -235,6 +235,7 @@ class DoctorsController extends Controller
             'training' => $request->training,
             'training_year' => $request->training_year,
         ];
+        
         if(Auth::user()->isAdmin()){
             $data += [
                 'prc' => $request->prc,

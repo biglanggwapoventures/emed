@@ -81,8 +81,8 @@
                                         <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender:</b> <br>{{ $items->userInfo->sex }}</td>
                                     </tr>
                                     <tr>
-                                        <td><span class="glyphicon glyphicon-phone"></span> <b>Drugstore:</b> <br> {{ $items->drugstore}}</td>
-                                        <td><i class="fa fa-user-md" aria-hidden="true"></i></span> <b>Drugstore:</b> <br> {{ $items->drugstore_branch }}</td>
+                                        <td><span class="glyphicon glyphicon-phone"></span> <b>Drugstore:</b> <br> {{ EMedHelper::retrievePharmacy($items->drugstore)->name }}</td>
+                                        <td><i class="fa fa-user-md" aria-hidden="true"></i></span> <b>Drugstore:</b> <br> {{ EMedHelper::retrievePharmacyBranch($items->drugstore_branch)->name }}</td>
                                     </tr>
 
 

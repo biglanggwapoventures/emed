@@ -207,4 +207,24 @@ class Common
     {
         return DB::table('doctors')->select('id')->where('user_id', $doctorUserId)->first()->id;
     }
+
+    public static function getAffiliation($affiliationId)
+    {
+        return DB::table('affiliations')->where('id', $affiliationId)->first();
+    }
+
+    public static function getAffiliationBranch($branchId)
+    {
+        return DB::table('affiliation_branches')->where('id', $branchId)->first();
+    }
+
+    public static function getPharmacy($pharmacyId)
+    {
+        return DB::table('pharmacies')->where('id', $pharmacyId)->first();
+    }
+
+    public static function getPharmacyBranch($branchId)
+    {
+        return DB::table('pharmacy_branches')->where('id', $branchId)->first();
+    }
 }

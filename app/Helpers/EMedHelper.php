@@ -112,5 +112,25 @@
             $data = Common::getDoctorAttachments($patientId);
             return count($data) > 0;
         }
+
+        public static function retrieveAffiliation($affiliationId)
+        {
+            return Common::getAffiliation($affiliationId);
+        }
+
+        public static function retrieveAffiliationBranch($branchId)
+        {
+            return Common::getAffiliationBranch($branchId);
+        }
+
+        public static function retrievePharmacy($pharmacyId)
+        {
+            return Common::getPharmacy($pharmacyId);
+        }
+
+        public static function retrievePharmacyBranch($branchId)
+        {
+            return Common::getPharmacyBranch($branchId);
+        }
     }
 ?>

@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 use App\User;
 use Illuminate\Contracts\Validation\Validator;
 
+use Log;
+
 class DoctorRequest extends FormRequest
 {
     /**
@@ -28,6 +30,7 @@ class DoctorRequest extends FormRequest
      */
     public function rules()
     {
+
         $rules = [
             'firstname' => 'required',
             'middle_initial' => 'required|size:1',
@@ -38,9 +41,6 @@ class DoctorRequest extends FormRequest
             'address' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required|email|unique:users',
-            'prc' => 'required|unique:doctors',
-            'ptr' => 'required|unique:doctors',
-            's2' => 'nullable|unique:doctors',
             // 'specialization' => 'required',
             'title' => 'required',
             // 'clinic' => 'required',
@@ -65,6 +65,15 @@ class DoctorRequest extends FormRequest
             'organizations' => 'array|required',
             'organizations.*' => 'required|exists:organizations,id',
         ];
+
+        Log::info('METHOD: ' . $this->method());
+        if($this->method == 'POST')
+        {
+            $rules['prc'] = 'required|unique:doctors'; 
+            $rules['ptr'] = 'required|unique:doctors';
+            $rules['s2'] = 'nullable|unique:doctors';
+        }
+
         // dd($this->route("doctor"));
         if($this->route("doctor"))
         {
