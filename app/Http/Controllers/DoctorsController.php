@@ -274,7 +274,7 @@ class DoctorsController extends Controller
         $user->save();
         
         return response()->json([
-            'url' => Auth::user()->isAdmin() ? route('admin.index') : url('/doctor-home') 
+            'url' => Auth::user()->isAdmin() ? route('doctors.index') : url('/doctor-home') 
         ]);
     }
     
