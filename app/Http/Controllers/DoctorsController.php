@@ -273,9 +273,25 @@ class DoctorsController extends Controller
         ]));
         $user->save();
         
-        return response()->json([
-            'url' => Auth::user()->isAdmin() ? route('doctors.index') : url('/doctor-home') 
+         if(Auth::user()->isAdmin()){
+           return response()->json([
+            'url' => route('doctors.index')
         ]);
+        }
+        else if (Auth::user()->isDoctor()) {
+          return response()->json([
+            'url' => url('/doctor-home') 
+        ]);
+        }
+        else{
+            return response()->json([
+            'url' => route('doctors.index') 
+       ]);
+
+        }
+        // return response()->json([
+        //     'url' => Auth::user()->isAdmin() ? route('doctors.index') : url('/doctor-home') 
+        // ]);
     }
     
 
