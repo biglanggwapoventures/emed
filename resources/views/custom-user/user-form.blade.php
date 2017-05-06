@@ -2,6 +2,7 @@
 @section('body')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+     
         <section class="content-header">
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
@@ -29,6 +30,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
+          
                 <!-- left column -->
                 <div class="col-md-12">
                     <!-- general form elements -->
@@ -202,5 +204,5 @@
         }
 
     </style>
-
+    
 @endsection

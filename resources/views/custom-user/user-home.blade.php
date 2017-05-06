@@ -10,6 +10,15 @@
         </div>
     </div>
     @endif
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- Content Header (Page header) -->
    <section class="content-header">
         <h1>
@@ -33,7 +42,8 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                       <!--  <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" ></center> -->
+                        <center><img alt="User Pic" src="{{ "/storage/{{ Auth::user()->avatar}}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" ></center>
 
                         <h3 class="profile-username text-center"> </h3>
 

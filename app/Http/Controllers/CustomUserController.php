@@ -12,6 +12,8 @@ use App\Permissions;
 use App\UserRoles;
 use App\CustomUser;
 use Auth;
+use Validator;
+
 
 use Log, EMedHelper;
 
@@ -170,7 +172,21 @@ class CustomUserController extends Controller
                 'occupation.required' => 'Please enter your occupation.',
                 'email.required' => 'Please enter your email.'
            ]);
+          $rules = array(
+            'avatar' => 'required|image|max:2048'
+        );
+          $messages = array(
+            'avatar.required' => 'Please choose profile picture.'
+        );
 
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+         if(!$request->hasFile('avatar')) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else{
         // get fields for user table
         $input = $request->only([
             'username', 
@@ -231,7 +247,13 @@ class CustomUserController extends Controller
         $user->avatar = $path;
         $user->save();
 
-        return redirect('admin');
+        return redirect( url('custom-role', session('custom_role_id')))
+                        ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'User was Successfully Registered!'
+            ]);
+
+        }
     }
 
     /**
