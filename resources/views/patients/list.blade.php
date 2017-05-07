@@ -5,7 +5,7 @@
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Patients List</li>
+                    <li class="breadcrumb-item active">Patients Lista</li>
                 </ol>
             </div>
             <h1>

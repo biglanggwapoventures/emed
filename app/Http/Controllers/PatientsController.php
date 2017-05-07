@@ -93,7 +93,7 @@ class PatientsController extends Controller
         {
             if(EMedHelper::hasTargetActionPermission('PATIENT', 'LIST'))
             {
-                $items = Doctor::with('userInfo')->get();
+                $items = PATIENT::with('userInfo')->get();
                 return view('patients.list', [
                     'patients' => $items
                 ]);
