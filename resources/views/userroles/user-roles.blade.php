@@ -47,7 +47,7 @@
                                       {{ $errors->first('permissions') }}
                                     </div>
                                 @endif
-                               <table class="table table-bordered" >
+                               <table class="table table-bordered">
                                    <tbody> 
                                         <?php $tdCount = 1; ?>
                                         @foreach($permissions as $permission)
@@ -60,7 +60,7 @@
                                             @endif
 
                                             @if($permission->allow_in_custom == 1 && $permission->target != session('user_type_name'))
-                                                <td><input type="checkbox" name="permissions[]" value="{{ $permission->id }}" style="font-size:97%!important">
+                                                <td ><input type="checkbox" name="permissions[]" value="{{ $permission->id }}" style="font-size:97%!important">
                                                     &nbsp;{{ $permission->display_name }}
                                                 </td>
                                                 <?php $tdCount++; ?>
@@ -70,7 +70,7 @@
                                                 </tr>
                                             @endif
                                         @endforeach
-                        
+                                            
                                     </tbody>
                                 </table>
                             </div>

@@ -156,6 +156,8 @@
                                             <th>Branch</th>
                                             <th>Clinic Hours</th>
                                             <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody data-aff-branches="{{ json_encode($affiliationBranches) }}">
@@ -166,13 +168,16 @@
                                             <td>
                                                 {!! Form::select('affiliations[0][branch_id]', [], null, ['class' => 'form-control aff-branch', 'data-name' => 'affiliations[idx][branch_id]' ]) !!}
                                             </td>
-                                            <td>{!! Form::time('affiliations[0][clinic_start]', null, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_start]']) !!} <h4> - </h4> {!! Form::time('affiliations[0][clinic_end]', null, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_end]']) !!}</td>
+                                            <td style="width:1px;">{!! Form::time('affiliations[0][clinic_start]', null, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_start]']) !!} </td>
+                                            <td style="width:1px;"><center>-</center></td>
+                                            <td style="width:1px;">{!! Form::time('affiliations[0][clinic_end]', null, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_end]']) !!}</td>
                                             <td><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="4"><a href="javascript:void(0)" class="btn btn-default add-line"><span class="glyphicon glyphicon-plus"></span>  Add new line</a></td>
+                                            <td colspan="6"><a href="javascript:void(0)" class="btn btn-default add-line"><span class="glyphicon glyphicon-plus"></span>  Add new line</a></td>
+
                                         </tr>
                                     </tfoot>
                                 </table>

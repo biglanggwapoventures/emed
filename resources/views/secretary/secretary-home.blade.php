@@ -115,7 +115,13 @@
 }, 1000);
 </script>
 
-
-
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+}
+</style>
 
     @endsection

@@ -146,6 +146,15 @@
 
 
 </style>
+
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+}
+</style>
 <script type="text/javascript">
  window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){

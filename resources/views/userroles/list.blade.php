@@ -33,8 +33,6 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box-body table-responsive no-padding">
-                        
-                            
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr class="active">
@@ -67,6 +65,7 @@
                                     </tr>
                                 @empty
                                     <tr>
+                                        <td></td><td></td><td></td>
                                         <td colspan="4" class="text-center">ERROR: No roles found. This is critical.</td>
                                     </tr>
                                 @endforelse

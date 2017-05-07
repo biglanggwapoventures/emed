@@ -62,10 +62,10 @@
             </div>
             <!-- /.col -->
             <div class="col-md-9">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#activity" data-toggle="tab">Profile</a></li>
-                    </ul>
+                <div class="nav-tabs-custom" style="padding-top: 12px">
+                  
+                       <h1 style="margin-top: 2px; margin-left: 15px;">Profile</h1>
+               
                     <div class="tab-content">
                         <!-- tab start -->
                         <div class="active tab-pane" id="activity">
@@ -119,6 +119,15 @@
     .img-circle {
     border-radius: 50%;
     margin-left: 39px;
+}
+</style>
+
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
 }
 </style>
 @endsection
