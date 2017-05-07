@@ -17,6 +17,12 @@
             <span class="icon-bar"/>
             <span class="icon-bar"/>
         </a>
+        <ul class="nav navbar-nav pull-right">
+                <li><a href="/" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">HOME</a></li>
+                <li><a href="/aboutus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">ABOUT US</a></li>
+                <li><a href="/faq" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">FAQ</a></li>
+                <li><a href="/contactus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">CONTACT US</a></li>
+            </ul>
     </nav>
 </header>
 <aside class="main-sidebar ">
