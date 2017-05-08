@@ -53,11 +53,19 @@ class AffiliationsController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), [
+        $rules = array(
             'name' => 'required|unique:affiliations',
-            'branches' => 'required|array',
-            'branches.*.name' => 'required',
-        ]);
+            'branches' => 'required|array|different:name',
+            'branches.*.name' => 'required|distinct|different:name',
+        );
+
+        $messages = array(
+            'name.unique' => 'The affiliation already exists.',
+            'branches.*.name.different' => 'The branch is the same with the affiliation.',
+            'branches.*.name.distinct' => 'The branch already exists.'
+        );
+
+        $v = Validator::make($request->all(), $rules, $messages);
 
         if($v->fails()){
             return response()->json([
@@ -121,7 +129,7 @@ class AffiliationsController extends Controller
         $v = Validator::make($request->all(), [
             'name' => "required|unique:affiliations,name,{$id}",
             'branches' => 'required|array',
-            'branches.*.name' => 'required|unique:affiliation_branches',
+            'branches.*.name' => 'required|unique:affiliation_branches|distinct|different:name',
             'branches.*.id' => 'exists:affiliation_branches,id',
         ]);
 
