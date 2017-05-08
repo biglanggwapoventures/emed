@@ -56,12 +56,12 @@ class SpecializationController extends Controller
         $rules = array(
             'name' => 'required|unique:specializations',
             'subs' => 'required|array',
-            'subs.*.name' => 'required|unique:subspecializations',
+            'subs.*.name' => 'required|distinct',
         );
 
         $messages = array(
             'name.unique' => 'The specialization already exists.',
-            'subs.*.name.unique' => 'The subspecialization already exists.'
+            'subs.*.name.distinct' => 'The subspecialization already exists.'
         );
         
         $v = Validator::make($request->all(), $rules, $messages);
