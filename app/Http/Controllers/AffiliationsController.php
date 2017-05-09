@@ -129,7 +129,6 @@ class AffiliationsController extends Controller
         $v = Validator::make($request->all(), [
             'name' => "required|unique:affiliations,name,{$id}",
             'branches' => 'required|array',
-            'branches.*.name' => 'required|unique:affiliation_branches|distinct|different:name',
             'branches.*.id' => 'exists:affiliation_branches,id',
         ]);
 
@@ -170,6 +169,16 @@ class AffiliationsController extends Controller
          ]);
 
     }
+    // 
+     // if($this->route("doctor"))
+     //    {
+     //        $user_id = \App\Doctor::find($this->route("doctor"))->user_id;
+     //        $rules['username'] = 'required|unique:users,username,'.$user_id;
+     //        $rules['email'] = 'required|unique:users,username,'.$user_id;
+     //        if(Auth::user()->isDoctor()){
+     //            unset($rules['prc'], $rules['ptr'], $rules['s2']);
+     //        }
+     //    }
 
     /**
      * Remove the specified resource from storage.

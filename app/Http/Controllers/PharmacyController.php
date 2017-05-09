@@ -56,8 +56,8 @@ class PharmacyController extends Controller
         $rules = array(
             'name' => 'required|unique:pharmacies',
             'branch' => 'required|array',
-            'branch.*.name' => 'required',
-            'branch.*.address' => 'required',
+            'branch.*.name' => 'required|distinct|different:name',
+            'branch.*.address' => 'required|distinct|different:name,branch.*.name',
         );
 
         $messages = array(
@@ -132,8 +132,8 @@ class PharmacyController extends Controller
         $v = Validator::make($request->all(), [
             'name' => "required|unique:pharmacies,name,{$id}",
             'branch' => 'required|array',
-            'branch.*.name' => 'required',
-            'branch.*.address' => 'required',
+            'branch.*.name' => 'required|distinct|different:name',
+            'branch.*.address' => 'required|distinct|different:name:address',
             'branch.*.id' => 'exists:pharmacy_branches,id',
         ]);
 
