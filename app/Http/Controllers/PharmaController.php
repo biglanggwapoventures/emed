@@ -78,10 +78,21 @@ class PharmaController extends Controller
      */
     public function create()
     {
-         $pman = Auth::user()->manager;
+         if(Auth::user()->user_type != 'PMANAGER'){
+
+            Log::error('ACCESS DENIED. User tries to access a custom user\'s homepage that is not included in the current user\'s list of permissions.');
+             abort(503);
+         }
+        
+
+          else{
+
+             $pman = Auth::user()->manager;
           return view('pharmacists.pharma-form', [
              'pman' => $pman
          ]);
+
+          }
 
          //return view('pharmacists.pharma-form');
 
