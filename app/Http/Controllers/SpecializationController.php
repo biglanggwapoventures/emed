@@ -88,7 +88,8 @@ class SpecializationController extends Controller
         $spec->subspecializations()->saveMany($subs);
 
         return response()->json([
-            'result' => true
+            'result' => true,
+             'message' => 'Specialization Successfully Added!'
         ]);
 
     }
@@ -166,7 +167,8 @@ class SpecializationController extends Controller
         }
 
         return response()->json([
-            'result' => true
+            'result' => true,
+             'message' => 'Specialization Successfully Edited!'
         ]);
 
     }

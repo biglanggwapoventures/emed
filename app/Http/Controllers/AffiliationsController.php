@@ -88,7 +88,8 @@ class AffiliationsController extends Controller
         $aff->branches()->saveMany($branches);
 
         return response()->json([
-            'result' => true
+            'result' => true,
+             'message' => 'Affiliation Successfully added!'
         ]);
 
     }
@@ -129,6 +130,7 @@ class AffiliationsController extends Controller
         $v = Validator::make($request->all(), [
             'name' => "required|unique:affiliations,name,{$id}",
             'branches' => 'required|array',
+            'branches.*.name' => 'required|distinct|different:name',
             'branches.*.id' => 'exists:affiliation_branches,id',
         ]);
 
@@ -165,7 +167,8 @@ class AffiliationsController extends Controller
         }
 
          return response()->json([
-             'result' => true
+             'result' => true,
+             'message' => 'Affiliation Successfully Edited!'
          ]);
 
     }
