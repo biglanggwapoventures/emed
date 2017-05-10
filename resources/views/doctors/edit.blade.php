@@ -1,6 +1,7 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -321,7 +322,7 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
-   
+    <a href="{{ route('doctors.index') }}"  id="back"></a>
 </div>
 
 <style type="text/css">
@@ -434,10 +435,10 @@
 
             $.post($this.attr('action'), $this.serialize())
                 .done(function(res) {
-                    window.location.href = res.url;
-                    // if (res.result) {
-                    //     window.location.href = $("#back").attr('href');
-                    // }
+                    // window.location.href = res.url;
+                     $('.alert.alert-success').removeClass('hidden').text(res.message);
+                        // $this.find('input').val('');
+                        window.location.href = $("#back").attr('href');
                 })
                 .fail(function(res) {
                     alertEl.html(function() {

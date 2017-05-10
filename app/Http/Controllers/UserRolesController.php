@@ -68,7 +68,11 @@ class UserRolesController extends Controller
         // Log::info($input);
         UserRoles::saveUserRoles($input);
 
-        return redirect('userroles');
+        return redirect('userroles')
+            ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'New Role added Successfully!'
+            ]);
     }
 
     /**
@@ -132,7 +136,11 @@ class UserRolesController extends Controller
             }
         }
 
-        return redirect('userroles');
+        return redirect('userroles')
+         ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'New Role Edited Successfully!'
+            ]);
     }
 
     /**

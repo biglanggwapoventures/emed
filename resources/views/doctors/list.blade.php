@@ -14,6 +14,7 @@
                     &nbsp;List of Doctors
                 </span>
             </h1>
+            <div class="alert alert-success hidden"></div>
         </section>
 
         <section class="content">

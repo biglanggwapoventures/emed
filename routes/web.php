@@ -66,6 +66,7 @@ Route::resource('affiliations', 'AffiliationsController');
 Route::resource('organizations', 'OrganizationsController');
 Route::resource('userroles', 'UserRolesController');
 Route::resource('list', 'ListController');
+// Route::resource('custom-role', 'CustomUserController');
 
 // Route::resource('pharmacists', 'PharmaController');
 
@@ -86,5 +87,4 @@ Route::get('custom-role/edit/{userId}', 'CustomUserController@edit');
 Route::get('home/{roleId}', 'CustomUserController@showHomepage');
 
 Route::post('custom-role/store/{roleId}', 'CustomUserController@store');
-Route::post('custom-role/update/{userId}', 'CustomUserController@edit');
-
+Route::post('custom-role/update/{userId}', 'CustomUserController@edit')->name('custom.role');

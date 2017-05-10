@@ -273,7 +273,7 @@ class CustomUserController extends Controller
         }
         else if(Auth::user()->user_type === 'PATIENT' || Auth::user()->user_type === 'SECRETARY')
         {
-            $items = Patient::find($id);
+            $items = CustomUser::find($id);
             return view('patients.patient-home', [
                 'items' => $items
             ]);
@@ -303,35 +303,33 @@ class CustomUserController extends Controller
     }
 
     /**
+    'bloodtype' => $request->bloodtype,
+            'nationality' => $request->nationality,
+            'civilstatus'=> $request->civilstatus,
+            'erelationship' => $request->erelationship,
+            'econtact'=> $request->econtact,
+            'enumber'=> $request->enumber,
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PatientRequest $request, $id)
+    public function update(Request $request, $id)
     {
         
-        Log::info($request);
-
-        $patient = Patient::find($id);
-        $patient->fill([
-            'bloodtype' => $request->bloodtype,
+         $manager = CustomUser::find($id);
+        $manager->fill([
+           'bloodtype' => $request->bloodtype,
             'nationality' => $request->nationality,
             'civilstatus'=> $request->civilstatus,
             'erelationship' => $request->erelationship,
             'econtact'=> $request->econtact,
             'enumber'=> $request->enumber,
-            'allergyname' => $request->allergyname,
-            'allergyquestion' => $request->allergyquestion,
-            'past_disease'=> $request->past_disease,
-            'past_surgery' => $request->past_surgery,
-            'immunization'=> $request->immunization,
-            'family_history'=> $request->family_history
         ]);
-        $patient->save();
+        $manager->save();
 
-        $user = User::find($patient->user_id);
+        $user = User::find($manager->user_id);
         $user->fill($request->only([
             'username', 
             'firstname', 
@@ -346,23 +344,23 @@ class CustomUserController extends Controller
         ]));
         $user->save();
         
-
-       if(Auth::user()->user_type === "DOCTOR")
+        if(Auth::user()->user_type === "PMANAGER")
         {
-            return redirect()->route('patients.index');
+           return redirect('/pmanager-home')->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Edit manager successful!'
+            ]);
+        return redirect('/doctor-home')->with('success', 0);
+
         }
-
-        else if(Auth::user()->user_type === "SECRETARY")
+         else if(Auth::user()->user_type === "ADMIN")
         {
-            return redirect()->route('secretary.index');
-        }
-
-        else if(Auth::user()->user_type === "PATIENT")
-        {
-            $items = Patient::find($id);
-        return view('patients.patient-home', [
-            'items' => $items
-        ]);
+           // return redirect( url('custom-role', session('custom_role_id')))
+           //              ->with('ACTION_RESULT', [
+           //      'type' => 'success', 
+           //      'message' => 'User was Successfully Registered!'
+           //  ]);
+            return redirect()->back();
         }
     }
 

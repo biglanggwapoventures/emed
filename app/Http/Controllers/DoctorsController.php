@@ -273,10 +273,14 @@ class DoctorsController extends Controller
         ]));
         $user->save();
         
-         if(Auth::user()->isAdmin()){
-           return response()->json([
-            'url' => route('doctors.index')
-        ]);
+         if(Auth::user()->user_type === "ADMIN"){
+        //    return response()->json([
+        //     'url' => route('doctors.index')
+        // ]);
+            return response()->json([
+             'result' => true,
+             'message' => 'Doctor Successfully Edited!'
+         ]);
         }
         else if (Auth::user()->isDoctor()) {
           return response()->json([
@@ -284,10 +288,13 @@ class DoctorsController extends Controller
         ]);
         }
         else{
+       //      return response()->json([
+       //      'url' => route('doctors.index') 
+       // ]);
             return response()->json([
-            'url' => route('doctors.index') 
-       ]);
-
+             'result' => true,
+             'message' => 'Affiliation Successfully Edited!'
+         ]);
         }
         // return response()->json([
         //     'url' => Auth::user()->isAdmin() ? route('doctors.index') : url('/doctor-home') 

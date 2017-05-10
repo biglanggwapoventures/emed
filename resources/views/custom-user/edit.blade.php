@@ -45,9 +45,8 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-                        <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                        <input type="file" class="upload" name="avatar"> {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->id) !!}
-
+                       
+                          {!! Form::open(['url' => route('custom.role', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->id) !!}
                         <h4>Personal Information</h4>
                         <hr class="third">
                         <div class="row">
