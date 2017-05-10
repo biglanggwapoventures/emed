@@ -12,6 +12,15 @@
 
         </ol>
     </section>
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">

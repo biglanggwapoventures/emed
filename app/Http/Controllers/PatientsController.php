@@ -338,6 +338,13 @@ class PatientsController extends Controller
 
         }
 
+        else{
+
+             return view('patients.edit', [
+            'data' => Patient::with('userInfo')->where('id', $id)->first()
+        ]);
+        }
+
 
 
 
@@ -411,6 +418,9 @@ class PatientsController extends Controller
         return view('patients.patient-home', [
             'items' => $items
         ]);
+        }
+        else{
+            return redirect()->route('patients.index');
         }
     }
 

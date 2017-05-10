@@ -215,7 +215,7 @@ class PharmaController extends Controller
             'sex',
             'email',
             'birthdate',
-            'address',
+            // 'address',
 
         ]));
         $user->save();
