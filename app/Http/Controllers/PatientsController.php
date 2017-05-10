@@ -293,6 +293,15 @@ class PatientsController extends Controller
                 'items' => $items
             ]);
         }
+        else 
+        {
+            $items = Patient::find($id);
+            $validPrescriptions = Common::retrieveValidPrescriptions($items->id);
+            Log::info(json_encode($validPrescriptions));
+            return view('patients.patient-home', [
+                'items' => $items
+            ]);
+        }
     }
 
     /**
