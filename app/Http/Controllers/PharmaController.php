@@ -38,7 +38,7 @@ class PharmaController extends Controller
                     'items' => $items
                 ]);
         }
-        else
+        elseif(Auth::user()->user_type === 'PMANAGER')
         {
             $search =  $request->input('search');
             $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
@@ -52,6 +52,12 @@ class PharmaController extends Controller
             return view('pharmacists.list', [
                 'items' => $items->get()
             ]);
+        }
+        else{
+             $items = Pharma::all();
+            return view('pharmacists.list', [
+                    'items' => $items
+                ]);
         }
             
     }
