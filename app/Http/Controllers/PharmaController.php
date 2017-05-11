@@ -41,7 +41,7 @@ class PharmaController extends Controller
         elseif(Auth::user()->user_type === 'PMANAGER')
         {
             $search =  $request->input('search');
-            $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
+            $items = Pharma::where('manager_id', Auth::user()->manager->id);
 
             if(trim($search)){
                 $items->whereHas('userInfo', function($q) USE($search){
