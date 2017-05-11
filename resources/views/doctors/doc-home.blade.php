@@ -24,7 +24,7 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <center>
-                            <img alt="User Pic" src="{{ " storage/{$doctors->userInfo->avatar}" }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
+                            <img alt="User Pic" src="{{ "/storage/{$doctors->userInfo->avatar}" }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
                         </center>
 
                         <h3 class="profile-username text-center">Dr. {{ $doctors->userInfo->fullname() }} </h3>
