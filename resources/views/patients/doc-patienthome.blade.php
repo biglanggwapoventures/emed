@@ -377,7 +377,7 @@
                                         <tr class="active">
                                             <th>Consultation Date</th>
                                             <th>Doctor</th>
-                                            <th>Clinic</th>
+                                            <th>Specialization</th>
                                             <th>Manage</th>
                                         </tr>
                                     </thead>
@@ -386,7 +386,7 @@
                                         <tr>
                                             <td>{{ $a->created_at }}</td>
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                            <td>{{ $a->id }}</td>
+                                            <td>{{ $a->doctor->specialization->name }} </td>
                                             <td>
                                                 <form action="{{ route('consultations.destroy', ['id' => $a->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
                                                     {{ csrf_field() }} {{ method_field('DELETE') }}
