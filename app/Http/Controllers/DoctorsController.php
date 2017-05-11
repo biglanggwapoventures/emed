@@ -9,7 +9,7 @@ use App\Doctor;
 use App\User;
 use App\Patient;
 use Auth;
-
+use App\Common;
 use Log, EMedHelper;
 
 class DoctorsController extends Controller
