@@ -74,7 +74,7 @@
                                                     </button>
                                                 @endif
                                                 @if(EMedHelper::hasTargetActionPermission("PATIENT", "EDIT"))
-                                                    <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info">
+                                                    <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info {{ EMedHelper::hasDoctorAttachment($patient->id) ? '' : 'disabled' }}">
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
                                                     </a>
                                                 @else

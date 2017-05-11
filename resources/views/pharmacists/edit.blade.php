@@ -64,7 +64,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                   {!! Form::date('birthdate', $pman->userInfo->birthdate, ['class' => 'form-control'], ['maxlength' => 100]) !!}
+                                   <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" value="{{ $pman->userInfo->birthdate }}" />
                                 </div>
                             </div>
                             <div class="col-md-4">

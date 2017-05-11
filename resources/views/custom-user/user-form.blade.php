@@ -71,7 +71,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Birthdate</label>
                                         <!-- <span style="color: red">*</span> -->
-                                        <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" />
+                                        <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
