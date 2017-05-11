@@ -39,11 +39,6 @@ class PatientsController extends Controller
         ]);
     
     }
-
-    public function list()
-    {
-        
-    }
     
     public function index(Request $request)
     {
