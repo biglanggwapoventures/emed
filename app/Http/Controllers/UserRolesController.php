@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Permissions;
 use App\UserRoles;
-use Log;
+use Log, Session;
 
 class UserRolesController extends Controller
 {
@@ -90,13 +90,28 @@ class UserRolesController extends Controller
      */
     public function edit($id)
     {
-        $roleData = UserRoles::getRole($id);
-        $allPermissions = Permissions::retrieveAll();
+        if($id <= 6)
+        {
+            $msg = 'ACCESS DENIED. You cannot edit pre-existing roles.';
 
-        return view('userroles.edit', [
-            'roleData'          => $roleData,
-            'permissions'       => $allPermissions
-        ]);
+            Session::flash('503_msg', $msg);
+            Log::error($msg);
+
+            abort(503);
+        }
+        else
+        {
+            $roleData = UserRoles::getRole($id);
+            $allPermissions = Permissions::retrieveAll();
+
+            return view('userroles.edit', [
+                'roleData'          => $roleData,
+                'permissions'       => $allPermissions
+            ]);
+        }
+
+            
+            
     }
 
     /**

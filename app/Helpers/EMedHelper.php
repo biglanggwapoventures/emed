@@ -56,30 +56,6 @@
             return $data;
         }        
 
-        // public static function hasAddUserPermission()
-        // {
-        //     $data = Permissions::hasAddUserPermission();
-        //     return is_null($data) ? false : true;
-        // }
-
-        // public static function getAddUserPermissions()
-        // {
-        //     $data = Permissions::getAddUserPermission();
-        //     return $data;
-        // }
-
-        // public static function hasAddCustomUserPermission()
-        // {
-        //     $data = Permissions::hasAddCustomUserPermission();
-        //     return is_null($data) ? false : true;
-        // }
-
-        // public static function getAddCustomUserPermissions()
-        // {
-        //     $data = Permissions::getAddCustomUserPermission();
-        //     return $data;
-        // }
-
         public static function hasPermissionId($id, $roleId = null)
         {
             $data = Permissions::retrieveRoleOnPermissionId($id, $roleId);
@@ -90,21 +66,6 @@
         {
             $name = substr($rawAddName, 16, (strlen($rawAddName) - 16));
             return UserRoles::getRoleByName($name)->id;
-        }
-
-        public static function getCreatePermissionClauseForRole($roleName)
-        {
-            return "ADD_CUSTOM_USER_" . strtoupper($roleName);
-        }
-
-        public static function getEditPermissionClauseForRole($roleName)
-        {
-            return "EDIT_CUSTOM_USER_" . strtoupper($roleName);
-        }
-
-        public static function getDeletePermissionClauseForRole($roleName)
-        {
-            return "DELETE_CUSTOM_USER_" . strtoupper($roleName);
         }
 
         public static function hasDoctorAttachment($patientId)
@@ -131,6 +92,84 @@
         public static function retrievePharmacyBranch($branchId)
         {
             return Common::getPharmacyBranch($branchId);
+        }
+
+
+        public static function handlePatientPrescriptionsDisplay($patients, $doctors, $patientDoctor, $prescriptions)
+        {
+            $formattedData = [];
+
+            $formattedDoctors = [];
+            foreach ($doctors as $doctor) 
+            {
+                $formattedDoctors[$doctor->doctor_id]['user_id'] = $doctor->id;
+                $formattedDoctors[$doctor->doctor_id]['id'] = $doctor->doctor_id;
+                $formattedDoctors[$doctor->doctor_id]['firstname'] = $doctor->firstname;
+                $formattedDoctors[$doctor->doctor_id]['lastname'] = $doctor->lastname;
+            }
+
+            foreach ($patients as $patient) 
+            {
+                $patientId = $patient->patient_id;
+                $patientData = 
+                [   
+                    'patient_id'    => $patientId,
+                    'id'            => $patient->id,
+                    'firstname'     => $patient->firstname,
+                    'lastname'      => $patient->lastname
+                ];
+
+                $doctorsOfPatient = [];
+                $doctorCount = 0;
+                foreach ($patientDoctor as $item) 
+                {
+                    $doctorId = $item->doctor_id;
+                    if($item->patient_id == $patientId)
+                    {
+                        $doctorCount++;
+                        $doctorOfPatient = $formattedDoctors[$doctorId];
+                        $prescriptionCount = 0;
+                        
+                        foreach ($prescriptions as $prescription) 
+                        {
+                            if($prescription->patient_id == $patientId && $prescription->doctor_id == $doctorId)
+                            {
+                                $prescriptionCount++;
+                            }
+                        }
+
+                        $doctorOfPatient['prescriptionCount'] = $prescriptionCount;
+                        array_push($doctorsOfPatient, $doctorOfPatient);
+                    }
+                }
+
+                $patientData['doctorCount'] = $doctorCount;
+                $patientData['doctors'] = $doctorsOfPatient;
+                $formattedData[$patientId] = $patientData;
+            }
+
+            return $formattedData;
+        }
+
+        public static function handlePatientPrescriptions($patientId)
+        {
+            $formattedData = [];
+            $patientDoctors = Common::getPatientDoctorLink($patientId);
+
+            foreach ($patientDoctors as $doctor) 
+            {
+
+                $doctorData = Common::getDoctorUserData($doctor->doctor_id);
+                $data['doctor_name'] = "Dr. " . $doctorData->firstname . " " . $doctorData->lastname;
+
+                $data['prescriptions'] = Common::getActivePrescriptions($patientId, $doctor->doctor_id);
+                Log::info($data['prescriptions']);
+                array_push($formattedData, $data);
+            }
+
+            // Log::info($formattedData);
+
+            return $formattedData;
         }
     }
 ?>

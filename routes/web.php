@@ -74,7 +74,6 @@ Route::post('/upload-display-photo', 'FileUploadController@uploadDisplayPhoto')-
 Route::post('/ChangePass', 'PasswordChangeController@postUpdatePassword')->name('ChangePass');
 Route::get('/ChangePass', 'PasswordChangeController@showHomepage')->middleware('auth');
 
-
 Route::post('/scan', 'RFIDController@scan');
 
 Route::post('/detach-patient/{patientId}', 'PatientActionController@detachPatient');
@@ -88,3 +87,5 @@ Route::get('home/{roleId}', 'CustomUserController@showHomepage');
 Route::post('custom-role/store/{roleId}', 'CustomUserController@store');
 Route::post('custom-role/update/{userId}', 'CustomUserController@edit');
 
+Route::get('patient-prescriptions', 'PharmaTransactionController@index');
+Route::get('pharmatransaction/{patientId}', 'PharmaTransactionController@transaction');

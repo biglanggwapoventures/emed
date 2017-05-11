@@ -227,4 +227,85 @@ class Common
     {
         return DB::table('pharmacy_branches')->where('id', $branchId)->first();
     }
+
+    public static function getPatientsWithActivePrescriptions()
+    {
+        return DB::table('patients')
+               ->join('users', 'patients.user_id', '=', 'users.id')
+               ->select('patients.id AS patient_id', 'users.*')
+               ->whereRaw(DB::raw('patients.id IN (SELECT patient_id FROM prescriptions WHERE prescriptions.end >= NOW())'))
+               ->get();
+    }
+
+    public static function getDoctorsWithActivePrescriptions()
+    {
+        return DB::table('doctors')
+               ->join('users', 'doctors.user_id', '=', 'users.id')
+               ->select('doctors.id AS doctor_id', 'users.*')
+               ->whereRaw(DB::raw('doctors.id IN (SELECT doctor_id FROM prescriptions WHERE prescriptions.end >= NOW())'))
+               ->get();
+    }
+
+    public static function getActivePrescriptions($patientId = null, $doctorId = null)
+    {
+        $clause = 'prescriptions.end >= NOW()';
+        if(!is_null($patientId))
+        {
+            $clause .= ' AND patient_id = ' . $patientId;
+        }
+
+        if(!is_null($doctorId))
+        {
+            $clause .= ' AND doctor_id = ' . $doctorId;
+        }
+
+        return DB::table('prescriptions')
+               ->whereRaw(DB::raw($clause))
+               ->get();
+    }
+
+    public static function getPatientDoctorLink($patientId = null)
+    {
+        if(is_null($patientId))
+        {
+            return DB::table('doctor_patient')->get();
+        }
+        else
+        {
+            return DB::table('doctor_patient')->where('patient_id', $patientId)->get();
+        }
+            
+    }
+
+    public static function getPatientUserData($patientId)
+    {
+        return DB::table('users')
+               ->join('patients', 'users.id', '=', 'patients.user_id')
+               ->select('users.*')
+               ->where('patients.id', $patientId)
+               ->first();
+    }
+
+    public static function getPatientData($patientId)
+    {
+        return DB::table('patients')
+               ->where('id', $patientId)
+               ->first();
+    }
+
+    public static function getDoctorUserData($doctorId)
+    {
+        return DB::table('users')
+               ->join('doctors', 'users.id', '=', 'doctors.user_id')
+               ->select('users.*')
+               ->where('doctors.id', $doctorId)
+               ->first();
+    }
+
+    public static function getDoctorData($doctorId)
+    {
+        return DB::table('doctors')
+               ->where('id', $doctorId)
+               ->first();
+    }
 }
