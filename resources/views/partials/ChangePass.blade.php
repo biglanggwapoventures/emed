@@ -43,7 +43,7 @@
                             <span class="help-block">{{ $new_password_confirmation }}</span> @endif
                         </div>
                          <div class="form-group">
-                         <center><a class="btn btn-primary" href="{{ url('/')}}" style="margin-bottom:10px;margin-top:10px;">Cancel</a></center>
+                         <center><a class="btn btn-primary" href="{{ url('/')}}" style="margin-bottom:10px;margin-top:10px;">Back to profile</a></center>
                          </div>
                     </div>
                     <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
