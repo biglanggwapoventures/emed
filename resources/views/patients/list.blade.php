@@ -68,9 +68,11 @@
                                             <form action="{{ route('users.destroy', ['id' => $patient->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} 
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PATIENT", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
-                                                    <span class="glyphicon glyphicon-trash action-icon"></span>
-                                                </button>
+                                                @if(Auth::user()->user_type === 'ADMIN')
+                                                    <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PATIENT", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
+                                                        <span class="glyphicon glyphicon-trash action-icon"></span>
+                                                    </button>
+                                                @endif
                                                 @if(EMedHelper::hasTargetActionPermission("PATIENT", "EDIT"))
                                                     <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info">
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
