@@ -113,7 +113,9 @@
                         <div class="tab-pane" id="timeline">
                             <!-- The timeline -->
                             <table class="table table-user-information">
-                                <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
+                                @if(EMedHelper::hasDoctorAttachment($patients->id))
+                                    <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
+                                @endif
                                 <tbody>
 
                                     <tr>
@@ -368,9 +370,11 @@
                         <div class="tab-pane" id="consultation">
                             <div class="box-body table-responsive no-padding">
                                 <table>
-                                    <thead>
-                                        <th> <a href="{{ route('consultations.index', ['patient_id' =>  $patients->id]) }}" class="btn btn-info pull-left"><span class="glyphicon glyphicon-plus"></span> Consultation</a></th>
-                                    </thead>
+                                    @if(EMedHelper::hasDoctorAttachment($patients->id))
+                                        <thead>
+                                            <th> <a href="{{ route('consultations.index', ['patient_id' =>  $patients->id]) }}" class="btn btn-info pull-left"><span class="glyphicon glyphicon-plus"></span> Consultation</a></th>
+                                        </thead>
+                                    @endif
                                 </table><br>
                                 <table id="example3" class="table table-bordered table-striped">
                                     <thead>
