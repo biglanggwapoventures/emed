@@ -112,7 +112,7 @@
                                     <span class="help-block">{{ $errors->first('email') }}</span> @endif
                                 </div>
                             </div>
-                  @if(Auth::check()) @if(Auth::user()->user_type === 'ADMIN')
+                 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
                                     <label class="control-label">License</label> {!! Form::text('license', $data->license, ['class' => 'form-control']) !!} @if($errors->has('license'))
@@ -138,8 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                  @endif
-                  @endif
+               
 
                         @if(Auth::check()) @if(Auth::user()->user_type === 'PMANAGER')
                             <div class="col-md-4">
