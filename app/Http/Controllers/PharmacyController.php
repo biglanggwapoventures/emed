@@ -58,6 +58,7 @@ class PharmacyController extends Controller
             'branch' => 'required|array|distinct',
             'branch.*.name' => 'required|distinct|different:name',
             'branch.*.address' => 'required|distinct|different:name',
+             'branch.*.address' => 'required|distinct|different:branch.*.name'
         );
 
         $messages = array(

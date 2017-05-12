@@ -61,7 +61,7 @@ class DoctorRequest extends FormRequest
             'affiliations.*.affiliation_id' => 'required|exists:affiliations,id',
             'affiliations.*.branch_id' => 'required|exists:affiliation_branches,id',
             'affiliations.*.clinic_start' => 'required',
-            'affiliations.*.clinic_end' => 'required',
+            'affiliations.*.clinic_end' => 'required|different:affiliations.*.clinic_start',
             'organizations' => 'array|required',
             'organizations.*' => 'required|exists:organizations,id',
         ];
