@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="box-body table-responsive no-padding">
-                        <table class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr class="active">
                                     <th class="align-th">Clinic Affiliation</th>

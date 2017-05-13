@@ -19,15 +19,18 @@
 
     <!-- Main content -->
     <section class="content">
-        @if(session('ACTION_RESULT'))
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
-                        {{ session('ACTION_RESULT')['message'] }}
-                    </div>
-                </div>
-            </div>
-        @endif
+
+                                        @if(session('ACTION_RESULT'))
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                              
+                                                    {{ session('ACTION_RESULT')['message'] }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
 
         @if(EMedHelper::hasRoutePermission('organizations.create'))
             <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">
@@ -81,7 +84,7 @@
 
         <!-- //////////////////// -->
         <div class="box-body table-responsive no-padding">
-                    <table class="table table-bordered table-striped">
+                    <table id="example1" class="table table-bordered table-striped">
 
             <thead>
                 <tr class="active">

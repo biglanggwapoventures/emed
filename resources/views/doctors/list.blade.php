@@ -1,4 +1,3 @@
-
 @extends('welcome') 
 @section('body')
     <div class="content-wrapper">
@@ -33,7 +32,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box-body table-responsive no-padding"><br>
-                        <table class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr class="active" style="height: 50px">
                                     <th class="align-th">Last Name</th>
