@@ -7,7 +7,7 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('affiliations.index')}}">Affiliations</a></li>
             <li><a href="{{ route( 'affiliations.create')}} ">Manage Affiliations</a></li>
 
@@ -108,7 +108,8 @@
                         // $this.find('input').val('');
                         window.location.href = $("#back").attr('href');
                     } else {
-                        validationError.html(function() {
+                        // validationError.html(function() {
+                             alert.html(function() {
                             return '<ul class="list-unstyled"><li>' + res.errors.join('</li><li>') + '</li><ul>';
                         }).removeClass('hidden');
                     }

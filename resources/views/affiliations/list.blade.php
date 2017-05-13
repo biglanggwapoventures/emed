@@ -20,7 +20,7 @@
 
         <div class="content">
             <div class="row">
-                <div class="col-xs-12">
+               <div class="col-xs-12">
                     @if(EMedHelper::hasRoutePermission('affiliations.create'))
                         <a href="{{ route('affiliations.create') }}" class="btn btn-info btn-md add-button">
                             <span class="fa fa-plus" style="margin-right:5px;font-size:110%"></span>
@@ -73,7 +73,9 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr><td colspan="3">There are no affiliations saved in the system.</td></tr> 
+                               <!--      <tr>
+                                    <td colspan="3">There are no affiliations saved in the system.</td>
+                                    </tr>  -->
                                 @endforelse
                             </tbody>
                         </table>
