@@ -4,6 +4,7 @@
     use App\Permissions;
     use App\UserRoles;
     use App\Common;
+    use App\TransactionLine;
 
     use Log;
 
@@ -17,7 +18,7 @@
 
         public static function showListOfTarget($target)
         {
-            Log::info('Checking if user has permissions to any action that gives the list of ' . $target);
+            // Log::info('Checking if user has permissions to any action that gives the list of ' . $target);
 
             $data = Permissions::getListAndActionsOfTarget($target);
             $permissionCount = count($data); 
@@ -25,21 +26,21 @@
 
             if($permissionCount === 1)
             {
-                Log::info('Permission count is only 1. Verifying if it\'s an edit permission of it\'s own user type');
+                // Log::info('Permission count is only 1. Verifying if it\'s an edit permission of it\'s own user type');
                 $permission = $data{0};
 
                 if(strtoupper(session('user_type_name')) === strtoupper($permission->target))
                 {
-                    Log::info('Verified - It\'s a self-user type edit permission. This permission is for user profile update only. Updating flag to FALSE.');
+                    // Log::info('Verified - It\'s a self-user type edit permission. This permission is for user profile update only. Updating flag to FALSE.');
                     $flag = false;
                 }
                 else
                 {
-                    Log::info('Verified - It\'s not a self-user type edit permission. ');
+                    // Log::info('Verified - It\'s not a self-user type edit permission. ');
                 }
             }
 
-            Log::info(($flag ? 'GRANTED' : 'DENIED') . '. Permission count = ' . $permissionCount);
+            // Log::info(($flag ? 'GRANTED' : 'DENIED') . '. Permission count = ' . $permissionCount);
 
             return $flag;
         }
@@ -162,8 +163,17 @@
                 $doctorData = Common::getDoctorUserData($doctor->doctor_id);
                 $data['doctor_name'] = "Dr. " . $doctorData->firstname . " " . $doctorData->lastname;
 
-                $data['prescriptions'] = Common::getActivePrescriptions($patientId, $doctor->doctor_id);
-                Log::info($data['prescriptions']);
+                $data['prescriptions'] = json_decode(json_encode(Common::getActivePrescriptions($patientId, $doctor->doctor_id)), true);
+
+                for ($i = 0; $i < count($data['prescriptions']); $i++) 
+                { 
+                    $prescriptionId = $data['prescriptions'][$i]['id'];
+                    $purcQty = TransactionLine::getPurcQtyOfPrescription($prescriptionId);
+                    
+                    $data['prescriptions'][$i]['purchased'] = $purcQty;
+                }
+
+                // Log::info($data['prescriptions']);
                 array_push($formattedData, $data);
             }
 
@@ -171,5 +181,10 @@
 
             return $formattedData;
         }
+
+        // public static function retrievePurcQtyOfPrescription($id)
+        // {
+        //     return TransactionLine::getPurcQtyOfPrescription($id);
+        // }
     }
 ?>

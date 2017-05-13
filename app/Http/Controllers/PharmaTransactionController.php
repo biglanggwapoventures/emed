@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Permissions;
 use App\UserRoles;
+use App\TransactionLine;
 use App\Common;
 use Log, Session, EMedHelper;
 
@@ -60,10 +61,19 @@ class PharmaTransactionController extends Controller
         else
         {
             $name = $patientUserData->firstname . " " . $patientUserData->lastname;
-            // $prescriptions = Common::getActivePrescriptions($patientId);
             $items = EMedHelper::handlePatientPrescriptions($patientId);
 
             return view('transactions.patient-prescriptions', ['name' => $name, 'items' => $items]);
         }
+    }
+
+    public function storeTransaction(Request $request)
+    {
+        $data = $request->all();
+        $transactionData = array('pharma_id' => $data['pharmaId'], 'quantity' => $data['quantity'], 'prescription_id' => $data['prescriptionId']);
+
+        $transaction = TransactionLine::create($transactionData);
+
+        return json_encode(['message' => 'Successfully stored.']);
     }
 }

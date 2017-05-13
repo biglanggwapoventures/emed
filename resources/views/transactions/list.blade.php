@@ -48,7 +48,7 @@
                                             <td class="align-pt">{{ $doctor['prescriptionCount'] }} active prescription{{ $doctor['prescriptionCount'] > 1  ? 's' : '' }}</td>
                                             <td class="text-center">
                                                 <a href="{{ url('pharmatransaction', $patientId) }}" class="btn btn-default" style="background-color:#999;color:#FFF;margin-left:15px">
-                                                    <span class="fa fa-bars action-icon"></span>
+                                                    <span class="fa fa-sitemap action-icon"></span>
                                                 </a>
                                             </td>
 
@@ -84,7 +84,7 @@
             padding-top:10px !important
         }
         .action-icon {
-            font-size: 85% !important;
+            font-size: 95% !important;
         }
     </style>
 @endsection

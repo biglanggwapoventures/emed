@@ -135,14 +135,17 @@ class UserRolesController extends Controller
 
         // If there edit/delete permissions for a certain target, the list permission
         // of that certain target will be automatically granted
+        Log::info('id='. $id);
         $editDeletePermissions = Permissions::getEditDeleteActionsOfRole($id);
+        Log::info('ED Perm: ' . $editDeletePermissions);
         foreach ($editDeletePermissions as $permission) 
         {
             $target = $permission->target;
             $listPermission = Permissions::getListOfTarget($target, $id);
             if(count($listPermission) === 0)
             {
-                $oListPermission = Permission::retriveByTargetAndAction($target, 'LIST');
+                $oListPermission = Permissions::retriveByTargetAndAction($target, 'LIST');
+                Log::info('olistper=' . json_encode($oListPermission));
                 Permissions::assignToRole($oListPermission->id, $id);
             }
         }

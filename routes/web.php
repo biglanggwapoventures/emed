@@ -85,7 +85,8 @@ Route::get('custom-role/edit/{userId}', 'CustomUserController@edit');
 Route::get('home/{roleId}', 'CustomUserController@showHomepage');
 
 Route::post('custom-role/store/{roleId}', 'CustomUserController@store');
-Route::post('custom-role/update/{userId}', 'CustomUserController@edit');
+Route::post('custom-role/update/{userId}', 'CustomUserController@update');
 
 Route::get('patient-prescriptions', 'PharmaTransactionController@index');
 Route::get('pharmatransaction/{patientId}', 'PharmaTransactionController@transaction');
+Route::post('transact', 'PharmaTransactionController@storeTransaction');

@@ -19,5 +19,10 @@ class Pharma extends Model
 	{
 		return $this->belongsTo('App\PharmacyManager', 'manager_id');
 	}
+
+	public static function getPharmaData($user_id)
+	{
+		return DB::table('pharmas')->where('user_id', $user_id)->first();
+	}
 }
 

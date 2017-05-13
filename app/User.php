@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use DB;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -82,5 +84,4 @@ class User extends Authenticatable
     {
         return $this->user_type === 'DOCTOR';
     }
-
 }

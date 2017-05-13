@@ -115,13 +115,13 @@ class CheckPermissions
             }
         }
         
-        Log::info('Route accessed: ' . $currentRoute);
+        // Log::info('Route accessed: ' . $currentRoute);
 
         $continue = !is_null($data);
 
         if($continue)
         {
-            Log::info('ACCESS GRANTED for Route=' . $currentRoute);
+            // Log::info('ACCESS GRANTED for Route=' . $currentRoute);
             return $next($request);
         }
         else

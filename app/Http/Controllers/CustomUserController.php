@@ -76,46 +76,11 @@ class CustomUserController extends Controller
                 abort(503);
             }
 
-            // $user = Auth::user();
-            // $data = CustomUser::retrieveData($user->id);
-            // Log::info(json_encode($data));
-            Log::info(json_encode($data));
             return view('custom-user.list', [
                 'role'  => $roleData,
                 'data'  => $data
             ]);
         }
-        // $user = Auth::user();
-        // $search =  $request->input('search');
-       
-
-        // if($user->user_type === "DOCTOR"){
-        //     $patients = Auth::user()->doctor->patients();
-
-        // if(trim($search)){
-        //     $patients->whereHas('userInfo', function($q) USE($search){
-        //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-        //     });
-        // }
-
-        //     return view('patients.list', [
-        //         'patients' => $patients->get()
-        //     ]);
-        // }
-
-        // else if($user->user_type === "SECRETARY"){
-        //     $patients = Auth::user()->secretary->doctor->patients();
-
-        // if(trim($search)){
-        //     $patients->whereHas('userInfo', function($q) USE($search){
-        //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-        //     });
-        // }
-
-        //     return view('patients.list', [
-        //         'patients' => $patients->get()
-        //     ]);
-        // }
     }
 
     /**
@@ -189,7 +154,7 @@ class CustomUserController extends Controller
         $credentials = $request->only(['username']);
 
         // assign password: default is firstname+lastname lowercase
-        Log::info(strtolower($input['firstname']).strtolower($input['lastname']));
+        // Log::info(strtolower($input['firstname']).strtolower($input['lastname']));
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         
         // assign user type
@@ -287,29 +252,29 @@ class CustomUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PatientRequest $request, $id)
-    {
-        
+    public function update(Request $request, $id)
+    {   
         Log::info($request);
 
-        $patient = Patient::find($id);
-        $patient->fill([
+        $customUserId = CustomUser::retrieveCustomUserId($id);
+        $userInfo = CustomUser::getData($id);
+        $userTypeId = $userInfo->user_type_id;
+
+
+        $customUser = CustomUser::find($customUserId);
+
+        $customUser->fill([
             'bloodtype' => $request->bloodtype,
             'nationality' => $request->nationality,
             'civilstatus'=> $request->civilstatus,
             'erelationship' => $request->erelationship,
             'econtact'=> $request->econtact,
             'enumber'=> $request->enumber,
-            'allergyname' => $request->allergyname,
-            'allergyquestion' => $request->allergyquestion,
-            'past_disease'=> $request->past_disease,
-            'past_surgery' => $request->past_surgery,
-            'immunization'=> $request->immunization,
-            'family_history'=> $request->family_history
+            'occupation'=> $request->occupation
         ]);
-        $patient->save();
+        $customUser->save();
 
-        $user = User::find($patient->user_id);
+        $user = User::find($customUser->user_id);
         $user->fill($request->only([
             'username', 
             'firstname', 
@@ -323,7 +288,10 @@ class CustomUserController extends Controller
 
         ]));
         $user->save();
+
+        Log::info('customusertypeid=' . $userTypeId);
         
+        return redirect('custom-role/' . $userTypeId);
 
        if(Auth::user()->user_type === "DOCTOR")
         {

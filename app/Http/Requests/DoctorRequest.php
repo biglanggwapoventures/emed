@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Auth;
 use Illuminate\Validation\Rule;
 use App\User;
+use App\Doctor;
 use Illuminate\Contracts\Validation\Validator;
 
 use Log;
@@ -66,13 +67,34 @@ class DoctorRequest extends FormRequest
             'organizations.*' => 'required|exists:organizations,id',
         ];
 
-        Log::info('METHOD: ' . $this->method());
-        if($this->method == 'POST')
+        // Log::info('METHOD: ' . $this->method());
+        // Log::info($this);
+        // if($this->method == 'POST')
+        // {
+        if(is_null($this->user_id) || empty($this->user_id))
         {
             $rules['prc'] = 'required|unique:doctors'; 
             $rules['ptr'] = 'required|unique:doctors';
             $rules['s2'] = 'nullable|unique:doctors';
         }
+        else
+        {
+            if(Doctor::getPRCNo($this->user_id) != $this->prc)
+            {
+                $rules['prc'] = 'required|unique:doctors'; 
+            }
+
+            if(Doctor::getPTRNo($this->user_id) != $this->ptr)
+            {
+                $rules['ptr'] = 'required|unique:doctors';
+            }
+
+            if(Doctor::getS2No($this->user_id) != $this->s2)
+            {
+                $rules['s2'] = 'nullable|unique:doctors';
+            }
+        }
+            
 
         // dd($this->route("doctor"));
         if($this->route("doctor"))

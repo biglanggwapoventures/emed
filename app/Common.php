@@ -155,13 +155,32 @@ class Common
         }
     }
 
-    public static function retrieveAllPharmas()
+    public static function retrieveAllPharmas($pharmacyId = null, $branchId = null, $managerId = null)
     {
+        $wQuery = "users.user_type = 'PHARMA'";
+        
+        if(!is_null($pharmacyId))
+        {
+            $wQuery .= " AND pharmas.drugstore = " . $pharmacyId;
+        }
+
+        if(!is_null($branchId))
+        {
+            $wQuery .= " AND pharmas.drugstore_branch = " . $branchId;
+        }
+
+        if(!is_null($managerId))
+        {
+            $wQuery .= " AND pharmas.manager_id = " . $managerId;
+        }
+
         $data = DB::table('users')
+                ->whereRaw($wQuery)
                 ->join('pharmas', 'users.id', '=', 'pharmas.user_id')
-                ->join('users AS manager', 'pharmas.manager_id', '=', 'manager.id')
-                ->select('users.*', 'pharmas.drugstore', 'pharmas.license', 'pharmas.manager_id', 'manager.lastname AS mgr_lastname', 'manager.firstname AS mgr_firstname')
-                ->where('users.user_type', 'PHARMA')
+                ->join('pharmacies', 'pharmas.drugstore', '=', 'pharmacies.id')
+                ->join('pharmacy_branches', 'pharmas.drugstore_branch', '=', 'pharmacy_branches.id')
+                // ->join('users AS manager', 'pharmas.manager_id', '=', 'pharmacy_managers.id')
+                ->select(DB::raw("users.*, pharmacies.name as drugstore, pharmas.license, pharmas.manager_id, (SELECT CONCAT(firstname, ' ', lastname) FROM users JOIN pharmacy_managers ON (users.id = pharmacy_managers.user_id) WHERE pharmacy_managers.id = pharmas.manager_id) AS mgr"))
                 ->get();
 
         if(is_null($data) || empty($data) || count($data) <= 0)
@@ -173,7 +192,7 @@ class Common
             $dataArray = [];
             foreach ($data as $item) 
             {
-                $dataItem = ['id' => $item->id, 'drugstore' => $item->drugstore, 'license' => $item->license, 'manager_id' => $item->manager_id, 'mgr_lastname' => $item->mgr_lastname, 'mgr_firstname' => $item->mgr_firstname, 'userInfo' => [
+                $dataItem = ['id' => $item->id, 'drugstore' => $item->drugstore, 'license' => $item->license, 'manager_id' => $item->manager_id, 'mgr' => $item->mgr, 'userInfo' => [
                     'address'           => $item->address,
                     'avatar'            => $item->avatar,
                     'birthdate'         => $item->birthdate,

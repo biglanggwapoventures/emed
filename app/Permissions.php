@@ -28,10 +28,28 @@ class Permissions
 
     public static function hasDeleteUserPermission($id)
     {
-        $user_type = DB::table('users')->select('user_type')->where('id', $id)->first()->user_type;
-        $data = DB::table('permissions')
-                ->whereRaw(DB::raw("((SELECT id FROM permissions WHERE name IN ('DELETE_" . strtoupper($user_type) . "', 'DELETE_CUSTOM_USER_" . strtoupper($user_type) . "') ) IN (SELECT permission_id FROM permission_role WHERE role_id = " . session('user_type_id') . "))"))
-                ->first();
+        $user_data = DB::table('users')->where('id', $id)->first();
+        // Log::info('id=' . $id);
+        // Log::info('userdata=' . json_encode($user_data));
+
+        $user_type = '';
+
+        if(count($user_data) > 0)
+        {
+            $data = null;
+        }
+        else
+        {
+            $user_type = $user_data->user_type;
+            $data = DB::table('permissions')
+                    ->whereRaw("action = 'DELETE' AND target = '" . $user_type . "' AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . session('user_type_id') . ")")
+                    ->first();
+        }
+
+        
+        // $data = DB::table('permissions')
+        //         ->whereRaw(DB::raw("((SELECT id FROM permissions WHERE name IN ('DELETE_USER_" . strtoupper($user_type) . "', 'DELETE_CUSTOM_USER_" . strtoupper($user_type) . "') ) IN (SELECT permission_id FROM permission_role WHERE role_id = " . session('user_type_id') . "))"))
+        //         ->first();
 
         return is_null($data) ? $user_type : '';
     }   
@@ -82,14 +100,14 @@ class Permissions
     public static function getEditDeleteActionsOfRole($roleId = null)
     {
         return  DB::table('permissions')
-                ->whereRaw(DB::raw("action IN ('EDIT', 'DELETE') AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . is_null($roleId) ? session('user_type_id') : $roleId . ")"))
+                ->whereRaw("action IN ('EDIT', 'DELETE') AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . (is_null($roleId) ? session('user_type_id') : $roleId) . ")")
                 ->get();
     }
 
     public static function getListOfTarget($target, $roleId = null)
     {
         return  DB::table('permissions')
-                ->whereRaw(DB::raw("target = '" . $target . "' AND action = 'LIST' AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . is_null($roleId) ? session('user_type_id') : $roleId. ")"))
+                ->whereRaw("target = '" . $target . "' AND action = 'LIST' AND id IN (SELECT permission_id FROM permission_role WHERE role_id = " . (is_null($roleId) ? session('user_type_id') : $roleId) . ")")
                 ->first();
     }
 
@@ -192,9 +210,4 @@ class Permissions
     }
 
 
-
-    public static function getByRoute()
-    {
-        
-    }
 }

@@ -61,7 +61,7 @@
                                             {{ $manager->userInfo->email }}
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('users.destroy', ['id' => $manager->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                            <form action="{{ route('users.destroy', ['id' => $manager->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} 
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PMANAGER", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
@@ -85,7 +85,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">No secretaries found.</td>
+                                        <td colspan="6" class="text-center">No pharmacy managers found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -216,8 +216,9 @@
             $(document).ready(function() {
                 $("a[name=viewInfo]").click(function()
                 {
-                    var userid = $(this).data('id');
-                    var userdata = $("tr[name=manager" + userid + "]").data('user-info');
+                    var managerid = $(this).data('id');
+                    var userdata = $("tr[name=manager" + managerid + "]").data('user-info');
+                    console.log(userdata);
                     var fname, lastname, sex, username, email, username, address, contactno, birthdate;
 
                     fname = userdata.firstname;

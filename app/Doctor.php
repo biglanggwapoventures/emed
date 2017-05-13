@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Doctor extends Model
 {
@@ -63,4 +64,19 @@ class Doctor extends Model
 		return $this->belongsTo('App\Specialization', 'specialization_id');
 	}
 
+
+	public static function getPRCNo($user_id)
+	{
+		return DB::table('doctors')->where('user_id', $user_id)->first()->prc;
+	}
+
+	public static function getPTRNo($user_id)
+	{
+		return DB::table('doctors')->where('user_id', $user_id)->first()->ptr;
+	}
+
+	public static function getS2No($user_id)
+	{
+		return DB::table('doctors')->where('user_id', $user_id)->first()->s2;
+	}
 }

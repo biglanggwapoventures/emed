@@ -31,27 +31,44 @@ class PharmaController extends Controller
      */
     public function index(Request $request)
     {
-        if(Auth::user()->user_type === 'ADMIN')
+        $user_type =  Auth::user()->user_type;
+        if(!in_array($user_type, ['PMANAGER']))
         {
             $items = Common::retrieveAllPharmas();
             return view('pharmacists.list', [
                     'items' => $items
                 ]);
         }
-        else
+        elseif($user_type === 'PMANAGER') 
         {
-            $search =  $request->input('search');
-            $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
+            $userId = session('user_id');
+            $data = PharmacyManager::getManagerData($userId);
+            
+            // $managerId = $data->id;
+            $pharmacyId = $data->drugstore;
+            $branchId = $data->drugstore_branch;
 
-            if(trim($search)){
-                $items->whereHas('userInfo', function($q) USE($search){
-                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-                });
-            }
+            // Log::info('mgrid=' . $managerId . '; pharid=' . $pharmacyId . '; brid=' . $branchId);
+
+
+            $items = Common::retrieveAllPharmas($pharmacyId, $branchId);
+
+            // $search =  $request->input('search');
+            // $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
+
+            // if(trim($search)){
+            //     $items->whereHas('userInfo', function($q) USE($search){
+            //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+            //     });
+            // }
 
             return view('pharmacists.list', [
-                'items' => $items->get()
+                'items' => $items//->get()
             ]);
+        }
+        else
+        {
+            abort(503);
         }
             
     }

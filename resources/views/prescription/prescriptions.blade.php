@@ -215,23 +215,33 @@
         var year = startDate.getFullYear();
         var month = startDate.getMonth() + 1;
         var currDay = startDate.getDate();
+        var startDay = startDate.getDate();
         var endDay = startDate.getDate() + duration;
         var maxDaysInTheMonth = new Date(year, month, 0).getDate();
 
+        var monthFiller = 0;
 
-        if(endDay > maxDaysInTheMonth)
+        monthFiller = maxDaysInTheMonth - startDay;
+
+        do
         {
-            endDay = endDay - maxDaysInTheMonth;
-            month++;
-        }
+            if(endDay > maxDaysInTheMonth)
+            {
+                endDay = endDay - maxDaysInTheMonth;
+                month++;
+            }
 
-        if(month > 12)
-        {
-            month = month - 12;
-            year++;
-        }
+            if(month > 12)
+            {
+                month = month - 12;
+                year++;
+            }
 
-        // var strEndDate = month + "/" + endDay + "/" + year,
+            maxDaysInTheMonth = new Date(year, month, 0).getDate();
+            monthFiller = endDay - maxDaysInTheMonth;
+        }
+        while(endDay > maxDaysInTheMonth)
+
 
         var actualEndMonth = (month < 10 ? ('0' + month) : month),
             actualEndDay = (endDay < 10 ? ('0' + endDay) : endDay);
@@ -239,7 +249,7 @@
         var strEndDate = year + "-" + actualEndMonth + "-" + actualEndDay,
             endDate = new Date(strEndDate);
 
-        console.log(strEndDate);
+        // console.log(strEndDate);
         return strEndDate;
     }
 

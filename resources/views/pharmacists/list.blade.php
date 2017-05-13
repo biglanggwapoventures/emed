@@ -270,7 +270,7 @@
 
                     pharmacy = baseData.drugstore;
                     license = baseData.license;
-                    manager = baseData.mgr_firstname + " " + baseData.mgr_lastname;
+                    manager = baseData.mgr;//_firstname + " " + baseData.mgr_lastname;
 
                     $("#mdl_userName").text(lastname + ", " + fname);
                     $("#mdl_user_name").text(username);
