@@ -309,6 +309,14 @@ class CustomUserController extends Controller
         ]));
         $user->save();
 
+        if($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store(
+                'avatars/'.$user->id, 'public'
+            );
+            $user->avatar = $path;
+            $user->save();
+        }
+
         Log::info('customusertypeid=' . $userTypeId);
         
         return redirect('custom-role/' . $userTypeId);
