@@ -11,6 +11,7 @@ use App\Secretary;
 use App\Permissions;
 use App\UserRoles;
 use App\CustomUser;
+use Validator;
 use Auth;
 
 use Log, EMedHelper;
@@ -136,6 +137,24 @@ class CustomUserController extends Controller
                 'email.required' => 'Please enter your email.'
            ]);
 
+        $rules = array(
+            'avatar' => 'required|image|size:2048'
+        );
+
+        $messages = array(
+            'avatar.required' => 'Please choose profile picture.',
+            'avatar.max' => 'Image is too large to upload. Must be less than 2MB.'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if(!$request->hasFile('avatar')) {
+            return redirect()->back()
+                        ->withErrors($validator);
+        }
+
+        else{
+
         // get fields for user table
         $input = $request->only([
             'username', 
@@ -197,6 +216,7 @@ class CustomUserController extends Controller
         $user->save();
 
         return redirect('admin');
+    }
     }
 
     /**

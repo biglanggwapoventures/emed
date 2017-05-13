@@ -185,8 +185,7 @@ class PatientsController extends Controller
 
         if(!$request->hasFile('avatar')) {
             return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+                        ->withErrors($validator);
         }
         else{
             // get fields for user table
