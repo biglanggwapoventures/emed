@@ -22,16 +22,17 @@
 
         <section class="content">
             <div class="row">
-                 @if(session('ACTION_RESULT'))
-    <div class="row">
+                @if(session('ACTION_RESULT'))
+                    <div class="row">
 
-        <div class="col-md-6 col-md-offset-3">
-            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
-                {{ session('ACTION_RESULT')['message'] }}
-            </div>
-        </div>
-    </div>
-    @endif
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                {{ session('ACTION_RESULT')['message'] }}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                
                 <div class="col-xs-12">
                     @if(EMedHelper::hasTargetActionPermission($role->name, 'ADD'))
                         <?php
@@ -53,7 +54,7 @@
                         </a>
                     @endif
                 </div>
-                <div class="hidden-xl hidden-lg hidden-md hidden-sm">&nbsp;</div>
+                <div>&nbsp;</div>
             </div>
             <div class="row">
                 <div class="col-xs-12">

@@ -4,7 +4,9 @@
         <section class="content-header">
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url(session('homepage') . '') }}">Home</a>
+                    </li>
                     <li class="breadcrumb-item active">Secretary List</li>
                 </ol>
             </div>
@@ -31,7 +33,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box-body table-responsive no-padding"><br>
-                        <table class="table table-bordered table-striped"">
+                        <table id="example1" class="table table-bordered table-striped"">
                             <thead>
                                 <tr class="active" style="height: 50px">
                                     <th class="align-th">Last Name</th>

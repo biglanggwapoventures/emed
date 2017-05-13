@@ -1,13 +1,26 @@
 @extends('welcome') @section('body')
 <div class="content-wrapper">
-<section class="content-header">
-        <ol class="breadcrumb">
-            <li><a href="{{ url('doctor-home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ route('secretary.index') }}"><i class="fa fa-user"></i> Secretaries </a></li>
-            <li><a href="#">Edit Secretary</a></li>
 
-        </ol>
+    <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('secretary.index') }}">Secretary List</a>
+                </li>
+                <li class="breadcrumb-item active">Edit Secretary</li>
+            </ol>
+        </div>
+        <h1>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-bandcamp" style="font-size:135%!important"></span>
+                &nbsp;Edit Secretary Form
+            </span>
+        </h1>
     </section>
+
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">

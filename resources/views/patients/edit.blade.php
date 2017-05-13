@@ -3,16 +3,23 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('patients.index') }}">Patient List</a>
+                </li>
+                <li class="breadcrumb-item active">Edit Patient</li>
+            </ol>
+        </div>
         <h1>
-            Edit Profile
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-bandcamp" style="font-size:135%!important"></span>
+                &nbsp;Edit Patient Form
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ route('patients.show', ['id' => $data->id]) }}"><i class="fa fa-user"></i> {{ $data->userInfo->fullname() }}'s Profile</a></li>
-            <li><a href="#">Edit Patient</a></li>
-
-        </ol>
     </section>
 
     <!-- Main content -->

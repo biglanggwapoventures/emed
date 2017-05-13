@@ -141,16 +141,6 @@
                 <?php $hasNonUserPermission = true; ?>
             @endif
 
-            @if(EMedHelper::showListOfTarget('PHARMACY'))
-                <li>
-                    <a href="{{ route('pharmacy.index')}} ">
-                        <i class="fa fa-medkit sidebar-icon"/></i>
-                        <span class="sidebar-label">Phamarcies</span>
-                    </a>
-                </li>
-                <?php $hasNonUserPermission = true; ?>
-            @endif
-
             @if(EMedHelper::hasTargetActionPermission('PMANAGER', 'TRANSACT_HIST'))
                 <li>
                     <a href="{{ route('transaction.history')}} ">

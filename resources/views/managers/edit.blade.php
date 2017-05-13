@@ -1,17 +1,27 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
-<section class="content-header">
+    <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('managers.index') }}">Pharmacy Manager List</a>
+                </li>
+                <li class="breadcrumb-item active">Edit Pharmacy Manager</li>
+            </ol>
+        </div>
         <h1>
-            Manager Edit
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-bandcamp" style="font-size:135%!important"></span>
+                &nbsp;Edit Pharmacy Manager Form
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/pmanager-home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Edit Manager</a></li>
-
-        </ol>
     </section>
+
+
     @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
