@@ -88,7 +88,7 @@ Route::post('custom-role/store/{roleId}', 'CustomUserController@store');
 Route::post('custom-role/update/{userId}', 'CustomUserController@update');
 
 Route::get('patient-prescriptions', 'PharmaTransactionController@index');
-Route::get('pharmatransaction/{patientId}', 'PharmaTransactionController@transaction');
-Route::get('pharmatransactions', 'PharmaTransactionController@transactionList');
+Route::get('pharmatransaction/{patientId}', 'PharmaTransactionController@transaction')->name('pharmatrans.transact');
+Route::get('transaction-history', 'PharmaTransactionController@transactionList')->name('transaction.history');
 
 Route::post('transact', 'PharmaTransactionController@storeTransaction');

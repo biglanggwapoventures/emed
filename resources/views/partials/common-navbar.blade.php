@@ -19,11 +19,11 @@
         </a>
         <ul class="nav navbar-nav pull-right">
                 <li><a href="/" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">HOME</a></li>
-                <li><a href="/aboutus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">ABOUT US</a></li>
-                <li><a href="/faq" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">FAQ</a></li>
-                <li><a href="/contactus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">CONTACT US</a></li>
+                <li><a href="{{ url('aboutus') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">ABOUT US</a></li>
+                <li><a href="{{ url('faq') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">FAQ</a></li>
+                <li><a href="{{ url('contactus') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">CONTACT US</a></li>
                 @if(Auth::check()) 
-                <li><a href="/logout" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">LOGOUT</a></li>
+                <li><a href="{{ url('logout') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">LOGOUT</a></li>
                 @endif
             </ul>
     </nav>
@@ -136,6 +136,36 @@
                     <a href="{{ route('pharmacy.index')}} ">
                         <i class="fa fa-medkit sidebar-icon"/></i>
                         <span class="sidebar-label">Phamarcies</span>
+                    </a>
+                </li>
+                <?php $hasNonUserPermission = true; ?>
+            @endif
+
+            @if(EMedHelper::showListOfTarget('PHARMACY'))
+                <li>
+                    <a href="{{ route('pharmacy.index')}} ">
+                        <i class="fa fa-medkit sidebar-icon"/></i>
+                        <span class="sidebar-label">Phamarcies</span>
+                    </a>
+                </li>
+                <?php $hasNonUserPermission = true; ?>
+            @endif
+
+            @if(EMedHelper::hasTargetActionPermission('PMANAGER', 'TRANSACT_HIST'))
+                <li>
+                    <a href="{{ route('transaction.history')}} ">
+                        <i class="fa fa-medkit sidebar-icon"/></i>
+                        <span class="sidebar-label">Transaction History</span>
+                    </a>
+                </li>
+                <?php $hasNonUserPermission = true; ?>
+            @endif
+
+            @if(EMedHelper::hasTargetActionPermission('PHARMA', 'TRANSACT'))
+                <li>
+                    <a href="{{ url('patient-prescriptions')}} ">
+                        <i class="fa fa-medkit sidebar-icon"/></i>
+                        <span class="sidebar-label">Prescription Transaction</span>
                     </a>
                 </li>
                 <?php $hasNonUserPermission = true; ?>

@@ -23,7 +23,7 @@ class PharmaTransactionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        $this->middleware('permissions', ['except' => ['storeTransaction', 'index']]);
     }
     
     /**
@@ -33,14 +33,22 @@ class PharmaTransactionController extends Controller
      */
     public function index()
     {
-        $patients = Common::getPatientsWithActivePrescriptions();
-        $doctors = Common::getDoctorsWithActivePrescriptions();
-        $patientDoctor = Common::getPatientDoctorLink();
-        $prescriptions = Common::getActivePrescriptions();
+        if(in_array(session('user_type'),['PMANAGER', 'PHARMA']))
+        {
+            $patients = Common::getPatientsWithActivePrescriptions();
+            $doctors = Common::getDoctorsWithActivePrescriptions();
+            $patientDoctor = Common::getPatientDoctorLink();
+            $prescriptions = Common::getActivePrescriptions();
 
-        $data = EMedHelper::handlePatientPrescriptionsDisplay($patients, $doctors, $patientDoctor, $prescriptions);
+            $data = EMedHelper::handlePatientPrescriptionsDisplay($patients, $doctors, $patientDoctor, $prescriptions);
 
-        return view('transactions.list', ['items' => $data]);
+            return view('transactions.list', ['items' => $data]);
+        }
+        else
+        {
+            abort(503);
+        }
+            
     }
 
 
