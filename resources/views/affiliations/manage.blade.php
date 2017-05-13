@@ -20,7 +20,8 @@
                     <div class="panel-heading">
                         <h4 class="panel-title"> <i class="glyphicon glyphicon-user"></i> Affiliation</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body"> <div class="alert alert-success hidden"></div>
+
                         @if($data->id) {!! Form::open(['url' => route('affiliations.update', ['id' => $data->id]), 'method' => 'PATCH', 'id' => 'spec']) !!} @else {!! Form::open(['url' => route('affiliations.store'), 'method' => 'POST', 'id' => 'spec']) !!} @endif
                         <div class="alert alert-danger hidden"></div>
                         <div class="row">
@@ -47,12 +48,14 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ route('affiliations.index') }}" class="btn btn-default" id="back">Back</a> {!! Form::close() !!}
+                        <a href="{{ route('affiliations.index') }}" class="btn btn-success" id="none">Back to list</a>
+                         {!! Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+     <a href="{{ route('affiliations.create') }}"  id="back"></a>
 </div>
 
 <style type="text/css">
@@ -93,17 +96,20 @@
             e.preventDefault();
             var $this = $(this)
             submitBtn = $this.find('[type=submit]'),
-                alert = $this.find('.alert.alert-danger');
+            alert = $this.find('.alert.alert-danger');
 
             alert.addClass('hidden');
             submitBtn.addClass('disabled');
 
             $.post($this.attr('action'), $this.serialize())
                 .done(function(res) {
-                    if (res.result) {
+                  if (res.result) {
+                        $('.alert.alert-success').removeClass('hidden').text(res.message);
+                        // $this.find('input').val('');
                         window.location.href = $("#back").attr('href');
                     } else {
-                        alert.html(function() {
+                        // validationError.html(function() {
+                             alert.html(function() {
                             return '<ul class="list-unstyled"><li>' + res.errors.join('</li><li>') + '</li><ul>';
                         }).removeClass('hidden');
                     }
@@ -118,5 +124,8 @@
         })
     })
 
+</script>
+<script type="text/javascript">
+    $('#back').hide();
 </script>
 @endpush

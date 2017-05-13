@@ -113,7 +113,9 @@
                         <div class="tab-pane" id="timeline">
                             <!-- The timeline -->
                             <table class="table table-user-information">
-                                <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
+                                @if(EMedHelper::hasDoctorAttachment($patients->id))
+                                    <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
+                                @endif
                                 <tbody>
 
                                     <tr>
@@ -170,14 +172,15 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="active">
-                                        <th>Doctor</th>
+                                        <!-- <th>Doctor</th> -->
                                         <th>Generic Name</th>
                                         <th>Brand name</th>
-                                        <th>Dosage</th>
+                                        <!-- <th>Dosage</th> -->
                                         <th>Frequency</th>
-                                        <th>Available</th>
-                                        <th>Start</th>
-                                        <th>end</th>
+                                      <th>Info</th>
+                                        <!-- <th>Available</th> -->
+                                        <!-- <th>Start</th> -->
+                                        <!-- <th>end</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -185,14 +188,17 @@
                                     @forelse($patients->prescriptions AS $consultation)@if($consultation->end >= $today)
                                     
                                     <tr>
-                                        <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td>
+                                        <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
                                         <td>{{ $consultation->genericname }}</td>
                                         <td>{{ $consultation->brand }}</td>
-                                        <td>{{ $consultation->dosage }}</td>
+                                        <!-- <td>{{ $consultation->dosage }}</td> -->
                                         <td>{{ $consultation->frequency }}</td>
-                                        <td>{{ $consultation->quantity }}</td>
-                                        <td>{{ $consultation->start }}</td>
-                                        <td>{{ $consultation->end }}</td>
+                                        <!-- <td>{{ $consultation->quantity }}</td> -->
+                                        <!-- <td>{{ $consultation->start }}</td> -->
+                                        <!-- <td>{{ $consultation->end }}</td> -->
+                                        <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>  Details
+                                                </button></td>
                                     </tr>
                                         @endif
                                         @empty
@@ -201,7 +207,7 @@
                                 </table>
                             </div>
                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
-                                                    <span class="glyphicon glyphicon-eye-open">History</span>
+                                                    <span class="glyphicon glyphicon-eye-open"></span>  History
                                                 </button>
                                                 <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
@@ -269,6 +275,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="doctor">
@@ -363,16 +370,18 @@
                         <div class="tab-pane" id="consultation">
                             <div class="box-body table-responsive no-padding">
                                 <table>
-                                    <thead>
-                                        <th> <a href="{{ route('consultations.index', ['patient_id' =>  $patients->id]) }}" class="btn btn-info pull-left"><span class="glyphicon glyphicon-plus"></span> Consultation</a></th>
-                                    </thead>
+                                    @if(EMedHelper::hasDoctorAttachment($patients->id))
+                                        <thead>
+                                            <th> <a href="{{ route('consultations.index', ['patient_id' =>  $patients->id]) }}" class="btn btn-info pull-left"><span class="glyphicon glyphicon-plus"></span> Consultation</a></th>
+                                        </thead>
+                                    @endif
                                 </table><br>
                                 <table id="example3" class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="active">
                                             <th>Consultation Date</th>
                                             <th>Doctor</th>
-                                            <th>Clinic</th>
+                                            <th>Specialization</th>
                                             <th>Manage</th>
                                         </tr>
                                     </thead>
@@ -381,7 +390,7 @@
                                         <tr>
                                             <td>{{ $a->created_at }}</td>
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                            <td>{{ $a->id }}</td>
+                                            <td>{{ $a->doctor->specialization->name }} </td>
                                             <td>
                                                 <form action="{{ route('consultations.destroy', ['id' => $a->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
                                                     {{ csrf_field() }} {{ method_field('DELETE') }}
@@ -510,6 +519,16 @@
     .img-circle {
     border-radius: 50%;
     margin-left: 39px;
+}
+</style>
+
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+
 }
 </style>
 

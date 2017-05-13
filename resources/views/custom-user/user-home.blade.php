@@ -10,6 +10,15 @@
         </div>
     </div>
     @endif
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- Content Header (Page header) -->
    <section class="content-header">
         <h1>
@@ -33,7 +42,8 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                       <!--  <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" ></center> -->
+                        <center><img alt="User Pic" src="{{ "/storage/{$items->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" ></center>
 
                         <h3 class="profile-username text-center"> </h3>
 
@@ -61,13 +71,13 @@
             </div>
             <!-- /.col -->
             <div class="col-md-9">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-                    </ul>
-                    <div class="tab-content">
+                
+                   
+                       Profile
+               
+                    
                         <!-- tab start -->
-                        <div class="active tab-pane" id="profile">
+                      
                             <table class="table table-user-information">
                                 <tbody>
                                     <tr>
@@ -88,10 +98,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
+                   
+                 
                     <!-- /.tab-content -->
-                </div>
+             
                 <!-- /.nav-tabs-custom -->
             </div>
             <!-- /.col -->
@@ -102,6 +112,14 @@
     <!-- /.content -->
 </div>
 
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+}
+</style>
 
 
 

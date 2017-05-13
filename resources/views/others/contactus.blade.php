@@ -4,9 +4,9 @@
 <head>
     <title>Contact Us</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}"><!-- 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
 
 <body>
@@ -44,7 +44,6 @@
             margin: 0px;
             width: 100%;
             height: 100%;
-            font: normal 14px/1.618em 'Open Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
         
@@ -67,12 +66,7 @@
         
         h1,
         h2 {
-            font-weight: 400;
             margin: 0px 0px 5px 0px;
-        }
-        
-        h1 {
-            font-size: 24px;
         }
         
         h2 {

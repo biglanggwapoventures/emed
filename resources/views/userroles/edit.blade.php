@@ -5,7 +5,7 @@
     <section class="content-header">
         <div style="margin-top:10px">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                 <li class="breadcrumb-item">
                     <a href="{{ url('userroles') }}">User Roles List</a>
                 </li>

@@ -58,7 +58,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" /> @if($errors->has('sex'))
+                                   <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" /> @if($errors->has('sex'))
                                     <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
                                 </div>
                                 </div>

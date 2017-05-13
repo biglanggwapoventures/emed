@@ -53,11 +53,19 @@ class AffiliationsController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), [
+        $rules = array(
             'name' => 'required|unique:affiliations',
-            'branches' => 'required|array',
-            'branches.*.name' => 'required',
-        ]);
+            'branches' => 'required|array|different:name',
+            'branches.*.name' => 'required|distinct|different:name',
+        );
+
+        $messages = array(
+            'name.unique' => 'The affiliation already exists.',
+            'branches.*.name.different' => 'The branch is the same with the affiliation.',
+            'branches.*.name.distinct' => 'The branch already exists.'
+        );
+
+        $v = Validator::make($request->all(), $rules, $messages);
 
         if($v->fails()){
             return response()->json([
@@ -80,7 +88,8 @@ class AffiliationsController extends Controller
         $aff->branches()->saveMany($branches);
 
         return response()->json([
-            'result' => true
+            'result' => true,
+             'message' => 'Affiliation Successfully added!'
         ]);
 
     }
@@ -121,7 +130,7 @@ class AffiliationsController extends Controller
         $v = Validator::make($request->all(), [
             'name' => "required|unique:affiliations,name,{$id}",
             'branches' => 'required|array',
-            'branches.*.name' => 'required|unique:affiliation_branches',
+            'branches.*.name' => 'required|distinct|different:name',
             'branches.*.id' => 'exists:affiliation_branches,id',
         ]);
 
@@ -158,10 +167,21 @@ class AffiliationsController extends Controller
         }
 
          return response()->json([
-             'result' => true
+             'result' => true,
+             'message' => 'Affiliation Successfully Edited!'
          ]);
 
     }
+    // 
+     // if($this->route("doctor"))
+     //    {
+     //        $user_id = \App\Doctor::find($this->route("doctor"))->user_id;
+     //        $rules['username'] = 'required|unique:users,username,'.$user_id;
+     //        $rules['email'] = 'required|unique:users,username,'.$user_id;
+     //        if(Auth::user()->isDoctor()){
+     //            unset($rules['prc'], $rules['ptr'], $rules['s2']);
+     //        }
+     //    }
 
     /**
      * Remove the specified resource from storage.

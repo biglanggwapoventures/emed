@@ -12,6 +12,15 @@
 
         </ol>
     </section>
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">
@@ -66,7 +75,7 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="control-label">Birthdate <span style="color: red">*</span></label> {!! Form::date('birthdate', $data->userInfo->birthdate, ['class' => 'form-control'], ['maxlength' => 100]) !!} @if($errors->has('Birthdate'))
+                                    <label class="control-label">Birthdate <span style="color: red">*</span></label> <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" value="{{ $data->userInfo->birthdate }}" /> @if($errors->has('Birthdate'))
                                     <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
                                 </div>
                             </div>
@@ -103,7 +112,7 @@
                                     <span class="help-block">{{ $errors->first('email') }}</span> @endif
                                 </div>
                             </div>
-                  @if(Auth::check()) @if(Auth::user()->user_type === 'ADMIN')
+                 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
                                     <label class="control-label">License</label> {!! Form::text('license', $data->license, ['class' => 'form-control']) !!} @if($errors->has('license'))
@@ -129,8 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                  @endif
-                  @endif
+               
 
                         @if(Auth::check()) @if(Auth::user()->user_type === 'PMANAGER')
                             <div class="col-md-4">
@@ -141,19 +149,19 @@
                             </div>
                         </div>
 
-                        <h4>Account Information</h4>
+                        <h4>Pharmacy Information</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
+                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', EMedHelper::retrievePharmacy($data->drugstore)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
                                     <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>

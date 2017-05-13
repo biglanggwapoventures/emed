@@ -265,7 +265,7 @@
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
                                                 <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">
                                             </button>
-                                            <a href="{{ route('doctors.show', ['id' => $items->id]) }}"><button type="button" class="btn btn-info btn-default-sm">
+                                            <a href="{{ route('doctors.show', ['id' => $item->id]) }}"><button type="button" class="btn btn-info btn-default-sm">
                                                 <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" id="myTooltip" title="View Profile">
                                             </button></a>
 
@@ -273,7 +273,7 @@
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
                                             <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
-                                                <center><img alt="User Pic" src="{{ " storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
+                                                <center><img alt="User Pic" src="{{ "/storage/{$item->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive"></center>
                                                 <h3 class="page-title text-info sbold" style="margin-left:-7px;">
                                                     {{ $item->userInfo->fullname() }}
                                                 </h3>
@@ -339,7 +339,7 @@
                                     <tr class="active">
                                         <th>Consultation Date</th>
                                         <th>Doctor</th>
-                                        <th>Clinic</th>
+                                        <th>Specialization</th>
                                         <th>Manage</th>
                                     </tr>
                                 </thead>
@@ -348,7 +348,7 @@
                                     <tr>
                                         <td>{{ $a->created_at }}</td>
                                         <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                        <td>{{ $a->doctor->clinic }}</td>
+                                        <td>{{ $a->doctor->specialization->name }}</td>
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                               <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">

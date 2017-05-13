@@ -39,11 +39,6 @@ class PatientsController extends Controller
         ]);
     
     }
-
-    public function list()
-    {
-        
-    }
     
     public function index(Request $request)
     {
@@ -93,7 +88,7 @@ class PatientsController extends Controller
         {
             if(EMedHelper::hasTargetActionPermission('PATIENT', 'LIST'))
             {
-                $items = Doctor::with('userInfo')->get();
+                $items = PATIENT::with('userInfo')->get();
                 return view('patients.list', [
                     'patients' => $items
                 ]);
@@ -293,6 +288,15 @@ class PatientsController extends Controller
                 'items' => $items
             ]);
         }
+        else 
+        {
+            $items = Patient::find($id);
+            $validPrescriptions = Common::retrieveValidPrescriptions($items->id);
+            Log::info(json_encode($validPrescriptions));
+            return view('patients.patient-home', [
+                'items' => $items
+            ]);
+        }
     }
 
     /**
@@ -327,6 +331,13 @@ class PatientsController extends Controller
         ]);
 
 
+        }
+
+        else{
+
+             return view('patients.edit', [
+            'data' => Patient::with('userInfo')->where('id', $id)->first()
+        ]);
         }
 
 
@@ -388,7 +399,7 @@ class PatientsController extends Controller
 
        if(Auth::user()->user_type === "DOCTOR")
         {
-            return redirect()->route('patients.index');
+            return redirect()->back();
         }
 
         else if(Auth::user()->user_type === "SECRETARY")
@@ -402,6 +413,9 @@ class PatientsController extends Controller
         return view('patients.patient-home', [
             'items' => $items
         ]);
+        }
+        else{
+            return redirect()->route('patients.index');
         }
     }
 

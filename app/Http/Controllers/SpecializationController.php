@@ -56,12 +56,13 @@ class SpecializationController extends Controller
         $rules = array(
             'name' => 'required|unique:specializations',
             'subs' => 'required|array',
-            'subs.*.name' => 'required|unique:subspecializations',
+            'subs.*.name' => 'required|distinct|different:name',
         );
 
         $messages = array(
             'name.unique' => 'The specialization already exists.',
-            'subs.*.name.unique' => 'The subspecialization already exists.'
+            'subs.*.name.distinct' => 'The subspecialization already exists.',
+            'subs.*.name.different' => 'The subspecialization and specialization must not be the same.'
         );
         
         $v = Validator::make($request->all(), $rules, $messages);
@@ -87,7 +88,8 @@ class SpecializationController extends Controller
         $spec->subspecializations()->saveMany($subs);
 
         return response()->json([
-            'result' => true
+            'result' => true,
+             'message' => 'Specialization Successfully Added!'
         ]);
 
     }
@@ -128,7 +130,7 @@ class SpecializationController extends Controller
         $v = Validator::make($request->all(), [
             'name' => "required|unique:specializations,name,{$id}",
             'subs' => 'required|array',
-            'subs.*.name' => 'required',
+            'subs.*.name' => 'required|distinct|different:name',
             'subs.*.id' => 'exists:subspecializations,id',
         ]);
 
@@ -165,7 +167,8 @@ class SpecializationController extends Controller
         }
 
         return response()->json([
-            'result' => true
+            'result' => true,
+             'message' => 'Specialization Successfully Edited!'
         ]);
 
     }

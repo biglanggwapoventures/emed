@@ -57,7 +57,7 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" />
+                                    <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" />
                                  @if($errors->has('birthdate'))
                                     <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
                                 </div>
@@ -86,24 +86,19 @@
 
                         </div>
 
-                        <h4>Account Information</h4>
+                        <h4>Pharmacy Information</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
-                                <?php 
-                                    $pharmacy = EMedHelper::retrievePharmacy($pman->drugstore)->name; 
-                                    $branch = EMedHelper::retrievePharmacyBranch($pman->drugstore_branch)->name;
-                                    // $branchData = $branch->name . ", " . $branch->address; 
-                                ?>
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $pharmacy, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
+                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', EMedHelper::retrievePharmacy($pman->drugstore)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
                                     <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', $branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($pman->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>

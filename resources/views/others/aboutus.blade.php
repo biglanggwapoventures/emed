@@ -36,7 +36,7 @@
             margin: 0px;
             width: 100%;
             height: 100%;
-            font: normal 14px/1.618em "Hind", sans-serif;
+            font-family: ''Open Sans', sans-serif';
             -webkit-font-smoothing: antialiased;
         }
         

@@ -2,6 +2,7 @@
 @section('body')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+     
         <section class="content-header">
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
@@ -29,6 +30,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
+          
                 <!-- left column -->
                 <div class="col-md-12">
                     <!-- general form elements -->
@@ -69,7 +71,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Birthdate</label>
                                         <!-- <span style="color: red">*</span> -->
-                                        <input maxlength="100" name="birthdate" type="date" class="form-control" style="width: 275px" />
+                                        <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -202,5 +204,5 @@
         }
 
     </style>
-
+    
 @endsection

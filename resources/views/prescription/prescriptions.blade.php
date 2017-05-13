@@ -97,7 +97,9 @@
                         <div class="col-md-5 ">
                             <strong>Notes:</strong> {{ Form::textarea('notes', null, ['size' => '56x5'])}}
 
-                            <button type="submit" class="btn btn-primary">Add</button> {!! Form::close() !!}
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <a href="{{ route('patients.show', ['id' => request()->input('patient_id')]) }}" class="btn btn-success" id="none">Back</a>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -263,4 +265,12 @@
 </div>
 @endpush
 
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+}
+</style>
 @endsection

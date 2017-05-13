@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box-body table-responsive no-padding"><br>
-                        <table class="table table-bordered table-striped"">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr class="active" style="height: 50px">
                                     <th class="align-th">Last Name</th>
@@ -72,11 +72,13 @@
                                             <form action="{{ route('users.destroy', ['id' => $patient->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} 
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PATIENT", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
-                                                    <span class="glyphicon glyphicon-trash action-icon"></span>
-                                                </button>
+                                                @if(Auth::user()->user_type === 'ADMIN')
+                                                    <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("PATIENT", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>
+                                                        <span class="glyphicon glyphicon-trash action-icon"></span>
+                                                    </button>
+                                                @endif
                                                 @if(EMedHelper::hasTargetActionPermission("PATIENT", "EDIT"))
-                                                    <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info">
+                                                    <a href="{{ route('patients.edit', ['id' => $patient->id]) }}" class="btn btn-info {{ EMedHelper::hasDoctorAttachment($patient->id) ? '' : 'disabled' }}">
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
                                                     </a>
                                                 @else

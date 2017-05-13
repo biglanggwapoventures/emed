@@ -22,6 +22,16 @@
 
         <section class="content">
             <div class="row">
+                 @if(session('ACTION_RESULT'))
+    <div class="row">
+
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                {{ session('ACTION_RESULT')['message'] }}
+            </div>
+        </div>
+    </div>
+    @endif
                 <div class="col-xs-12">
                     @if(EMedHelper::hasTargetActionPermission($role->name, 'ADD'))
                         <?php
@@ -47,8 +57,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box-body table-responsive no-padding"><br>
-                        <table class="table table-bordered table-striped"">
+                    <div class="box-body table-responsive no-padding">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr class="active" style="height: 50px">
                                     <th class="align-th">Last Name</th>
@@ -256,5 +266,21 @@
                 });
             });
         </script>
+          <script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
     @endpush
+
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+}
+</style>
 @endsection

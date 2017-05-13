@@ -55,9 +55,10 @@ class PharmacyController extends Controller
     {
         $rules = array(
             'name' => 'required|unique:pharmacies',
-            'branch' => 'required|array',
-            'branch.*.name' => 'required',
-            'branch.*.address' => 'required',
+            'branch' => 'required|array|distinct',
+            'branch.*.name' => 'required|distinct|different:name',
+            'branch.*.address' => 'required|distinct|different:name',
+             'branch.*.address' => 'required|distinct|different:branch.*.name'
         );
 
         $messages = array(
@@ -91,7 +92,8 @@ class PharmacyController extends Controller
         $pharmacy->branches()->saveMany($branches);
 
         return response()->json([
-            'result' => true
+            'result' => true,
+            'message' => 'Pharmacy Successfully added!'
         ]);
 
     }
@@ -132,8 +134,8 @@ class PharmacyController extends Controller
         $v = Validator::make($request->all(), [
             'name' => "required|unique:pharmacies,name,{$id}",
             'branch' => 'required|array',
-            'branch.*.name' => 'required',
-            'branch.*.address' => 'required',
+            'branch.*.name' => 'required|distinct|different:name',
+            'branch.*.address' => 'required|distinct|different:name',
             'branch.*.id' => 'exists:pharmacy_branches,id',
         ]);
 
@@ -171,7 +173,8 @@ class PharmacyController extends Controller
         }
 
         return response()->json([
-            'result' => true
+            'result' => true,
+             'message' => 'Pharmacy Successfully Edited!'
         ]);
 
     }

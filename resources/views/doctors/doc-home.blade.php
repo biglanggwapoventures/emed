@@ -24,7 +24,7 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <center>
-                            <img alt="User Pic" src="{{ " storage/{$doctors->userInfo->avatar}" }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
+                            <img alt="User Pic" src="{{ "/storage/{$doctors->userInfo->avatar}" }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
                         </center>
 
                         <h3 class="profile-username text-center">Dr. {{ $doctors->userInfo->fullname() }} </h3>
@@ -172,4 +172,12 @@
 }, 1000);
 </script>
 
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+}
+</style>
     @endsection

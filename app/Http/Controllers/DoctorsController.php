@@ -9,7 +9,7 @@ use App\Doctor;
 use App\User;
 use App\Patient;
 use Auth;
-
+use App\Common;
 use Log, EMedHelper;
 
 class DoctorsController extends Controller
@@ -273,12 +273,32 @@ class DoctorsController extends Controller
         ]));
         $user->save();
         
-        // return response()->json([
-        //     'url' => Auth::user()->isAdmin() ? route('admin.index') : url('/doctor-home') 
+         if(Auth::user()->user_type === "ADMIN"){
+        //    return response()->json([
+        //     'url' => route('doctors.index')
         // ]);
-        return response()->json([
-            'url' => route('doctors.index') 
+            return response()->json([
+             'result' => true,
+             'message' => 'Doctor Successfully Edited!'
+         ]);
+        }
+        else if (Auth::user()->isDoctor()) {
+          return response()->json([
+            'url' => url('/doctor-home') 
         ]);
+        }
+        else{
+       //      return response()->json([
+       //      'url' => route('doctors.index') 
+       // ]);
+            return response()->json([
+             'result' => true,
+             'message' => 'Affiliation Successfully Edited!'
+         ]);
+        }
+        // return response()->json([
+        //     'url' => Auth::user()->isAdmin() ? route('doctors.index') : url('/doctor-home') 
+        // ]);
     }
     
 

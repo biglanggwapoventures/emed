@@ -73,7 +73,7 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="control-label">Birthdate <span style="color: red">*</span></label> {!! Form::date('birthdate', $data->userInfo->birthdate, ['class' => 'form-control'], ['maxlength' => 100]) !!} @if($errors->has('birthdate'))
+                                    <label class="control-label">Birthdate <span style="color: red">*</span></label> <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" value="{{ $data->userInfo->birthdate }}" /> @if($errors->has('birthdate'))
                                     <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
 
                                 </div>

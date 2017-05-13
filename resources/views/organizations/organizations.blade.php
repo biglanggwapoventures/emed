@@ -11,7 +11,7 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route( 'organizations.index')}}">Organizations</a></li>
 
         </ol>
@@ -137,6 +137,15 @@
      th {
     padding: 0;
     background-color: #ecf0f5;
+}
+</style>
+
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 20px;
+    width: 500px;
 }
 </style>
 <script type="text/javascript">

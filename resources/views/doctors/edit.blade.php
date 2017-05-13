@@ -1,6 +1,7 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -197,25 +198,35 @@
                                         <th>Branch</th>
                                         <th>Clinic Hours</th>
                                         <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody data-aff-branches="{{ json_encode($affiliationBranches) }}" data-aff="{{ $data->affiliations }}">
                                     @foreach($data->affiliations AS $i => $aff)
                                     <tr>
-                                        <td>
+                                        <td >
                                             {!! Form::select("affiliations[{$i}][affiliation_id]", $affiliations, $aff->id, ['class' => 'form-control aff', 'data-name' => 'affiliations[idx][affiliation_id]', 'placeholder' => 'Select affiliated clinic']) !!}
                                         </td>
                                         <td>
                                             {!! Form::select("affiliations[{$i}][branch_id]", [], null, ['class' => 'form-control aff-branch', 'data-name' => 'affiliations[idx][branch_id]', 'data-default' => $aff->pivot->affiliation_branch_id ]) !!}
                                         </td>
-                                        <td>{!! Form::time("affiliations[{$i}][clinic_start]", $aff->pivot->clinic_start, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_start]']) !!} <h4> to </h4>{!! Form::time("affiliations[{$i}][clinic_end]", $aff->pivot->clinic_end, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_end]']) !!}</td>
-                                        <td><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        <td style="width:1px;">{!! Form::time("affiliations[{$i}][clinic_start]", $aff->pivot->clinic_start, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_start]']) !!}
+                                        </td>
+                                        <td style="width:1%;">to</td>
+                                        <td  style="width:1px;">
+                                        {!! Form::time("affiliations[{$i}][clinic_end]", $aff->pivot->clinic_end, ['class' => 'form-control', 'data-name' => 'affiliations[idx][clinic_end]']) !!}  
+                                        </td>
+                                        <td>
+                                        <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+
                                     </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="4"><a href="javascript:void(0)" class="btn btn-default add-line"><span class="glyphicon glyphicon-plus"></span>  Add new line</a></td>
+                                        <td colspan="6"><a href="javascript:void(0)" class="btn btn-default add-line"><span class="glyphicon glyphicon-plus"></span>  Add new line</a></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -254,7 +265,7 @@
                             <div class="col-md-4">
 
                                 <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                                    <label class="control-label ">Birthdate <span style="color: red ">*</span></label> {!! Form::date('birthdate', $data->userInfo->birthdate, ['class' => 'form-control'], ['maxlength' => 100]) !!} @if($errors->has('birthdate'))
+                                    <label class="control-label ">Birthdate <span style="color: red ">*</span></label> <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" value="{{ $data->userInfo->birthdate }}" /> @if($errors->has('birthdate'))
                                     <span class="help-block ">{{ $errors->first('birthdate') }}</span> @endif
                                 </div>
                             </div>
@@ -321,7 +332,7 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
-   
+    <a href="{{ route('doctors.index') }}"  id="back"></a>
 </div>
 
 <style type="text/css">
@@ -434,10 +445,10 @@
 
             $.post($this.attr('action'), $this.serialize())
                 .done(function(res) {
-                    window.location.href = res.url;
-                    // if (res.result) {
-                    //     window.location.href = $("#back").attr('href');
-                    // }
+                    // window.location.href = res.url;
+                     $('.alert.alert-success').removeClass('hidden').text(res.message);
+                        // $this.find('input').val('');
+                        window.location.href = $("#back").attr('href');
                 })
                 .fail(function(res) {
                     alertEl.html(function() {
@@ -481,5 +492,14 @@
     });
 }, 1000);
 </script>
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+
+}
+</style>
 
 @endsection

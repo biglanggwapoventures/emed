@@ -17,6 +17,15 @@
             <span class="icon-bar"/>
             <span class="icon-bar"/>
         </a>
+        <ul class="nav navbar-nav pull-right">
+                <li><a href="/" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">HOME</a></li>
+                <li><a href="/aboutus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">ABOUT US</a></li>
+                <li><a href="/faq" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">FAQ</a></li>
+                <li><a href="/contactus" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">CONTACT US</a></li>
+                @if(Auth::check()) 
+                <li><a href="/logout" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">LOGOUT</a></li>
+                @endif
+            </ul>
     </nav>
 </header>
 <aside class="main-sidebar ">
@@ -229,12 +238,6 @@
                 <a href="{{ url('ChangePass') }}">
                     <i class="fa fa-unlock-alt "></i> 
                     <span>Change Password</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('logout') }}" class="btn btn-default btn-flat ">
-                    <i class="fa fa-sign-out"></i>
-                    <span>Sign out</span>
                 </a>
             </li>
         </ul>

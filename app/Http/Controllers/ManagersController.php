@@ -162,9 +162,21 @@ class ManagersController extends Controller
      */
     public function edit($id)
     {
+
+            if(Auth::user()->user_type === "PMANAGER")
+        {
          return view('managers.edit', [
             'data' => PharmacyManager::with('userInfo')->where('user_id', $id)->first()
         ]);
+
+         }
+
+        else{
+            return view('managers.edit', [
+            'data' => PharmacyManager::with('userInfo')->where('id', $id)->first()
+        ]);
+
+        }
     }
 
     /**
@@ -205,17 +217,24 @@ class ManagersController extends Controller
                 'type' => 'success', 
                 'message' => 'Edit manager successful!'
             ]);
-        return redirect('/doctor-home')->with('success', 0);
+        // return redirect('/doctor-home')->with('success', 0);
 
         }
          else if(Auth::user()->user_type === "ADMIN")
         {
-           return redirect()->route('admin.index')->with('ACTION_RESULT', [
+           return redirect()->route('managers.index')->with('ACTION_RESULT', [
                 'type' => 'success', 
                 'message' => 'Edit manager successful!'
             ]);
 
-        return redirect('/patient-home')->with('success', 0);
+        // return redirect('/patient-home')->with('success', 0);
+
+        }
+        else{
+            return redirect()->route('managers.index')->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Edit manager successful!'
+            ]);
 
         }
        // return redirect()->route('admin.index');

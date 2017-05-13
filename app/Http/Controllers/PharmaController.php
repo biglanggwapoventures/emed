@@ -31,44 +31,33 @@ class PharmaController extends Controller
      */
     public function index(Request $request)
     {
-        $user_type =  Auth::user()->user_type;
-        if(!in_array($user_type, ['PMANAGER']))
+        if(Auth::user()->user_type === 'ADMIN')
         {
             $items = Common::retrieveAllPharmas();
             return view('pharmacists.list', [
                     'items' => $items
                 ]);
         }
-        elseif($user_type === 'PMANAGER') 
+        elseif(Auth::user()->user_type === 'PMANAGER')
         {
-            $userId = session('user_id');
-            $data = PharmacyManager::getManagerData($userId);
-            
-            // $managerId = $data->id;
-            $pharmacyId = $data->drugstore;
-            $branchId = $data->drugstore_branch;
+            $search =  $request->input('search');
+            $items = Pharma::where('manager_id', Auth::user()->manager->id);
 
-            // Log::info('mgrid=' . $managerId . '; pharid=' . $pharmacyId . '; brid=' . $branchId);
-
-
-            $items = Common::retrieveAllPharmas($pharmacyId, $branchId);
-
-            // $search =  $request->input('search');
-            // $items = Pharma::where('drugstore', Auth::user()->manager->drugstore);
-
-            // if(trim($search)){
-            //     $items->whereHas('userInfo', function($q) USE($search){
-            //         $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-            //     });
-            // }
+            if(trim($search)){
+                $items->whereHas('userInfo', function($q) USE($search){
+                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+                });
+            }
 
             return view('pharmacists.list', [
-                'items' => $items//->get()
+                'items' => $items->get()
             ]);
         }
-        else
-        {
-            abort(503);
+        else{
+             $items = Pharma::all();
+            return view('pharmacists.list', [
+                    'items' => $items
+                ]);
         }
             
     }
@@ -89,10 +78,21 @@ class PharmaController extends Controller
      */
     public function create()
     {
-         $pman = Auth::user()->manager;
+         if(Auth::user()->user_type != 'PMANAGER'){
+
+            Log::error('ACCESS DENIED. User tries to access a custom user\'s homepage that is not included in the current user\'s list of permissions.');
+             abort(503);
+         }
+        
+
+          else{
+
+             $pman = Auth::user()->manager;
           return view('pharmacists.pharma-form', [
              'pman' => $pman
          ]);
+
+          }
 
          //return view('pharmacists.pharma-form');
 
@@ -176,12 +176,20 @@ class PharmaController extends Controller
      */
     public function edit($id)
     {
-        $pman = Auth::user()->manager;
-          return view('pharmacists.edit', [
-             'pman' => $pman,
-             'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
-         ]);
+        // $pman = Auth::user()->manager;
+        //   return view('pharmacists.edit', [
+        //      'pman' => $pman,
+        //      'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
+        //  ]);
 
+
+       // if(Auth::user()->user_type === "DOCTOR")
+       //  {
+             return view('pharmacists.edit', [
+            'data' => Pharma::with('userInfo')->where('id', $id)->first()
+        ]);
+
+       // } 
         //  return view('pharmacists.edit', [
         //     'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
         // ]);
@@ -215,7 +223,7 @@ class PharmaController extends Controller
             'sex',
             'email',
             'birthdate',
-            'address',
+            // 'address',
 
         ]));
         $user->save();

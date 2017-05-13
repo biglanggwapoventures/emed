@@ -7,7 +7,7 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('specialization.index')}}">Specializations</a></li>
             <li><a href="{{ route( 'specialization.create')}} ">Manage Specialization</a></li>
 
@@ -20,7 +20,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title"> <i class="glyphicon glyphicon-user"></i> Specialization</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body"><div class="alert alert-success hidden"></div>
                         @if($data->id) {!! Form::open(['url' => route('specialization.update', ['id' => $data->id]), 'method' => 'PATCH', 'id' => 'spec']) !!} @else {!! Form::open(['url' => route('specialization.store'), 'method' => 'POST', 'id' => 'spec']) !!} @endif
                         <div class="alert alert-danger hidden"></div>
                         <div class="row">
@@ -47,13 +47,15 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ route('specialization.index') }}" class="btn btn-default" id="back">Back</a> {!! Form::close() !!}
+                        <a href="{{ route('specialization.index') }}" class="btn btn-default" id="none">Back to list</a> {!! Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+  <a href="{{ route('specialization.create') }}"  id="back"></a>
 </div>
+
 <style type="text/css">
     .panel-default {
     border-color: #ddd;
@@ -101,6 +103,7 @@
             $.post($this.attr('action'), $this.serialize())
                 .done(function(res) {
                     if (res.result) {
+                        $('.alert.alert-success').removeClass('hidden').text(res.message);
                         window.location.href = $("#back").attr('href');
                     } else {
                         alert.html(function() {
@@ -118,5 +121,8 @@
         })
     })
 
+</script>
+<script type="text/javascript">
+    $('#back').hide();
 </script>
 @endpush

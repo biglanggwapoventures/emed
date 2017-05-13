@@ -9,7 +9,7 @@
             <small></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('organizations.index')}}">Organizations</a></li>
             <li><a href="{{ route( 'organizations.create')}} ">Manage Organization</a></li>
 
@@ -44,4 +44,12 @@
         </div>
     </div>
 
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+}
+</style>
     @endsection
