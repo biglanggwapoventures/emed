@@ -209,6 +209,112 @@
                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
                                                     <span class="glyphicon glyphicon-eye-open"></span>  History
                                                 </button>
+               <!-- notes -->
+                                 <div class="modal fade" id="notes" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
+                                            <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                                                
+                                                <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                                                    Prescription Details of {{ $patients->userInfo->fullname() }} 
+                                                </h3>
+
+                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
+                                                 <p>{{$consultation->created_at}} </p>
+                                                <div class="row">
+                                                    <table style="padding-left:10px">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                    
+                                                     <table class="table" style="padding-left:10px">
+                                                      <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
+                                                           <tr>
+                                                           <td>
+                                                            <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                <label>Genericname</label><br/>
+                                                                <span> {{ $consultation->genericname  }}</span>
+                                                            </div>
+                                                            </td>
+                                                            <td>
+                                                            <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                <label>Brandname</label><br/>
+                                                                <span>{{ $consultation->brand }}</span>
+                                                            </div>
+                                                            </td>
+                                                            </tr>
+                                                    </div>
+                                                    </table>
+                                                       
+                                                     <table class="table" style="padding-left:10px">
+                                                        <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
+                                                        
+                                                           <tr>
+                                                               <td>
+                                                                    <label>Notes</label><br/>
+                                                                  <span> {{ $consultation->notes }}</span>
+                                                               </td>
+                                                           </tr>
+                                                           </div>
+                                                     </table>
+                                                 
+                                                    
+                                                    <table class="table" style="padding-left:10px">
+                                                   <tr>
+                                                   <td>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Frequency</label><br/>
+                                                        <span> {{ $consultation->frequency  }}</span>
+                                                    </div>
+                                                    </td>
+                                                    <td>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Dosage</label><br/>
+                                                        <span>{{ $consultation->dosage  }}</span>
+                                                    </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Start</label><br/>
+                                                        <span>{{ $consultation->start  }}</span>
+                                                    </div></td>
+                                                        <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>End</label><br/>
+                                                        <span>{{ $consultation->end  }}</span>
+                                                    </div></td>
+                                                    </tr>
+                                                   <tr>
+                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Quantity</label><br/>
+                                                        <span> {{ $consultation->quantity  }}</span>
+                                                    </div></td>
+                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Prescribed by:</label><br/>
+                                                        <span>{{ $consultation->doctor->userInfo->fullname() }}</span>
+                                                    </div></td>
+                                                   </tr> 
+                                                
+                                                    </table>
+                                                        
+                                                   
+                                                </div>
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12">
+                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                            Close 
+                                                        </button>
+                                                    </div>
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+               <!-- notes -->
                                                 <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
@@ -508,11 +614,11 @@
     </div>
 
 <script type="text/javascript">
- window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-}, 1000);
+  window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 1000);
 </script>
 
 <style type="text/css">
