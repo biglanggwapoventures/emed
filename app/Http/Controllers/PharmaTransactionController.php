@@ -8,6 +8,10 @@ use App\Permissions;
 use App\UserRoles;
 use App\TransactionLine;
 use App\Common;
+use App\Pharma;
+use App\PharmacyManager;
+
+
 use Log, Session, EMedHelper;
 
 class PharmaTransactionController extends Controller
@@ -75,5 +79,28 @@ class PharmaTransactionController extends Controller
         $transaction = TransactionLine::create($transactionData);
 
         return json_encode(['message' => 'Successfully stored.']);
+    }
+
+    public function transactionList()
+    {
+        $userId = session('user_id');
+        Log::info('userid = ' . $userId);
+        
+        if(session('user_type') === 'PMANAGER')
+        {
+            $userData = PharmacyManager::getManagerData($userId);
+        }
+        elseif(session('user_type') === 'PHARMA')
+        {
+            $userData = Pharma::getPharmaData($userId);
+        }
+        else
+        {
+            abort(503);
+        }
+
+        $data = [];
+
+        return view('transactions.transaction-list', ['items' => $data, 'userdata' => $userData]);
     }
 }

@@ -23,6 +23,10 @@ class PharmacyManager extends Model
 
 	public static function getManagerData($user_id)
 	{
-		return DB::table('pharmacy_managers')->where('user_id', $user_id)->first();
+		return DB::table('pharmacy_managers')
+			   ->join('pharmacies', 'pharmacy_managers.drugstore', '=', 'pharmacies.id')
+			   ->join('pharmacy_branches', 'pharmacy_managers.drugstore_branch', '=', 'pharmacy_branches.id')
+			   ->select('pharmacy_managers.*', 'pharmacies.name AS pharmacy', 'pharmacy_branches.name AS pharmacyBranch', 'pharmacy_branches.address AS pharmacyBranchAddress')
+			   ->where('pharmacy_managers.user_id', $user_id)->first();
 	}
 }

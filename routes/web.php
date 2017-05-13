@@ -89,4 +89,6 @@ Route::post('custom-role/update/{userId}', 'CustomUserController@update');
 
 Route::get('patient-prescriptions', 'PharmaTransactionController@index');
 Route::get('pharmatransaction/{patientId}', 'PharmaTransactionController@transaction');
+Route::get('pharmatransactions', 'PharmaTransactionController@transactionList');
+
 Route::post('transact', 'PharmaTransactionController@storeTransaction');
