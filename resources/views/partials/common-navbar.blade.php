@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="/admin" class="logo">
+    <a href="/" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">
             <b>E</b>MS</span>
@@ -126,16 +126,6 @@
                     <a href="{{ route('organizations.index')}} ">
                         <i class="fa fa-hospital-o sidebar-icon"/></i>
                         <span class="sidebar-label">Organizations</span>
-                    </a>
-                </li>
-                <?php $hasNonUserPermission = true; ?>
-            @endif
-
-            @if(EMedHelper::showListOfTarget('PHARMACY'))
-                <li>
-                    <a href="{{ route('pharmacy.index')}} ">
-                        <i class="fa fa-medkit sidebar-icon"/></i>
-                        <span class="sidebar-label">Phamarcies</span>
                     </a>
                 </li>
                 <?php $hasNonUserPermission = true; ?>

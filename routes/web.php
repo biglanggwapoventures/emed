@@ -40,7 +40,7 @@ Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
 // Route::get('/ChangePass', 'OtherController@ChangePass');
 
-// Route::get('/admin', 'AdminController@showHomepage')->middleware('auth');
+Route::get('/admin', 'LoginController@redirectDefaultPage')->middleware('auth');
 Route::get('/doctorlist', 'ListController@doctorList');
 Route::get('/managerList', 'ListController@pmanagerList');
 Route::get('/secretaryList', 'ListController@secretaryList');
