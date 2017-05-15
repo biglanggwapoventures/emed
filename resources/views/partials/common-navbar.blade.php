@@ -135,7 +135,7 @@
                 <li>
                     <a href="{{ route('pharmacy.index')}} ">
                         <i class="fa fa-medkit sidebar-icon"/></i>
-                        <span class="sidebar-label">Phamarcies</span>
+                        <span class="sidebar-label">Pharmacies</span>
                     </a>
                 </li>
                 <?php $hasNonUserPermission = true; ?>
