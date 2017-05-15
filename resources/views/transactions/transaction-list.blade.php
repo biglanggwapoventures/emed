@@ -21,9 +21,6 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    {{-- var_dump($userdata) --}}
-                    <h4>{{ $userdata->pharmacy . ", " . $userdata->pharmacyBranch }}</h4>
-                    <h5>{{ $userdata->pharmacyBranchAddress }}</h5>
                 </div>
                 
             </div>

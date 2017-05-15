@@ -21,13 +21,9 @@
         </ul>
     </div>
 @endif
-    <div class="container-fluid">
-        <div class="row-bod">
-            <div class="col-md-9 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Manager Registration</h4>
-                    </div>
+    <div class="container-fluid"><br><br>
+            <div class="col-md-12">
+                <div class="box box-primary">
                     <div class="panel-body">
                         {!! Form::open(['url' => route('managers.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
 
@@ -121,7 +117,7 @@
                             </div>
                         </div>
 
-                        <h4>Account Information</h4>
+                        <h4>Drugstore Branch</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
@@ -160,8 +156,8 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
+                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>
@@ -170,8 +166,6 @@
                         @endif
 
                         <button type="submit" class="btn btn-primary">Update</button> {!! Form::close() !!}
-
-                    </div>
                 </div>
             </div>
         </div>
