@@ -210,6 +210,7 @@
                                                     <span class="glyphicon glyphicon-eye-open"></span>  History
                                                 </button>
                <!-- notes -->
+                                @forelse($patients->prescriptions AS $consultation)
                                  <div class="modal fade" id="notes" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
@@ -314,6 +315,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                @empty
+                                @endforelse
                <!-- notes -->
                                                 <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
@@ -498,11 +501,6 @@
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
                                             <td>{{ $a->doctor->specialization->name }} </td>
                                             <td>
-                                                <form action="{{ route('consultations.destroy', ['id' => $a->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
-                                                    {{ csrf_field() }} {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn btn-danger" data-toggle="tooltip" id="myTooltip" title="Delete Consultation"><span class="glyphicon glyphicon-trash"></span></button>
-                                                </form>
-
                                                 <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info" style="" data-toggle="tooltip" id="myTooltip" title="Add Prescriptions"><b>P</b></a>
 
                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">

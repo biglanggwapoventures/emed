@@ -197,6 +197,7 @@
                                                     <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" id="myTooltip" title="View Prescription History">History</span>
                                                 </button>
                                                       <!-- notes -->
+                                @forelse($items->prescriptions AS $consultation)
                                  <div class="modal fade" id="notes" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
@@ -301,6 +302,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                @empty
+                                @endforelse
                <!-- notes -->
                                                 <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
