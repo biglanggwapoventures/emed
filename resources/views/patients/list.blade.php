@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box-body table-responsive no-padding"><br>
+                    <div class="box-body table-responsive no-padding">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr class="active" style="height: 50px">
@@ -39,7 +39,7 @@
                                     <th class="align-th">Gender</th>
                                     <th class="align-th">Contact No.</th>
                                     <th class="align-th">Email</th>
-                                    @if(Auth::user()->user_type != 'ADMIN'))
+                                    @if(Auth::user()->user_type != 'ADMIN')
                                     <th class="align-th text-center">Status</th>
                                     @endif
                                     <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
@@ -63,7 +63,7 @@
                                         <td class="align-pt">
                                             {{ $patient->userInfo->email }}
                                         </td>
-                                        @if(Auth::user()->user_type != 'ADMIN'))
+                                        @if(Auth::user()->user_type != 'ADMIN')
                                         <td class="align-pt text-center">
                                             @if(EMedHelper::hasDoctorAttachment($patient->id))
                                                 <label class="attached-label">&nbsp;&nbsp;ATTACHED&nbsp;&nbsp;</label>
