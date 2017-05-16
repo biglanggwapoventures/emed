@@ -93,6 +93,7 @@ class PatientRequest extends FormRequest
             'email.unique' => 'Email already taken',
             'username.unique' => 'Taken username.',
             'allergyname.unique' => 'Input allergy name.',
+            'allergyname.required_if' => 'Please enter the name of your allergy.',
             'contact_number.min' => 'Please enter valid contact number.'
         ];
     }
