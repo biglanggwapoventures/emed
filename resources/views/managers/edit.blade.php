@@ -122,14 +122,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control']) !!} @if($errors->has('drugstore'))
+                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', EMedHelper::retrievePharmacy($data->drugstore)->name , ['class' => 'form-control']) !!} @if($errors->has('drugstore'))
                                     <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control']) !!} @if($errors->has('drugstore_branch'))
+                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control']) !!} @if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>
