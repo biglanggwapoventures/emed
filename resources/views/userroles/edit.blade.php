@@ -95,6 +95,10 @@
 <style type="text/css">
     .inside {
         padding: 12px;
+
+    }
+    .table{
+         background-color: #ffffff ;
     }
 
 </style>
