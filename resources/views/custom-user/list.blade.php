@@ -110,10 +110,10 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr>
+                                   <!--  <tr>
                                         <td colspan="6" class="text-center">ERROR: No {{ $role->display_name }} found.</td>
                                     </tr>
-                                @endforelse
+ -->                                @endforelse
                             </tbody>
                         </table>
                     </div>

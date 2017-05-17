@@ -190,10 +190,10 @@
                                 </td>
                             </tr>
                             @endif @empty
-                            <tr>
+                           <!--  <tr>
                                 <td></td><td></td><td></td><td></td>
                                 <td colspan="4" class="text-center">No users recorded</td>
-                            </tr>
+                            </tr> -->
                             @endforelse
                         </tbody>
 

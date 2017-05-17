@@ -108,9 +108,9 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr>
+                                   <!--  <tr>
                                         <td colspan="6" class="text-center">No patients found.</td>
-                                    </tr>
+                                    </tr> -->
                                 @endforelse
                             </tbody>
                         </table>

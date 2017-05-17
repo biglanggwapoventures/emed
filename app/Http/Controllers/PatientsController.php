@@ -409,9 +409,9 @@ class PatientsController extends Controller
         else if(Auth::user()->user_type === "PATIENT")
         {
             $items = Patient::find($id);
-        return view('patients.patient-home', [
-            'items' => $items
-        ]);
+            return view('patients.patient-home', [
+                'items' => $items
+            ]);
         }
         else{
             return redirect()->route('patients.index');

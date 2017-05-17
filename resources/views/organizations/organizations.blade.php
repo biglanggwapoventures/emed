@@ -114,9 +114,9 @@
 
 
                 @empty
-                <tr>
+               <!--  <tr>
                     <td colspan="4" class="text-center">No records</td>
-                </tr>
+                </tr> -->
                 @endforelse
                             </tbody>
                         </table>
