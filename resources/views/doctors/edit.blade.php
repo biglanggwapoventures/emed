@@ -235,7 +235,7 @@
                     </div>
                     <!--  -->
                       <div class="tab-pane" id="profile" >
-                        <div class="alert alert-danger hidden"></div>
+                        <div class="alert alert-danger hidden">NIKKS WHY U BOPOLS?</div>
                         <h4>Personal Information</h4>
                         <hr class="third"></hr>
                         <div class="row ">
@@ -438,11 +438,12 @@
             e.preventDefault();
             var $this = $(this)
             submitBtn = $this.find('[type=submit]'),
-                alertEl = $this.find('.alert.alert-danger');
+                alertEl = $('.alert.alert-danger');
 
             alertEl.addClass('hidden');
             submitBtn.addClass('disabled');
 
+            console.log(alertEl);
             $.post($this.attr('action'), $this.serialize())
                 .done(function(res) {
                     // window.location.href = res.url;
@@ -451,6 +452,9 @@
                         window.location.href = $("#back").attr('href');
                 })
                 .fail(function(res) {
+                    // console.log(res);
+                    // alert(res.responseJSON.errors.join('</li><li>'));
+                    // alertEl.remove();
                     alertEl.html(function() {
                         return '<ul class="list-unstyled"><li>' + res.responseJSON.errors.join('</li><li>') + '</li><ul>';
                     }).removeClass('hidden');
@@ -485,13 +489,13 @@
             }
         }
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
  window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove(); 
     });
 }, 1000);
-</script>
+</script> -->
 <style type="text/css">
     .alert {
     position:absolute;
