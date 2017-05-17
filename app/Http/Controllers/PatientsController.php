@@ -175,6 +175,7 @@ class PatientsController extends Controller
                 'email.required' => 'Please enter your email.',
                 'econtact.required' => 'Please enter your emergency contact.',
                 'erelationship.required' => 'Please enter your relationship with emergency contact.',
+                'enumber.required' => 'Please enter your emergency person contact number.',
            ]);
 
         // save patient's profile picture
