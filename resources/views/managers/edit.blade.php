@@ -119,8 +119,19 @@
                                 </div>
                         </div>
 
-                        
-                        <h4>Pharmacy Branch</h4>
+                         @elseif(Auth::user()->user_type === 'ADMIN')
+
+                            <div class="col-md-4">
+                                <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
+                                    <label class="control-label">License</label> {!! Form::text('license', $data->license, ['class' => 'form-control']) !!} @if($errors->has('license'))
+                                    <span class="help-block">{{ $errors->first('license') }}</span> @endif
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endif
+
+                       <!--  <h4>Pharmacy Branch</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
@@ -138,16 +149,8 @@
                             </div>
                         </div>
                
-                        @elseif(Auth::user()->user_type === 'ADMIN')
-
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
-                                    <label class="control-label">License</label> {!! Form::text('license', $data->license, ['class' => 'form-control']) !!} @if($errors->has('license'))
-                                    <span class="help-block">{{ $errors->first('license') }}</span> @endif
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+                        -->
+                        <!-- </div> -->
                          @if(Auth::user()->user_type === 'ADMIN')
                         <h4>Pharmacy Information</h4>
                         <hr class="third">
@@ -165,11 +168,11 @@
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>
-                        </div>
+                       
                         @else
-                        <h4>Pharmacy Information</h4>
+                        <h4 style="margin-left: 12px;">Pharmacy Information</h4>
                         <hr class="third">
-                        <div class="row">
+                        
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
                                     <label class="control-label">Drugstore</label> {!! Form::text('drugstore', EMedHelper::retrievePharmacy($data->drugstore)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
@@ -185,9 +188,7 @@
                             </div>
                         </div>
                         @endif
-                        @endif
-                        @endif
-
+                      
                         <button type="submit" class="btn btn-primary">Update</button> {!! Form::close() !!}
                 </div>
             </div>
