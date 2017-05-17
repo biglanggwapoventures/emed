@@ -181,7 +181,12 @@
                                 {!! Form::bsText('username', 'Username') !!}
                             </div>
                             <div class="col-md-4">
-                               <label>Email</label>{{Form::email('email',null,['class' => 'form-control'])}}
+                                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                                    <label>Email</label>{{Form::email('email',null,['class' => 'form-control'])}}
+                                    @if($errors->has('email'))
+                                    <span class="help-block">{{ $errors->first('email') }}</span> @endif
+                                </div>
+                               
                             </div>
                         </div>
                         <h4>Emergency Contact</h4>

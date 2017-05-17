@@ -155,7 +155,10 @@ class PatientsController extends Controller
                 'bloodtype' => 'required',
                 'nationality' => 'required',
                 'occupation' => 'required',
-                'email' => 'required|email|unique:users'
+                'email' => 'required|email|unique:users',
+                'enumber' => 'required',
+                'erelationship' => 'required',
+                'econtact' => 'required',
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'middle_initial.required' => 'Please enter your middle initial.',
@@ -169,7 +172,9 @@ class PatientsController extends Controller
                 'bloodtype.required' => 'Please enter your bloodtype.',
                 'nationality.required' => 'Please enter your nationality.',
                 'occupation.required' => 'Please enter your occupation.',
-                'email.required' => 'Please enter your email.'
+                'email.required' => 'Please enter your email.',
+                'econtact.required' => 'Please enter your emergency contact.',
+                'erelationship.required' => 'Please enter your relationship with emergency contact.',
            ]);
 
         // save patient's profile picture
