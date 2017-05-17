@@ -215,7 +215,7 @@ class CustomUserController extends Controller
             $user->avatar = $path;
             $user->save();
 
-            return redirect('admin');
+            return redirect("custom-role/{$id}");
         }
         else{
             return redirect()->back()
