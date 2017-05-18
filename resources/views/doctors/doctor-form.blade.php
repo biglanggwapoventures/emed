@@ -25,7 +25,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         {!! Form::open(['url' => route ('doctors.store'), 'method' => 'POST', 'id' => 'doc']) !!}
-                        <div class="alert alert-danger hidden"></div>
+                        <!-- <div class="alert alert-danger hidden"></div> -->
                         <h4>Personal Information</h4>
                         <hr class="third">
                         <div class="row">
@@ -322,31 +322,31 @@
             }
         }).trigger('change');
 
-        $('#doc').submit(function(e) {
-            e.preventDefault();
-            var $this = $(this)
-            submitBtn = $this.find('[type=submit]'),
-                alertEl = $this.find('.alert.alert-danger');
+        // $('#doc').submit(function(e) {
+        //     e.preventDefault();
+        //     var $this = $(this)
+        //     submitBtn = $this.find('[type=submit]'),
+        //         alertEl = $this.find('.alert.alert-danger');
 
-            alertEl.addClass('hidden');
-            submitBtn.addClass('disabled');
+        //     alertEl.addClass('hidden');
+        //     submitBtn.addClass('disabled');
 
-            $.post($this.attr('action'), $this.serialize())
-                .done(function(res) {
-                    window.location.href = res.url;
-                    // if (res.result) {
-                    //     window.location.href = $("#back").attr('href');
-                    // }
-                })
-                .fail(function(res) {
-                    alertEl.html(function() {
-                        return '<ul class="list-unstyled"><li>' + res.responseJSON.errors.join('</li><li>') + '</li><ul>';
-                    }).removeClass('hidden');
-                })
-                .always(function() {
-                    submitBtn.removeClass('disabled');
-                })
-        })
+        //     $.post($this.attr('action'), $this.serialize())
+        //         .done(function(res) {
+        //             window.location.href = res.url;
+        //             // if (res.result) {
+        //             //     window.location.href = $("#back").attr('href');
+        //             // }
+        //         })
+        //         .fail(function(res) {
+        //             alertEl.html(function() {
+        //                 return '<ul class="list-unstyled"><li>' + res.responseJSON.errors.join('</li><li>') + '</li><ul>';
+        //             }).removeClass('hidden');
+        //         })
+        //         .always(function() {
+        //             submitBtn.removeClass('disabled');
+        //         })
+        // })
 
     })
 

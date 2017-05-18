@@ -164,9 +164,11 @@ class DoctorsController extends Controller
         
 
        // $user ['subspecialty'] = json_encode($input['subspecialty']);
-       return response()->json([
-            'url' => route('doctors.index') 
-       ]);
+       // return response()->json([
+       //      'url' => route('doctors.index') 
+       // ]);
+
+        return redirect()->route('doctors.index');
     }
 
 
