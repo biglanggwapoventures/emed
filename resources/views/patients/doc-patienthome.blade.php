@@ -167,7 +167,6 @@
                         <!-- /.tab-pane -->
 
                         <div class="tab-pane" id="settings">
-                            <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Prescriptions</h4>
                             <div class="box-body table-responsive no-padding">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
