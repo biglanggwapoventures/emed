@@ -189,7 +189,11 @@
                         </div>
                         @endif
                       
-                        <button type="submit" class="btn btn-primary">Update</button> {!! Form::close() !!}
+                            <br>  
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary pull-left">Register</button>
+                            </div>
+                         {!! Form::close() !!}
                 </div>
             </div>
         </div>

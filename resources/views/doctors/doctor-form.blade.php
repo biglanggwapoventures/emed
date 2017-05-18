@@ -249,7 +249,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary pull-right">Register</button>
+                                <button type="submit" class="btn btn-primary pull-left">Register</button>
                             </div>
                         </div>
                     </div>
