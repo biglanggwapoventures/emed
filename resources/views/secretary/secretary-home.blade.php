@@ -82,10 +82,6 @@
                                         <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth:</b><br> {{ $d->userInfo->birthdate }}</td>
                                         <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender:</b> <br>{{ $d->userInfo->sex }}</td>
                                     </tr>
-                                    <tr>
-                                        <td><span class="glyphicon glyphicon-phone"></span> <b>Drugstore:</b> <br> {{ $d->drugstore}}</td>
-                                        <td><i class="fa fa-user-md" aria-hidden="true"></i></span> <b>Drugstore:</b> <br> {{ $d->drugstore_branch }}</td>
-                                    </tr>
 
 
                                 </tbody>
