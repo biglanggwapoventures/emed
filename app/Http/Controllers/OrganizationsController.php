@@ -126,6 +126,8 @@ class OrganizationsController extends Controller
      */
     public function edit($id)
     {
+
+
         return view('organizations.organizations-edit', [
             'data' => Organizations::find($id)
         ]);
@@ -140,7 +142,23 @@ class OrganizationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $data = Organizations::find($id);
+
+        $v = Validator::make($request->all(), [
+             'organizations' => 'required|unique:organizations',
+        ]);
+
+        if($v->fails()){
+              return redirect()->back()
+                        ->withErrors($v)
+                        ->withInput()
+                        ->with('ACTION_RESULT', [
+                'type' => 'error', 
+                'message' => 'Organization already exists!'
+            ]);
+        }
+
+        else{
+              $data = Organizations::find($id);
         $data->fill([
             'organizations' => $request->organizations,
             
@@ -148,7 +166,11 @@ class OrganizationsController extends Controller
 
         $data->save();
 
-         return redirect('/organizations');
+         return redirect('/organizations')->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Edit Organizations successful!'
+            ]);
+        }
     }
 
     /**
