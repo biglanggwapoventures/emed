@@ -11,6 +11,7 @@ use App\Secretary;
 use App\Permissions;
 use App\UserRoles;
 use App\CustomUser;
+use Validator;
 use Auth;
 
 use Log, EMedHelper;
@@ -119,7 +120,10 @@ class CustomUserController extends Controller
                 'bloodtype' => 'required',
                 'nationality' => 'required',
                 'occupation' => 'required',
-                'email' => 'required|email|unique:users'
+                'email' => 'required|email|unique:users',
+                'enumber' => 'required',
+                'erelationship' => 'required',
+                'econtact' => 'required',
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'middle_initial.required' => 'Please enter your middle initial.',
@@ -133,70 +137,101 @@ class CustomUserController extends Controller
                 'bloodtype.required' => 'Please enter your bloodtype.',
                 'nationality.required' => 'Please enter your nationality.',
                 'occupation.required' => 'Please enter your occupation.',
-                'email.required' => 'Please enter your email.'
+                'email.required' => 'Please enter your email.',
+                'econtact.required' => 'Please enter your emergency contact.',
+                'erelationship.required' => 'Please enter your relationship with emergency contact.',
+                'enumber.required' => 'Please enter your emergency person contact number.',
            ]);
 
-        // get fields for user table
-        $input = $request->only([
-            'username', 
-            'firstname', 
-            'lastname',
-            'address',
-            'middle_initial',
-            'birthdate',
-            'contact_number',
-            'address',
-            'email',
-            'sex'
-        ]);
-
-        // verify if username exists
-        $credentials = $request->only(['username']);
-
-        // assign password: default is firstname+lastname lowercase
-        // Log::info(strtolower($input['firstname']).strtolower($input['lastname']));
-        $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
-        
-        // assign user type
-        // $permission = Permissions::hasPermission($id);
-        // $userType = substr($permission->display_name, 16, strlen($permission->display_name) - 16);
-
-        $roleData = UserRoles::getRole($id);
-        $userType = $roleData->name;
-        $input['user_type_id'] = $id;
-        $input['user_type'] = $userType;
-        $input['added_by'] = session('user_id');
-        
-        Log::info($input);
-
-
-        //save to DB (users)
-        $user = User::create($input);
-
-        $custom_user_data = [
-            'user_id'           => $user->id,
-            'bloodtype'         => $request->bloodtype,
-            'econtact'          => $request ->econtact,
-            'enumber'           => $request->enumber,
-            'nationality'       => $request->nationality,
-            'civilstatus'       => $request->civilstatus,
-            'erelationship'     => $request->erelationship,
-            'occupation'        => $request->occupation,
-            'created_at'         => date("Y-m-d H:i:s"),
-            'updated_at'         => date("Y-m-d H:i:s")
-        ];
-
-        CustomUser::storeData($custom_user_data);
-        
-
-        // save patient's profile picture
-        $path = $request->file('avatar')->store(
-            'avatars/'.$user->id, 'public'
+        $rules = array(
+            'avatar' => 'required|image|max:2048'
         );
-        $user->avatar = $path;
-        $user->save();
 
-        return redirect('admin');
+        $messages = array(
+            'avatar.required' => 'Please choose profile picture.',
+            'avatar.max' => 'Image is too large to upload. Must be less than 2MB.'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        // if(!$request->hasFile('avatar')) {
+        //     return redirect()->back()
+        //                 ->withErrors($validator);
+        // }
+
+        if($request->hasFile('avatar')){
+
+            // get fields for user table
+            $input = $request->only([
+                'username', 
+                'firstname', 
+                'lastname',
+                'address',
+                'middle_initial',
+                'birthdate',
+                'contact_number',
+                'address',
+                'email',
+                'sex'
+            ]);
+
+            // verify if username exists
+            $credentials = $request->only(['username']);
+
+            // assign password: default is firstname+lastname lowercase
+            // Log::info(strtolower($input['firstname']).strtolower($input['lastname']));
+            $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
+        
+            // assign user type
+            // $permission = Permissions::hasPermission($id);
+            // $userType = substr($permission->display_name, 16, strlen($permission->display_name) - 16);
+
+            $roleData = UserRoles::getRole($id);
+            $userType = $roleData->name;
+            $input['user_type_id'] = $id;
+            $input['user_type'] = $userType;
+            $input['added_by'] = session('user_id');
+        
+            Log::info($input);
+
+
+            //save to DB (users)
+            $user = User::create($input);
+
+            $custom_user_data = [
+                'user_id'           => $user->id,
+                'bloodtype'         => $request->bloodtype,
+                'econtact'          => $request ->econtact,
+                'enumber'           => $request->enumber,
+                'nationality'       => $request->nationality,
+                'civilstatus'       => $request->civilstatus,
+                'erelationship'     => $request->erelationship,
+                'occupation'        => $request->occupation,
+                'created_at'         => date("Y-m-d H:i:s"),
+                'updated_at'         => date("Y-m-d H:i:s")
+            ];
+
+            CustomUser::storeData($custom_user_data);
+        
+
+            // save patient's profile picture
+            $path = $request->file('avatar')->store(
+                'avatars/'.$user->id, 'public'
+            );
+            $user->avatar = $path;
+            $user->save();
+
+            return redirect("custom-role/{$id}");
+        }
+        else{
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('ACTION_RESULT', [
+                'type' => 'error', 
+                'message' => 'Image too big to Upload!'
+            ]);
+        }
     }
 
     /**
@@ -288,6 +323,14 @@ class CustomUserController extends Controller
 
         ]));
         $user->save();
+
+        if($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store(
+                'avatars/'.$user->id, 'public'
+            );
+            $user->avatar = $path;
+            $user->save();
+        }
 
         Log::info('customusertypeid=' . $userTypeId);
         

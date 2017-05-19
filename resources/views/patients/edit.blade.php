@@ -3,23 +3,16 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div style="margin-top:10px">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="{{ url(session('homepage') . '') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ route('patients.index') }}">Patient List</a>
-                </li>
-                <li class="breadcrumb-item active">Edit Patient</li>
-            </ol>
-        </div>
         <h1>
-            <span style="font-size:80% !important;">
-                <span class="fa fa-bandcamp" style="font-size:135%!important"></span>
-                &nbsp;Edit Patient Form
-            </span>
+            Edit Profile
+            <small></small>
         </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ route('patients.show', ['id' => $data->id]) }}"><i class="fa fa-user"></i> {{ $data->userInfo->fullname() }}'s Profile</a></li>
+            <li><a href="#">Edit Patient</a></li>
+
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -31,7 +24,7 @@
                 <!-- general form elements -->
                 
                     
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">User Profile</a></li>
@@ -279,6 +272,9 @@
             </div>
             <!-- /.tab-content -->
           </div>
+
+                            <button type="submit" class="btn btn-primary"  style="margin-right: 10px;">Update</button> {!! Form::close() !!}
+                                <a href="{{ route('patients.show', ['id' => $data->id]) }}" class="btn btn-warning">Cancel</a>
           <!-- /.nav-tabs-custom -->
         </div>
 
@@ -286,7 +282,7 @@
   <!--/.col (right) -->
                <div class="col-md-3 ">
 
-          <!-- Profile Image -->
+          <!-- Profile Image --><!-- 
           <div class="box box-primary" style="height: 170px">
             <div class="box-body box-profile">
 
@@ -299,13 +295,7 @@
             </div>
             <center><button type="submit" class="btn btn-primary"  style="margin-right: 10px;">Update</button> {!! Form::close() !!}
             <a href="{{ route('patients.show', ['id' => $data->id]) }}" class="btn btn-success">Patient's Profile</a></center>
-            
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          
-          <!-- /.box -->
+          </div> -->
         </div>
             </div>
             <!--/.col (left) -->

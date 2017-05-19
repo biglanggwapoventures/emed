@@ -62,9 +62,11 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
                                     <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" />
+                                    @if($errors->has('birthdate'))
+                                        <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -129,11 +131,11 @@
                                             <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>
                                     </tbody>
-                                    <tfoot>
+                                    <!-- <tfoot>
                                         <tr>
                                             <td colspan="4"><a href="javascript:void(0)" class="btn btn-default add-line"><span class="glyphicon glyphicon-plus"></span>  Add new line</a></td>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> -->
                                 </table>
                             </div>
                         </div>

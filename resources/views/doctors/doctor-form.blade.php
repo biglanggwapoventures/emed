@@ -33,7 +33,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         {!! Form::open(['url' => route ('doctors.store'), 'method' => 'POST', 'id' => 'doc']) !!}
-                        <div class="alert alert-danger hidden"></div>
+                        <!-- <div class="alert alert-danger hidden"></div> -->
                         <h4>Personal Information</h4>
                         <hr class="third">
                         <div class="row">
@@ -52,7 +52,7 @@
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
                                     <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" /> @if($errors->has('sex'))
+                                    <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" /> @if($errors->has('birthdate'))
                                     <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
                                 </div>
                             </div>
@@ -257,7 +257,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary pull-right">Register</button>
+                                <button type="submit" class="btn btn-primary pull-left">Register</button>
                             </div>
                         </div>
                     </div>
@@ -330,31 +330,31 @@
             }
         }).trigger('change');
 
-        $('#doc').submit(function(e) {
-            e.preventDefault();
-            var $this = $(this)
-            submitBtn = $this.find('[type=submit]'),
-                alertEl = $this.find('.alert.alert-danger');
+        // $('#doc').submit(function(e) {
+        //     e.preventDefault();
+        //     var $this = $(this)
+        //     submitBtn = $this.find('[type=submit]'),
+        //         alertEl = $this.find('.alert.alert-danger');
 
-            alertEl.addClass('hidden');
-            submitBtn.addClass('disabled');
+        //     alertEl.addClass('hidden');
+        //     submitBtn.addClass('disabled');
 
-            $.post($this.attr('action'), $this.serialize())
-                .done(function(res) {
-                    window.location.href = res.url;
-                    // if (res.result) {
-                    //     window.location.href = $("#back").attr('href');
-                    // }
-                })
-                .fail(function(res) {
-                    alertEl.html(function() {
-                        return '<ul class="list-unstyled"><li>' + res.responseJSON.errors.join('</li><li>') + '</li><ul>';
-                    }).removeClass('hidden');
-                })
-                .always(function() {
-                    submitBtn.removeClass('disabled');
-                })
-        })
+        //     $.post($this.attr('action'), $this.serialize())
+        //         .done(function(res) {
+        //             window.location.href = res.url;
+        //             // if (res.result) {
+        //             //     window.location.href = $("#back").attr('href');
+        //             // }
+        //         })
+        //         .fail(function(res) {
+        //             alertEl.html(function() {
+        //                 return '<ul class="list-unstyled"><li>' + res.responseJSON.errors.join('</li><li>') + '</li><ul>';
+        //             }).removeClass('hidden');
+        //         })
+        //         .always(function() {
+        //             submitBtn.removeClass('disabled');
+        //         })
+        // })
 
     })
 

@@ -45,8 +45,10 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-                        <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                        <input type="file" class="upload" name="avatar"> {!! Form::open(['url' => url('custom-role/update', ['id' => $data->id]), 'method' => 'POST']) !!} {!! Form::hidden('user_id', $data->id) !!}
+                        {!! Form::open(['url' => url('custom-role/update', ['id' => $data->id]), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('user_id', $data->id) !!}
+
+                        <img alt="User Pic" src="{{ " /storage/{$data->avatar} " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
+                        <input type="file" onchange="readURL(this)" class="upload" name="avatar"> 
 
                         <h4>Personal Information</h4>
                         <hr class="third">
@@ -232,6 +234,20 @@
         $(this).remove(); 
     });
 }, 1000);
+</script>
+
+<script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#dp').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 
 @endsection

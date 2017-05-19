@@ -85,9 +85,9 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr>
+                                   <!--  <tr>
                                         <td colspan="6" class="text-center">ERROR: No pharmacists found. This is critical.</td>
-                                    </tr>
+                                    </tr> -->
                                 @endforelse
                             </tbody>
                         </table>

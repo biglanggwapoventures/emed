@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="/admin" class="logo">
+    <a href="/" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">
             <b>E</b>MS</span>
@@ -135,7 +135,7 @@
                 <li>
                     <a href="{{ route('pharmacy.index')}} ">
                         <i class="fa fa-medkit sidebar-icon"/></i>
-                        <span class="sidebar-label">Phamarcies</span>
+                        <span class="sidebar-label">Pharmacies</span>
                     </a>
                 </li>
                 <?php $hasNonUserPermission = true; ?>

@@ -7,7 +7,7 @@ use Auth;
 use Illuminate\Validation\Rule;
 use App\User;
 use App\Doctor;
-use Illuminate\Contracts\Validation\Validator;
+//use Illuminate\Contracts\Validation\Validator;
 
 use Log;
 
@@ -65,6 +65,8 @@ class DoctorRequest extends FormRequest
             'affiliations.*.clinic_end' => 'required|different:affiliations.*.clinic_start',
             'organizations' => 'array|required',
             'organizations.*' => 'required|exists:organizations,id',
+
+
         ];
 
         // Log::info('METHOD: ' . $this->method());
@@ -75,7 +77,7 @@ class DoctorRequest extends FormRequest
         {
             $rules['prc'] = 'required|unique:doctors'; 
             $rules['ptr'] = 'required|unique:doctors';
-            $rules['s2'] = 'nullable|unique:doctors';
+            $rules['s2'] = 'required|unique:doctors';
         }
         else
         {
@@ -91,7 +93,7 @@ class DoctorRequest extends FormRequest
 
             if(Doctor::getS2No($this->user_id) != $this->s2)
             {
-                $rules['s2'] = 'nullable|unique:doctors';
+                $rules['s2'] = 'required|unique:doctors';
             }
         }
             
@@ -124,7 +126,7 @@ class DoctorRequest extends FormRequest
             'email.required' => 'Please enter your email.',
             'prc.required' => 'Please enter your PRC license number.',
             'ptr.required' => 'Please enter your PTR number.',
-            // 'specialization.required' => 'Please enter your specialization.',
+            'specialization.required' => 'Please enter your specialization.',
             'title.required' => 'Please enter your title.',
             'clinic.required' => 'Please enter your clinic name.',
             'clinic_address.required' => 'Please enter your clinic address.',
@@ -137,15 +139,16 @@ class DoctorRequest extends FormRequest
             'residency_year.required' => 'Please enter your residency year.',
             'training.required' => 'Please enter your training.',
             'training_year.required' => 'Please enter your training year.',
-            // 'affiliations.required' => 'Please enter your affiliations.',
-            'contact_number.min' => 'Please enter valid contact number.'
+             'affiliations.required' => 'Please enter your affiliations.',
+            'contact_number.min' => 'Please enter valid contact number.',
+            's2.required' => 'Please enter S2 number.'
         ];
     }
 
-    protected function formatErrors(Validator $validator)
-    {
-        return [
-            'errors' => $validator->errors()->all()
-        ];
-    }
+    // protected function formatErrors(Validator $validator)
+    // {
+    //     return [
+    //         'errors' => $validator->errors()->all()
+    //     ];
+    // }
 }

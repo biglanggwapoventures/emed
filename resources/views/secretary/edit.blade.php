@@ -114,7 +114,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('attainment') ? 'has-error' : '' }}">
-                                    <label class="control-label">Attainment</label> {!! Form::text('attainment', $data->attainment, ['class' => 'form-control']) !!} @if($errors->has('attainment'))
+                                    <label class="control-label">Educational Attainment</label> {!! Form::text('attainment', $data->attainment, ['class' => 'form-control']) !!} @if($errors->has('attainment'))
                                     <span class="help-block">{{ $errors->first('attainment') }}</span> @endif
                                 </div>
                             </div>

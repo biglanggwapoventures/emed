@@ -167,7 +167,6 @@
                         <!-- /.tab-pane -->
 
                         <div class="tab-pane" id="settings">
-                            <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Prescriptions</h4>
                             <div class="box-body table-responsive no-padding">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -209,6 +208,115 @@
                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
                                                     <span class="glyphicon glyphicon-eye-open"></span>  History
                                                 </button>
+               <!-- notes -->
+                                @forelse($patients->prescriptions AS $consultation)
+                                 <div class="modal fade" id="notes" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
+                                            <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                                                
+                                                <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                                                    Prescription Details of {{ $patients->userInfo->fullname() }} 
+                                                </h3>
+
+                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
+                                                 <p>{{$consultation->created_at}} </p>
+                                                <div class="row">
+                                                    <table style="padding-left:10px">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                    
+                                                     <table class="table" style="padding-left:10px">
+                                                      <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
+                                                           <tr>
+                                                           <td>
+                                                            <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                <label>Genericname</label><br/>
+                                                                <span> {{ $consultation->genericname  }}</span>
+                                                            </div>
+                                                            </td>
+                                                            <td>
+                                                            <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                <label>Brandname</label><br/>
+                                                                <span>{{ $consultation->brand }}</span>
+                                                            </div>
+                                                            </td>
+                                                            </tr>
+                                                    </div>
+                                                    </table>
+                                                       
+                                                     <table class="table" style="padding-left:10px">
+                                                        <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
+                                                        
+                                                           <tr>
+                                                               <td>
+                                                                    <label>Notes</label><br/>
+                                                                  <span> {{ $consultation->notes }}</span>
+                                                               </td>
+                                                           </tr>
+                                                           </div>
+                                                     </table>
+                                                 
+                                                    
+                                                    <table class="table" style="padding-left:10px">
+                                                   <tr>
+                                                   <td>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Frequency</label><br/>
+                                                        <span> {{ $consultation->frequency  }}</span>
+                                                    </div>
+                                                    </td>
+                                                    <td>
+                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Dosage</label><br/>
+                                                        <span>{{ $consultation->dosage  }}</span>
+                                                    </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Start</label><br/>
+                                                        <span>{{ $consultation->start  }}</span>
+                                                    </div></td>
+                                                        <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>End</label><br/>
+                                                        <span>{{ $consultation->end  }}</span>
+                                                    </div></td>
+                                                    </tr>
+                                                   <tr>
+                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Quantity</label><br/>
+                                                        <span> {{ $consultation->quantity  }}</span>
+                                                    </div></td>
+                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                        <label>Prescribed by:</label><br/>
+                                                        <span>{{ $consultation->doctor->userInfo->fullname() }}</span>
+                                                    </div></td>
+                                                   </tr> 
+                                                
+                                                    </table>
+                                                        
+                                                   
+                                                </div>
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12">
+                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                            Close 
+                                                        </button>
+                                                    </div>
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                @endforelse
+               <!-- notes -->
                                                 <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
@@ -392,11 +500,6 @@
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
                                             <td>{{ $a->doctor->specialization->name }} </td>
                                             <td>
-                                                <form action="{{ route('consultations.destroy', ['id' => $a->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
-                                                    {{ csrf_field() }} {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn btn-danger" data-toggle="tooltip" id="myTooltip" title="Delete Consultation"><span class="glyphicon glyphicon-trash"></span></button>
-                                                </form>
-
                                                 <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info" style="" data-toggle="tooltip" id="myTooltip" title="Add Prescriptions"><b>P</b></a>
 
                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
@@ -508,11 +611,11 @@
     </div>
 
 <script type="text/javascript">
- window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-}, 1000);
+  window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 1000);
 </script>
 
 <style type="text/css">

@@ -53,11 +53,7 @@ class DoctorsController extends Controller
         }
         else
         {
-            // this is where only the data saved by this particular user will be shown
-            $items = Common::retrieveUsersOfCurrentUser('DOCTOR');
-            return view('doctors.list', [
-                'items' => $items
-            ]);
+            return redirect('/');
         }
             
     }
@@ -168,9 +164,11 @@ class DoctorsController extends Controller
         
 
        // $user ['subspecialty'] = json_encode($input['subspecialty']);
-       return response()->json([
-            'url' => route('doctors.index') 
-       ]);
+       // return response()->json([
+       //      'url' => route('doctors.index') 
+       // ]);
+
+        return redirect()->route('doctors.index');
     }
 
 

@@ -31,13 +31,9 @@
         </ul>
     </div>
 @endif
-    <div class="container-fluid">
-        <div class="row-bod">
-            <div class="col-md-9 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Manager Registration</h4>
-                    </div>
+    <div class="container-fluid"><br><br>
+            <div class="col-md-12">
+                <div class="box box-primary">
                     <div class="panel-body">
                         {!! Form::open(['url' => route('managers.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
 
@@ -123,6 +119,18 @@
                                 </div>
                             </div>
                  
+                        @if(Auth::check()) 
+                        @if(Auth::user()->user_type === 'PMANAGER')
+
+                        <div class="col-md-4">
+                                <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
+                                    <label class="control-label">License</label> {!! Form::text('license', $data->license, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('license'))
+                                    <span class="help-block">{{ $errors->first('license') }}</span> @endif
+                                </div>
+                        </div>
+
+                         @elseif(Auth::user()->user_type === 'ADMIN')
+
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
                                     <label class="control-label">License</label> {!! Form::text('license', $data->license, ['class' => 'form-control']) !!} @if($errors->has('license'))
@@ -130,38 +138,51 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+                        @endif
 
-                        <h4>Account Information</h4>
+                       <!--  <h4>Pharmacy Branch</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control']) !!} @if($errors->has('drugstore'))
+                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
                                     <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control']) !!} @if($errors->has('drugstore_branch'))
+                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>
                         </div>
                
-
-                        @if(Auth::check()) @if(Auth::user()->user_type === 'PMANAGER')
-                            <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
-                                    <label class="control-label">License</label> {!! Form::text('license', $data->license, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('license'))
-                                    <span class="help-block">{{ $errors->first('license') }}</span> @endif
-                                </div>
-                            </div>
-                        </div>
-
+                        -->
+                        <!-- </div> -->
+                         @if(Auth::user()->user_type === 'ADMIN')
                         <h4>Pharmacy Information</h4>
                         <hr class="third">
                         <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
+                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
+                                    <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
+                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                    <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
+                                </div>
+                            </div>
+                       
+                        @else
+                        <h4 style="margin-left: 12px;">Pharmacy Information</h4>
+                        <hr class="third">
+                        
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
                                     <label class="control-label">Drugstore</label> {!! Form::text('drugstore', EMedHelper::retrievePharmacy($data->drugstore)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
@@ -170,18 +191,19 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Branch</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
+                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>
                         </div>
                         @endif
-                        @endif
-
-                        <button type="submit" class="btn btn-primary">Update</button> {!! Form::close() !!}
-
-                    </div>
+                      
+                            <br>  
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary pull-left">Register</button>
+                            </div>
+                         {!! Form::close() !!}
                 </div>
             </div>
         </div>

@@ -103,7 +103,7 @@
 
 
                                 <div class="col-md-4">
-                                    {!! Form::bsText('attainment', 'Attainment') !!}
+                                    {!! Form::bsText('attainment', 'Educational Attainment') !!}
                                 </div>
 
                                 <!-- <div class="col-md-4">

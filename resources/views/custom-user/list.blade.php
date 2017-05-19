@@ -21,18 +21,17 @@
         </section>
 
         <section class="content">
-            <div class="row">
-                @if(session('ACTION_RESULT'))
-                    <div class="row">
+            <!-- <div class="row"> -->
+                                                     @if(session('ACTION_RESULT'))
+                                        <div class="row">
 
-                        <div class="col-md-6 col-md-offset-3">
-                            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
-                                {{ session('ACTION_RESULT')['message'] }}
-                            </div>
-                        </div>
-                    </div>
-                @endif
-                
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                                    {{ session('ACTION_RESULT')['message'] }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
                 <div class="col-xs-12">
                     @if(EMedHelper::hasTargetActionPermission($role->name, 'ADD'))
                         <?php
@@ -54,8 +53,8 @@
                         </a>
                     @endif
                 </div>
-                <div>&nbsp;</div>
-            </div>
+                <div class="hidden-xl hidden-lg hidden-md hidden-sm">&nbsp;</div>
+            <!-- </div> -->
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box-body table-responsive no-padding">
@@ -111,10 +110,10 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr>
+                                   <!--  <tr>
                                         <td colspan="6" class="text-center">ERROR: No {{ $role->display_name }} found.</td>
                                     </tr>
-                                @endforelse
+ -->                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -206,14 +205,14 @@
 
                     </div>
 
-                    <div class="row" style="margin-top:10px;">
-                        <div class="col-md-12">
-                            <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
-                                Close 
-                            </button>
-                        </div>
-                            
-                    </div>
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-md-12">
+                                    <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                        Close 
+                                    </button>
+                                </div>
+                                    
+                            </div>
                 </div>
             </div>
         </div>

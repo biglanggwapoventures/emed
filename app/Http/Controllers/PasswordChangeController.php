@@ -93,11 +93,11 @@ class PasswordChangeController extends Controller
         }
          else if(Auth::user()->user_type === "ADMIN")
         {
-           return redirect('/admin')->with('ACTION_RESULT', [
+           return redirect('/')->with('ACTION_RESULT', [
                 'type' => 'success', 
                 'message' => 'Password change successful!'
             ]);
-            return redirect('/admin')->with('success', 0);
+            return redirect('/')->with('success', 0);
 
         }
         else{

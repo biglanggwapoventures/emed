@@ -77,10 +77,10 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr>
+                                    <!-- <tr>
                                         <td></td><td></td><td></td>
                                         <td colspan="4" class="text-center">ERROR: No roles found. This is critical.</td>
-                                    </tr>
+                                    </tr> -->
                                 @endforelse
                             </tbody>
                         </table>

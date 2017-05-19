@@ -36,20 +36,29 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="inside">
+                            @if(session('ACTION_RESULT'))
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                            {{ session('ACTION_RESULT')['message'] }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
 
                             <!-- /.box-header -->
                             <!-- form start -->
                             @if($errors->has('avatar'))
                             <div class="alert alert-danger">
                                 <ul class="list-unstyled">
-                                  
                                     <li>{{ $errors->first('avatar') }}</li>
                                 </ul>
                             </div>
                             @endif {!! Form::open(['url' => 'custom-role/store/' . $id, 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
-                            <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive">
-                            <input type="file" class="upload" name="avatar">
+                            <img alt="User Pic" src="{{ " /storage/avatars/default.jpg " }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
+                            <input type="file" onchange="readURL(this)" class="upload" name="avatar">
+                            <p>Image must not exceed 2MB</p>
 
 
                             <h4>Personal Information</h4>
@@ -68,10 +77,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
                                         <label class="control-label">Birthdate</label>
                                         <!-- <span style="color: red">*</span> -->
                                         <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" />
+                                         @if($errors->has('birthdate'))
+                                        <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -151,7 +162,8 @@
                                     {!! Form::bsText('username', 'Username') !!}
                                 </div>
                                 <div class="col-md-4">
-                                   <label>Email</label>{{Form::email('email',null,['class' => 'form-control'])}}
+                                   <!-- <label>Email</label>{{Form::email('email',null,['class' => 'form-control'])}} -->
+                                    {!! Form::bsText('email', 'Email',null,['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <h4>Emergency Contact</h4>
@@ -204,5 +216,19 @@
         }
 
     </style>
+
+<script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#dp').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
     
 @endsection

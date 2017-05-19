@@ -33,7 +33,8 @@ class PharmaController extends Controller
     {
         if(Auth::user()->user_type === 'ADMIN')
         {
-            $items = Common::retrieveAllPharmas();
+            // $items = Common::retrieveAllPharmas();
+             $items = Pharma::with('userInfo')->get();
             return view('pharmacists.list', [
                     'items' => $items
                 ]);

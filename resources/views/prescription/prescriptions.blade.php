@@ -90,8 +90,9 @@
                             {!! Form::bsDate('start', 'Start Date', null, ['class' => 'form-control']) !!}
                         </div>
                         <div class="col-md-5">
-                            {!! Form::bsDate('end', 'End Date', null, ['class' => 'form-control']) !!}
+                            {!! Form::bsDate('end', 'End Date', null, ['class' => 'form-control','readonly' => 'true']) !!}
                         </div>
+                      
                     </div>
                     <div class="row col-md-offset-1 ">
                         <div class="col-md-5 ">

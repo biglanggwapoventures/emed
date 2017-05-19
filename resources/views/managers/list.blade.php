@@ -86,9 +86,9 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr>
+                                   <!--  <tr>
                                         <td colspan="6" class="text-center">No pharmacy managers found.</td>
-                                    </tr>
+                                    </tr> -->
                                 @endforelse
                             </tbody>
                         </table>
