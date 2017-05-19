@@ -404,7 +404,7 @@ class PatientsController extends Controller
 
        if(Auth::user()->user_type === "DOCTOR")
         {
-            return redirect()->back();
+            return redirect("patients/{$id}");
         }
 
         else if(Auth::user()->user_type === "SECRETARY")
