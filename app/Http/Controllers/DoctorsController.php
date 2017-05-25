@@ -210,7 +210,7 @@ class DoctorsController extends Controller
     public function edit($id)
     {   
         $data = Doctor::whereUserId($id)->with(['userInfo', 'subspecializations', 'organizations', 'affiliations'])->first();
-        Log::info('EDIT: ' . json_encode($data));
+        // Log::info('EDIT: ' . json_encode($data));
         $orgs = \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id');
         $affiliations = \App\Affiliation::orderBy('name')->get()->pluck('name', 'id');
         $affiliationBranches = \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id');

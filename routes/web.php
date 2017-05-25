@@ -93,3 +93,5 @@ Route::get('transaction-history', 'PharmaTransactionController@transactionList')
 
 Route::post('transact', 'PharmaTransactionController@storeTransaction')->name('pharmatrans.store');
 Route::post('void', 'PharmaTransactionController@voidTransaction')->name('pharmatrans.void');
+
+Route::get('consultations/history/{consultationId}', 'MedicalHistoryController@listConsultationHist')->name('consultation.history');

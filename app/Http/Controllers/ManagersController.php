@@ -162,7 +162,7 @@ class ManagersController extends Controller
      */
     public function edit($id)
     {
-
+        $data = PharmacyManager::with('userInfo')->where('user_id', $id)->first();
             if(Auth::user()->user_type === "PMANAGER")
         {
          return view('managers.edit', [

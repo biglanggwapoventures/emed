@@ -241,7 +241,7 @@
             font-size:87%;
             margin-top:-10px!important;
             color:#FFF;
-            border-radius: 15px;
+            border-radius: 5px;
         }
         .detached-label {
             background-color:#eb3f00;
@@ -249,7 +249,7 @@
             font-size:87%;
             margin-top:-10px!important;
             color:#FFF;
-            border-radius: 15px;
+            border-radius: 5px;
         }
     </style>
 

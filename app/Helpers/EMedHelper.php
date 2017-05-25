@@ -196,5 +196,15 @@
         {
             return Common::requireChange();
         }
+
+        public static function retrievePatientName($patientId)
+        {
+            return Common::getPatientName($patientId);
+        }
+
+        public static function retrieveDoctorName($doctorId)
+        {
+            return Common::getDoctorName($doctorId);
+        }
     }
 ?>
