@@ -16,8 +16,8 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permissions');
+        $this->middleware(['auth', 'requirechangepass', 'permissions']);
+        // $this->middleware('permissions');
     }
 
 	public function index(Request $request)

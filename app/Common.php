@@ -228,6 +228,11 @@ class Common
         return DB::table('doctors')->select('id')->where('user_id', $doctorUserId)->first()->id;
     }
 
+    public static function getPatientId($patientUserId)
+    {
+        return DB::table('patients')->select('id')->where('user_id', $patientUserId)->first()->id;
+    }
+
     public static function getAffiliation($affiliationId)
     {
         return DB::table('affiliations')->where('id', $affiliationId)->first();
@@ -329,11 +334,17 @@ class Common
                ->first();
     }
 
+    public static function requireChange()
+    {
+        return DB::table('users')->where('id', session('user_id'))->first()->requirechange;
+    }
+
     public static function doPasswordsMatch($userId, $rawPassword)
     {
         $data = DB::table('users')->where('id', $userId)->first();
         $encryptedPassword = $data->password;
 
-        
+        return Hash::check($rawPassword, $encryptedPassword);
     }
+
 }

@@ -339,7 +339,8 @@
                 window.setTimeout(function () 
                 {
                     $("#mdl_successalert").hide();
-                }, 5000);
+                    window.location.reload();
+                }, 4000);
                 
             }
         </script>

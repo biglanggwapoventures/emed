@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 class DrugstoreController extends Controller
 {
     /**
+     *  Sets the middleware which checks the permissions of each URL request
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'requirechangepass', 'permissions']);
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

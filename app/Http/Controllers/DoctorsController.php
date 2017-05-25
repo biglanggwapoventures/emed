@@ -10,7 +10,7 @@ use App\User;
 use App\Patient;
 use Auth;
 use App\Common;
-use Log, EMedHelper;
+use Log, EMedHelper, EMedUtil;
 
 class DoctorsController extends Controller
 {
@@ -20,8 +20,8 @@ class DoctorsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'show']]);
+        $this->middleware(['auth', 'requirechangepass']);
+        $this->middleware('permissions', ['except' => ['showHomepage', 'show']]);
     }
     
     /**
@@ -32,14 +32,18 @@ class DoctorsController extends Controller
 
     public function showHomepage()
     {
-
-        $docs = Auth::user()->doctor;
-        // dd($items);
-        return view('doctors.doctor-home', [
-            'docs' => $docs
-        ]);
-
-           
+        if(session('user_type') === 'DOCTOR')
+        {
+            $docs = Auth::user()->doctor;
+            return view('doctors.doctor-home', [
+                'docs' => $docs
+            ]);
+        }
+        else
+        {
+            Log::error('ACCESS DENIED. User tries to access a user\'s homepage that is not included in the current user\'s list of permissions.');
+            abort(503);
+        }
     }
 
     public function index()
@@ -181,10 +185,20 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
+        if(EMedUtil::isUserPatient())
+        {
+            $data = Patient::doctorOfPatient($id);
+            if(EMedUtil::isInvalid($data))
+            {
+                Log::error('ACCESS DENIED. User tries to access a profile page that is not included in the current user\'s list of permissions.');
+                abort(503);
+            }
+        }
+        
         $doctors = Doctor::find($id);
-            return view('doctors.doc-home', [
-                'doctors' => $doctors
-            ]);        
+        return view('doctors.doc-home', [
+            'doctors' => $doctors
+        ]);     
     }
 
     /**

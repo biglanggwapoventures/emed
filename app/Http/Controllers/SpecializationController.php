@@ -15,8 +15,8 @@ class SpecializationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        $this->middleware(['auth', 'requirechangepass', 'permissions']);
+        // $this->middleware('permissions');
     }
     
     /**

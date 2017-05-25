@@ -49,7 +49,7 @@ class TransactionLine extends Model
                ->join('users AS patient', 'patients.user_id', '=', 'patient.id')
                ->join('doctors', 'prescriptions.doctor_id', '=', 'doctors.id')
                ->join('users AS doctor', 'doctors.user_id', '=', 'doctor.id')
-               ->select(DB::raw("CONCAT(patient.firstname, ' ', patient.lastname) AS patientName, CONCAT(doctor.firstname, ' ', doctor.lastname) AS doctorName, CONCAT(pharma.firstname, ' ', pharma.lastname) AS pharmaName, transaction_lines.pharma_id, transaction_lines.quantity AS purchaseQty, transaction_lines.voided, transaction_lines.manager_id, transaction_lines.created_at AS purchaseTimestamp, prescriptions.*"))
+               ->select(DB::raw("CONCAT(patient.firstname, ' ', patient.lastname) AS patientName, CONCAT(doctor.firstname, ' ', doctor.lastname) AS doctorName, CONCAT(pharma.firstname, ' ', pharma.lastname) AS pharmaName, transaction_lines.id AS transId, transaction_lines.pharma_id, transaction_lines.quantity AS purchaseQty, transaction_lines.voided, transaction_lines.manager_id, transaction_lines.created_at AS purchaseTimestamp, prescriptions.*"))
                ->where('pharmas.drugstore', $pharmacyId)
                ->where('pharmas.drugstore_branch', $branchId)
                ->orderBy('purchaseTimestamp', 'DESC')
@@ -58,7 +58,8 @@ class TransactionLine extends Model
 
     public static function voidTransaction($transactionId, $managerId)
     {
-        DB::table('transaction_lines')
+
+        DB::table('transaction_lines')  
         ->where('id', $transactionId)
         ->update(array('voided' => 1, 'manager_id' => $managerId));
     }

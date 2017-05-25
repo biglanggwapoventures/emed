@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\User;
+use App\Common;
+
+use EMedHelper;
 
 class PasswordChangeController extends Controller
 {
@@ -38,8 +41,15 @@ class PasswordChangeController extends Controller
                 ->withErrors($validator)
                 ->withInput();
 
+        if(EMedHelper::isCurrentPassword($password['new_password']))
+        {
+            return redirect()->back()->with('ACTION_RESULT', [
+                'type' => 'danger', 
+                'message' => 'Password cannot be the same than current!'
+            ]);
+        }
 
-        $updated = $user->update([ 'password' => bcrypt($password['new_password']) ]);
+        $updated = $user->update([ 'password' => bcrypt($password['new_password']), 'requirechange' => 0 ]);
 
 
         if($updated)

@@ -143,7 +143,7 @@
 
             @if(EMedHelper::hasTargetActionPermission('PMANAGER', 'TRANSACT_HIST'))
                 <li>
-                    <a href="{{ route('transaction.history')}} ">
+                    <a href="{{ route('pharmatrans.history')}} ">
                         <i class="fa fa-medkit sidebar-icon"/></i>
                         <span class="sidebar-label">Transaction History</span>
                     </a>
