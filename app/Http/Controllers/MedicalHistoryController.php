@@ -98,7 +98,10 @@ class MedicalHistoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $consultation = MedicalHistory::find($id);
+        return view('consultations.edit', [
+            'consultation' => $consultation
+        ]);
     }
 
     /**
@@ -110,7 +113,26 @@ class MedicalHistoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $consultation = MedicalHistory::find($id);
+
+        $consultation->fill([
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'bloodpressure' => $request->bloodpressure,
+            'temperature' => $request->temperature,
+            'pulserate' => $request->pulserate,
+            'resprate' => $request->resprate,
+            'chiefcomplaints' => $request->chiefcomplaints,
+            'notes' => $request->notes
+        ]);
+        $consultation->save();
+
+        return redirect()
+            ->intended(route('patients.show', ['id' => $consultation->patient->id]))
+            ->with('ACTION_RESULT', [
+                'type' => 'success', 
+                'message' => 'Consultation was edited successfully!'
+            ]);
     }
 
     /**

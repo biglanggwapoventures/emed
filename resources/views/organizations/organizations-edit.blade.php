@@ -19,7 +19,7 @@
     <div class="container-fluid">
 
         <div class="form" style=" margin-top: 62px;">
-            @if(session('ACTION_RESULT'))
+           <!--  @if(session('ACTION_RESULT'))
             <div class="row">
 
                 <div class="col-md-6 col-md-offset-3">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            @endif {!! Form::open(['url' => route('organizations.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('id', $data->id) !!}
+            @endif --> {!! Form::open(['url' => route('organizations.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('id', $data->id) !!}
 
             <div class="row ">
 

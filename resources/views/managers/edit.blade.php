@@ -71,10 +71,7 @@
                                     <label class="control-label">Gender</label>
                                     <label for="sel1">Select list:</label>
                                     <span style="color: red">*</span>
-                                    <select class="form-control" name="sex">
-								   		<option>Male</option>
-								    	<option>Female</option>
-								  </select> @if($errors->has('sex'))
+                                    {!! Form::select('sex', ['Female' => 'Female', 'Male' => 'Male'], $data->userInfo->sex, ['class' => 'form-control']) !!} @if($errors->has('sex'))
                                     <span class="help-block">{{ $errors->first('sex') }}</span> @endif
                                 </div>
                             </div>
@@ -161,20 +158,20 @@
                
                         -->
                         <!-- </div> -->
-                         @if(Auth::user()->user_type === 'ADMIN')
+                         @if(Auth::user()->user_type === 'PMANAGER')
                         <h4>Pharmacy Information</h4>
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
+                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', EMedHelper::retrievePharmacy($data->drugstore)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
                                     <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                  <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>
