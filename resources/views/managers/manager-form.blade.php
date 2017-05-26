@@ -3,15 +3,23 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('managers.index') }}">Pharmacy Manager List</a>
+                </li>
+                <li class="breadcrumb-item active">Add Pharmacy Manager</li>
+            </ol>
+        </div>
         <h1>
-            Manager Form
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-bandcamp" style="font-size:135%!important"></span>
+                &nbsp;Add Pharmacy Manager Form
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/pmanager-home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ route( 'managers.create') }}">Add Manager</a></li>
-
-        </ol>
     </section>
 
     <!-- Main content -->

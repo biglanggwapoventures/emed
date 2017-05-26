@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use Hash, Log;
 
 class Common
 {
@@ -326,5 +327,13 @@ class Common
         return DB::table('doctors')
                ->where('id', $doctorId)
                ->first();
+    }
+
+    public static function doPasswordsMatch($userId, $rawPassword)
+    {
+        $data = DB::table('users')->where('id', $userId)->first();
+        $encryptedPassword = $data->password;
+
+        
     }
 }

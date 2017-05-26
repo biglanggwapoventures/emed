@@ -107,8 +107,11 @@ class PharmaTransactionController extends Controller
             abort(503);
         }
 
-        $data = [];
+        Log::info(json_decode(json_encode($userData), true));
+
+        $data = TransactionLine::getTransactionsOf($userData->drugstore, $userData->drugstore_branch);
 
         return view('transactions.transaction-list', ['items' => $data, 'userdata' => $userData]);
     }
+
 }

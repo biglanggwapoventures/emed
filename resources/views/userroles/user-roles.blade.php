@@ -3,15 +3,21 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('userroles') }}">User Role List</a>
+                </li>
+                <li class="breadcrumb-item active">Add User Role</li>
+            </ol>
+        </div>
         <h1>
-            User Roles Form
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-universal-access" style="font-size:135%!important"></span>
+                &nbsp;Add User Role Form
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Add Custom User Role</a></li>
-
-        </ol>
     </section>
 
     <!-- Main content -->
@@ -23,7 +29,6 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="inside">
-                       <h3>Add Custom User Role</h3>
 
                         
                         {{csrf_field()}}

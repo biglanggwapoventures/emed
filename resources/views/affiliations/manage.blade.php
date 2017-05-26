@@ -1,18 +1,26 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
-   <section class="content-header">
+    <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('affiliations.index') }}">Affiliations</a>
+                </li>
+                <li class="breadcrumb-item">{{ $data->id ? 'Edit' : 'Add' }} Affiliation</li>
+            </ol>
+        </div>
         <h1>
-            Manage Affiliations 
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-bandcamp" style="font-size:135%!important"></span>
+                &nbsp;{{ $data->id ? 'Edit' : 'Add' }} Affiliation Form
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ route('affiliations.index')}}">Affiliations</a></li>
-            <li><a href="{{ route( 'affiliations.create')}} ">Manage Affiliations</a></li>
-
-        </ol>
     </section>
+    
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
