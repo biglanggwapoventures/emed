@@ -275,15 +275,28 @@ class DoctorsController extends Controller
         //    return response()->json([
         //     'url' => route('doctors.index')
         // ]);
-            return response()->json([
-             'result' => true,
-             'message' => 'Doctor Successfully Edited!'
-         ]);
+
+              return redirect('doctors')
+                    ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
+            // return response()->json([
+            //  'result' => true,
+            //  'message' => 'Doctor Successfully Edited!'
+         // ]);
         }
         else if (Auth::user()->isDoctor()) {
-          return response()->json([
-            'url' => url('/doctor-home') 
-        ]);
+             return redirect('doctor-home')
+                    ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
+        //   return response()->json([
+        //     'url' => url('/doctor-home') 
+        // ]);
         }
         else{
        //      return response()->json([
