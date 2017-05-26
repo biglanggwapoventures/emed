@@ -5,11 +5,14 @@ namespace App\Http\Middleware;
 use Closure;
 use Log;
 use Session;
-use Route, Request, EMedHelper, Auth;
+use Route, Request, Auth;
 
 use App\Permissions;
 use App\UserRoles;
 use App\CustomUser;
+
+use EMedHelper, EMedUtil;
+
 
 class CheckPermissions
 {
@@ -24,44 +27,62 @@ class CheckPermissions
     public function handle($request, Closure $next)
     {
         $currentRoute = Route::currentRouteName();
-        
+
         if(is_null($currentRoute) || trim($currentRoute) === "")
         {
             $requestPath = Request::path();
-            $lastDelimeterPos = strrpos($requestPath, '/');
+            Log::error("Aborting to 404. User with type [" . session('user_type_name') . "] tried to access an unregistered path [" . $requestPath . "]. If this should not be the case, counter-check the permissions and the route names.");
+           
+            abort(404);
+        }
+        else
+        {
+            $routeData = EMedUtil::extractRouteData($currentRoute);
+            $target = $routeData->target;
+            $action = EMedUtil::recreateRouteAction($routeData->action);
 
-            $currentRoute = substr($requestPath, 0, $lastDelimeterPos);
+            $route = $target.".".$action;
+            $permission = Permissions::retrieveByRoute($route);
 
-            $id = substr($requestPath, $lastDelimeterPos+1, strlen($requestPath) - 1);
-
-            if(strpos($currentRoute, 'edit') !== false)
+            if(EMedUtil::isInvalid($permission))
             {
-                $userId = $id;
-                $userData = CustomUser::retrieveData($userId);
+                $msg = 'ACCESS DENIED. User tries to access Route=' . $currentRoute . ' but is not included in the current user\'s list of permissions.';
 
-                if(is_null($userData->user_type_id))
+                Session::flash('503_msg', $msg);
+                Log::error($msg);
+                
+                abort(503);
+            }
+            else
+            {
+                if($target === 'customrole')
                 {
-                    $roleData = UserRoles::getRoleByName($userData->user_type);   
-                }
-                else
-                {
-                    $roleData = UserRoles::getRole($userData->user_type_id);  
-                }
-
-                if(session('user_type') === $roleData->name && $userId !== session('user_id'))
-                {
-                    $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
-
-                    Session::flash('503_msg', $msg);
-                    Log::error($msg);
-
-                    abort(503);
-                }
-                else
-                {
-                    if(is_null($roleData))
+                    $roleData = [];
+                    if(strtoupper($action) === 'EDIT')
                     {
-                        $msg = 'SYSTEM PROBLEM. User is linked to a custom RoleId=' . $id . ' that does not exist in the system.';
+                        $id = $request->route('userId');
+                        if(session('user_id') !== $id)
+                        {
+                            $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
+
+                            Session::flash('503_msg', $msg);
+                            Log::error($msg);
+
+                            abort(503);
+                        }
+
+                        $userData = CustomUser::retrieveData($id);
+                        $roleData = UserRoles::getRoleByName($userData->user_type);   
+                    }
+                    else
+                    {
+                        $id = $request->route('roleId');
+                        $roleData = UserRoles::getRole($id);
+                    }
+
+                    if(EMedUtil::isInvalid($roleData))
+                    {
+                        $msg = 'SYSTEM PROBLEM. User is linked to a custom [User/Role]Id=' . $id . ' that do not exist in the system.';
 
                         Session::flash('503_msg', $msg);
                         Log::error($msg);
@@ -69,69 +90,29 @@ class CheckPermissions
                         abort(503);
                     }
                 }
-            }
-            else
-            {
-                $roleData = UserRoles::getRole($id);
-            }
-
-            
-            if(is_null($roleData) || empty($roleData) || count($roleData) <= 0)
-            {
-                $msg = 'ACCESS DENIED. System cannot identify current access route of role. Route=' . $currentRoute . '; RoleId=' . $id;
-
-                Session::flash('503_msg', $msg);
-                Log::error($msg);
-
-                abort(503);
-            }
-            else
-            {
-                Session::put('custom_role', $roleData->display_name);
-                Session::put('custom_role_type', $roleData->name);
-                Session::put('custom_role_id', $roleData->id);
-                $data = Permissions::retrieveByTargetAndURL($roleData->name, $currentRoute);
-            }
-        }
-        else
-        {
-            $data = Permissions::retrieveByRoute($currentRoute);
-            if(is_null($data))
-            {
-                $permission = Permissions::retrieveDataByRouteOnly($currentRoute);
-                if(is_null($permission))
+                else
                 {
-                    $msg = 'ACCESS DENIED. User tries to access Route=' . $currentRoute . ' that does not exist .';
 
-                    Session::flash('503_msg', $msg);
-                    Log::error($msg);
-                    
-                    abort(503);
+                    if(strtoupper($action) === 'EDIT')
+                    {
+                        $routeParams = $request->route()->parameters();
+                        $idRouteParam = array_values($routeParams)[0];
+
+                        if(session('user_type') === strtoupper($permission->target) && session('user_id') != $idRouteParam)
+                        {
+                            $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
+
+                            Session::flash('503_msg', $msg);
+                            Log::error($msg);
+
+                            abort(503);
+                        }
+                    }
+                        
                 }
-                if($permission->action === 'LIST')
-                {
-                    $data = EMedHelper::showListOfTarget($permission->target);
-                }
+
+                return $next($request);
             }
-        }
-        
-        // Log::info('Route accessed: ' . $currentRoute);
-
-        $continue = !is_null($data);
-
-        if($continue)
-        {
-            // Log::info('ACCESS GRANTED for Route=' . $currentRoute);
-            return $next($request);
-        }
-        else
-        {
-            $msg = 'ACCESS DENIED. User tries to access Route=' . $currentRoute . ' but is not included in the current user\'s list of permissions.';
-
-            Session::flash('503_msg', $msg);
-            Log::error($msg);
-            
-            abort(503);
         }
     }
 }

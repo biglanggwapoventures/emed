@@ -1,17 +1,27 @@
 @extends('welcome') @section('body')
 
 <div class="content-wrapper">
-<section class="content-header">
+    <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('managers.index') }}">Pharmacy Manager List</a>
+                </li>
+                <li class="breadcrumb-item active">Edit Pharmacy Manager</li>
+            </ol>
+        </div>
         <h1>
-            Manager Edit
-            <small></small>
+            <span style="font-size:80% !important;">
+                <span class="fa fa-bandcamp" style="font-size:135%!important"></span>
+                &nbsp;Edit Pharmacy Manager Form
+            </span>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/pmanager-home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Edit Manager</a></li>
-
-        </ol>
     </section>
+
+
     @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
@@ -172,14 +182,18 @@
                         
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', EMedHelper::retrievePharmacy($data->drugstore)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
+                                    <label class="control-label">Drugstore</label> 
+                                    {!! Form::text('drugstore_display', EMedHelper::retrievePharmacy($data->drugstore)->name, ['class' => 'form-control','readonly' => 'true']) !!}
+                                    <input type="hidden" name="drugstore" value="{{ $data->drugstore }}">@if($errors->has('drugstore'))
                                     <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                  <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
+                                    <label class="control-label">Drugstore Address</label> 
+                                    {!! Form::text('drugstore_branch_display', EMedHelper::retrievePharmacyBranch($data->drugstore_branch)->name, ['class' => 'form-control','readonly' => 'true']) !!} 
+                                    <input type="hidden" name="drugstore_branch" value="{{ $data->drugstore_branch }}">@if($errors->has('drugstore_branch'))
                                     <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
                                 </div>
                             </div>

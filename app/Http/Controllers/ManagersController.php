@@ -20,8 +20,8 @@ class ManagersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage', 'show', 'transaction']]);
+        $this->middleware(['auth', 'requirechangepass']);
+        $this->middleware('permissions', ['except' => ['showHomepage', 'show']]);
     }
     
     /**
@@ -48,7 +48,7 @@ class ManagersController extends Controller
     public function showHomepage()
     {
 
-       $items = Auth::user()->manager;
+        $items = Auth::user()->manager;
         // dd($items);
         return view('managers.pmanager-home', [
             'items' => $items
@@ -162,7 +162,7 @@ class ManagersController extends Controller
      */
     public function edit($id)
     {
-
+        $data = PharmacyManager::with('userInfo')->where('user_id', $id)->first();
             if(Auth::user()->user_type === "PMANAGER")
         {
          return view('managers.edit', [

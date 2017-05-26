@@ -4,8 +4,10 @@
         <section class="content-header">
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Doctors List</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url(session('homepage') . '') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Doctor List</li>
                 </ol>
             </div>
             <h1>
@@ -230,7 +232,7 @@
                 {
                     var userid = $(this).data('id');
                     var userdata = $("#userdata").data('user-info');
-                    var fname, lastname, sex, username, email, username, address, contactno, birthdate;
+                    var fname, lastname, mi, sex, username, email, username, address, contactno, birthdate;
 
                     $.each(userdata, function(i, item)
                     {
@@ -238,6 +240,7 @@
                         {
                             fname = item.user_info.firstname;
                             lastname = item.user_info.lastname;
+                            mi = item.user_info.middle_initial;
                             sex = item.user_info.sex;
                             username = item.user_info.username;
                             email = item.user_info.email;
@@ -250,7 +253,7 @@
                         
                     });
 
-                    $("#mdl_userName").text(lastname + ", " + fname);
+                    $("#mdl_userName").text(lastname + ", " + fname + " " + mi + ".");
                     $("#mdl_user_name").text(username);
                     $("#mdl_email").text(email);
                     $("#mdl_gender").text(sex);

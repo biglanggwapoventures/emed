@@ -4,7 +4,9 @@
         <section class="content-header">
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url(session('homepage') . '') }}">Home</a>
+                    </li>
                     <li class="breadcrumb-item active">Patients List</li>
                 </ol>
             </div>
@@ -239,7 +241,7 @@
             font-size:87%;
             margin-top:-10px!important;
             color:#FFF;
-            border-radius: 15px;
+            border-radius: 5px;
         }
         .detached-label {
             background-color:#eb3f00;
@@ -247,7 +249,7 @@
             font-size:87%;
             margin-top:-10px!important;
             color:#FFF;
-            border-radius: 15px;
+            border-radius: 5px;
         }
     </style>
 

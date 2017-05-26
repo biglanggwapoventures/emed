@@ -12,7 +12,8 @@ use App\Pharma;
 use App\PharmacyManager;
 
 
-use Log, Session, EMedHelper;
+use Log, Session;
+use EMedUtil, EMedHelper;
 
 class PharmaTransactionController extends Controller
 {
@@ -22,8 +23,8 @@ class PharmaTransactionController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['storeTransaction', 'index']]);
+        $this->middleware(['auth', 'requirechangepass']);
+        $this->middleware('permissions', ['except' => ['storeTransaction', 'index', 'voidTransaction']]);
     }
     
     /**
@@ -92,23 +93,56 @@ class PharmaTransactionController extends Controller
     public function transactionList()
     {
         $userId = session('user_id');
-        Log::info('userid = ' . $userId);
         
         if(session('user_type') === 'PMANAGER')
         {
             $userData = PharmacyManager::getManagerData($userId);
+            $mgrList = [];
         }
         elseif(session('user_type') === 'PHARMA')
         {
             $userData = Pharma::getPharmaData($userId);
+            $mgrList = PharmacyManager::getManagerData();
+
+            $mgrList = EMedUtil::formatManagerList($mgrList);
         }
         else
         {
             abort(503);
         }
 
-        $data = [];
-
-        return view('transactions.transaction-list', ['items' => $data, 'userdata' => $userData]);
+        $data = TransactionLine::getTransactionsOf($userData->drugstore, $userData->drugstore_branch);
+        // Log::info(json_decode(json_encode($data), true));
+        return view('transactions.transaction-list', ['items' => $data, 'userdata' => $userData, 'mgrList' => $mgrList]);
     }
+
+    public function voidTransaction(Request $request)
+    {
+        $data = ['success' => true, 'message' => ''];
+        $mgruser_id = session('user_id');
+
+        if(!is_null($request->approvingMgr) && session('user_type') !== 'PMANAGER')
+        {
+            $mgruser_id = $request->approvingMgr;
+            $passwordMatched = EMedHelper::isCurrentPassword($request->mgrPassword, $mgruser_id);
+        }
+        else
+        {
+            $passwordMatched = true;
+        }
+
+        if($passwordMatched)
+        {
+            TransactionLine::voidTransaction($request->transactionId, session('user_id'));
+        }
+        else
+        {
+            $data['success'] = false;
+            $data['message'] = 'The manager password do not match with what is recorded in the system.';
+        }
+        
+
+        return json_encode($data);
+    }
+
 }

@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
+use EMedHelper, Log;
+
 class Patient extends Model
 {
 	protected $fillable = [
@@ -31,10 +33,12 @@ class Patient extends Model
 		return $this->hasMany('App\Prescription', 'patient_id');
 	}
 
-	// public function lackingPrescriptions()
-	// {
-	// 	return $this->prescriptions()
-			
-	// }
+	public static function doctorOfPatient($doctorId)
+	{
+		return DB::table('doctor_patient')
+			   ->where('patient_id', EMedHelper::getPatientId(session('user_id')))
+			   ->where('doctor_id', $doctorId)
+			   ->first();
+	}
 	
 }

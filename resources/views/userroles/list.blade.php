@@ -4,8 +4,10 @@
         <section class="content-header">
             <div style="margin-top:10px">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">User Roles List</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url(session('homepage') . '') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">User Role List</li>
                 </ol>
             </div>
             <h1>
@@ -15,16 +17,18 @@
                 </span>
             </h1>
         </section>
+        
         @if(session('ACTION_RESULT'))
-                                        <div class="row">
-                                            <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
-                                                    {{ session('ACTION_RESULT')['message'] }}
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                        {{ session('ACTION_RESULT')['message'] }}
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">

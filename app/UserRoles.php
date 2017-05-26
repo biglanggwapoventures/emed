@@ -4,8 +4,9 @@ namespace App;
 
 use App\Permissions;
 
-use DB;
-use Log;
+use DB, Log;
+use PermissionHelper;
+
 
 class UserRoles
 {
@@ -34,17 +35,7 @@ class UserRoles
 
         // If there edit/delete permissions for a certain target, the list permission
         // of that certain target will be automatically granted
-        $editDeletePermissions = Permissions::getEditDeleteActionsOfRole($newRoleId);
-        foreach ($editDeletePermissions as $permission) 
-        {
-            $target = $permission->target;
-            $listPermission = Permissions::getListOfTarget($target, $newRoleId);
-            if(count($listPermission) === 0)
-            {
-                $oListPermission = Permission::retriveByTargetAndAction($target, 'LIST');
-                Permissions::assignToRole($oListPermission->id, $newRoleId);
-            }
-        }
+        PermissionHelper::grantListToEditDelete($newRoleId);
 
         Log::info('Selected roles have now been mapped to new user role' . json_encode($permissions));
 
@@ -55,7 +46,7 @@ class UserRoles
             "type"              => "page",
             "target"            => strtoupper($data['name']),
             "action"            => "LIST",
-            "route"             => "",
+            "route"             => "customrole.index",
             "url"               => "custom-role",
             "allow_in_custom"   => 1,
             "created_at"        => date("Y-m-d H:i:s"),
@@ -75,7 +66,7 @@ class UserRoles
             "type"              => "page",
             "target"            => strtoupper($data['name']),
             "action"            => "ADD",
-            "route"             => "",
+            "route"             => "customrole.create",
             "url"               => "custom-role/create",
             "allow_in_custom"   => 1,
             "created_at"        => date("Y-m-d H:i:s"),
@@ -95,7 +86,7 @@ class UserRoles
             "type"              => "page",
             "target"            => strtoupper($data['name']),
             "action"            => "EDIT",
-            "route"             => "",
+            "route"             => "customrole.edit",
             "url"               => "custom-role/edit",
             "allow_in_custom"   => 1,
             "created_at"        => date("Y-m-d H:i:s"),

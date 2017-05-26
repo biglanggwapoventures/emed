@@ -18,6 +18,7 @@ class TransactionsController extends Controller
 
     public function __construct(Request $request)
     {
+        
         $this->patientId = $request->patient;
         if(!Patient::whereId($this->patientId)->exists()){
             abort(404); 

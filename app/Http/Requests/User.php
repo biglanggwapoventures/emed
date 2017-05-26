@@ -27,7 +27,8 @@ class User extends Authenticatable
         'sex',
         'address',
         'birthdate',
-        'added_by'
+        'added_by',
+        'requirechange'
     ];
 
     /**
@@ -36,7 +37,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'requirechange'
     ];
 
     public function doctor()
