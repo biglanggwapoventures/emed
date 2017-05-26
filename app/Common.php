@@ -228,6 +228,11 @@ class Common
         return DB::table('doctors')->select('id')->where('user_id', $doctorUserId)->first()->id;
     }
 
+    public static function getPatientId($patientUserId)
+    {
+        return DB::table('patients')->select('id')->where('user_id', $patientUserId)->first()->id;
+    }
+
     public static function getAffiliation($affiliationId)
     {
         return DB::table('affiliations')->where('id', $affiliationId)->first();
@@ -268,7 +273,7 @@ class Common
 
     public static function getActivePrescriptions($patientId = null, $doctorId = null)
     {
-        $clause = 'prescriptions.end >= NOW()';
+        $clause = 'prescriptions.end >= NOW() AND quantity > COALESCE((SELECT SUM(quantity) FROM transaction_lines WHERE prescription_id = prescriptions.id AND voided = 0), 0)';
         if(!is_null($patientId))
         {
             $clause .= ' AND patient_id = ' . $patientId;
@@ -329,11 +334,38 @@ class Common
                ->first();
     }
 
+    public static function requireChange()
+    {
+        return DB::table('users')->where('id', session('user_id'))->first()->requirechange;
+    }
+
     public static function doPasswordsMatch($userId, $rawPassword)
     {
         $data = DB::table('users')->where('id', $userId)->first();
         $encryptedPassword = $data->password;
 
-        
+        return Hash::check($rawPassword, $encryptedPassword);
     }
+
+    public static function getPatientName($patientId)
+        {
+            $data = DB::table('users')
+                    ->join('patients', 'users.id', 'patients.user_id')
+                    ->select('users.firstname', 'users.lastname')
+                    ->where('patients.id', $patientId)
+                    ->first();
+
+            return $data->firstname.' '.$data->lastname;
+        }
+
+        public static function getDoctorName($doctorId)
+        {
+            $data = DB::table('users')
+                    ->join('doctors', 'users.id', 'doctors.user_id')
+                    ->select('users.firstname', 'users.lastname')
+                    ->where('doctors.id', $doctorId)
+                    ->first();
+
+            return 'Dr. '.$data->firstname.' '.$data->lastname;
+        }
 }

@@ -87,10 +87,17 @@
 
 
                         </div>
+                        <div class="row">
+
+                            <div class="col-md-8">
+                                <strong>Reason for Update:</strong> <br>
+                                <input class="form-control" type="text" name="updatereason" required="">
+                            </div>
+                        </div>
 
                     </div>
                     <!-- end sa panelbody -->
-                    &nbsp &nbsp
+                    &nbsp; &nbsp;
                     <button type="submit" class="btn btn-primary">Submit</button> {!! Form::close() !!}
                 </div>
             </div>

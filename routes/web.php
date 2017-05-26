@@ -76,19 +76,22 @@ Route::get('/ChangePass', 'PasswordChangeController@showHomepage')->middleware('
 
 Route::post('/scan', 'RFIDController@scan');
 
-Route::post('/detach-patient/{patientId}', 'PatientActionController@detachPatient');
-Route::post('/attach-patient/{patientId}', 'PatientActionController@attachPatient');
+Route::post('/detach-patient/{patientId}', 'PatientActionController@detachPatient')->name('patients.detach');
+Route::post('/attach-patient/{patientId}', 'PatientActionController@attachPatient')->name('patients.attach');
 
-Route::get('custom-role/{roleId}', 'CustomUserController@index');
-Route::get('custom-role/create/{roleId}', 'CustomUserController@create');
-Route::get('custom-role/edit/{userId}', 'CustomUserController@edit');
-Route::get('home/{roleId}', 'CustomUserController@showHomepage');
+Route::get('custom-role/{roleId}', 'CustomUserController@index')->name('customrole.index');
+Route::get('custom-role/create/{roleId}', 'CustomUserController@create')->name('customrole.create');
+Route::get('custom-role/edit/{userId}', 'CustomUserController@edit')->name('customrole.edit');
+Route::get('home/{roleId}', 'CustomUserController@showHomepage')->name('customrole.show');
 
-Route::post('custom-role/store/{roleId}', 'CustomUserController@store');
-Route::post('custom-role/update/{userId}', 'CustomUserController@update');
+Route::post('custom-role/store/{roleId}', 'CustomUserController@store')->name('customrole.store');
+Route::post('custom-role/update/{userId}', 'CustomUserController@update')->name('customrole.update');
 
-Route::get('patient-prescriptions', 'PharmaTransactionController@index');
+Route::get('patient-prescriptions', 'PharmaTransactionController@index')->name('pharmatrans.index');
 Route::get('pharmatransaction/{patientId}', 'PharmaTransactionController@transaction')->name('pharmatrans.transact');
-Route::get('transaction-history', 'PharmaTransactionController@transactionList')->name('transaction.history');
+Route::get('transaction-history', 'PharmaTransactionController@transactionList')->name('pharmatrans.history');
 
-Route::post('transact', 'PharmaTransactionController@storeTransaction');
+Route::post('transact', 'PharmaTransactionController@storeTransaction')->name('pharmatrans.store');
+Route::post('void', 'PharmaTransactionController@voidTransaction')->name('pharmatrans.void');
+
+Route::get('consultations/history/{consultationId}', 'MedicalHistoryController@listConsultationHist')->name('consultation.history');

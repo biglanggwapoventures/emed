@@ -16,8 +16,7 @@ class UserRolesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permissions', ['except' => ['store', 'update', 'showHomepage']]);
+        $this->middleware(['auth', 'requirechangepass', 'permissions']);
     }
     
     /**
@@ -139,20 +138,21 @@ class UserRolesController extends Controller
 
         // If there edit/delete permissions for a certain target, the list permission
         // of that certain target will be automatically granted
-        Log::info('id='. $id);
-        $editDeletePermissions = Permissions::getEditDeleteActionsOfRole($id);
-        Log::info('ED Perm: ' . $editDeletePermissions);
-        foreach ($editDeletePermissions as $permission) 
-        {
-            $target = $permission->target;
-            $listPermission = Permissions::getListOfTarget($target, $id);
-            if(count($listPermission) === 0)
-            {
-                $oListPermission = Permissions::retriveByTargetAndAction($target, 'LIST');
-                Log::info('olistper=' . json_encode($oListPermission));
-                Permissions::assignToRole($oListPermission->id, $id);
-            }
-        }
+        PermissionHelper::grantListToEditDelete($id);
+        // Log::info('id='. $id);
+        // $editDeletePermissions = Permissions::getEditDeleteActionsOfRole($id);
+        // Log::info('ED Perm: ' . $editDeletePermissions);
+        // foreach ($editDeletePermissions as $permission) 
+        // {
+        //     $target = $permission->target;
+        //     $listPermission = Permissions::getListOfTarget($target, $id);
+        //     if(count($listPermission) === 0)
+        //     {
+        //         $oListPermission = Permissions::retriveByTargetAndAction($target, 'LIST');
+        //         Log::info('olistper=' . json_encode($oListPermission));
+        //         Permissions::assignToRole($oListPermission->id, $id);
+        //     }
+        // }
 
         return redirect('userroles')
          ->with('ACTION_RESULT', [

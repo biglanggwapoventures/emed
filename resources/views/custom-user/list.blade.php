@@ -22,38 +22,39 @@
 
         <section class="content">
             <!-- <div class="row"> -->
-                                                     @if(session('ACTION_RESULT'))
-                                        <div class="row">
+                @if(session('ACTION_RESULT'))
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
+                                {{ session('ACTION_RESULT')['message'] }}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <div class="row">
+                    <div class="col-xs-12">
+                        @if(EMedHelper::hasTargetActionPermission($role->name, 'ADD'))
+                            <?php
+                                $customButtonWidth = 140;
+                                $addtlWidth = 0;
 
-                                            <div class="col-md-6 col-md-offset-3">
-                                                <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center">
-                                                    {{ session('ACTION_RESULT')['message'] }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
-                <div class="col-xs-12">
-                    @if(EMedHelper::hasTargetActionPermission($role->name, 'ADD'))
-                        <?php
-                            $customButtonWidth = 140;
-                            $addtlWidth = 0;
+                                $dispNameLen = strlen($role->display_name);
+                                if($dispNameLen > 7)
+                                {
+                                    $addtlWidth = ($dispNameLen - 7) * 6;
+                                }
 
-                            $dispNameLen = strlen($role->display_name);
-                            if($dispNameLen > 7)
-                            {
-                                $addtlWidth = ($dispNameLen - 7) * 6;
-                            }
-
-                            $customButtonWidth += $addtlWidth;
-
-                        ?>
-                        <a href="{{ url('custom-role/create', $role->id) }}" class="btn btn-info btn-md add-button" style="width:{{ $customButtonWidth }}px !important;">
-                            <span class="fa fa-plus" style="margin-right:5px;font-size:110%"></span>
-                            Add {{ $role->display_name }}
-                        </a>
-                    @endif
+                                $customButtonWidth += $addtlWidth;
+                            ?>
+                            <a href="{{ url('custom-role/create', $role->id) }}" class="btn btn-info btn-md add-button" style="width:{{ $customButtonWidth }}px !important;">
+                                <span class="fa fa-plus" style="margin-right:5px;font-size:110%"></span>
+                                Add {{ $role->display_name }}
+                            </a>
+                        @endif
+                    </div>
+                    <div>&nbsp;</div>
                 </div>
-                <div class="hidden-xl hidden-lg hidden-md hidden-sm">&nbsp;</div>
+                    
             <!-- </div> -->
             <div class="row">
                 <div class="col-xs-12">

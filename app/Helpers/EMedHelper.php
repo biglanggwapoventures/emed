@@ -182,9 +182,29 @@
             return $formattedData;
         }
 
-        // public static function retrievePurcQtyOfPrescription($id)
-        // {
-        //     return TransactionLine::getPurcQtyOfPrescription($id);
-        // }
+        public static function getPatientId($patientUserId)
+        {
+            return Common::getPatientId($patientUserId);
+        }
+
+        public static function isCurrentPassword($rawPassword, $userId = null)
+        {
+            return Common::doPasswordsMatch((is_null($userId) ? session('user_id') : $userId), $rawPassword);
+        }
+
+        public static function requirePasswordChange()
+        {
+            return Common::requireChange();
+        }
+
+        public static function retrievePatientName($patientId)
+        {
+            return Common::getPatientName($patientId);
+        }
+
+        public static function retrieveDoctorName($doctorId)
+        {
+            return Common::getDoctorName($doctorId);
+        }
     }
 ?>

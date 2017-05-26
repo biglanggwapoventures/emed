@@ -512,6 +512,10 @@
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </button>
 
+                                                <a href="{{ route('consultation.history', ['consultationId' => $a->id]) }}" target="_blank" class="btn btn-warning" style="" data-toggle="tooltip" id="myTooltip" title="View Changelog">
+                                                    <span class="fa fa-h-square"></span>
+                                                </a>
+
                                 <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">

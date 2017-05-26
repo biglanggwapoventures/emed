@@ -99,7 +99,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center">No prescriptions found from this doctor.</td>
+                                            <td colspan="10" class="text-center">No prescriptions found from this doctor.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -297,9 +297,9 @@
                                     $.post(url, param)
                                         .done(function(data) 
                                         {
-                                            $("#mdl_Transact").modal('hide');
-                                            // console.log(data);
-                                            showSuccessMessage();
+                                            window.location.reload();
+                                            // $("#mdl_Transact").modal('hide');
+                                            // showSuccessMessage();
                                             onOperation = false;
                                         });
                                 }
@@ -332,16 +332,17 @@
                 $("#mdl_errmsg").text(msg);    
             }
 
-            function showSuccessMessage()
-            {
-                $("#mdl_successalert").show(); 
+            // function showSuccessMessage()
+            // {
+            //     $("#mdl_successalert").show(); 
 
-                window.setTimeout(function () 
-                {
-                    $("#mdl_successalert").hide();
-                }, 5000);
+            //     window.setTimeout(function () 
+            //     {
+            //         $("#mdl_successalert").hide();
+            //         window.location.reload();
+            //     }, 4000);
                 
-            }
+            // }
         </script>
     @endpush
 @endsection
