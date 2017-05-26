@@ -19,6 +19,16 @@
             <div class="alert alert-success hidden"></div>
         </section>
 
+                        @if(session('ACTION_RESULT'))
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                        {{ session('ACTION_RESULT')['message'] }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
@@ -28,6 +38,8 @@
                             Add Doctor
                         </a>
                     @endif
+
+
                 </div>
                 <div class="hidden-xl hidden-lg hidden-md hidden-sm">&nbsp;</div>
             </div>
@@ -254,4 +266,23 @@
             });
         </script>
     @endpush
+
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
+
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+
+}
+</style>
+
 @endsection
