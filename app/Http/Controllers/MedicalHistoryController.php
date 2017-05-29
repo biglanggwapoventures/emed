@@ -62,7 +62,7 @@ class MedicalHistoryController extends Controller
             // 'surgeryprocedure' => 'present',
             'notes' => 'required',
             'chiefcomplaints' => 'required',
-            'updatereason' => 'required'
+            'updatereason' => 'nullable'
             // ,            
             // 'medications' => 'required'
         ];

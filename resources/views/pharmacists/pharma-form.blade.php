@@ -9,7 +9,7 @@
                     <a href="{{ url(session('homepage') . '') }}">Home</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="{{ route('pharmas.index') }}">Pharmacist List</a>
+                    <a href="{{ route('pharmacists.index') }}">Pharmacist List</a>
                 </li>
                 <li class="breadcrumb-item active">Add Pharmacist</li>
             </ol>
