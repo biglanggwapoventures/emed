@@ -49,16 +49,16 @@
                            
                            <img id="photo" src="{{ "/storage/avatars/default.jpg " }}" alt="photo avatar"  style="width: 150px; height: 150px;" class="img-circle img-responsive" >
                            <input type="file" onchange="readURL(this)" class="upload" name="avatar" accept="photo" />
-                           <button type="button" class="btn btn-warning btn-default-sm" style ="margin-top: 5px;" data-toggle="modal" data-target="#history">
+                          <!--  <button type="button" class="btn btn-warning btn-default-sm" style ="margin-top: 5px;" data-toggle="modal" data-target="#history">
                            <span class="glyphicon glyphicon-camera"></span>  Capture From Camera
-                                                </button>
+                                                </button> -->
 
                       <!--  </div> -->
 
-                        <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
+                       <!--  <div class="modal fade" id="history" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
-                                            <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                                            <div class="modal-body">
                                                 
                                                 <h3 class="page-title text-info sbold" style="margin-left:-7px;">
                                                     Capture Image  
@@ -85,7 +85,7 @@
                                             </div>
                                         </div>
                                     </div>
-                         </div>
+                         </div> -->
                        <!-- test -->
 
                         <h4>Personal Information</h4>

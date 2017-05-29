@@ -111,7 +111,7 @@ class ManagersController extends Controller
 
         // verify if username exists
         $credentials = $request->only(['username']);
-
+        
         // assign password: default is firstname+lastname lowercase
         $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
         // assign user type

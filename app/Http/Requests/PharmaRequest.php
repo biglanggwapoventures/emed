@@ -43,8 +43,8 @@ class PharmaRequest extends FormRequest
 
 
         if($this->isMethod('post')){
-            $rules['username'] = 'required:unique:users';
-            $rules['email'] = 'required:unique:users';
+            $rules['username'] = 'required|unique:users';
+            $rules['email'] = 'required|unique:users';
         }else{
             // dd($this->route('doctor'));
             $rules['username'] = [

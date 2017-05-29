@@ -21,7 +21,7 @@
         </h1>
     </section>
 
-
+<!-- 
     @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
@@ -30,7 +30,7 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif -->
     <div class="container-fluid"><br><br>
             <div class="col-md-12">
                 <div class="box box-primary">
