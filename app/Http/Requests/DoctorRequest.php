@@ -103,7 +103,7 @@ class DoctorRequest extends FormRequest
         {
             $user_id = \App\Doctor::find($this->route("doctor"))->user_id;
             $rules['username'] = 'required|unique:users,username,'.$user_id;
-            $rules['email'] = 'required|unique:users,username,'.$user_id;
+            $rules['email'] = 'required|unique:users,email,'.$user_id;
             if(Auth::user()->isDoctor()){
                 unset($rules['prc'], $rules['ptr'], $rules['s2']);
             }
@@ -124,6 +124,7 @@ class DoctorRequest extends FormRequest
             'address.required' => 'Please enter your home address.',
             'username.required' => 'Please enter your username.',
             'email.required' => 'Please enter your email.',
+            'email.unique' => 'Email already taken.',
             'prc.required' => 'Please enter your PRC license number.',
             'ptr.required' => 'Please enter your PTR number.',
             'specialization.required' => 'Please enter your specialization.',
