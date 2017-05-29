@@ -51,7 +51,7 @@
                 <!-- /.box -->
             </div>
             <!-- /.col -->
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <div class="nav-tabs-custom">
                     <div class="tab-content">
                         <!-- tab start -->
@@ -81,6 +81,10 @@
                                     <tr>
                                         <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth:</b><br> {{ $d->userInfo->birthdate }}</td>
                                         <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender:</b> <br>{{ $d->userInfo->sex }}</td>
+                                    </tr>
+                                      <tr>
+                                        <td><span class="glyphicon glyphicon-address-card-o"></span> <b>Address:</b><br> {{ $d->userInfo->address }}</td>
+                                        <td><i class="fa fa-phone" aria-hidden="true"></i> &nbsp <b>Contact Number:</b> <br>{{ $d->userInfo->contact_number }}</td>
                                     </tr>
 
 

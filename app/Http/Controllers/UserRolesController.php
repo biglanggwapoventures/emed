@@ -52,12 +52,13 @@ class UserRolesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-                'name'          => 'required',
+                'name'          => 'required|unique:roles',
                 'namedisplay'   => 'required',
                 'description'   => 'required',
                 'permissions'     => 'required'
             ], [
                 'name.required'         => 'Please enter user role name.',
+                 'name.unique'         => 'Role already exists',
                 'namedisplay.required'  => 'Please enter user role display name.',
                 'description.required'  => 'Please enter user role description.',
                 'permissions.required'    => 'Please select at least one permission.'
