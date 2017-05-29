@@ -52,7 +52,7 @@ class PrescriptionController extends Controller
             'patient_id' => 'required',
             'consultation_id' => 'required',
             'genericname' => 'required',
-            'brand' => 'present',
+            'brand' => 'present|different:genericname',
             'quantity' => 'required|numeric|min:1',
             'duration' => 'required',
             'dosage' => 'required',
