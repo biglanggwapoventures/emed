@@ -88,7 +88,9 @@
                     </div>
                     <!-- end sa panelbody -->
                     &nbsp &nbsp
-                    <button type="submit" class="btn btn-primary">Submit</button> {!! Form::close() !!}
+                    <button type="submit" class="btn btn-primary">Submit</button> 
+                    <a href="{{ route('patients.show', ['id' => request()->input('patient_id')]) }}" class="btn btn-success" id="none">Back</a>
+                    {!! Form::close() !!}
                 </div>
             </div>
             <!-- /.box -->

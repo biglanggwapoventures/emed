@@ -98,7 +98,9 @@
                     </div>
                     <!-- end sa panelbody -->
                     &nbsp; &nbsp;
-                    <button type="submit" class="btn btn-primary">Submit</button> {!! Form::close() !!}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{ url("/patients/$consultation->patient_id") }}" class="btn btn-success" id="none">Back</a>
+                    {!! Form::close() !!}
                 </div>
             </div>
             <!-- /.box -->

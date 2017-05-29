@@ -66,6 +66,7 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        <a href="{{ url("/patients/$item->patient_id") }}" class="btn btn-success" id="none">Back</a>
                     </div>
                 </div>
             </div>

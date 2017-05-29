@@ -512,7 +512,7 @@
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </button>
 
-                                                <a href="{{ route('consultation.history', ['consultationId' => $a->id]) }}" target="_blank" class="btn btn-warning" style="" data-toggle="tooltip" id="myTooltip" title="View Changelog">
+                                                <a href="{{ route('consultation.history', ['consultationId' => $a->id]) }}" class="btn btn-warning" style="" data-toggle="tooltip" id="myTooltip" title="View Changelog">
                                                     <span class="fa fa-h-square"></span>
                                                 </a>
 
