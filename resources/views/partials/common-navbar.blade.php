@@ -214,12 +214,21 @@
                 </li>
                 <?php $hasUserPermission = true; ?>
             @endif
-
+             
             @if(EMedHelper::showListOfTarget('PATIENT'))
+            @if(Session::get('user_type') === 'DOCTOR')
+                <li>
+                     <a href="{{ route( 'mypatients') }} ">
+                        <i class="fa fa-qq sidebar-icon"></i> 
+                        <span class="sidebar-label"> My Patients</span>
+                    </a>
+                </li>
+                
+                @endif
                 <li>
                     <a href="{{ route( 'patients.index') }} ">
-                        <i class="fa fa-qq sidebar-icon"></i> 
-                        <span class="sidebar-label">Patients</span>
+                        <i class="fa fa-users"></i> 
+                        <span class="sidebar-label">All Patients</span>
                     </a>
                 </li>
                 <?php $hasUserPermission = true; ?>
