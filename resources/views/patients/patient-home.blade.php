@@ -193,7 +193,7 @@
                                 </table>
                             </div>
                              <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
-                                                    <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" id="myTooltip" title="View Prescription History">History</span>
+                                                    <i class="fa fa-history" aria-hidden="true"></i>History
                                                 </button>
                                                       <!-- notes -->
                                 @forelse($items->prescriptions AS $consultation)

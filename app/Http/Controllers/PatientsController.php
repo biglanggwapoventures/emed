@@ -39,7 +39,70 @@ class PatientsController extends Controller
         ]);
     
     }
-    
+   
+    public function mypatients (Request $request) {
+         $user = Auth::user();
+        $search =  $request->input('search');
+       
+
+        if($user->user_type === "DOCTOR")
+        {
+            $patients = Auth::user()->doctor->patients();
+
+            if(trim($search))
+            {
+                $patients->whereHas('userInfo', function($q) USE($search)
+                {
+                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+                });
+            }
+
+            $doctorId = Common::getDoctorId($user->id);
+            Log::info('DOCTOR_ID: ' . $doctorId);
+            $patients = Common::retrieveAttachedPatient($doctorId);
+
+            return view('patients.nofloating-list', [
+                // 'patients' => $patients->get()
+                'patients' => $patients
+            ]);
+        }
+
+        else if($user->user_type === "SECRETARY")
+        {
+            $patients = Auth::user()->secretary->doctor->patients();
+
+            if(trim($search))
+            {
+                $patients->whereHas('userInfo', function($q) USE($search)
+                {
+                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
+                });
+            }
+
+            return view('patients.nofloating-list', [
+                'patients' => $patients->get()
+            ]);
+        }
+        else
+        {
+            if(EMedHelper::hasTargetActionPermission('PATIENT', 'LIST'))
+            {
+                $items = PATIENT::with('userInfo')->get();
+                return view('patients.nofloating-list', [
+                    'patients' => $items
+                ]);
+            }
+            else
+            {
+                // this is where only the data saved by this particular user will be shown
+                $items = Common::retrieveUsersOfCurrentUser('PATIENT');
+                return view('patients.nofloating-list', [
+                    'patients' => $items
+                ]);
+            }
+        } 
+
+    }
     public function index(Request $request)
     {
         $user = Auth::user();

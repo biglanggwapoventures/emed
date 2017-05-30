@@ -88,6 +88,8 @@ Route::post('custom-role/store/{roleId}', 'CustomUserController@store')->name('c
 Route::post('custom-role/update/{userId}', 'CustomUserController@update')->name('customrole.update');
 
 Route::get('patient-prescriptions', 'PharmaTransactionController@index')->name('pharmatrans.index');
+Route::get('nofloating-list', 'PatientsController@mypatients')->name('mypatients');
+
 Route::get('pharmatransaction/{patientId}', 'PharmaTransactionController@transaction')->name('pharmatrans.transact');
 Route::get('transaction-history', 'PharmaTransactionController@transactionList')->name('pharmatrans.history');
 

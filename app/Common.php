@@ -114,7 +114,51 @@ class Common
             return json_decode(json_encode($dataArray));
         }
     }
+// 
+     public static function retrieveAttachedPatients($doctorId)
+    {
+        $data = DB::table('users')
+                ->join('patients', 'users.id', '=', 'patients.user_id')
+                ->select('users.*', 'patients.id AS patient_id')
+                ->where('users.user_type', 'PATIENT')
+                ->whereRaw(DB::raw('(patients.id IN (SELECT patient_id FROM doctor_patient WHERE doctor_id = ' . $doctorId . '))'))
+                ->get();
 
+        if(is_null($data) || empty($data) || count($data) <= 0)
+        {
+            return $data;
+        }
+        else
+        {
+            $dataArray = [];
+            foreach ($data as $item) 
+            {
+                $dataItem = ['id' => $item->patient_id, 'userInfo' => [
+                    'address'           => $item->address,
+                    'avatar'            => $item->avatar,
+                    'birthdate'         => $item->birthdate,
+                    'contact_number'    => $item->contact_number,
+                    'created_at'        => $item->created_at,
+                    'email'             => $item->email,
+                    'firstname'         => $item->firstname,
+                    'id'                => $item->id,
+                    'lastname'          => $item->lastname,
+                    'middle_initial'    => $item->middle_initial,
+                    'sex'               => $item->sex,
+                    'updated_at'        => $item->updated_at,
+                    'user_type'         => $item->user_type,
+                    'user_type_id'      => $item->user_type_id,
+                    'username'          => $item->username
+                ]];
+
+                array_push($dataArray, $dataItem);
+            }
+
+            return json_decode(json_encode($dataArray));
+        }
+    }
+
+// 
     public static function retrieveUsersOfCurrentUser($userTypeCode)
     {
         $data = DB::table('users')

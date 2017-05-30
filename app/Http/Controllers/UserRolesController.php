@@ -58,7 +58,7 @@ class UserRolesController extends Controller
                 'permissions'     => 'required'
             ], [
                 'name.required'         => 'Please enter user role name.',
-                 'name.unique'         => 'Role already exists',
+                 'name.unique'         => 'Role already apc_exists(keys)',
                 'namedisplay.required'  => 'Please enter user role display name.',
                 'description.required'  => 'Please enter user role description.',
                 'permissions.required'    => 'Please select at least one permission.'

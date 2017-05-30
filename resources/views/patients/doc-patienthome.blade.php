@@ -206,7 +206,7 @@
                                 </table>
                             </div>
                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
-                                                    <span class="glyphicon glyphicon-eye-open"></span>  History
+                                                    <i class="fa fa-history" aria-hidden="true"></i> History
                                                 </button>
                <!-- notes -->
                                 @forelse($patients->prescriptions AS $consultation)
