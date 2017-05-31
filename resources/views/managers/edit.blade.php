@@ -202,7 +202,7 @@
                       
                             <br>  
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary pull-left">Register</button>
+                                <button type="submit" class="btn btn-primary pull-left">Update</button>
                             </div>
                          {!! Form::close() !!}
                 </div>

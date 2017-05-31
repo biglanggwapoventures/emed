@@ -56,7 +56,7 @@
                     <div class="tab-content">
                         <!-- tab start -->
                         <div class="active tab-pane" id="activity">
-                            <a href="{{ route('managers.edit', ['id' => $d->userInfo->id]) }}" class="btn btn-info pull-right" data-toggle="tooltip" id="myTooltip" title="Edit Profile"><span class="glyphicon glyphicon-edit"></a>
+                            <a href="{{ route('secretary.edit', ['id' => $d->id]) }}" class="btn btn-info pull-right" data-toggle="tooltip" id="myTooltip" title="Edit Profile"><span class="glyphicon glyphicon-edit"></a>
                             <table class="table table-user-information">
                                 <tbody>
 

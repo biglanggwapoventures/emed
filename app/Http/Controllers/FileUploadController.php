@@ -48,7 +48,7 @@ class FileUploadController extends Controller
                         ->withInput()
                         ->with('ACTION_RESULT', [
                 'type' => 'error', 
-                'message' => 'Image too big to Upload!'
+                'message' => 'No Image/File too big!'
             ]);
       }
 

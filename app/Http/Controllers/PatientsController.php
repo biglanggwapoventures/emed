@@ -135,14 +135,6 @@ class PatientsController extends Controller
         {
             $patients = Auth::user()->secretary->doctor->patients();
 
-            if(trim($search))
-            {
-                $patients->whereHas('userInfo', function($q) USE($search)
-                {
-                    $q->whereRaw("CONCAT(firstname, ' ', lastname) LIKE '%{$search}%'");
-                });
-            }
-
             return view('patients.list', [
                 'patients' => $patients->get()
             ]);
@@ -472,7 +464,7 @@ class PatientsController extends Controller
 
         else if(Auth::user()->user_type === "SECRETARY")
         {
-            return redirect()->route('secretary.index');
+            return redirect("patients/{$id}");
         }
 
         else if(Auth::user()->user_type === "PATIENT")
