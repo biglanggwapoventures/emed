@@ -23,41 +23,49 @@
 
         <div class="col-md-12 signUp">
             <h3 class="headerSign">Consultation Notes</h3>
+            <br>
             {!! Form::open(['url' => route('consultations.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}
 
                 <div class="row">
                             <div class="col-md-6">
-                                    {!! Form::bsText('weight', '',null,['placeholder'=> 'WEIGHT IN KGS', 'class' => 'form-control']) !!}
+                             <label>Weight:</label>
+                                    {!! Form::bsText('weight', '',null,['placeholder'=> 'kgs', 'class' => 'form-control']) !!}
                             </div>
 
                             <div class="col-md-6">
-                                     {!! Form::bsText('height','',null,['placeholder'=> 'HEIGHT IN CM', 'class' => 'form-control']) !!}
+                            <label>Height:</label>
+                                     {!! Form::bsText('height','',null,['placeholder'=> 'cm', 'class' => 'form-control']) !!}
                             </div>        
                  </div>
                 
 
                 <div class="row">
                             <div class="col-md-6">
-                                    {!! Form::bsText('bloodpressure', '',null,['placeholder'=> 'BLOODPRESSURE IN mmHg', 'class' => 'form-control']) !!}
+                             <label>Bloodpressure:</label>
+                                    {!! Form::bsText('bloodpressure', '',null,['placeholder'=> 'mmHg', 'class' => 'form-control']) !!}
                             </div>
 
                             <div class="col-md-6">
-                                     {!! Form::bsText('temperature','',null,['placeholder'=> 'TEMPERATURE IN °C', 'class' => 'form-control']) !!}
+                             <label>Temperature:</label>
+                                     {!! Form::bsText('temperature','',null,['placeholder'=> '°C', 'class' => 'form-control']) !!}
                             </div>        
                  </div>
                 <div class="row">
                             <div class="col-md-6">
-                                    {!! Form::bsText('pulserate','',null,['placeholder'=> 'PULSE RATE BPM', 'class' => 'form-control']) !!}
+                             <label>Pulse rate:</label>
+                                    {!! Form::bsText('pulserate','',null,['placeholder'=> 'bpm', 'class' => 'form-control']) !!}
                             </div>
 
                             <div class="col-md-6">
-                                     {!! Form::bsText('resprate','',null,['placeholder'=> 'RESPIRATORY RATE CPM', 'class' => 'form-control']) !!}
+                             <label>Respiratory rate:</label>
+                                     {!! Form::bsText('resprate','',null,['placeholder'=> 'cpm', 'class' => 'form-control']) !!}
                             </div>        
                  </div>
                 
                  <div class="row">
                             <div class="col-md-12">
-                                    {!! Form::bsText('chiefcomplaints','',null,['placeholder'=> 'CHIEFCOMPLAINTS', 'class' => 'form-control']) !!}
+                            <label>Chief Complaints:</label>
+                                    {!! Form::bsText('chiefcomplaints','',null,['placeholder'=> 'complaints', 'class' => 'form-control']) !!}
                             </div>    
                  </div>
                  <h3 class="headerSign">Diagnosis</h3>
@@ -164,7 +172,7 @@ input{
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    margin-top: 21px;
+    margin-top: 1px;
 }
 
 
