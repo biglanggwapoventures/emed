@@ -61,7 +61,7 @@
                                             {{ $secretary->userInfo->email }}
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('users.destroy', ['id' => $secretary->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
+                                            <form action="{{ route('users.destroy', ['id' => $secretary->user_id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
                                                 {{ csrf_field() }} 
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger" {{ EMedHelper::hasTargetActionPermission("SECRETARY", "DELETE") ? "" : "disabled='disabled';style='opacity:0.30'" }}>

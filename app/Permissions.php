@@ -194,6 +194,10 @@ class Permissions
         DB::table('permission_role')
             ->where('role_id', $roleId)
             ->delete();
+
+        DB::table('permissions')
+            ->whereRaw('target = (SELECT name FROM roles WHERE id = ' . $roleId . ')')
+            ->delete();
     }
 
     public static function assignToRole($permissionId, $roleId)

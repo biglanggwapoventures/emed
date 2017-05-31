@@ -8,6 +8,8 @@ use App\Permissions;
 use App\UserRoles;
 use Log, Session;
 
+use PermissionHelper;
+
 class UserRolesController extends Controller
 {
     /**

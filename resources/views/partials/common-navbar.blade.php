@@ -218,7 +218,7 @@
             @if(EMedHelper::showListOfTarget('PATIENT'))
             @if(Session::get('user_type') === 'DOCTOR')
                 <li>
-                     <a href="{{ route( 'mypatients') }} ">
+                     <a href="{{ route( 'mypatients.list') }} ">
                         <i class="fa fa-qq sidebar-icon"></i> 
                         <span class="sidebar-label"> My Patients</span>
                     </a>

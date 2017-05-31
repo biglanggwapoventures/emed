@@ -35,6 +35,7 @@ class Common
     public static function retrieveAllUsers($userTypeCode)
     {
         $data = DB::table('users')
+                ->select('users.*', 'users.id AS user_id')
                 ->where('user_type', $userTypeCode)
                 ->get();
 
@@ -47,7 +48,7 @@ class Common
             $dataArray = [];
             foreach ($data as $item) 
             {
-                $dataItem = ['id' => $item->id, 'userInfo' => [
+                $dataItem = ['id' => $item->id, 'user_id' => $item->user_id, 'userInfo' => [
                     'address'           => $item->address,
                     'avatar'            => $item->avatar,
                     'birthdate'         => $item->birthdate,

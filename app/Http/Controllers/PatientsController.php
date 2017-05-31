@@ -59,7 +59,7 @@ class PatientsController extends Controller
 
             $doctorId = Common::getDoctorId($user->id);
             Log::info('DOCTOR_ID: ' . $doctorId);
-            $patients = Common::retrieveAttachedPatient($doctorId);
+            $patients = Common::retrieveAttachedPatients($doctorId);
 
             return view('patients.nofloating-list', [
                 // 'patients' => $patients->get()

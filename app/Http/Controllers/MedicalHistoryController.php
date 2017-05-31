@@ -130,20 +130,6 @@ class MedicalHistoryController extends Controller
         {
             $consultation = MedicalHistory::find($id);
 
-            $consultation_data = [
-                'weight' => $request->weight,
-                'height' => $request->height,
-                'bloodpressure' => $request->bloodpressure,
-                'temperature' => $request->temperature,
-                'pulserate' => $request->pulserate,
-                'resprate' => $request->resprate,
-                'chiefcomplaints' => $request->chiefcomplaints,
-                'notes' => $request->notes
-            ];
-
-            $consultation->fill($consultation_data);
-            $consultation->save();
-
             $consultation_archive = array(
                 'weight' => $consultation->weight,
                 'height' => $consultation->height,
@@ -160,9 +146,21 @@ class MedicalHistoryController extends Controller
                 'update_id' => session('user_id'),
                 'updatereason' => $request->updatereason
             );
-
-
             ConsultationHistory::addHistory($consultation_archive);
+
+            $consultation_data = [
+                'weight' => $request->weight,
+                'height' => $request->height,
+                'bloodpressure' => $request->bloodpressure,
+                'temperature' => $request->temperature,
+                'pulserate' => $request->pulserate,
+                'resprate' => $request->resprate,
+                'chiefcomplaints' => $request->chiefcomplaints,
+                'notes' => $request->notes
+            ];
+
+            $consultation->fill($consultation_data);
+            $consultation->save();
 
             return redirect()
                 ->intended(route('patients.show', ['id' => $consultation->patient->id]))
@@ -176,13 +174,14 @@ class MedicalHistoryController extends Controller
 
     public static function listConsultationHist($consultationId)
     {
+        $current = ConsultationHistory::getCurrent($consultationId);
         $data = ConsultationHistory::getChangeLog($consultationId);
         // Log::info($data);
         $firstItem = json_decode(json_encode($data), true)[0];
         $patientName = EMedHelper::retrievePatientName($firstItem['patient_id']);
         $doctorName = EMedHelper::retrieveDoctorName($firstItem['doctor_id']);
 
-        return view('consultations.history', ['items' => $data, 'patient' => $patientName, 'doctor' => $doctorName]);
+        return view('consultations.history', ['current' => $current, 'items' => $data, 'patient' => $patientName, 'doctor' => $doctorName]);
     }
 
     /**

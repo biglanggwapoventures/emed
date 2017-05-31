@@ -61,7 +61,7 @@ class CheckPermissions
                     if(strtoupper($action) === 'EDIT')
                     {
                         $id = $request->route('userId');
-                        if(session('user_id') !== $id)
+                        if($permission->target == session('user_type') && session('user_id') !== $id)
                         {
                             $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
 

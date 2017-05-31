@@ -28,7 +28,7 @@
                         </a>
                     @endif
                 </div>
-                <div class="hidden-xl hidden-lg hidden-md hidden-sm">&nbsp;</div>
+                <div>&nbsp;</div>
             </div>
             <div class="row">
                 <div class="col-xs-12">

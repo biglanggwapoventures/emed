@@ -26,87 +26,89 @@
             </div>
 
             @foreach($items as $item)
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box-body table-responsive no-padding"><br>
-                            <table class="table table-bordered table-striped"">
-                                <thead>
-                                    <tr>
-                                        <td colspan="10">{{ $item['doctor_name'] }}</td>
-                                    </tr>
-                                    <tr class="active">
-                                        <th class="align-th" rowspan="2">Brand</th>
-                                        <th class="align-th" rowspan="2">Generic Name</th>
-                                        <th class="text-center align-th" colspan="2">Quantity</th>
-                                        <th class="align-th text-center" rowspan="2">Dosage</th>
-                                        <th class="align-th text-center" rowspan="2">Duration</th>
-                                        <th class="align-th text-center" rowspan="2">Frequency</th>
-                                        <th class="align-th text-center" rowspan="2">Start of Consumption</th>
-                                        <th class="align-th text-center" rowspan="2">End of Consumption</th>
-                                        <th class="text-center" rowspan="2" style="vertical-align:middle"><span class="fa fa-ellipsis-h"></span></th>
-                                    </tr>
-                                    <tr class="active">
-                                        <th class="align-th text-center">Prescribed</th>
-                                        <th class="align-th text-center">Purchased</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="userdata">
+                @if(count($item['prescriptions']) > 0)
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box-body table-responsive no-padding"><br>
+                                <table class="table table-bordered table-striped"">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="10">{{ $item['doctor_name'] }}</td>
+                                        </tr>
+                                        <tr class="active">
+                                            <th class="align-th" rowspan="2">Brand</th>
+                                            <th class="align-th" rowspan="2">Generic Name</th>
+                                            <th class="text-center align-th" colspan="2">Quantity</th>
+                                            <th class="align-th text-center" rowspan="2">Dosage</th>
+                                            <th class="align-th text-center" rowspan="2">Duration</th>
+                                            <th class="align-th text-center" rowspan="2">Frequency</th>
+                                            <th class="align-th text-center" rowspan="2">Start of Consumption</th>
+                                            <th class="align-th text-center" rowspan="2">End of Consumption</th>
+                                            <th class="text-center" rowspan="2" style="vertical-align:middle"><span class="fa fa-ellipsis-h"></span></th>
+                                        </tr>
+                                        <tr class="active">
+                                            <th class="align-th text-center">Prescribed</th>
+                                            <th class="align-th text-center">Purchased</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userdata">
 
-                                    @forelse($item['prescriptions'] AS $prescription)
-                                        <tr>
-                                            <td class="align-pt">
-                                                {{ $prescription['brand'] }}
-                                            </td>
-                                            <td class="align-pt">
-                                                {{ $prescription['genericname'] }}
-                                            </td>
-                                            <td class="align-pt text-center">
-                                                {{ $prescription['quantity'] }}
-                                            </td>
-                                            <td class="align-pt text-center">
-                                                {{ $prescription['purchased'] }}
-                                            </td>
-                                            <td class="align-pt text-center">
-                                                {{ $prescription['dosage'] }}
-                                            </td>
-                                            <td class="align-pt text-center">
-                                                {{ $prescription['duration'] }}
-                                            </td>
-                                            <td class="align-pt text-center">
-                                                {{ $prescription['frequency'] }}
-                                            </td>
-                                            <td class="align-pt text-center">
-                                                {{ $prescription['start'] }}
-                                            </td>
-                                            <td class="align-pt text-center">
-                                                {{ $prescription['end'] }}
-                                            </td>
-                                            
-                                            @if($prescription['quantity'] == $prescription['purchased'])
-                                                <td class="text-center">
-                                                    <a href="#" class="btn btn-default" style="background-color:#999;color:#FFF;margin-left:15px;opacity:0.3" disabled="disabled">
-                                                        <span class="fa fa-podcast action-icon"></span>
-                                                    </a>
+                                        @forelse($item['prescriptions'] AS $prescription)
+                                            <tr>
+                                                <td class="align-pt">
+                                                    {{ $prescription['brand'] }}
                                                 </td>
-                                            @else
-                                                <td class="text-center">
-                                                    <a href="#" name="transactData" class="btn btn-default" style="background-color:#999;color:#FFF;margin-left:15px" data-info="{{ json_encode($prescription) }}">
-                                                        <span class="fa fa-podcast action-icon"></span>
-                                                    </a>
+                                                <td class="align-pt">
+                                                    {{ $prescription['genericname'] }}
                                                 </td>
-                                            @endif
+                                                <td class="align-pt text-center">
+                                                    {{ $prescription['quantity'] }}
+                                                </td>
+                                                <td class="align-pt text-center">
+                                                    {{ $prescription['purchased'] }}
+                                                </td>
+                                                <td class="align-pt text-center">
+                                                    {{ $prescription['dosage'] }}
+                                                </td>
+                                                <td class="align-pt text-center">
+                                                    {{ $prescription['duration'] }}
+                                                </td>
+                                                <td class="align-pt text-center">
+                                                    {{ $prescription['frequency'] }}
+                                                </td>
+                                                <td class="align-pt text-center">
+                                                    {{ $prescription['start'] }}
+                                                </td>
+                                                <td class="align-pt text-center">
+                                                    {{ $prescription['end'] }}
+                                                </td>
                                                 
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="10" class="text-center">No prescriptions found from this doctor.</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+                                                @if($prescription['quantity'] == $prescription['purchased'])
+                                                    <td class="text-center">
+                                                        <a href="#" class="btn btn-default" style="background-color:#999;color:#FFF;margin-left:15px;opacity:0.3" disabled="disabled">
+                                                            <span class="fa fa-podcast action-icon"></span>
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td class="text-center">
+                                                        <a href="#" name="transactData" class="btn btn-default" style="background-color:#999;color:#FFF;margin-left:15px" data-info="{{ json_encode($prescription) }}">
+                                                            <span class="fa fa-podcast action-icon"></span>
+                                                        </a>
+                                                    </td>
+                                                @endif
+                                                    
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="10" class="text-center">No prescriptions found from this doctor.</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </section>
     </div>
@@ -198,6 +200,25 @@
         </div>
     </div>
 
+    <div class="modal fade" id="mdlProcessing" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="padding:20px 40px 20px 60px;">
+                <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                    <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                        <span id="mdl_userName">Processing</span><br/>
+                    </h3>
+
+                    <hr style="margin-top:-5px;margin-bottom:5px;"/>
+                    <div class="row">
+                        <div class="form-body">
+                            <h4 class="form-section" style="padding-left:10px;">Please wait, the window will reload after processing.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <style type="text/css">
         .align-th {
             font-size:98% !important;
@@ -280,6 +301,9 @@
                                     console.log('prescid = ' + prescriptionId);
                                     console.log('pharmid = ' + pharmaId);
 
+                                    $("#mdl_Transact").modal('hide');
+                                    $("#mdlProcessing").modal();
+
                                     $.ajaxSetup(
                                     {
                                         headers:
@@ -298,7 +322,7 @@
                                         .done(function(data) 
                                         {
                                             window.location.reload();
-                                            // $("#mdl_Transact").modal('hide');
+                                            
                                             // showSuccessMessage();
                                             onOperation = false;
                                         });

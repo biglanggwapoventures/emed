@@ -46,6 +46,18 @@
                                 </tr>
                             </thead>
                             <tbody id="userdata">
+                                <tr>
+                                    <td class="align-pt">{{ $current->height }}</td>
+                                    <td class="align-pt">{{ $current->weight }}</td>
+                                    <td class="align-pt">{{ $current->bloodpressure }}</td>
+                                    <td class="align-pt">{{ $current->temperature }}</td>
+                                    <td class="align-pt">{{ $current->pulserate }}</td>
+                                    <td class="align-pt">{{ $current->resprate }}</td>
+                                    <td class="align-pt">{{ $current->notes }}</td>
+                                    <td class="align-pt">{{ $current->chiefcomplaints }}</td>
+                                    <td class="align-pt">{{ $current->updatereason }}</td>
+                                    <td class="align-pt">{{ $current->updated_at }}</td>
+                                </tr>
                                 @forelse($items AS $item)
                                     <tr>
                                         <td class="align-pt">{{ $item->height }}</td>
@@ -60,9 +72,6 @@
                                         <td class="align-pt">{{ $item->updated_at }}</td>
                                     </tr>
                                 @empty
-                                    <tr>
-                                        <td colspan="10" class="text-center">No history for this consultation.</td>
-                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
