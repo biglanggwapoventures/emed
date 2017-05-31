@@ -68,12 +68,11 @@
                                     {!! Form::bsText('chiefcomplaints','',null,['placeholder'=> 'complaints', 'class' => 'form-control']) !!}
                             </div>    
                  </div>
-                 <h3 class="headerSign">Diagnosis</h3>
-           
                 
                 <div class="row">
                             <div class="col-md-12">
-                                    {!! Form::bsText('notes', '',null,['placeholder'=> 'DIAGNOSIS', 'class' => 'form-control']) !!}
+                            <label>Diagnosis:</label>
+                                    {!! Form::bsText('notes', '',null,['placeholder'=> 'results', 'class' => 'form-control']) !!}
                             </div>    
                  </div>
                  <br>
