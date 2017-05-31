@@ -186,8 +186,10 @@ class PharmaController extends Controller
 
        // if(Auth::user()->user_type === "DOCTOR")
        //  {
+         $pman = Auth::user()->manager;
              return view('pharmacists.edit', [
-            'data' => Pharma::with('userInfo')->where('id', $id)->first()
+            'data' => Pharma::with('userInfo')->where('id', $id)->first(),
+            'pman' =>  $pman 
         ]);
 
        // } 

@@ -86,37 +86,44 @@
                             </div>
                         </div>
                         <h4>Account Information</h4>
+                        @php
+                            $pharmacy = EMedHelper::retrievePharmacy($pman->drugstore);
+                            $pharmacyBranch = EMedHelper::retrievePharmacyBranch($pman->drugstore_branch);
+                        @endphp
                         <hr class="third">
 
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('drugstore') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore</label> {!! Form::text('drugstore', $data->drugstore, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore'))
-                                    <span class="help-block">{{ $errors->first('drugstore') }}</span> @endif
+                                <div class="form-group">
+                                    <label class="control-label">Drugstore</label>
+                                    <p class="form-control-static">{{ $pharmacy->name }}</p>
+                                    {!! Form::hidden('drugstore', $pharmacy->id) !!}
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('drugstore_branch') ? 'has-error' : '' }}">
-                                    <label class="control-label">Drugstore Address</label> {!! Form::text('drugstore_branch', $data->drugstore_branch, ['class' => 'form-control','readonly' => 'true']) !!} @if($errors->has('drugstore_branch'))
-                                    <span class="help-block">{{ $errors->first('drugstore_branch') }}</span> @endif
+                                    <label class="control-label">Drugstore Address</label>
+                                    <p class="form-control-static">{{ $pharmacyBranch->name }}</p>
+                                    {!! Form::hidden('drugstore_branch', $pharmacyBranch->id) !!}
                                 </div>
                             </div>
 
-                              <div class="col-md-4">
-                               
-                                    {!! Form::bsText('license', 'License', $data->license, ['class' => 'form-control','readonly' => 'true']) !!}  
-                               
-                            </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>License</label>
+                                         <p class="form-control-static">{{ $data->license }}</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
 
                                 <div class="col-md-4">
                                     {!! Form::bsText('username', 'Username', $data->userInfo->username) !!}
-                                 </div>
-                            <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
                                     {!! Form::bsText('email', 'Email', $data->userInfo->email) !!}
-                            </div>
+                                </div>
 
                             </div>
 

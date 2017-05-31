@@ -36,15 +36,19 @@ class PharmaRequest extends FormRequest
             'address' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required|unique:users',
-            'drugstore' => 'required',
-            'drugstore_branch' => 'required',
-            'license' => 'required'
+            
         ];
 
 
         if($this->isMethod('post')){
-            $rules['username'] = 'required|unique:users';
-            $rules['email'] = 'required|unique:users';
+            $rules += [
+                'drugstore' => 'required',
+                'drugstore_branch' => 'required',
+                'license' => 'required',
+                'username' => 'required:unique:users',
+                'email' => 'required:unique:users'
+            ];
+            
         }else{
             // dd($this->route('doctor'));
             $rules['username'] = [

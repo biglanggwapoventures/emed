@@ -60,7 +60,7 @@
                                             {{ $i->userInfo->contact_number }}
                                         </td>
                                         <td class="align-pt">
-                                            {{ $i->drugstore }}
+                                        {{ EMedHelper::retrievePharmacy($i->drugstore)->name }}
                                         </td>
                                         <td class="text-center">
                                             <form action="{{ route('users.destroy', ['id' => $i->userInfo->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">
