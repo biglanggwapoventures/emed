@@ -178,7 +178,7 @@ class MedicalHistoryController extends Controller
     {
         $data = ConsultationHistory::getChangeLog($consultationId);
         // Log::info($data);
-        $firstItem = (json_decode(json_encode($data), true))[0];
+        $firstItem = json_decode(json_encode($data), true)[0];
         $patientName = EMedHelper::retrievePatientName($firstItem['patient_id']);
         $doctorName = EMedHelper::retrieveDoctorName($firstItem['doctor_id']);
 
