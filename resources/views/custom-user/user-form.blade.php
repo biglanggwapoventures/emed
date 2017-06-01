@@ -177,15 +177,17 @@
                                         <label class="control-label">Relationship</label>
                                         <!-- <span style="color: red">*</span> -->
                                         <select class="form-control" name="erelationship">
-                                                <option>Mother</option>
-                                                <option>Father</option>
-                                                <option>Sister</option>
-                                                <option>Brother</option>
-                                                <option>Cousin</option>
-                                                <option>Guardian</option>
-                                                <option>Spouse</option>
-                                                <option>Others</option>
-                                            </select> @if($errors->has('erelationship'))
+                                            <option value="" selected disabled>Select</option>
+                                            <option>Mother</option>
+                                            <option>Father</option>
+                                            <option>Sister</option>
+                                            <option>Brother</option>
+                                            <option>Cousin</option>
+                                            <option>Guardian</option>
+                                            <option>Spouse</option>
+                                            <option>Others</option>
+                                        </select> 
+                                        @if($errors->has('erelationship'))
                                         <span class="help-block">{{ $errors->first('erelationship') }}</span> @endif
                                     </div>
                                 </div>
