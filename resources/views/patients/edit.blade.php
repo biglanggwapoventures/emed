@@ -223,7 +223,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('allergy_question') ? 'has-error' : '' }}">
+                                <div class="form-group {{ $errors->has('allergyname') ? 'has-error' : '' }}">
                                     <label class="control-label">If yes, what?</label>
                                     <span style="color: red">*</span>
                                     @if($data->allergyquestion==='N')
