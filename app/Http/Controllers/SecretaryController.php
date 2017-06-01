@@ -178,7 +178,7 @@ class SecretaryController extends Controller
 
         $secretary = Secretary::find($id);
         $secretary->fill($request->only([
-            'attainment' => $request->attainment
+            'attainment'
         ]));
         $secretary->save();
 

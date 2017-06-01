@@ -36,8 +36,8 @@ class SecretaryRequest extends FormRequest
             'contact_number' => 'required|min:6',
             'address' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required|unique:users'
-            
+            'email' => 'required|unique:users',
+            'attainment' => 'required'
         ];
 
         if($this->isMethod('post')){
@@ -61,18 +61,19 @@ class SecretaryRequest extends FormRequest
      public function messages()
     {
         return [
-            'firstname.required' => 'Please enter your first name.',
-            'middle_initial.required' => 'Please enter your middle initial.',
-            'lastname.required' => 'Please enter your last name.',
-            'birthdate.required' => 'Please enter your birthdate.',
-            'sex.required' => 'Please enter your gender.',
-            'contact_number.required' => 'Please enter your contact number.',
-            'address.required' => 'Please enter your home address.',
-            'username.required' => 'Please enter your username.',
-            'email.required' => 'Please enter your email.',
+            'firstname.required' => 'Please enter first name.',
+            'middle_initial.required' => 'Please enter middle initial.',
+            'lastname.required' => 'Please enter last name.',
+            'birthdate.required' => 'Please enter birthdate.',
+            'sex.required' => 'Please enter gender.',
+            'contact_number.required' => 'Please enter contact number.',
+            'address.required' => 'Please enter home address.',
+            'username.required' => 'Please enter username.',
+            'email.required' => 'Please enter email.',
             'email.unique' => 'Email already taken',
             'contact_number.min' => 'Please enter valid contact number.',
-            'username.unique' => 'Taken username.'
+            'username.unique' => 'Taken username.',
+            'attainment.required' => 'Please enter educational attainment'
         ];
     }
 }
