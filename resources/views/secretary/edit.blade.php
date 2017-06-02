@@ -21,6 +21,7 @@
         </h1>
     </section>
 
+                      
     <div class="container-fluid">
         <div class="row-bod">
             <div class="col-md-9 col-md-offset-1">
@@ -29,7 +30,20 @@
                         <h4 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Update Secretary</h4>
                     </div>
                     <div class="panel-body">
+
+
+                        @if(session('ACTION_RESULT'))
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                        {{ session('ACTION_RESULT')['message'] }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         {!! Form::open(['url' => route('secretary.update', ['id' => $data->id]), 'method' => 'PUT']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!} {{ csrf_field() }}
+
 
                         <h4>Personal Information</h4>
                         <hr class="third">
@@ -128,6 +142,24 @@
     </div>
 </div>
 </div>
+
+<script type="text/javascript">
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
+
+<style type="text/css">
+    .alert {
+    position:absolute;
+    z-index:1;
+    margin-bottom: : 30px;
+    width: 500px;
+
+}
+</style>
 
 
 @endsection

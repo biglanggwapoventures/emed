@@ -196,9 +196,30 @@ class SecretaryController extends Controller
 
         ]));
         $user->save();
+
+         if(Auth::user()->user_type === "ADMIN"){
+     
+              return redirect('doctors')
+                    ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
+
+        }
+        else if (Auth::user()->isDoctor()) {
+             return redirect('doctor-home')
+                    ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
+  
+        }
+       
         
 
-       return redirect()->route('secretary.index');
+      // return redirect()->route('secretary.index');
     }
 
 
