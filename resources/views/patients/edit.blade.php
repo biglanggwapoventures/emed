@@ -7,6 +7,9 @@
             Edit Profile
             <small></small>
         </h1>
+
+                       
+
         <ol class="breadcrumb">
             <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('patients.show', ['id' => $data->id]) }}"><i class="fa fa-user"></i> {{ $data->userInfo->fullname() }}'s Profile</a></li>
@@ -18,6 +21,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+
+
 
             <!-- left column -->
             <div class="col-md-12">
@@ -36,6 +41,17 @@
               <div class="active tab-pane" id="activity">
                 {!! Form::open(['url' => route('patients.update', ['id' => $data->id]), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}
 
+
+                        @if(session('ACTION_RESULT'))
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
+                                        {{ session('ACTION_RESULT')['message'] }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        
                         <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px;" class="img-circle img-responsive" id="dp">
 
                        @if(Auth::check()) @if(Auth::user()->user_type != 'PATIENT' )

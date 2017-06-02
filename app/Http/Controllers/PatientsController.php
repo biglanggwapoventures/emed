@@ -459,12 +459,23 @@ class PatientsController extends Controller
 
        if(Auth::user()->user_type === "DOCTOR")
         {
-            return redirect("patients/{$id}");
+            return redirect("patients/{$id}")
+                    ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
         }
 
         else if(Auth::user()->user_type === "SECRETARY")
         {
-            return redirect("patients/{$id}");
+            return redirect("patients/{$id}")
+              ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
+
         }
 
         else if(Auth::user()->user_type === "PATIENT")
