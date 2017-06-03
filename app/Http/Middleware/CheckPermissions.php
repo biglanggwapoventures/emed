@@ -93,21 +93,21 @@ class CheckPermissions
                 else
                 {
 
-                    if(strtoupper($action) === 'EDIT')
-                    {
-                        $routeParams = $request->route()->parameters();
-                        $idRouteParam = array_values($routeParams)[0];
+                    // if(strtoupper($action) === 'EDIT')
+                    // {
+                    //     $routeParams = $request->route()->parameters();
+                    //     $idRouteParam = array_values($routeParams)[0];
 
-                        if(session('user_type') === strtoupper($permission->target) && session('user_id') != $idRouteParam)
-                        {
-                            $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
+                    //     if(session('user_type') === strtoupper($permission->target) && session('user_id') != $idRouteParam)
+                    //     {
+                    //         $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
 
-                            Session::flash('503_msg', $msg);
-                            Log::error($msg);
+                    //         Session::flash('503_msg', $msg);
+                    //         Log::error($msg);
 
-                            abort(503);
-                        }
-                    }
+                    //         abort(503);
+                    //     }
+                    // }
                         
                 }
 

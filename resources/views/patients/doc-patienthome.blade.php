@@ -498,7 +498,7 @@
                                         <tr>
                                             <td>{{ $a->created_at }}</td>
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                            <td>{{ $a->doctor->specialization->name }} </td>
+                                            <td>test </td>
                                             <td>
 
                                                 <a href="{{ route('consultations.edit', ['id' => $a->id]) }}" class="btn btn-info
