@@ -375,7 +375,7 @@
                                     @forelse($items->doctors AS $item)
                                     <tr>
                                         <td>{{ $item->userInfo->fullname()}}</td>
-                                        <td>{{ $item->specialization->name }}</td>
+                                        <td>test</td>
 
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
