@@ -401,7 +401,7 @@
                                         @forelse($patients->doctors AS $item)
                                         <tr>
                                             <td>{{ $item->userInfo->fullname() }}</td>
-                                            <td>{{ $item->specialization->name }}</td>
+                                            <td>test</td>
                                             <td>{{ $item->userInfo->address }}</td>
 
                                             <td>

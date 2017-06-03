@@ -24,7 +24,7 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <center>
-                            <img alt="User Pic" src="{{ "/storage/{$doctors->userInfo->avatar}" }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
+                            <img alt="User Pic" src="{{ asset("storage/{$doctors->userInfo->avatar}") }}"style="width: 150px; height: 150px" class="img-circle img-responsive" ><br>
                         </center>
 
                         <h3 class="profile-username text-center">Dr. {{ $doctors->userInfo->fullname() }} </h3>
@@ -63,24 +63,30 @@
                                         <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$doctors->userInfo->email}}</td>
                                     </tr>
 
-                                    <tr>
-                                        <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth</b><br> {{ $doctors->userInfo->birthdate }}</td>
-                                        <td><i class="fa fa-fw fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender</b> <br>{{ $doctors->userInfo->sex }}</td>
-                                    </tr>
-                                    <tr>
+                                  <tr>
                                         <td><span class="glyphicon glyphicon-phone"></span> <b>Phone Number</b> <br> {{ $doctors->userInfo->contact_number }}</td>
-                                        <td><i class="fa fa-fw fa-user-md" aria-hidden="true"></i></span> <b>Specialization</b> <br> {{ $doctors->specialization->name }}</td>
+                                        <td><i class="fa fa-fw fa-user-md" aria-hidden="true"></i></span> <b>Specialization</b> <br> <ul>
+                                                <li>{!! implode('</li>
+                                                <li>', $specializations) !!}</li>
+                                                </ul></td>
                                     </tr>
                                     <tr>
                                         <td style="width: 50%;"><span class="glyphicon glyphicon-home"></span> <b>Home Address</b><br>{{ $doctors->userInfo->address }}</td>
                                         <td>
                                             <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <b>Subspecialty </b><br>
-                                            
+                                                <ul>
                                                 <li>{!! implode('</li>
-                                                <li>', $doctors->subspecializations->pluck('name')->toArray()) !!}</li>
+                                                <li>', $subspecializations) !!}</li>
+                                                </ul>
                                                 <br>
                                         </td>
                                     </tr>
+                                    <tr>
+                                     <tr>
+                                        <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth</b><br> {{ $doctors->userInfo->birthdate }}</td>
+                                        <td><i class="fa fa-fw fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender</b> <br>{{ $doctors->userInfo->sex }}</td>
+                                    </tr>
+                                   
                                     <tr>
                             <td><b><h3>Clinic Information</h3></td>
                             <td></td>

@@ -210,11 +210,24 @@ class DoctorsController extends Controller
                 abort(503);
             }
         }
-        
-        $doctors = Doctor::find($id);
-        return view('doctors.doc-home', [
-            'doctors' => $doctors
-        ]);     
+           $doctors = Doctor::find($id);
+          $specializations = $doctors->specializations->pluck('name')->toArray();
+          $subspecializations = [];
+          $doctors->specializations->map(function ($item) USE (&$subspecializations) {
+              $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
+              $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
+          });
+            
+            return view('doctors.doc-home', [
+                'doctors' => $doctors,
+                'specializations' => $specializations,
+                'subspecializations' => $subspecializations
+            ]);
+
+        // $doctors = Doctor::find($id);
+        // return view('doctors.doc-home', [
+        //     'doctors' => $doctors
+        // ]);     
     }
 
     /**
@@ -288,7 +301,7 @@ class DoctorsController extends Controller
         });
         $doctor->specializations()->sync($specs);
 
-        
+
         $doctor->organizations()->sync($request->input('organizations'));
         
         $affiliations = [];
