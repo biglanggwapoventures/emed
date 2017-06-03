@@ -82,15 +82,19 @@
                                     </tr>
                                     <tr>
                                         <td><span class="glyphicon glyphicon-phone"></span> <b>Phone Number</b> <br> {{ $docs->userInfo->contact_number }}</td>
-                                        <td><i class="fa fa-fw fa-user-md" aria-hidden="true"></i></span> <b>Specialization</b> <br> {{ $docs->specialization->name }}</td>
+                                        <td><i class="fa fa-fw fa-user-md" aria-hidden="true"></i></span> <b>Specialization</b> <br> <ul>
+                                                <li>{!! implode('</li>
+                                                <li>', $specializations) !!}</li>
+                                                </ul></td>
                                     </tr>
                                     <tr>
                                         <td style="width: 50%;"><span class="glyphicon glyphicon-home"></span> <b>Home Address</b><br>{{ $docs->userInfo->address }}</td>
                                         <td>
                                             <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <b>Subspecialty </b><br>
-                                            
+                                                <ul>
                                                 <li>{!! implode('</li>
-                                                <li>', $docs->subspecializations->pluck('name')->toArray()) !!}</li>
+                                                <li>', $subspecializations) !!}</li>
+                                                </ul>
                                                 <br>
                                         </td>
                                     </tr>

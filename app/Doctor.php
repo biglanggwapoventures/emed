@@ -47,6 +47,11 @@ class Doctor extends Model
 		return $this->belongsToMany('App\Subspecialization', 'doctor_subspecializations', 'doctor_id', 'subspecialization_id');
 	}
 
+	public function specializations()
+	{
+		return $this->belongsToMany('App\Specialization', 'doctor_specialization', 'doctor_id', 'specialization_id')->withPivot('subspecialization_ids');
+	}
+
 	public function organizations()
 	{
 		return $this->belongsToMany('App\Organizations', 'doctor_organizations', 'doctor_id', 'organization_id');

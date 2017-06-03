@@ -34,9 +34,18 @@ class DoctorsController extends Controller
     {
         if(session('user_type') === 'DOCTOR')
         {
-            $docs = Auth::user()->doctor;
+          $docs = Auth::user()->doctor;
+          $specializations = $docs->specializations->pluck('name')->toArray();
+          $subspecializations = [];
+          $docs->specializations->map(function ($item) USE (&$subspecializations) {
+              $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
+              $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
+          });
+            
             return view('doctors.doctor-home', [
-                'docs' => $docs
+                'docs' => $docs,
+                'specializations' => $specializations,
+                'subspecializations' => $subspecializations
             ]);
         }
         else
@@ -85,7 +94,7 @@ class DoctorsController extends Controller
      */
     public function store(DoctorRequest $request)
     {
-        // dd($request->all());
+        // dd($request->specialization);
 
         $this->validate($request, [
                 'firstname' => 'required',
@@ -135,7 +144,7 @@ class DoctorsController extends Controller
 
         // save to DB (doctors)       
         $doctor = $user->doctor()->create([
-            'specialization_id' => $request->specialization,
+            // 'specialization_id' => $request->specialization,
             // 'clinic' => $request->clinic,
             // 'clinic_address'=> $request->clinic_address,
             // 'clinic_hours' => $request->clinic_hours,
@@ -153,7 +162,14 @@ class DoctorsController extends Controller
             'training_year' => $request->training_year,
         ]);
 
-        $doctor->subspecializations()->sync($request->input('subspecializations'));
+
+        $specs = [];
+        // dd($request->spec);
+        collect($request->spec)->each(function ($item) USE (&$specs) {
+          $specs[$item['name']] = ['subspecialization_ids' => json_encode($item['subs'])];
+        });
+        $doctor->specializations()->sync($specs);
+        
         $doctor->organizations()->sync($request->input('organizations'));
         
         $affiliations = [];
@@ -209,11 +225,18 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {   
-        $data = Doctor::whereUserId($id)->with(['userInfo', 'subspecializations', 'organizations', 'affiliations'])->first();
+        $data = Doctor::whereUserId($id)->with(['userInfo', 'specializations', 'organizations', 'affiliations'])->first();
         // Log::info('EDIT: ' . json_encode($data));
         $orgs = \App\Organizations::orderBy('organizations')->get()->pluck('organizations', 'id');
         $affiliations = \App\Affiliation::orderBy('name')->get()->pluck('name', 'id');
         $affiliationBranches = \App\AffiliationBranch::select('name', 'id', 'affiliation_id')->get()->groupBy('affiliation_id');
+
+         // $specializations = $docs->specializations->pluck('name')->toArray();
+         // $subspecializations = [];
+         // $docs->specializations->map(function ($item) USE (&$subspecializations) {
+         // $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
+         //    $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
+         // });
 
         return view('doctors.edit', [
             'data' => $data,
@@ -238,7 +261,7 @@ class DoctorsController extends Controller
 
         $doctor = Doctor::find($id);
         $data = [
-            'specialization_id' => $request->specialization,
+            // 'specialization_id' => $request->specialization,
             'title' => $request->title,
             'med_school' => $request->med_school,
             'med_school_year' => $request->med_school_year,
@@ -258,7 +281,14 @@ class DoctorsController extends Controller
         $doctor->fill($data);
         $doctor->save();
 
-        $doctor->subspecializations()->sync($request->input('subspecializations'));
+        $specs = [];
+        // dd($request->spec);
+        collect($request->spec)->each(function ($item) USE (&$specs) {
+          $specs[$item['name']] = ['subspecialization_ids' => json_encode($item['subs'])];
+        });
+        $doctor->specializations()->sync($specs);
+
+        
         $doctor->organizations()->sync($request->input('organizations'));
         
         $affiliations = [];

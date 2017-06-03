@@ -1,4 +1,11 @@
 @extends('welcome') @section('body')
+@push('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+@endpush
+
+@push('scripts')
+<script type="text/javascript" src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
+@endpush
 
 <div class="content-wrapper">
 
@@ -61,32 +68,55 @@
                     <div class="tab-pane" id="settings" >
                         <h4>Specialty</h4>
                         <hr class="third">
-                        <div class="row">
-                            <div class="col-md-6">
-                                {!! Form::bsSpecializationDropdown('specialization', 'Specialization', $data->specialization_id) !!}
-                            </div>
+                         <table class="table">
 
-                            <div class="col-md-6">
-                                <label class="control-label">Subspecialization(s)</label>
-                                <table class="table" id="sub">
-                                    <tbody>
-                                        @foreach($data->subspecializations AS $sub)
-                                        <tr>
-                                            <td>{!! Form::select('subspecializations[]', [], null, ['class' => 'form-control subspecialization', 'data-default' => $sub->id]) !!}</td>
-                                            <td style="width:5px;"><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="2">
-                                                <a href="javascript:void(0)" class="btn btn-default add-line"><span class="glyphicon glyphicon-plus"></span> Add new line</a>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
+                            <thead>
+                                <tr>
+                                    <th>Specialization</th>
+                                    <th>SubSubspecialization(s)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($data->specializations AS  $index=> $row)
+                                <tr>
+
+                                    <td>
+                                      
+                                        {!! Form::bsSpecializationDropdown("spec[{$index}][name]", '', $row->id, 'spec[idx][name]', $row->id) !!}
+                                        
+                                    
+                                        
+                                    </td>
+
+                                    <td>
+                                    {!! Form::select("spec[{$index}][subs][]", [], null, ['class' => 'select2 form-control subspecialization', 'data-name' => 'spec[idx][subs][]', 'multiple' => 'multiple', 'data-values' => $row->pivot->subspecialization_ids]) !!}
+                                    </td>
+
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </td>
+                                   
+                                </tr>
+                                @endforeach
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn btn-default add-spec"><span class="glyphicon glyphicon-plus"></span> Add new line</a>
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                       
                         <h4>Education and Training</h4>
                         <hr class="third">
                         <div class="row">
@@ -379,10 +409,35 @@
     $(document).ready(function() {
 
         var affBranches = $('[data-aff-branches]').data('aff-branches'),
-            counter = {{ $data-> affiliations->count()}}
+            counter = {{ $data->affiliations->count() }},
+            specCounter = {{ $data->specializations->count() }}
 
+                var specClone = $('.specialization:first').clone(),
+                subspecClone = $('.subspecialization:first').clone();
+         
 
-        $('select[name=specialization]').change(function() {
+                
+        $('.specialization').each(function () {
+            var $this = $(this),
+                subspecializations = $this.find('option:selected').data('subspecialization'),
+                options = '<option></option>';
+
+            for (var x in subspecializations) {
+                options += '<option value="' + x + '">' + subspecializations[x] + '</option>'
+            }
+
+            $(this).closest('tr').find('.subspecialization').html(options).val(function () {
+                console.log($(this).data('values'))
+                return $(this).data('values')
+            });
+        })
+
+        $('.select2').css({width:'100%'}).select2();
+       
+       
+         $('.content').on('change', '.specialization', function() {
+
+            alert();
 
             var $this = $(this),
                 subspecializations = $this.find('option:selected').data('subspecialization'),
@@ -392,14 +447,11 @@
                 options += '<option value="' + x + '">' + subspecializations[x] + '</option>'
             }
 
-            $('.subspecialization').html(options).val(function() {
-                if ($(this).data('default')) {
-                    return $(this).data('default');
-                }
-            });
+            $(this).closest('tr').find('.subspecialization').html(options);
 
-        }).trigger('change');
+        });
 
+      
 
 
         $('table').on('click', '.remove-line', function() {
@@ -412,12 +464,30 @@
         })
 
         $('.add-line').click(function() {
+            specCounter++;
+            var clone = $(this).closest('table').find('tbody tr:first').clone();
+            clone.find('[data-name]').attr('name', function() {
+                return $(this).data('name').replace('idx', specCounter);
+            })
+            clone.find('input,select').val('');
+            clone.appendTo($(this).closest('table').find('tbody'));
+        })
+
+        $('.add-spec').click(function() {
+
             counter++;
             var clone = $(this).closest('table').find('tbody tr:first').clone();
+
+             clone.find('td:first').html(specClone.prop('outerHTML'))
+             clone.find('td:eq(1)').html(subspecClone.prop('outerHTML'))
+
             clone.find('[data-name]').attr('name', function() {
                 return $(this).data('name').replace('idx', counter);
             })
+            // clone.find('')
             clone.find('input,select').val('');
+            clone.find('.select2').css({'width':'100%'})
+            clone.find('.select2').select2();
             clone.appendTo($(this).closest('table').find('tbody'));
         })
 

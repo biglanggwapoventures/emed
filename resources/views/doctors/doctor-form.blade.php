@@ -1,5 +1,11 @@
 @extends('welcome') @section('body')
+@push('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+@endpush
 
+@push('scripts')
+<script type="text/javascript" src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
+@endpush
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -35,6 +41,7 @@
                         {!! Form::open(['url' => route ('doctors.store'), 'method' => 'POST', 'id' => 'doc']) !!}
                         <!-- <div class="alert alert-danger hidden"></div> -->
                         <h4>Personal Information</h4>
+                        {!! $errors->toJson() !!}
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
@@ -110,47 +117,63 @@
                                 {!! Form::bsText('s2', 'S2 Number') !!}
                             </div>
                         </div>
-
+                        
                         <h4>Specialty</h4>
                         <hr class="third">
+                        
+                        <table class="table">
+
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-                                    <label class="control-label">Title</label>
-                                    <span style="color: red">*</span>
-                                    <input type="text" name="title" class="form-control" placeholder="eg. MD, MS, GP, OB/GYN"> @if($errors->has('title'))
-                                    <span class="help-block">{{ $errors->first('title') }}</span> @endif
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                {!! Form::bsSpecializationDropdown('specialization', 'Specialization') !!}
-                            </div>
-                            
-
-                            <!-- test json -->
-
-                            <div class="col-md-4">
-                                <label class="control-label">Subspecialization(s)</label>
-                                <table class="table" id="sub">
-                                    <tbody>
-
-
-                                        <tr>
-                                            <td>{!! Form::select('subspecializations[]', [], null, ['class' => 'form-control subspecialization']) !!}</td>
-                                            <td style="width:5px;"><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
-                                        </tr>
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="2">
-                                                <a href="javascript:void(0)" class="btn btn-default add-line"><span class="glyphicon glyphicon-plus"></span> Add new line</a>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                   
+                                        <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                                           <b> Title: </b>
+                                            <input type="text" name="title" class="form-control" placeholder="eg. MD, MS, GP, OB/GYN"> @if($errors->has('title'))
+                                            <span class="help-block">{{ $errors->first('title') }}</span> @endif
+                                        </div>
                             </div>
                         </div>
+                            <thead>
+                                <tr>
+                                    <th>Specialization</th>
+                                    <th>SubSubspecialization(s)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+
+                                    <td>
+                                        {!! Form::bsSpecializationDropdown('spec[0][name]', '', null, 'spec[idx][name]') !!}
+                                        
+                                    </td>
+
+                                    <td>
+                                    {!! Form::select('spec[0][subs][]', [], null, ['class' => 'select2 form-control subspecialization', 'data-name' => 'spec[idx][subs][]', 'multiple' => 'multiple']) !!}
+                                    </td>
+
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn btn-default add-spec"><span class="glyphicon glyphicon-plus"></span> Add new line</a>
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
 
 
                         <h4>Affiliated Clinics</h4>
@@ -281,8 +304,13 @@
         var affBranches = $('[data-aff-branches]').data('aff-branches'),
             counter = 1;
 
+            var specClone = $('.specialization:first').clone(),
+                subspecClone = $('.subspecialization:first').clone();
 
-        $('select[name=specialization]').change(function() {
+
+        $('.select2').select2();
+
+        $('.content').on('change', '.specialization', function() {
 
             var $this = $(this),
                 subspecializations = $this.find('option:selected').data('subspecialization'),
@@ -292,7 +320,7 @@
                 options += '<option value="' + x + '">' + subspecializations[x] + '</option>'
             }
 
-            $('.subspecialization').html(options);
+            $(this).closest('tr').find('.subspecialization').html(options);
 
         });
 
@@ -306,12 +334,32 @@
         })
 
         $('.add-line').click(function() {
+               
             counter++;
             var clone = $(this).closest('table').find('tbody tr:first').clone();
+
             clone.find('[data-name]').attr('name', function() {
                 return $(this).data('name').replace('idx', counter);
             })
+            // clone.find('')
             clone.find('input,select').val('');
+            clone.appendTo($(this).closest('table').find('tbody'));
+        })
+         $('.add-spec').click(function() {
+
+            counter++;
+            var clone = $(this).closest('table').find('tbody tr:first').clone();
+
+             clone.find('td:first').html(specClone.prop('outerHTML'))
+             clone.find('td:eq(1)').html(subspecClone.prop('outerHTML'))
+
+            clone.find('[data-name]').attr('name', function() {
+                return $(this).data('name').replace('idx', counter);
+            })
+            // clone.find('')
+            clone.find('input,select').val('');
+            clone.find('.select2').css({'width':'100%'})
+            clone.find('.select2').select2();
             clone.appendTo($(this).closest('table').find('tbody'));
         })
 
@@ -341,15 +389,15 @@
 
         //     $.post($this.attr('action'), $this.serialize())
         //         .done(function(res) {
-        //             window.location.href = res.url;
+        //             // window.location.href = res.url;
         //             // if (res.result) {
         //             //     window.location.href = $("#back").attr('href');
         //             // }
         //         })
         //         .fail(function(res) {
-        //             alertEl.html(function() {
-        //                 return '<ul class="list-unstyled"><li>' + res.responseJSON.errors.join('</li><li>') + '</li><ul>';
-        //             }).removeClass('hidden');
+        //             // alertEl.html(function() {
+        //             //     return '<ul class="list-unstyled"><li>' + res.responseJSON.errors.join('</li><li>') + '</li><ul>';
+        //             // }).removeClass('hidden');
         //         })
         //         .always(function() {
         //             submitBtn.removeClass('disabled');
