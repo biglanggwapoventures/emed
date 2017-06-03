@@ -62,6 +62,11 @@
                                         <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username</b> <br> {{ $doctors->userInfo->username }}</td>
                                         <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$doctors->userInfo->email}}</td>
                                     </tr>
+                                     <tr>
+                                        <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth</b><br> {{ $doctors->userInfo->birthdate }}</td>
+                                        <td><i class="fa fa-fw fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender</b> <br>{{ $doctors->userInfo->sex }}</td>
+                                    </tr>
+                                   
 
                                   <tr>
                                         <td><span class="glyphicon glyphicon-phone"></span> <b>Phone Number</b> <br> {{ $doctors->userInfo->contact_number }}</td>
@@ -81,12 +86,8 @@
                                                 <br>
                                         </td>
                                     </tr>
-                                    <tr>
-                                     <tr>
-                                        <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth</b><br> {{ $doctors->userInfo->birthdate }}</td>
-                                        <td><i class="fa fa-fw fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender</b> <br>{{ $doctors->userInfo->sex }}</td>
-                                    </tr>
                                    
+                                    
                                     <tr>
                             <td><b><h3>Clinic Information</h3></td>
                             <td></td>
