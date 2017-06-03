@@ -87,9 +87,9 @@
         <script type="text/javascript" src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
         <script type="text/javascript" src="{{ asset('dist/js/app.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('dist/js/demo.js') }}"></script>
+     <!--    <script type="text/javascript" src="{{ asset('dist/js/demo.js') }}"></script>
           <script type="text/javascript" src="{{ asset('js/photo.js') }}"></script>
-
+ -->
 
         <script type="text/javascript">
             $(function() {
