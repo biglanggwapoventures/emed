@@ -144,7 +144,7 @@
                             <tbody>
                                 <tr>
 
-                                    <td>
+                                    <td >
                                         {!! Form::bsSpecializationDropdown('spec[0][name]', '', null, 'spec[idx][name]') !!}
                                         
                                     </td>
@@ -358,7 +358,7 @@
             })
             // clone.find('')
             clone.find('input,select').val('');
-            clone.find('.select2').css({'width':'100%'})
+            clone.find('.select2').css({'width':'72%'})
             clone.find('.select2').select2();
             clone.appendTo($(this).closest('table').find('tbody'));
         })
