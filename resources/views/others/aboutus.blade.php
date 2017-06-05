@@ -30,7 +30,6 @@
         }
         
         body {
-            background-size: 120% auto;
             position: fixed;
             padding: 0px;
             margin: 0px;

@@ -38,7 +38,6 @@
         
         body {
             background: url("./../images/Background-2.png") center center no-repeat;
-            background-size: 120% auto;
             position: fixed;
             padding: 0px;
             margin: 0px;
