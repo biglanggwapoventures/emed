@@ -136,12 +136,12 @@
                                 <th>Quantity</th>
                                 <th>Start</th>
                                 <th>End</th>
+                                <th>Manage</th>
                             </tr>
                             <?php $today = date('Y-m-d'); ?>
-                            @forelse($prescriptions as $prescription)@if($prescription->end > $today)
-                                
-                                <tr>
-                                   
+                            @forelse($prescriptions as $prescription)
+                                @if($prescription->end > $today)
+                                    <tr>
                                         <td>{{ $prescription->genericname }}</td>
                                         <td>{{ $prescription->brand }}</td>
                                         <td>{{ $prescription->dosage }}</td>
@@ -149,7 +149,15 @@
                                         <td>{{ $prescription->quantity }}</td>
                                         <td>{{ $prescription->start }}</td>
                                         <td>{{ $prescription->end }}</td>
-                                </tr>
+                                        <td>
+                                            <form action="{{ route('prescription.destroy', ['id' => $prescription->id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')" style="display:inline-block">
+                                                {{ csrf_field() }} {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger">
+                                                    <span class="glyphicon glyphicon-trash action-icon"></span>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @endif    
                             @empty
                                 <tr>

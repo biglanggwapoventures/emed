@@ -9,7 +9,7 @@ use App\Doctor;
 use App\User;
 use App\Patient;
 use Auth;
-
+use App\Prescription;
 use App\Common;
 use Log;
 
@@ -127,6 +127,7 @@ class PrescriptionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Prescription::destroy($id);
+        return redirect()->back();   
     }
 }
