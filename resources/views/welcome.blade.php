@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}"> @stack('styles')
+    <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/bsdatepicker/css/bootstrap-datepicker3.standalone.min.css') }}">
+
+     @stack('styles')
 
 </head>
 
@@ -87,12 +90,16 @@
         <script type="text/javascript" src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
         <script type="text/javascript" src="{{ asset('dist/js/app.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('plugins/bsdatepicker/js/bootstrap-datepicker.min.js') }}"></script>
      <!--    <script type="text/javascript" src="{{ asset('dist/js/demo.js') }}"></script>
           <script type="text/javascript" src="{{ asset('js/photo.js') }}"></script>
  -->
 
         <script type="text/javascript">
             $(function() {
+                $(".bsdatepicker").datepicker({
+                    format:'yyyy-mm-dd'
+                });
                 $("#example1").DataTable();
                 $("#example2").DataTable();
                 $("#example3").DataTable();

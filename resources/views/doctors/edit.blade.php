@@ -301,18 +301,11 @@
                         </div>
                          <div class="row">
                             <div class="col-md-4">
-
-                                <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                                    <label class="control-label ">Birthdate <span style="color: red ">*</span></label> <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" value="{{ $data->userInfo->birthdate }}" /> @if($errors->has('birthdate'))
-                                    <span class="help-block ">{{ $errors->first('birthdate') }}</span> @endif
-                                </div>
+                                {!! Form::bsText('birthdate', 'Birthdate *', $data->userInfo->birthdate, ['class' => 'form-control bsdatepicker']) !!}
                             </div>
                             <div class="col-md-4 ">
-                                <div class="form-group {{ $errors->has('sex') ? 'has-error' : '' }}">
-                                    <label class="control-label">Gender</label>
-                                    <span style="color: red">*</span> {!! Form::select('sex', ['Female' => 'Female', 'Male' => 'Male'], $data->userInfo->sex, ['class' => 'form-control']) !!} @if($errors->has('sex'))
-                                    <span class="help-block">{{ $errors->first('sex') }}</span> @endif
-                                </div>
+                                {!! Form::bsSelect('sex', 'Sex', [''  => '', 'Male' => 'Male', 'Female' => 'Female'], $data->userInfo->sex) !!}
+
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">

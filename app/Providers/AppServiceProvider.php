@@ -29,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('current_password_match', 'App\Validators\PasswordMatch@check');
 
         Form::component('bsDate', 'components.form.date', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
-
-    }
+        Form::component('bsSelect', 'components.form.select', ['name', 'label' => null, 'options' => [],   'value' => null, 'attributes' => []]);
+    }   
 
     /**
      * Register any application services.

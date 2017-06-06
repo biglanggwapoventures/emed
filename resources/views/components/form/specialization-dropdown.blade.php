@@ -2,7 +2,7 @@
     @if($label)
         {{ Form::label($name, $label, ['class' => 'control-label']) }}
     @endif
-    <select name="{{$name}}" class="form-control specialization select2" data-name="{{ $dataName  }}" data-value="{{ $dataValue  }}">
+    <select name="{{$name}}" class="form-control specialization" data-name="{{ $dataName  }}" data-value="{{ $dataValue  }}">
         <option></option>
         @foreach($specialization AS $s)
             @php

@@ -41,7 +41,8 @@
                         {!! Form::open(['url' => route ('doctors.store'), 'method' => 'POST', 'id' => 'doc']) !!}
                         <!-- <div class="alert alert-danger hidden"></div> -->
                         <h4>Personal Information</h4>
-                        {!! $errors->toJson() !!}
+                        <!-- {!! $errors->toJson() !!} -->
+
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
@@ -57,23 +58,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                                    <label class="control-label">Birthdate <span style="color: red">*</span></label>
-                                    <input maxlength="100" name="birthdate" type="date" class="form-control" max="9999-12-31" style="width: 275px" /> @if($errors->has('birthdate'))
-                                    <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
-                                </div>
+                                {!! Form::bsText('birthdate', 'Birthdate *', null, ['class' => 'form-control bsdatepicker']) !!}
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group {{ $errors->has('sex') ? 'has-error' : '' }}">
-                                    <label class="control-label">Gender</label>
-                                    <span style="color: red">*</span>
-                                    <select class="form-control" name="sex">
-                                        <option value="" selected disabled>Select</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                        </select> @if($errors->has('sex'))
-                                    <span class="help-block">{{ $errors->first('sex') }}</span> @endif
-                                </div>
+                                {!! Form::bsSelect('sex', 'Sex', [''  => '', 'Male' => 'Male', 'Female' => 'Female']) !!}
                             </div>
                             <div class="col-md-4">
                                 {!! Form::bsText('contact_number', 'Contact Number') !!}
