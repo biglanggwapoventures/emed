@@ -33,7 +33,10 @@
                                 <table class="table table-bordered table-striped"">
                                     <thead>
                                         <tr>
-                                            <td colspan="10">{{ $item['doctor_name'] }}</td>
+                                            <td colspan="7">{{ $item['doctor_name'] }}</td>
+                                            <td colspan= "1" style="text-align: right;"><b>PTR: </b>{{ $item['ptr'] }}</td>
+                                            <td colspan= "1" style="text-align: right;"><b>PRC: </b>{{ $item['prc'] }}</td>
+                                            <td colspan= "1" style="text-align: right;"><b>S2: </b>{{ $item['s2'] }}</td>
                                         </tr>
                                         <tr class="active">
                                             <th class="align-th" rowspan="2">Brand</th>

@@ -203,17 +203,7 @@
                         </div>
                         <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
                            <div class="form-group">
-                                <div id="mdl_drugstore" style="margin-top:-8px;"></div>  
-                            </div>
-                        </div>
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-18px">
-                           <div class="form-group">
-                                <h5 style="font-weight: bold">Manager</h5>
-                            </div>
-                        </div>
-                        <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
-                           <div class="form-group">
-                                <div id="mdl_manager" style="margin-top:-8px;"></div>  
+                                <div style="margin-top:-8px;">{{ EMedHelper::retrievePharmacy($i->drugstore)->name }}</div>  
                             </div>
                         </div>
                     </div>
@@ -270,7 +260,7 @@
                     contactno = userdata.contact_number;
                     birthdate = userdata.birthdate;
 
-                    pharmacy = baseData.drugstore;
+                    pharmacy = baseData.drugstore_branch;
                     license = baseData.license;
                     manager = baseData.mgr;//_firstname + " " + baseData.mgr_lastname;
 

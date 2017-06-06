@@ -161,8 +161,11 @@
             {
 
                 $doctorData = Common::getDoctorUserData($doctor->doctor_id);
+                $doctorData2 = Common::getDoctorData($doctor->doctor_id);
                 $data['doctor_name'] = "Dr. " . $doctorData->firstname . " " . $doctorData->lastname;
-
+                $data['ptr'] = $doctorData2->ptr;
+                $data['prc'] = $doctorData2->prc;
+                $data['s2'] = $doctorData2->s2;
                 $data['prescriptions'] = json_decode(json_encode(Common::getActivePrescriptions($patientId, $doctor->doctor_id)), true);
 
                 for ($i = 0; $i < count($data['prescriptions']); $i++) 

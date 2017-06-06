@@ -331,12 +331,23 @@ class PatientsController extends Controller
     public function show($id)
     {
         if(Auth::user()->user_type === 'DOCTOR')
-        {
+        { 
+            $docs = Doctor::find($id);
+            $specializations = $docs->specializations->pluck('name')->toArray();
+            $subspecializations = [];
+            $docs->specializations->map(function ($item) USE (&$subspecializations) {
+            $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
+            $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
+          });
+
             $patients = Patient::find($id);
             $validPrescriptions = Common::retrieveValidPrescriptions($patients->id);
             Log::info(json_encode($validPrescriptions));
             return view('patients.doc-patienthome', [
-                'patients' => $patients
+                'patients' => $patients,
+                'docs' => $docs,
+                'specializations' => $specializations,
+                'subspecializations' => $subspecializations
             ]);
         }
         else if(Auth::user()->user_type === 'PATIENT' || Auth::user()->user_type === 'SECRETARY')
