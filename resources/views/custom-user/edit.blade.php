@@ -80,22 +80,13 @@
                         <div class="row">
 
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label">Birthdate <span style="color: red">*</span></label> {!! Form::date('birthdate', $data->birthdate, ['class' => 'form-control'], ['maxlength' => 100]) !!} @if($errors->has('birthdate'))
-                                    <span class="help-block">{{ $errors->first('birthdate') }}</span> @endif
-
-                                </div>
-
-
+                                {!! Form::bsText('birthdate', 'Birthdate *', $data->birthdate, ['class' => 'form-control bsdatepicker']) !!}
                             </div>
 
                             <div class="col-md-4">
-                               <div class="form-group {{ $errors->has('sex') ? 'has-error' : '' }}">
-                                    <label class="control-label">Gender</label>
-                                    <span style="color: red">*</span> {!! Form::select('sex', ['Female' => 'Female', 'Male' => 'Male'], $data->sex, ['class' => 'form-control']) !!} @if($errors->has('sex'))
-                                    <span class="help-block">{{ $errors->first('sex') }}</span> @endif
-                                </div>
+                               {!! Form::bsSelect('sex', 'Sex', [''  => '', 'Male' => 'Male', 'Female' => 'Female'], $data->sex) !!}
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">
                                     <label class="control-label">Contact Number</label>
