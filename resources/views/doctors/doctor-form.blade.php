@@ -124,7 +124,7 @@
                             <thead>
                                 <tr>
                                     <th>Specialization</th>
-                                    <th>SubSubspecialization(s)</th>
+                                    <th>Subspecialization(s)</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -319,6 +319,7 @@
             } else {
                 $(this).closest('tr').remove();
             }
+
         })
 
         $('.add-line').click(function() {
@@ -332,6 +333,7 @@
             // clone.find('')
             clone.find('input,select').val('');
             clone.appendTo($(this).closest('table').find('tbody'));
+            
         })
          $('.add-spec').click(function() {
 
@@ -349,6 +351,8 @@
             clone.find('.select2').css({'width':'72%'})
             clone.find('.select2').select2();
             clone.appendTo($(this).closest('table').find('tbody'));
+
+             return false;
         })
 
         $('.table').on('change', '.aff', function() {
@@ -400,7 +404,11 @@
     .inside {
         padding: 12px;
     }
-
+    
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    list-style: none;
+    color: black;
+}
 </style>
 
 
