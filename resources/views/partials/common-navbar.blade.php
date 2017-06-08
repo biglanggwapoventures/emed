@@ -14,8 +14,8 @@
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"/>
-            <span class="icon-bar"/>
-            <span class="icon-bar"/>
+            <span class="icon-bar pull-right"/>
+            <span class="icon-bar pull-right"/>
         </a>
         <ul class="nav navbar-nav pull-right">
                 <li><a href="/" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">HOME</a></li>

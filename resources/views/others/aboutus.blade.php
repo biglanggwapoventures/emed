@@ -4,7 +4,9 @@
 <head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -76,8 +78,8 @@
         
         .profile-card {
             background: #2c69e6;
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             position: absolute;
             left: 50%;
             top: 50%;

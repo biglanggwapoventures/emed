@@ -4,9 +4,9 @@
 <head>
     <title>Contact Us</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}"><!-- 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -32,12 +32,10 @@
     </aside>
 
     <style type="text/css">
-        html {
-            height: 100%;
-        }
         
         body {
             background: url("./../images/Background-2.png") center center no-repeat;
+            background-size: cover;
             position: fixed;
             padding: 0px;
             margin: 0px;
