@@ -11,12 +11,20 @@
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"/>
             <span class="icon-bar pull-right"/>
             <span class="icon-bar pull-right"/>
         </a>
+        
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav pull-right">
                 <li><a href="/" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">HOME</a></li>
                 <li><a href="{{ url('aboutus') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">ABOUT US</a></li>
@@ -26,6 +34,7 @@
                 <li><a href="{{ url('logout') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">LOGOUT</a></li>
                 @endif
             </ul>
+            </div>
     </nav>
 </header>
 <aside class="main-sidebar ">
