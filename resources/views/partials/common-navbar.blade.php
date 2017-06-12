@@ -12,7 +12,7 @@
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="width: 1px; height: 1px; margin-right: 12px;">
-        <i class="fa fa-tasks" aria-hidden="true"></i>
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
