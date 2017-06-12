@@ -34,7 +34,7 @@
     <body>
         <div class="container-fluid">
 
-            <div class="text-center loginpage">
+            <div class="text-center loginpage"> 
                 <div class="login-logo">login</div>
                 <!-- Main Form -->
                 <div class="login-form-1">
@@ -61,10 +61,10 @@
                                             <span class="help-block">{{ $wrongPassword }}</span> 
                                         @endif
                                 </div>
-                                <div class="form-group login-group-checkbox">
+                                <!-- <div class="form-group login-group-checkbox">
                                     <input type="checkbox" id="lg_remember" name="lg_remember">
                                     <label for="lg_remember">remember</label>
-                                </div>
+                                </div> -->
                             </div>
                             <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
                         </div>
@@ -153,5 +153,45 @@
         @stack('scripts')
 
     </body>
-
+    <style type="text/css">
+@media only screen and (max-width: 375px) {
+    .loginpage {
+    padding: 12px 0px;
+    height: 48%;
+    width: 79%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 163px;
+    margin-left: 7%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+    }
+}
+    @media only screen and (max-width: 414px) {
+    .loginpage {
+    padding: 12px 0px;
+    height: 48%;
+    width: 79%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 163px;
+    margin-left: 7%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+    }
+}
+ @media only screen and (width: 768px) {
+.loginpage {
+    padding: 12px 0px;
+    height: 31%;
+    width: 40%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 253px;
+    margin-left: 29%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+}
+}
+</style>
 </html>
