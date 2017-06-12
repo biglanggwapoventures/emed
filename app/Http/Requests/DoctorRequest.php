@@ -66,7 +66,7 @@ class DoctorRequest extends FormRequest
             'organizations' => 'array|required',
             'organizations.*' => 'required|exists:organizations,id',
 
-
+            'spec.*.name' => 'distinct',
         ];
 
         // Log::info('METHOD: ' . $this->method());
@@ -142,7 +142,8 @@ class DoctorRequest extends FormRequest
             'training_year.required' => 'Please enter your training year.',
              'affiliations.required' => 'Please enter your affiliations.',
             'contact_number.min' => 'Please enter valid contact number.',
-            's2.required' => 'Please enter S2 number.'
+            's2.required' => 'Please enter S2 number.',
+             'spec.*.name' => 'distinct',
         ];
     }
 
