@@ -452,6 +452,8 @@ class Common
                     ->where('doctors.id', $doctorId)
                     ->first();
 
-            return 'Dr. '.$data->firstname.' '.$data->lastname;
+             return 'Dr. '.$data->firstname.' '.$data->lastname;
         }
 }
+
+//hola

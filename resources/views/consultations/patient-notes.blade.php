@@ -183,7 +183,17 @@ input{
     width: 50.666667%;
 }
 
+@media only screen and (max-width: 375px) {
+   
+}
+ @media only screen and (max-width: 414px) {
+   
+}
+ @media only screen and (width: 768px) {
+
+}
 </style>
 
 
 @endsection
+<!-- hello -->
