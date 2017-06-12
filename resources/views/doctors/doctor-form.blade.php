@@ -28,6 +28,9 @@
         </h1>
     </section>
 
+
+
+
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -107,6 +110,18 @@
                         </div>
                         
                         <h4>Specialty</h4>
+                     
+                        @if ($errors->count())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->toArray() as $name => $error)
+                                        @if(strrpos($name, 'spec.') !== false)
+                                        <li>{{ $error[0] }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <hr class="third">
                         
                         <table class="table">
