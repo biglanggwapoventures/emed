@@ -255,7 +255,7 @@
 
     @push('scripts')
         <script type="text/javascript">
-            $(document).ready(function() {
+            // $(document).ready(function() {
                 $("a[name=viewInfo]").click(function()
                 {
                     var userid = $(this).data('id');
@@ -281,7 +281,7 @@
 
                     $("#viewUserInfo").modal();
                 });
-            });
+            // });
         </script>
     @endpush
 @endsection

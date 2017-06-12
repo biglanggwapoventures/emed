@@ -30,6 +30,8 @@
         @endif
 
         <section class="content">
+
+
             <div class="row">
                 <div class="col-xs-12">
                     @if(EMedHelper::hasRoutePermission('userroles.create'))
@@ -87,7 +89,10 @@
                     </div>
                 </div>
             </div>
+
         </section>
+            
+       
 
         <div class="modal fade" id="viewRolePermissions" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog modal-md">
@@ -176,7 +181,7 @@
 
     @push('scripts')
         <script type="text/javascript">
-            $(document).ready(function() {
+            // $(document).ready(function() {
                 $("a[name=viewRoleModal]").click(function()
                 {
                     $roleId = $(this).data("id");
@@ -203,7 +208,7 @@
 
                     $("#viewRolePermissions").modal();
                 });
-            });
+            // });
         </script>
         <script type="text/javascript">
  window.setTimeout(function() {

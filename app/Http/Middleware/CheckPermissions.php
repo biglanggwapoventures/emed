@@ -10,6 +10,7 @@ use Route, Request, Auth;
 use App\Permissions;
 use App\UserRoles;
 use App\CustomUser;
+use App\Common;
 
 use EMedHelper, EMedUtil;
 
@@ -39,7 +40,11 @@ class CheckPermissions
         {
             $routeData = EMedUtil::extractRouteData($currentRoute);
             $target = $routeData->target;
-            $action = EMedUtil::recreateRouteAction($routeData->action);
+            
+            $actions = EMedUtil::recreateRouteAction($routeData->action);
+
+            $action = $actions->new;
+            $oldAction = $actions->old;
 
             $route = $target.".".$action;
             $permission = Permissions::retrieveByRoute($route);
@@ -92,22 +97,54 @@ class CheckPermissions
                 }
                 else
                 {
+                    $routeParams = $request->route()->parameters();
+                    if(strtoupper($action) === 'EDIT')
+                    {
+                        if(session('user_type') == strtoupper($permission->target))
+                        {
+                            $routeParams = $request->route()->parameters();
 
-                    // if(strtoupper($action) === 'EDIT')
-                    // {
-                    //     $routeParams = $request->route()->parameters();
-                    //     $idRouteParam = array_values($routeParams)[0];
+                            $routeParamValues = array_values($routeParams);
+                            $routeParamKeys = array_keys($routeParams);
 
-                    //     if(session('user_type') === strtoupper($permission->target) && session('user_id') != $idRouteParam)
-                    //     {
-                    //         $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
+                            $idRouteParam = $routeParamValues[0];
+                            $idRouteKey = $routeParamKeys[0];
 
-                    //         Session::flash('503_msg', $msg);
-                    //         Log::error($msg);
+                            $userId = $idRouteParam;
 
-                    //         abort(503);
-                    //     }
-                    // }
+                            if($action !== $oldAction)
+                            {
+                                switch (strtoupper($idRouteKey)) 
+                                {
+                                    case 'DOCTOR':
+                                        $userId = Common::getDoctorUserId($idRouteParam);
+                                        break;
+                                    case 'PATIENT':
+                                        $userId = Common::getPatientUserId($idRouteParam);
+                                        break;
+                                    case 'SECRETARY':
+                                        $userId = Common::getSecretaryUserId($idRouteParam);
+                                        break;
+                                    case 'MANAGER':
+                                        $userId = Common::getManagerUserId($idRouteParam);
+                                        break;
+                                    case 'PHARMACIST':
+                                        $userId = Common::getPharmaUserId($idRouteParam);
+                                }
+                            }
+
+                            if(session('user_id') != $userId)
+                            {
+                                $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
+
+                                Session::flash('503_msg', $msg);
+                                Log::error($msg);
+
+                                abort(503);
+                            }
+                        }
+                            
+                    }
                         
                 }
 

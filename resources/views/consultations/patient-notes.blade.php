@@ -21,7 +21,7 @@
     
 <div class="registerInner">
 
-        <div class="col-md-12 signUp">
+        <div class="col-md-12 col-md-12 col-xs-12  signUp" >
             <h3 class="headerSign">Consultation Notes</h3>
             <br>
             {!! Form::open(['url' => route('consultations.store', ['patient_id' => request()->input('patient_id')]), 'method' => 'POST']) !!}

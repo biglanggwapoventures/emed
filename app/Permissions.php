@@ -189,15 +189,29 @@ class Permissions
                ->first()->id;
     }
 
-    public static function deletePermissions($roleId)
+    public static function deletePermissions($roleId, $isRoleDeleted = false)
     {
-        DB::table('permission_role')
-            ->where('role_id', $roleId)
-            ->delete();
+        if($roleId === 1)
+        {
+            DB::table('permission_role')
+                ->where('role_id', $roleId)
+                ->where('allow_in_custom', 0)
+                ->delete();
+        }
+        else
+        {
+            DB::table('permission_role')
+                ->where('role_id', $roleId)
+                ->delete();
+        }
+            
 
-        DB::table('permissions')
-            ->whereRaw('target = (SELECT name FROM roles WHERE id = ' . $roleId . ')')
-            ->delete();
+        if($isRoleDeleted)
+        {
+            DB::table('permissions')
+                ->whereRaw('target = (SELECT name FROM roles WHERE id = ' . $roleId . ')')
+                ->delete();
+        }
     }
 
     public static function assignToRole($permissionId, $roleId)

@@ -39,6 +39,7 @@
 
         public static function recreateRouteAction($action)
         {
+            $originalAction = $action;
             $newAction = $action;
             
             if($action === 'store')
@@ -50,7 +51,7 @@
                 $newAction = 'edit';
             }
 
-            return $newAction;
+            return json_decode(json_encode(array('new' => $newAction, 'old' => $originalAction)));
         }
 
         public static function isUserPatient()
@@ -83,7 +84,7 @@
             $formattedList = [];
             foreach ($mgrList as $mgr) 
             {
-                $formattedList[$mgr->user_id] = 'Dr. '.$mgr->firstname.' '.$mgr->lastname;
+                $formattedList[$mgr->user_id] = $mgr->firstname.' '.$mgr->lastname;
             }
 
             return $formattedList;

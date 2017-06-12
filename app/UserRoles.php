@@ -39,7 +39,7 @@ class UserRoles
 
         Log::info('Selected roles have now been mapped to new user role' . json_encode($permissions));
 
-        $newPermission = [
+        $listPermission = [
             "name"              => "CUSTOM_" . strtoupper($data['name']) . "_LIST",
             "display_name"      => "List of All " . $data['namedisplay'],
             "description"       => "List of All " . $data['namedisplay'],
@@ -48,18 +48,18 @@ class UserRoles
             "action"            => "LIST",
             "route"             => "customrole.index",
             "url"               => "custom-role",
-            "allow_in_custom"   => 1,
+            "allow_in_custom"   => 0,
             "created_at"        => date("Y-m-d H:i:s"),
             "updated_at"        => date("Y-m-d H:i:s")
         ];
 
-        DB::table('permissions')->insert($newPermission);
+        DB::table('permissions')->insert($listPermission);
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
         Log::info('Custom user role list for ' . $data['namedisplay'] . ' permission has now been created and assigned to admin user.');
 
-        $newPermission = [
+        $addPermission = [
             "name"              => "ADD_USER_CUSTOM_" . strtoupper($data['name']),
             "display_name"      => "Add User " . $data['namedisplay'],
             "description"       => "Add User " . $data['namedisplay'],
@@ -68,18 +68,18 @@ class UserRoles
             "action"            => "ADD",
             "route"             => "customrole.create",
             "url"               => "custom-role/create",
-            "allow_in_custom"   => 1,
+            "allow_in_custom"   => 0,
             "created_at"        => date("Y-m-d H:i:s"),
             "updated_at"        => date("Y-m-d H:i:s")
         ];
 
-        DB::table('permissions')->insert($newPermission);
+        DB::table('permissions')->insert($addPermission);
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
         Log::info('Custom add user role for ' . $data['namedisplay'] . ' permission has now been created and assigned to admin user.');
 
-        $newPermission = [
+        $editPermission = [
             "name"              => "EDIT_USER_CUSTOM_" . strtoupper($data['name']),
             "display_name"      => "Edit User " . $data['namedisplay'],
             "description"       => "Edit User " . $data['namedisplay'],
@@ -88,19 +88,19 @@ class UserRoles
             "action"            => "EDIT",
             "route"             => "customrole.edit",
             "url"               => "custom-role/edit",
-            "allow_in_custom"   => 1,
+            "allow_in_custom"   => 0,
             "created_at"        => date("Y-m-d H:i:s"),
             "updated_at"        => date("Y-m-d H:i:s")
         ];
 
-        DB::table('permissions')->insert($newPermission);
+        DB::table('permissions')->insert($editPermission);
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
         Permissions::assignToRole($newPermissionId, $newRoleId);
         Log::info('Custom edit user role for ' . $data['namedisplay'] . ' permission has now been created and assigned to new user role and admin user.');
 
-        $newPermission = [
+        $deletePermission = [
             "name"              => "DELETE_USER_CUSTOM_" . strtoupper($data['name']),
             "display_name"      => "Delete User " . $data['namedisplay'],
             "description"       => "Delete User " . $data['namedisplay'],
@@ -109,12 +109,12 @@ class UserRoles
             "action"            => "DELETE",
             "route"             => "users.destroy",
             "url"               => "",
-            "allow_in_custom"   => 1,
+            "allow_in_custom"   => 0,
             "created_at"        => date("Y-m-d H:i:s"),
             "updated_at"        => date("Y-m-d H:i:s")
         ];
 
-        DB::table('permissions')->insert($newPermission);
+        DB::table('permissions')->insert($deletePermission);
 
         $newPermissionId = Permissions::getLastPermissionId();
         Permissions::assignToRole($newPermissionId, 1);
@@ -158,7 +158,8 @@ class UserRoles
         $deletePermission = "DELETE_CUSTOM_USER_" . strtoupper($roleData->name);
 
         DB::table('permissions')
-        ->whereIn('name', [$listPermission, $addPermission, $editPermission, $viewPermission, $deletePermission])
+        // ->whereIn('name', [$listPermission, $addPermission, $editPermission, $viewPermission, $deletePermission])
+        ->where('target', $roleData->name)
         ->delete();
     }
 }

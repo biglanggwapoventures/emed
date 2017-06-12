@@ -273,10 +273,51 @@ class Common
         return DB::table('doctors')->select('id')->where('user_id', $doctorUserId)->first()->id;
     }
 
+    public static function getDoctorUserId($id)
+    {
+        return DB::table('doctors')->select('user_id')->where('id', $id)->first()->user_id;   
+    }
+
     public static function getPatientId($patientUserId)
     {
         return DB::table('patients')->select('id')->where('user_id', $patientUserId)->first()->id;
     }
+
+    public static function getPatientUserId($id)
+    {
+        return DB::table('patients')->select('user_id')->where('id', $id)->first()->user_id;   
+    }
+
+    public static function getPharmaId($pharmaUserId)
+    {
+        return DB::table('pharmas')->select('id')->where('user_id', $patientUserId)->first()->id;
+    }
+
+    public static function getPharmaUserId($id)
+    {
+        return DB::table('pharmas')->select('user_id')->where('id', $id)->first()->user_id;   
+    }
+
+    public static function getManagerId($managerUserId)
+    {
+        return DB::table('pharmacy_managers')->select('id')->where('user_id', $patientUserId)->first()->id;
+    }
+
+    public static function getManagerUserId($id)
+    {
+        return DB::table('pharmacy_managers')->select('user_id')->where('id', $id)->first()->user_id;   
+    }
+
+    public static function getSecretaryId($secretaryUserId)
+    {
+        return DB::table('secretaries')->select('id')->where('user_id', $patientUserId)->first()->id;
+    }
+
+    public static function getSecretaryUserId($id)
+    {
+        return DB::table('secretaries')->select('user_id')->where('id', $id)->first()->user_id;   
+    }
+
 
     public static function getAffiliation($affiliationId)
     {

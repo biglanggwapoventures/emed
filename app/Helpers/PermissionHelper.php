@@ -16,7 +16,7 @@
                 $listPermission = Permissions::getListOfTarget($target, $roleId);
                 if(count($listPermission) === 0)
                 {
-                    $oListPermission = Permission::retriveByTargetAndAction($target, 'LIST');
+                    $oListPermission = Permissions::retriveByTargetAndAction($target, 'LIST');
                     Permissions::assignToRole($oListPermission->id, $roleId);
                 }
             }

@@ -172,6 +172,7 @@ class UserRolesController extends Controller
      */
     public function destroy($id)
     {
+        Permissions::deletePermissions($id, true);
         UserRoles::destroy($id);
         return redirect()->back();
     }
