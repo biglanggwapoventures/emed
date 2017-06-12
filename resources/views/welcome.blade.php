@@ -180,5 +180,18 @@
     /* opacity: 0.8; */
     }
 }
+ @media only screen and (width: 768px) {
+.loginpage {
+    padding: 12px 0px;
+    height: 31%;
+    width: 40%;
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 253px;
+    margin-left: 29%;
+    border-radius: 20px;
+    /* opacity: 0.8; */
+}
+}
 </style>
 </html>
