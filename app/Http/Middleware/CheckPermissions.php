@@ -154,4 +154,3 @@ class CheckPermissions
     }
 }
 
-//h
