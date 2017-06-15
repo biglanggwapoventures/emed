@@ -143,7 +143,7 @@ class OrganizationsController extends Controller
     {
 
         $v = Validator::make($request->all(), [
-             'organizations' => 'required|unique:organizations',
+             'organizations' => "required|unique:organizations,organizations,{$id}",
         ]);
 
         if($v->fails()){

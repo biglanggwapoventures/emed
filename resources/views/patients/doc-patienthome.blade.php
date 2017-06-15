@@ -500,7 +500,7 @@
                                             <td>{{ $a->created_at }}</td>
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
                                             <td><li>{!! implode('</li>
-                                                <li>', $docs->specializations->toArray()) !!}</li> </td>
+                                                <li>', $specializations) !!}</li></li> </td>
                                             <td>
 
                                                 <a href="{{ route('consultations.edit', ['id' => $a->id]) }}" class="btn btn-info

@@ -49,7 +49,7 @@ class ManagersController extends Controller
     {
 
         $items = Auth::user()->manager;
-        // dd($items);
+
         return view('managers.pmanager-home', [
             'items' => $items
 
@@ -163,8 +163,10 @@ class ManagersController extends Controller
     public function edit($id)
     {
         $data = PharmacyManager::with('userInfo')->where('user_id', $id)->first();
+
             if(Auth::user()->user_type === "PMANAGER")
         {
+
          return view('managers.edit', [
             'data' => PharmacyManager::with('userInfo')->where('user_id', $id)->first()
         ]);
@@ -188,11 +190,12 @@ class ManagersController extends Controller
      */
     public function update(ManagerRequest $request, $id)
     {
-         $manager = PharmacyManager::find($id);
+       
+        $manager = PharmacyManager::find($id);
         $manager->fill([
             'license' => $request->license,
-            'drugstore' => $request->drugstore,
-            'drugstore_branch'=> $request->drugstore_branch,
+            'drugstore' => $request->drugstore_id,
+            'drugstore_branch'=> $request->drugstorebranch_id,
         ]);
         $manager->save();
 

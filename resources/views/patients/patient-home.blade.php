@@ -464,7 +464,7 @@
                                     <tr>
                                         <td>{{ $a->created_at }}</td>
                                         <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                        <td>{{ $a->doctor->specialization->name }}</td>
+                                        <td></td>
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                               <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">

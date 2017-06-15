@@ -78,7 +78,7 @@
                             <div class="col-md-4">
                                 {!! Form::bsText('license', 'License') !!}
                             </div>
-
+                           
 
                         </div>
 

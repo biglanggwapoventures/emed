@@ -46,6 +46,7 @@ class MedicalHistoryController extends Controller
     public function store(Request $request)
     {
 
+
         $patientId = $request->input('patient_id');
 
         $rules = [
@@ -69,8 +70,10 @@ class MedicalHistoryController extends Controller
 
         $this->validate($request, $rules);
 
+
         $data = $request->only(array_keys($rules));
         $data['patient_id'] = $patientId;
+
 
         Auth::user()->doctor->consultations()->create($data); 
 

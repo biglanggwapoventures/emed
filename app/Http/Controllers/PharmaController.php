@@ -35,12 +35,18 @@ class PharmaController extends Controller
         {
             // $items = Common::retrieveAllPharmas();
              $items = Pharma::with('userInfo')->get();
+
+             // if($items->isEmpty()){
+             //    $items = collect([ new Pharma]);
+             // }
+
             return view('pharmacists.list', [
                     'items' => $items
                 ]);
         }
         elseif(Auth::user()->user_type === 'PMANAGER')
         {
+            
             $search =  $request->input('search');
             $items = Pharma::where('manager_id', Auth::user()->manager->id);
 

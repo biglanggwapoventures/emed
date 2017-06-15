@@ -44,7 +44,9 @@
                                     <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
                                 </tr>
                             </thead>
+
                             <tbody id="userdata" data-user-info="{{ json_encode($items) }}">
+                               @if($items->isNotEmpty()) 
                                 @forelse($items AS $i)
                                     <tr>
                                         <td class="align-pt">
@@ -85,10 +87,12 @@
                                         </td>
                                     </tr>
                                 @empty
+
                                    <!--  <tr>
                                         <td colspan="6" class="text-center">ERROR: No pharmacists found. This is critical.</td>
                                     </tr> -->
                                 @endforelse
+                             @endif     
                             </tbody>
                         </table>
                     </div>
@@ -203,7 +207,7 @@
                         </div>
                         <div class="form-body col-md-12" style="margin-left:-5px;margin-top:-7px">
                            <div class="form-group">
-                                <div style="margin-top:-8px;">{{ EMedHelper::retrievePharmacy($i->drugstore)->name }}</div>  
+                                <div style="margin-top:-8px;">{{ $items->isNotEmpty() ? EMedHelper::retrievePharmacy($i->drugstore)->name : '' }}</div>  
                             </div>
                         </div>
                     </div>
