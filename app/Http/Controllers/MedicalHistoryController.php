@@ -175,11 +175,23 @@ class MedicalHistoryController extends Controller
     public static function listConsultationHist($consultationId)
     {
         $current = ConsultationHistory::getCurrent($consultationId);
+      
         $data = ConsultationHistory::getChangeLog($consultationId);
         // Log::info($data);
-        $firstItem = json_decode(json_encode($data), true)[0];
-        $patientName = EMedHelper::retrievePatientName($firstItem['patient_id']);
-        $doctorName = EMedHelper::retrieveDoctorName($firstItem['doctor_id']);
+        if($data->isNotEmpty()){
+         $firstItem = json_decode(json_encode($data), true)[0];
+        }
+
+        // $firstItem =(json_decode(json_encode($data), true));
+        // dd($firstItem);
+         if(!empty($firstItem)){
+            $patientName = EMedHelper::retrievePatientName($firstItem['patient_id']);
+            $doctorName = EMedHelper::retrieveDoctorName($firstItem['doctor_id']);    
+         }else{
+            $patientName = EMedHelper::retrievePatientName($current->patient_id);
+            $doctorName  = EMedHelper::retrieveDoctorName($current->doctor_id);
+         }
+        
 
         return view('consultations.history', ['current' => $current, 'items' => $data, 'patient' => $patientName, 'doctor' => $doctorName]);
     }

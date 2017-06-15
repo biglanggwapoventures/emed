@@ -46,6 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody id="userdata">
+                            @if(!empty($current))
                                 <tr>
                                     <td class="align-pt">{{ $current->height }}</td>
                                     <td class="align-pt">{{ $current->weight }}</td>
@@ -58,6 +59,9 @@
                                     <td class="align-pt">{{ $current->updatereason }}</td>
                                     <td class="align-pt">{{ $current->updated_at }}</td>
                                 </tr>
+                            @endif
+
+                            @if($items->isNotEmpty())
                                 @forelse($items AS $item)
                                     <tr>
                                         <td class="align-pt">{{ $item->height }}</td>
@@ -72,10 +76,12 @@
                                         <td class="align-pt">{{ $item->updated_at }}</td>
                                     </tr>
                                 @empty
+                                
                                 @endforelse
                             </tbody>
                         </table>
                         <a href="{{ url("/patients/$item->patient_id") }}" class="btn btn-success" id="none">Back</a>
+                        @endif
                     </div>
                 </div>
             </div>
