@@ -81,7 +81,7 @@ class Common
                 ->where('users.user_type', 'PATIENT')
                 ->whereRaw(DB::raw('(patients.id IN (SELECT patient_id FROM doctor_patient WHERE doctor_id = ' . $doctorId . ') OR patients.id NOT IN (SELECT patient_id FROM doctor_patient))'))
                 ->get();
-
+        
         if(is_null($data) || empty($data) || count($data) <= 0)
         {
             return $data;

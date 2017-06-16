@@ -401,8 +401,7 @@
                                         @forelse($patients->doctors AS $item)
                                         <tr>
                                             <td>{{ $item->userInfo->fullname() }}</td>
-                                            <td><li>{!! implode('</li>
-                                                <li>', $specializations) !!}</li></td>
+                                            <td><li>{!! $item->specializations->implode('name', '</li><li>') !!}</li></td>
                                             <td>{{ $item->userInfo->address }}</td>
 
                                             <td>
@@ -495,12 +494,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    
                                         @forelse($patients->consultations AS $a)
                                         <tr>
                                             <td>{{ $a->created_at }}</td>
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                            <td><li>{!! implode('</li>
-                                                <li>', $specializations) !!}</li></li> </td>
+                                            <td><li>{!! $a->doctor->specializations->implode('name', '</li><li>') !!}</li></td>
                                             <td>
 
                                                 <a href="{{ route('consultations.edit', ['id' => $a->id]) }}" class="btn btn-info

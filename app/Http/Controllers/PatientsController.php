@@ -33,12 +33,19 @@ class PatientsController extends Controller
      */
     public function showHomepage()
     {
+
         $items = Auth::user()->patient;
-        return view('patients.patient-home', [
-            'items' => $items
-        ]);
-    
+        //  $specializations = $items->specializations->pluck('name')->toArray();
+        //     $subspecializations = [];
+        //     $docs->specializations->map(function ($item) USE (&$subspecializations) {
+        //     $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
+        //     $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
+        // });
+             return view('patients.patient-home', [
+                'items' => $items
+            ]);
     }
+
    
     public function mypatients (Request $request) {
          $user = Auth::user();
@@ -268,8 +275,7 @@ class PatientsController extends Controller
             $credentials = $request->only(['username']);
 
             // assign password: default is firstname+lastname lowercase
-            $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
-            // assign user type
+            $input['password'] = bcrypt(strtolower(str_replace(' ','',$input['firstname'])).strtolower(str_replace(' ','',$input['lastname'])));            // assign user type
             $input['user_type'] = 'PATIENT';
             $input['user_type_id'] = 3;
             $input['added_by'] = session('user_id');
@@ -330,17 +336,29 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
+
         if(Auth::user()->user_type === 'DOCTOR')
         { 
             $docs = Doctor::find($id);
-            $specializations = $docs->specializations->pluck('name')->toArray();
-            $subspecializations = [];
-            $docs->specializations->map(function ($item) USE (&$subspecializations) {
-            $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
-            $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
-          });
+
+            if($docs != null){
+                $specializations = $docs->specializations->pluck('name')->toArray();
+                $subspecializations = [];
+                $docs->specializations->map(function ($item) USE (&$subspecializations) {
+                $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
+                $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
+              });           
+            }else{
+                $docs = collect([new Doctor]);
+                $subspecializations = [];
+                $specializations = [];
+
+            }
+     
 
             $patients = Patient::find($id);
+            // $doctorOfPatient = Doctor::find($patients)
+           
             $validPrescriptions = Common::retrieveValidPrescriptions($patients->id);
             Log::info(json_encode($validPrescriptions));
             return view('patients.doc-patienthome', [
@@ -353,6 +371,7 @@ class PatientsController extends Controller
         else if(Auth::user()->user_type === 'PATIENT' || Auth::user()->user_type === 'SECRETARY')
         {
             $items = Patient::find($id);
+
             $validPrescriptions = Common::retrieveValidPrescriptions($items->id);
             Log::info(json_encode($validPrescriptions));
             return view('patients.patient-home', [

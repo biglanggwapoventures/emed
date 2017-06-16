@@ -180,7 +180,7 @@ class CustomUserController extends Controller
 
             // assign password: default is firstname+lastname lowercase
             // Log::info(strtolower($input['firstname']).strtolower($input['lastname']));
-            $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
+            $input['password'] = bcrypt(strtolower(str_replace(' ','',$input['firstname'])).strtolower(str_replace(' ','',$input['lastname'])));
         
             // assign user type
             // $permission = Permissions::hasPermission($id);

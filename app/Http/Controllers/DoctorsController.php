@@ -38,8 +38,8 @@ class DoctorsController extends Controller
           $specializations = $docs->specializations->pluck('name')->toArray();
           $subspecializations = [];
           $docs->specializations->map(function ($item) USE (&$subspecializations) {
-              $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
-              $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
+           $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
+          $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
           });
             
             return view('doctors.doctor-home', [
@@ -133,7 +133,7 @@ class DoctorsController extends Controller
 
 
         // assign password: default is firstname+lastname lowercase
-        $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
+         $input['password'] = bcrypt(strtolower(str_replace(' ','',$input['firstname'])).strtolower(str_replace(' ','',$input['lastname'])));
         // assign user type
         $input['user_type'] = 'DOCTOR';
         $input['user_type_id'] = 2;
@@ -217,7 +217,7 @@ class DoctorsController extends Controller
               $subs = \App\Subspecialization::find(json_decode($item->pivot->subspecialization_ids));
               $subspecializations = array_merge($subspecializations, $subs->pluck('name')->toArray());
           });
-            
+          
             return view('doctors.doc-home', [
                 'doctors' => $doctors,
                 'specializations' => $specializations,

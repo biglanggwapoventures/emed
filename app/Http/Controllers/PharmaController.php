@@ -137,7 +137,7 @@ class PharmaController extends Controller
         $credentials = $request->only(['username']);
 
         // assign password: default is firstname+lastname lowercase
-        $input['password'] = bcrypt(strtolower($input['firstname']).strtolower($input['lastname']));
+         $input['password'] = bcrypt(strtolower(str_replace(' ','',$input['firstname'])).strtolower(str_replace(' ','',$input['lastname'])));
         // assign user type
         $input['user_type'] = 'PHARMA';
         $input['user_type_id'] = 6;
