@@ -45,6 +45,7 @@ Route::get('/doctorlist', 'ListController@doctorList');
 Route::get('/managerList', 'ListController@pmanagerList');
 Route::get('/secretaryList', 'ListController@secretaryList');
 Route::get('/pharmacistList', 'ListController@pharmaList');
+Route::get('/email', 'EmailController@index');
 // Route::get('/edit-doc', 'AdminController@editDoc');
 //process login data
 Route::post('/login', 'LoginController@doLogin');
