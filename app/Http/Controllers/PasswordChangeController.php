@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 use Auth;
 use App\User;
 use App\Common;
 
 use EMedHelper;
+use Hash;
 
 class PasswordChangeController extends Controller
 {
@@ -22,7 +24,8 @@ class PasswordChangeController extends Controller
            
     }
 
-    public function postUpdatePassword(Request $request) {
+    public function postUpdatePassword(Request $request) 
+    {
 
         $user = Auth::user();
 
@@ -121,4 +124,90 @@ class PasswordChangeController extends Controller
     }
 
 
+
+    public function requestReset()
+    {
+        $data = ['success' => false, 'message' => ''];
+        
+        if(Input::has('email')) 
+        {
+            $email = json_decode(Input::get('email'));
+            $userData = Common::emailExists($email->address);
+            $continue = !is_null($userData);
+
+            if($continue)
+            {
+                $randomRawKey = (rand(1, 10) % 2 == 0 ? "eM" : "Em") . str_random(6) . (rand(1, 10) % 2 == 0 ? "eD" : "Ed");
+                $randomRawKey = Hash::make($randomRawKey);
+                $randomRawKey = str_replace('/', 'E', $randomRawKey);
+
+                $mailview_param = [
+                    "recipient" => $email->address,
+                    "fullname"  => $userData->firstname . " " . $userData->lastname,
+                    "name"      => $userData->firstname, 
+                    "userid"    => $userData->id, 
+                    "hashkey"   => $randomRawKey
+                ];
+
+                Common::updateHashKeyForRequestReset($mailview_param['recipient'], $randomRawKey);
+                $response = EmailController::sendResetLinkEmail($mailview_param['recipient'], $mailview_param);
+
+                if($response->success)
+                {
+                    $data['success'] = true;
+                    $data['message'] = $response->message;
+                }
+                else
+                {
+                    $data['message'] = $response->message;   
+                }
+                
+            }
+            else
+            {
+                $data['message'] = 'Email address does not belong to any user in the system.';
+            }
+        }
+        else
+        {
+            $data['message'] = 'No email address has been provided';
+        }
+
+        return json_encode($data);
+    }
+
+    public function resetPassword($id, $hashkey)
+    {
+        $continue = Common::isKeyForResetValid($id, $hashkey);
+
+        if($continue) 
+        {
+            $userInfo = Common::getUserData($id);
+            
+            $fname = $userInfo->firstname;
+            $lname = $userInfo->lastname;
+            $email = $userInfo->email;
+
+            $tempRawPass = (rand(1, 10) % 2 == 0 ? "eM" : "Em") . str_random(6) . (rand(1, 10) % 2 == 0 ? "eD" : "Ed");
+            
+            $name = $fname . " " . $lname;
+            $mailview_param = [
+                    "recipient"     => $email,
+                    "fullname"      => $fname . " " . $lname,
+                    "name"          => $fname, 
+                    "temporaryPW"   => $tempRawPass
+            ];
+            // $param = ["id"=>$id, "pw"=>$tempRawPass];
+
+            Common::updateUserPassCreds($id, $tempRawPass);
+            EmailController::sendTempAccessEmail($email, $mailview_param);
+
+            // return view('infopages.passwordreset', ["name"=>$name, "email"=>$email]);
+            return redirect('login');
+        }
+        else
+        {
+            abort(404);
+        }
+    }
 }

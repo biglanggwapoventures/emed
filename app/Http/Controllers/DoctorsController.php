@@ -304,9 +304,13 @@ class DoctorsController extends Controller
 
         $doctor->specializations()->sync($specs);
 
+        Log::info(json_decode(json_encode(request()->input('organizations'))));
+
         $doctor->organizations()->sync($request->input('organizations'));
         
         $affiliations = [];
+
+        Log::info(json_decode(json_encode(request()->input('affiliations'))));
 
         foreach(request()->input('affiliations') AS $aff){
             

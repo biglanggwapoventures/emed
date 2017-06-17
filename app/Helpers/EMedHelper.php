@@ -75,6 +75,12 @@
             return count($data) > 0;
         }
 
+        public static function isAttachedToDoctor($patientId, $doctorId)
+        {
+            $data = Common::isPatientAttachedToDoctor($patientId, $doctorId);
+            return !is_null($data);
+        }
+
         public static function retrieveAffiliation($affiliationId)
         {
             return Common::getAffiliation($affiliationId);

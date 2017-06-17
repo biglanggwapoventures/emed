@@ -79,7 +79,7 @@ class Common
                 ->join('patients', 'users.id', '=', 'patients.user_id')
                 ->select('users.*', 'patients.id AS patient_id')
                 ->where('users.user_type', 'PATIENT')
-                ->whereRaw(DB::raw('(patients.id IN (SELECT patient_id FROM doctor_patient WHERE doctor_id = ' . $doctorId . ') OR patients.id NOT IN (SELECT patient_id FROM doctor_patient))'))
+                // ->whereRaw(DB::raw('(patients.id IN (SELECT patient_id FROM doctor_patient WHERE doctor_id = ' . $doctorId . ') OR patients.id NOT IN (SELECT patient_id FROM doctor_patient))'))
                 ->get();
         
         if(is_null($data) || empty($data) || count($data) <= 0)
@@ -268,9 +268,20 @@ class Common
         return DB::table('doctor_patient')->where('patient_id', $patientId)->get();
     }
 
+    public static function isPatientAttachedToDoctor($patientId, $doctorUserId)
+    {
+        $doctorId = self::getDoctorId($doctorUserId);
+        return DB::table('doctor_patient')->where('patient_id', $patientId)->where('doctor_id', $doctorId)->first();
+    }
+
     public static function getDoctorId($doctorUserId)
     {
         return DB::table('doctors')->select('id')->where('user_id', $doctorUserId)->first()->id;
+    }
+
+    public static function getUserData($id)
+    {
+        return DB::table('users')->where('id', $id)->first();   
     }
 
     public static function getDoctorUserId($id)
@@ -434,25 +445,62 @@ class Common
     }
 
     public static function getPatientName($patientId)
-        {
-            $data = DB::table('users')
-                    ->join('patients', 'users.id', 'patients.user_id')
-                    ->select('users.firstname', 'users.lastname')
-                    ->where('patients.id', $patientId)
+    {
+        $data = DB::table('users')
+                ->join('patients', 'users.id', 'patients.user_id')
+                ->select('users.firstname', 'users.lastname')
+                ->where('patients.id', $patientId)
+                ->first();
+
+        return $data->firstname.' '.$data->lastname;
+    }
+
+    public static function getDoctorName($doctorId)
+    {
+        $data = DB::table('users')
+                ->join('doctors', 'users.id', 'doctors.user_id')
+                ->select('users.firstname', 'users.lastname')
+                ->where('doctors.id', $doctorId)
+                ->first();
+
+         return 'Dr. '.$data->firstname.' '.$data->lastname;
+    }
+
+    //   Password reset
+
+    public static function emailExists($email)
+    {
+        $data = DB::table('users')->where('email', $email)->first();
+        return $data;
+    }
+
+    public static function isKeyForResetValid($id, $hashKey)
+    {
+        $queryCond = "id = " . $id . " AND COALESCE(resetKey, '') = '" . $hashKey . "'";
+        $data = DB::table('users')
+                    ->whereRaw($queryCond)
                     ->first();
 
-            return $data->firstname.' '.$data->lastname;
-        }
+        return !is_null($data);
+    }
 
-        public static function getDoctorName($doctorId)
-        {
-            $data = DB::table('users')
-                    ->join('doctors', 'users.id', 'doctors.user_id')
-                    ->select('users.firstname', 'users.lastname')
-                    ->where('doctors.id', $doctorId)
-                    ->first();
+    public static function updateHashKeyForRequestReset($email, $hashKey)
+    {
+        DB::table('users')->where('email', $email)->update(['resetKey' => $hashKey]);
+    }
 
-             return 'Dr. '.$data->firstname.' '.$data->lastname;
-        }
+    public static function updateUserPassCreds($id, $tempPass)
+    {
+        $data = array(
+            // Set [requirechange] field to TRUE to force password update
+            'requirechange' => 1, 
+            // Update [resetKey] field so that reset link can't be reused
+            'resetKey'      => Hash::make(str_random(46)),
+            // Set [password] field to temporary password
+            'password'      => Hash::make($tempPass)
+        );
+        
+        DB::table('users')->where('id', $id)->update($data);
+    }
 }
 

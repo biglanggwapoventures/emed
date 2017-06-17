@@ -68,7 +68,16 @@
                                         @if(Auth::user()->user_type != 'ADMIN')
                                         <td class="align-pt text-center">
                                             @if(EMedHelper::hasDoctorAttachment($patient->id))
-                                                <label class="attached-label">&nbsp;&nbsp;ATTACHED&nbsp;&nbsp;</label>
+                                                @if(session('user_type') == 'DOCTOR')
+                                                    @if(EMedHelper::isAttachedToDoctor($patient->id, session('user_id')))
+                                                        <label class="my-attached-label">&nbsp;&nbsp;ATTACHED&nbsp;&nbsp;</label>    
+                                                    @else
+                                                        <label class="attached-label">&nbsp;&nbsp;ATTACHED&nbsp;&nbsp;</label>
+                                                    @endif
+                                                @else
+                                                    <label class="attached-label">&nbsp;&nbsp;ATTACHED&nbsp;&nbsp;</label>
+                                                @endif
+                                                
                                             @else
                                                 <label class="detached-label">&nbsp;&nbsp;DETACHED&nbsp;&nbsp;</label>
                                             @endif
@@ -237,6 +246,14 @@
         }
         .attached-label {
             background-color:#18e801;
+            padding:5px;
+            font-size:87%;
+            margin-top:-10px!important;
+            color:#FFF;
+            border-radius: 5px;
+        }
+        .my-attached-label {
+            background-color:#9933ff;
             padding:5px;
             font-size:87%;
             margin-top:-10px!important;

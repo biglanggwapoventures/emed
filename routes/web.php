@@ -45,7 +45,7 @@ Route::get('/doctorlist', 'ListController@doctorList');
 Route::get('/managerList', 'ListController@pmanagerList');
 Route::get('/secretaryList', 'ListController@secretaryList');
 Route::get('/pharmacistList', 'ListController@pharmaList');
-Route::get('/email', 'EmailController@index');
+// Route::get('/email', 'EmailController@index');
 // Route::get('/edit-doc', 'AdminController@editDoc');
 //process login data
 Route::post('/login', 'LoginController@doLogin');
@@ -98,3 +98,6 @@ Route::post('transact', 'PharmaTransactionController@storeTransaction')->name('p
 Route::post('void', 'PharmaTransactionController@voidTransaction')->name('pharmatrans.void');
 
 Route::get('consultations/history/{consultationId}', 'MedicalHistoryController@listConsultationHist')->name('consultation.history');
+
+Route::post('forgotpassword', 'PasswordChangeController@requestReset')->name('sendresetemail');
+Route::get('reset/{userId}/{hashKey}', 'PasswordChangeController@resetPassword')->name('resetpassword');

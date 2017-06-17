@@ -375,7 +375,7 @@
                                     @forelse($items->doctors AS $item)
                                     <tr>
                                         <td>{{ $item->userInfo->fullname()}}</td>
-                                        <td>test</td>
+                                        <td> <li>{!! $item->specializations->implode('name', '</li><li>') !!}</li> </td>
 
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModal_{{ $item->id }}">
@@ -464,7 +464,7 @@
                                     <tr>
                                         <td>{{ $a->created_at }}</td>
                                         <td>{{ $a->doctor->userInfo->fullname() }}</td>
-                                        <td></td>
+                                        <td><li>{!! $a->doctor->specializations->implode('name', '</li><li>') !!}</li></td>
                                         <td>
                                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                               <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" id="myTooltip" title="View Details">

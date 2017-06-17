@@ -69,10 +69,12 @@
                             <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
                         </div>
                         <div class="etc-login-form">
-                            <p>forgot your password? <a href="#" data-toggle="modal" data-target="#infoModal">Click here</a></p>
+                            {{ csrf_field() }}
+
+                            <p>forgot your password? <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Click here</a></p>
 
 
-                                <div class="modal fade" id="infoModal" tabindex="-1" role="basic" aria-hidden="true">
+                                <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px; background-color: #ddd;">
                                             <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
@@ -81,8 +83,21 @@
                                                     <small class="sbold" style="margin-left:3px;">E-MAIL ADDRESS</small>
                                                 </h3>
                                                 <div class="row">
+
+                                                <div id="resetError" style="display:none" class="alert alert-danger alert-dismissible" role="alert" style="font-size:90%;">
+                                                    <a class="close" onclick="$('.alert').hide()">&times;</a>
+                                                    <i class="fa fa-info-circle pull-left"></i>
+                                                    <p>&nbsp; <span id="errData"></span>.</p>
+                                                </div>
+
+                                                <div id="resetInfo" style="display:none" class="alert alert-info alert-dismissible" role="alert" style="font-size:90%;">
+                                                    <a class="close" onclick="$('.alert').hide()">&times;</a>
+                                                    <i class="fa fa-info-circle pull-left"></i>
+                                                    <p>&nbsp; <span id="infoData"></span>.</p>
+                                                </div>
+
                                                 <div class="form-body">
-                                                        {{Form::email('email',null,['class' => 'form-control'])}}
+                                                        {{Form::email('email',null,['class' => 'form-control', 'id' => 'emailId'])}}
                                                 </div>
                                                 </div>                                                
 
@@ -91,7 +106,7 @@
                                                         <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
                                                             Close 
                                                         </button>
-                                                        <a href="{{ url('email') }}" class="btn btn-info grey pull-right" style="width: 140px;margin-left: 5px; color: white;">
+                                                        <a id="resetPassword" data-loading-text="Sending email... &nbsp;<i class='fa fa-spinner fa-spin'></i>" class="btn btn-info grey pull-right" style="width: 140px;margin-left: 5px; color: white;">
                                                         Submit 
                                                         </a>
                                                     </div>
@@ -179,6 +194,57 @@
                         window.location.href = res.url;
                     }
                 })
+            }
+
+            $("#resetPassword").click(function() 
+            {
+                if($("#emailId").val().trim() == "")
+                    return;
+
+                var $btn = $(this).button('loading');
+                var email = {'address':$("#emailId").val()};
+
+                email = JSON.stringify(email);
+                sendPasswordResetEmail(email, $btn);
+            });
+
+            function sendPasswordResetEmail(email, $btn) 
+            {
+                var postRequest = $.post('forgotpassword', {'email':email, '_token':$("input[name=_token]").val()});
+                postRequest.done(function(data) 
+                {
+                    data = jQuery.parseJSON(data);
+                    console.log(data);
+                    if(data.success) 
+                    {
+                        console.log('success');
+                        $("#infoData").text(data.message);
+                        $("#resetInfo").show();
+
+                        // $("#emailId").val("");
+                        
+                        $btn.button('reset');
+                    }
+                    else 
+                    {
+                        console.log('fail');
+                        $("#errData").text(data.message);
+                        $("#resetError").show();
+                        
+                        // $("#emailId").val("");
+
+                        $btn.button('reset');
+                    }
+                });
+
+                // postRequest.fail(function(xhr, textStatus, error) {
+                //     if(xhr.status == "500") {
+                //         $("#ID_ajaxerr500").show();
+                //         // $("#ID_successrequest").show();
+                //         $("#forgotPasswordModal").modal("hide");
+                //         $btn.button('reset');
+                //     }
+                // });
             }
         </script>
         @stack('scripts')

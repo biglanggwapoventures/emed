@@ -237,7 +237,7 @@
             font-size: 85% !important;
         }
         .attached-label {
-            background-color:#18e801;
+            background-color:#9933ff;
             padding:5px;
             font-size:87%;
             margin-top:-10px!important;
