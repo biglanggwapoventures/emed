@@ -77,7 +77,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-
+                            @if(Auth::user()->user_type === 'ADMIN')
                             <tbody>
                                 @foreach($data->specializations AS  $index=> $row)
                                 <tr>
@@ -101,7 +101,6 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-
                             <tfoot>
                                 <tr>
                                     <td>
@@ -115,6 +114,33 @@
                                     </td>
                                 </tr>
                             </tfoot>
+                            @elseif(Auth::user()->user_type === 'DOCTOR')
+                            <tbody style="pointer-events: none;">
+                                @foreach($data->specializations AS  $index=> $row)
+                                <tr>
+
+                                    <td>
+                                      
+                                        {!! Form::bsSpecializationDropdown("spec[{$index}][name]", '', $row->id, 'spec[idx][name]', $row->id) !!}
+                                        
+                                    
+                                        
+                                    </td>
+
+                                    <td>
+                                    {!! Form::select("spec[{$index}][subs][]", [], null, ['class' => 'select2 form-control subspecialization', 'data-name' => 'spec[idx][subs][]', 'multiple' => 'multiple', 'data-values' => $row->pivot->subspecialization_ids]) !!}
+                                    </td>
+
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </td>
+                                   
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            @endif
+
+                            
                         </table>
                        
                         <h4>Education and Training</h4>

@@ -69,7 +69,38 @@
                             <button type="submit" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
                         </div>
                         <div class="etc-login-form">
-                            <p>forgot your password? <a href="#">Click here</a></p>
+                            <p>forgot your password? <a href="#" data-toggle="modal" data-target="#infoModal">Click here</a></p>
+
+
+                                <div class="modal fade" id="infoModal" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content" style="padding:20px 35px 20px 40px; background-color: #ddd;">
+                                            <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
+                                                <h3 class="page-title text-info sbold" style="margin-left:-7px; text-align: left;">
+                                                    FORGOT PASSWORD<br>
+                                                    <small class="sbold" style="margin-left:3px;">E-MAIL ADDRESS</small>
+                                                </h3>
+                                                <div class="row">
+                                                <div class="form-body">
+                                                        {{Form::email('email',null,['class' => 'form-control'])}}
+                                                </div>
+                                                </div>                                                
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12">
+                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                            Close 
+                                                        </button>
+                                                        <a href="{{ url('email') }}" class="btn btn-info grey pull-right" style="width: 140px;margin-left: 5px; color: white;">
+                                                        Submit 
+                                                        </a>
+                                                    </div>
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </form>
                 </div>
