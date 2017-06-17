@@ -295,23 +295,28 @@ class DoctorsController extends Controller
         $doctor->save();
 
         $specs = [];
+
+
         // dd($request->spec);
         collect($request->spec)->each(function ($item) USE (&$specs) {
           $specs[$item['name']] = ['subspecialization_ids' => json_encode($item['subs'])];
         });
-        $doctor->specializations()->sync($specs);
 
+        $doctor->specializations()->sync($specs);
 
         $doctor->organizations()->sync($request->input('organizations'));
         
         $affiliations = [];
+
         foreach(request()->input('affiliations') AS $aff){
+            
             $affiliations[$aff['affiliation_id']] = [
                 'affiliation_branch_id' => $aff['branch_id'],
                 'clinic_start' => $aff['clinic_start'],
                 'clinic_end' => $aff['clinic_end'],
             ];
         }
+
         $doctor->affiliations()->sync($affiliations);
 
         $user = User::find($doctor->user_id);
