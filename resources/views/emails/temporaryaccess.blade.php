@@ -8,7 +8,7 @@
 <body style="font-family: Arial;background-color:#FAFAFA;">
     <div>
         <div style="background-color:#3c8dbc;padding:20px 5px 20px 5px;text-align:center;font-size:150%;margin-bottom:10px;">
-            <a href="http://emedservices.dyndns.org/" target="_blank">
+            <a href="http://emed-services.com/" target="_blank">
                 <img src="http://i.imgur.com/YnmOOtA.png" alt="EMed Services" height="30" width="200">
             </a>
         </div>
