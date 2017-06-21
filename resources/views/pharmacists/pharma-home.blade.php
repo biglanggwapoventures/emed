@@ -23,6 +23,7 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
 
+
                          @forelse($items AS $items) 
                          @if($items->userInfo->username === Auth::user()->username)
                         <h3 class="profile-username text-center">{{ $items->userInfo->fullname()}} </h3>
@@ -31,7 +32,7 @@
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <i class="fa fa-envelope-o" aria-hidden="true"></i> <b>{{$items->userInfo->email}}</b>
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i> <b>{{ $items->userInfo->email }}</b>
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-home" aria-hidden="true"></i><b>{{ $items->userInfo->address }}</b>
@@ -75,13 +76,13 @@
                                     </tr>
                                     <tr><b><h3>Personal information</h3></tr></b></tr>
                                     <tr>
-                                        <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username:</b> <br> {{ $items->userInfo->username }}</td>
-                                        <td><span class="glyphicon glyphicon-envelope"></span> <b>Email:</b> <br> {{$items->userInfo->email}}</td>
+                                        <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username:</b> <br> {{ Auth::user()->username }} </td>
+                                        <td><span class="glyphicon glyphicon-envelope"></span> <b>Email:</b> <br> {{ Auth::user()->email }} </td>
                                     </tr>
 
                                     <tr>
-                                        <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth:</b><br> {{ $items->userInfo->birthdate }}</td>
-                                        <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender:</b> <br>{{ $items->userInfo->sex }}</td>
+                                        <td><span class="glyphicon glyphicon-baby-formula"></span> <b>Date of Birth:</b><br> {{ Auth::user()->birthdate }}</td>
+                                        <td><i class="fa fa-venus-mars" aria-hidden="true"></i> &nbsp <b>Gender:</b> <br>{{ Auth::user()->sex }}</td>
                                     </tr>
                                     <tr>
                                         <td><span class="glyphicon glyphicon-phone"></span> <b>Drugstore:</b> <br> {{ EMedHelper::retrievePharmacy($items->drugstore)->name }}</td>

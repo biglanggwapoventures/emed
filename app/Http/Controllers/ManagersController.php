@@ -36,6 +36,7 @@ class ManagersController extends Controller
 
     public function index()
     {
+
         $items = PharmacyManager::with('userInfo')->get();
         // dd($items);
         return view('managers.list', [

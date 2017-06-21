@@ -31,6 +31,7 @@ class PharmaController extends Controller
      */
     public function index(Request $request)
     {
+
         if(Auth::user()->user_type === 'ADMIN')
         {
             // $items = Common::retrieveAllPharmas();
@@ -47,6 +48,7 @@ class PharmaController extends Controller
         elseif(Auth::user()->user_type === 'PMANAGER')
         {
             
+
             $search =  $request->input('search');
             $items = Pharma::where('manager_id', Auth::user()->manager->id);
 

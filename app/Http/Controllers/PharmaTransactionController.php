@@ -41,7 +41,10 @@ class PharmaTransactionController extends Controller
             $patientDoctor = Common::getPatientDoctorLink();
             $prescriptions = Common::getActivePrescriptions();
 
+
             $data = EMedHelper::handlePatientPrescriptionsDisplay($patients, $doctors, $patientDoctor, $prescriptions);
+
+           
 
             return view('transactions.list', ['items' => $data]);
         }

@@ -33,6 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody id="userdata">
+
                                 @forelse($items AS $item)
                                     <tr>
                                         <?php 
@@ -44,6 +45,7 @@
                                             {{ $item['firstname'] . " " . $item['lastname'] }}
                                         </td>
                                         
+
                                         @foreach($doctors AS $doctor)
                                             <td class="align-pt">Dr. {{ $doctor['firstname'] . " " . $doctor['lastname'] }}</td>
                                             <td class="align-pt">{{ $doctor['prescriptionCount'] }} active prescription{{ $doctor['prescriptionCount'] > 1  ? 's' : '' }}</td>

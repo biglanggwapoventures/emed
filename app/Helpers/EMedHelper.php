@@ -104,6 +104,8 @@
 
         public static function handlePatientPrescriptionsDisplay($patients, $doctors, $patientDoctor, $prescriptions)
         {
+
+
             $formattedData = [];
 
             $formattedDoctors = [];
@@ -114,6 +116,7 @@
                 $formattedDoctors[$doctor->doctor_id]['firstname'] = $doctor->firstname;
                 $formattedDoctors[$doctor->doctor_id]['lastname'] = $doctor->lastname;
             }
+
 
             foreach ($patients as $patient) 
             {
@@ -126,15 +129,21 @@
                     'lastname'      => $patient->lastname
                 ];
 
+                $doctor_id = $patientDoctor->pluck('doctor_id');
+                
                 $doctorsOfPatient = [];
                 $doctorCount = 0;
+                $counter = 0;
                 foreach ($patientDoctor as $item) 
                 {
                     $doctorId = $item->doctor_id;
                     if($item->patient_id == $patientId)
                     {
+                      if(isset($formattedDoctors[$doctor_id[$counter]])){
+
+
+                        $doctorOfPatient = $formattedDoctors[$doctor_id[$counter]];
                         $doctorCount++;
-                        $doctorOfPatient = $formattedDoctors[$doctorId];
                         $prescriptionCount = 0;
                         
                         foreach ($prescriptions as $prescription) 
@@ -147,8 +156,11 @@
 
                         $doctorOfPatient['prescriptionCount'] = $prescriptionCount;
                         array_push($doctorsOfPatient, $doctorOfPatient);
+                      }
                     }
+                    $counter++;
                 }
+
 
                 $patientData['doctorCount'] = $doctorCount;
                 $patientData['doctors'] = $doctorsOfPatient;
