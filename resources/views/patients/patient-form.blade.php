@@ -215,7 +215,7 @@
                         <hr class="third">
                         <div class="row">
                             <div class="col-md-4">
-                                {!! Form::bsText('uid', 'RFID UID', null, ['readonly' => 'readonly', 'id' => 'rfid-uid']) !!}
+                                {!! Form::bsText('uid', 'RFID UID', $predefinedUId, ['readonly' => 'readonly', 'id' => 'rfid-uid']) !!}
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Register</button>

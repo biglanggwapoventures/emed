@@ -216,6 +216,15 @@ class SecretaryController extends Controller
                       ]);
   
         }
+        else if (Auth::user()->user_type === 'SECRETARY') {
+             return redirect('secretary-home')
+                    ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
+  
+        }
        
         
 

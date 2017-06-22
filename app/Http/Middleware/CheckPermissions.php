@@ -65,8 +65,12 @@ class CheckPermissions
                     $roleData = [];
                     if(strtoupper($action) === 'EDIT')
                     {
+
+                            
                         $id = $request->route('userId');
-                        if($permission->target == session('user_type') && session('user_id') !== $id)
+                            Log::info('userid from checker = ' . $id);
+                            Log::info('current userid = ' . session('user_id'));
+                        if($permission->target == session('user_type') && session('user_id') != $id)
                         {
                             $msg = 'ACCESS DENIED. User cannot edit other users of the same type.';
 
@@ -110,28 +114,48 @@ class CheckPermissions
                             $idRouteParam = $routeParamValues[0];
                             $idRouteKey = $routeParamKeys[0];
 
-                            $userId = $idRouteParam;
+                            
+                            Log::info('trace:'.$idRouteKey);
+                            Log::info('trace:'.$idRouteParam);
+                            switch (strtoupper($idRouteKey)) 
+                            {
+                                case 'PATIENT':
+                                    $userId = Common::getPatientUserId($idRouteParam);
+                                    break;
+                                case 'SECRETARY':
+                                    $userId = Common::getSecretaryUserId($idRouteParam);
+                                    break;
+                                default:
+                                    $userId = $idRouteParam;
 
+                            }
+
+                            // This is where we check if the UPDATE has been changed to EDIT by
+                            // the system for conformity purposes
                             if($action !== $oldAction)
                             {
                                 switch (strtoupper($idRouteKey)) 
                                 {
-                                    case 'DOCTOR':
-                                        $userId = Common::getDoctorUserId($idRouteParam);
-                                        break;
                                     case 'PATIENT':
                                         $userId = Common::getPatientUserId($idRouteParam);
                                         break;
                                     case 'SECRETARY':
                                         $userId = Common::getSecretaryUserId($idRouteParam);
                                         break;
+                                    case 'PHARMACIST':
+                                        $userId = Common::getPharmaUserId($idRouteParam);
+                                        break;
                                     case 'MANAGER':
                                         $userId = Common::getManagerUserId($idRouteParam);
                                         break;
-                                    case 'PHARMACIST':
-                                        $userId = Common::getPharmaUserId($idRouteParam);
+                                    case 'DOCTOR':
+                                        $userId = Common::getDoctorUserId($idRouteParam);
+                                        break;
                                 }
                             }
+
+                            Log::info('userid from checker = ' . $userId);
+                            Log::info('current userid = ' . session('user_id'));
 
                             if(session('user_id') != $userId)
                             {

@@ -301,7 +301,7 @@ class Common
 
     public static function getPharmaId($pharmaUserId)
     {
-        return DB::table('pharmas')->select('id')->where('user_id', $patientUserId)->first()->id;
+        return DB::table('pharmas')->select('id')->where('user_id', $pharmaUserId)->first()->id;
     }
 
     public static function getPharmaUserId($id)
@@ -311,7 +311,7 @@ class Common
 
     public static function getManagerId($managerUserId)
     {
-        return DB::table('pharmacy_managers')->select('id')->where('user_id', $patientUserId)->first()->id;
+        return DB::table('pharmacy_managers')->select('id')->where('user_id', $managerUserId)->first()->id;
     }
 
     public static function getManagerUserId($id)
@@ -321,7 +321,7 @@ class Common
 
     public static function getSecretaryId($secretaryUserId)
     {
-        return DB::table('secretaries')->select('id')->where('user_id', $patientUserId)->first()->id;
+        return DB::table('secretaries')->select('id')->where('user_id', $secretaryUserId)->first()->id;
     }
 
     public static function getSecretaryUserId($id)
@@ -501,6 +501,14 @@ class Common
         );
         
         DB::table('users')->where('id', $id)->update($data);
+    }
+
+    public static function getPatientDataByUID($uId)
+    {
+        $dbData =  DB::table('patients')->where('uid', $uId)->first();
+        $data = array('exists' => !is_null($dbData), 'data' => $dbData);
+
+        return json_decode(json_encode($data));
     }
 }
 

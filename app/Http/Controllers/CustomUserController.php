@@ -334,25 +334,34 @@ class CustomUserController extends Controller
 
         Log::info('customusertypeid=' . $userTypeId);
         
-        return redirect('custom-role/' . $userTypeId);
-
-       if(Auth::user()->user_type === "DOCTOR")
+    
+        if(Auth::user()->user_type === "ADMIN")
         {
-            return redirect()->route('patients.index');
-        }
-
-        else if(Auth::user()->user_type === "SECRETARY")
+            return redirect('custom-role/' . $userTypeId);
+        }   
+        else
         {
-            return redirect()->route('secretary.index');
-        }
+            return redirect('home/' . $userTypeId);    
+        }     
+        
 
-        else if(Auth::user()->user_type === "PATIENT")
-        {
-            $items = Patient::find($id);
-        return view('patients.patient-home', [
-            'items' => $items
-        ]);
-        }
+       // if(Auth::user()->user_type === "DOCTOR")
+       //  {
+       //      return redirect()->route('patients.index');
+       //  }
+
+       //  else if(Auth::user()->user_type === "SECRETARY")
+       //  {
+       //      return redirect()->route('secretary.index');
+       //  }
+
+       //  else if(Auth::user()->user_type === "PATIENT")
+       //  {
+       //      $items = Patient::find($id);
+       //  return view('patients.patient-home', [
+       //      'items' => $items
+       //  ]);
+       //  }
     }
 
     /**

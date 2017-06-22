@@ -239,12 +239,28 @@ class PharmaController extends Controller
 
         ]));
         $user->save();
-        return redirect()
-            ->intended(route('pharmacists.index'))
-            ->with('ACTION_RESULT', [
-                'type' => 'success', 
-                'message' => ' pharmacists has been edited successfully!'
-            ]);
+
+        if(Auth::user()->user_type === "PHARMA"){
+     
+              return redirect('pharmacists-home')
+                    ->with('ACTION_RESULT',[
+                      'type' => 'success',
+                      'message' => 'Updated Successfully'
+
+                      ]);
+
+        }
+        else
+        {
+            return redirect()
+                ->intended(route('pharmacists.index'))
+                ->with('ACTION_RESULT', [
+                    'type' => 'success', 
+                    'message' => ' pharmacists has been edited successfully!'
+                ]);
+        }
+
+            
         
        
     }
