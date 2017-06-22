@@ -185,18 +185,17 @@ class PharmaController extends Controller
      */
     public function edit($id)
     {
+
         // $pman = Auth::user()->manager;
         //   return view('pharmacists.edit', [
         //      'pman' => $pman,
         //      'data' => Pharma::with('userInfo')->where('user_id', $id)->first()
         //  ]);
-
-
        // if(Auth::user()->user_type === "DOCTOR")
        //  {
-         $pman = Auth::user()->manager;
+         $pman = Pharma::with('userInfo')->whereUserId(Auth::user()->id)->first();
              return view('pharmacists.edit', [
-            'data' => Pharma::with('userInfo')->where('id', $id)->first(),
+            'data' => Pharma::with('userInfo')->where('id', $pman->id)->first(),
             'pman' =>  $pman 
         ]);
 
