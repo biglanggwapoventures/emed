@@ -105,6 +105,7 @@
                                     <div class="form-group">
                                         <label>License</label>
                                          <p class="form-control-static">{{ $data->license }}</p>
+                                         {!! Form::hidden('license', $data->license) !!}
                                     </div>
                                 </div>
                             </div>

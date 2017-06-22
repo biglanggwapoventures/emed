@@ -17,7 +17,6 @@
                 </span>
             </h1>
         </section>
-
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
@@ -72,7 +71,7 @@
                                                     <span class="glyphicon glyphicon-trash action-icon"></span>
                                                 </button>
                                                 @if(EMedHelper::hasTargetActionPermission("PHARMA", "EDIT"))
-                                                    <a href="{{ route('pharmacists.edit', ['id' => $i->id]) }}" class="btn btn-info">
+                                                    <a href="{{ route('pharmacists.edit', ['id' => $i->user_id]) }}" class="btn btn-info">
                                                         <span class="glyphicon glyphicon-edit action-icon"></span>
                                                     </a>
                                                 @else
