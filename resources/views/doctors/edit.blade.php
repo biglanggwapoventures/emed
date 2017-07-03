@@ -32,7 +32,7 @@
 
     <!-- Main content -->
     <section class="content">
-     <div class="col-md-3" style="margin: 10px 10px 10px 10px; padding: 10px 10px 10px 10px; background-color: white;">
+     <div class="col-md-3" style="margin: 10px 10px 10px 0px; padding: 10px 10px 10px 10px; background-color: white;">
      <strong>Edit Profile Picture</strong><br>
             <img alt="User Pic"  style="width: 150px; height: 150px; margin-left: 50px;" class="img-circle img-responsive" id="dp"  src="{{ " /storage/{$data->userInfo->avatar}" }}"> 
             {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
@@ -563,6 +563,8 @@
     .inside {
         padding: 12px;
     }
+
+
 
 </style>
 
