@@ -141,7 +141,7 @@
                                     <!-- med school end -->
                                     <tr>
                                          <td>
-                                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <b>Affiliations and Organizations </b><br>
+                                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i> <b>Organizations </b><br>
                                             
                                                 <li>{!! implode('</li>
                                                 <li>', $doctors->organizations->pluck('organizations')->toArray()) !!}</li>

@@ -299,7 +299,8 @@ class PatientsController extends Controller
                 'bloodtype'=> $request->bloodtype,
                 'enumber'=> $request->enumber,
                 'nationality'=> $request->nationality,
-                'occupation'=> $request->occupation
+                'occupation'=> $request->occupation,
+                'uid' => $request->uid
             ]);
 
             // connect patient to doctor

@@ -10,7 +10,7 @@ use EMedHelper, Log;
 class Patient extends Model
 {
 	protected $fillable = [
-		'enumber','bloodtype','erelationship','econtact','nationality','civilstatus','occupation','allergyquestion', 'allergyname','past_disease','past_surgery','immunization','family_history'
+		'enumber','bloodtype','erelationship','econtact','nationality','civilstatus','occupation','allergyquestion', 'allergyname','past_disease','past_surgery','immunization','family_history','uid',
 	];
 
 	public function userInfo()

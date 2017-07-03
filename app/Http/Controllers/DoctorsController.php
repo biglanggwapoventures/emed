@@ -269,9 +269,10 @@ class DoctorsController extends Controller
      */
     public function update(DoctorRequest $request, $id)
     {
-        // get fields for user table
-        // dd($request->all());
 
+        // dd($request->organizations);
+
+        // get fields for user table
         $doctor = Doctor::find($id);
         $data = [
             // 'specialization_id' => $request->specialization,
@@ -304,13 +305,13 @@ class DoctorsController extends Controller
 
         $doctor->specializations()->sync($specs);
 
-        Log::info(json_decode(json_encode(request()->input('organizations'))));
+        //Log::info(json_decode(json_encode(request()->input('organizations'))));
 
         $doctor->organizations()->sync($request->input('organizations'));
-        
+
         $affiliations = [];
 
-        Log::info(json_decode(json_encode(request()->input('affiliations'))));
+       // Log::info(json_decode(json_encode(request()->input('affiliations'))));
 
         foreach(request()->input('affiliations') AS $aff){
             

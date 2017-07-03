@@ -32,38 +32,30 @@
 
     <!-- Main content -->
     <section class="content">
+     <div class="col-md-3" style="margin: 10px 10px 10px 10px; padding: 10px 10px 10px 10px; background-color: white;">
+     <strong>Edit Profile Picture</strong><br>
+            <img alt="User Pic"  style="width: 150px; height: 150px; margin-left: 50px;" class="img-circle img-responsive" id="dp"  src="{{ " /storage/{$data->userInfo->avatar}" }}"> 
+            {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
+                <!-- {{Form::file('avatar')}} -->
+            <input type="file" onchange="readURL(this)" class="upload" name="avatar" style="margin-top: 3%" />
+            <p>Image must not exceed 2048</p>
+            <input type="submit" class="btn btn-sm btn-primary btn-block">
+            {!! Form::close() !!}
+        </div>
+                       
+         {!! Form::open(['url' => route('doctors.update', ['id' => $data->id]), 'method' => 'PUT', 'id' => 'doc']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}    
         <div class="row">
                 <div class="col-md-12">
                   <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                      <li class="active"><a href="#pic" data-toggle="tab">Profile Picture</a></li>
-                      <li ><a href="#profile" data-toggle="tab">User Profile</a></li>
+                      <!-- <li ><a href="#pic" data-toggle="tab">Profile Picture</a></li> -->
+                      <li class="active"><a href="#profile" data-toggle="tab">User Profile</a></li>
                       <li><a href="#settings" data-toggle="tab">Background and Credentials</a></li>
                       <li><a href="#info" data-toggle="tab">Affiliated Clinic</a></li>                     
                     </ul>
                     <div class="tab-content">
                     <!--  -->
-                    <div class="active tab-pane" id="pic" style="height: 300px">
-                        @if(session('ACTION_RESULT'))
-                            <div class="row">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <div class="alert alert-{{ session('ACTION_RESULT')['type'] }} text-center" role="alert">
-                                        {{ session('ACTION_RESULT')['message'] }}
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        <div class="col-md-9" style="margin-left: 3%; margin-top:2% ">
-                            <img alt="User Pic" src="{{ " /storage/{$data->userInfo->avatar}" }}" style="width: 150px; height: 150px" class="img-circle img-responsive" id="dp"> 
-                            {!! Form::open(['url' => route('upload.dp'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} {!! Form::hidden('id', $data->userInfo->id) !!}
-                                <!-- {{Form::file('avatar')}} -->
-                            <input type="file" onchange="readURL(this)" class="upload" name="avatar" style="margin-top: 3%" />
-                            <p>Image must not exceed 2048</p>
-                            <input type="submit" class="btn btn-sm btn-primary">
-                            {!! Form::close() !!}
-                        </div>
-                        {!! Form::open(['url' => route('doctors.update', ['id' => $data->id]), 'method' => 'PUT', 'id' => 'doc']) !!} {!! Form::hidden('user_id', $data->userInfo->id) !!}    
-                    </div>
+                  
                     <!--  -->
                     <div class="tab-pane" id="settings" >
                         <h4>Specialty</h4>
@@ -231,7 +223,7 @@
                                         <tbody>
                                             @foreach($data->organizations AS $o)
                                             <tr>
-                                                <td>{!! Form::select('organizations[]', $orgs, $o->id, ['class' => 'form-control org', 'placeholder' => 'Select organization']) !!}</td>
+                                                <td>{!! Form::select("organizations[]", $orgs, $o->id, ['class' => 'form-control org', 'placeholder' => 'Select organization']) !!}</td>
                                                 <td style="width:5px;"><a href="javascript:void(0)" class="btn btn-danger remove-line"><span class="glyphicon glyphicon-remove"></span></a></td>
                                             </tr>
                                             @endforeach
@@ -298,7 +290,7 @@
                     </div>
                     </div>
                     <!--  -->
-                      <div class="tab-pane" id="profile" >
+                      <div class="tab-pane active" id="profile" >
                         <div class="alert alert-danger hidden">NIKKS WHY U BOPOLS?</div>
                         <h4>Personal Information</h4>
                         <hr class="third"></hr>
@@ -385,7 +377,8 @@
          <!-- 12 -->
           <!--/.col (right) -->
       </div>  
-       <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> {!! Form::close() !!}
+       <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button> 
+       {!! Form::close() !!}
         <!-- /.row -->
     </section>
     <!-- /.content -->

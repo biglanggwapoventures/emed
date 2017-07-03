@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Common;
+use Auth;
+use Log, EMedHelper;
 
 class CommonController extends Controller
 {
@@ -12,9 +14,12 @@ class CommonController extends Controller
     {
         // This is the patient UID
         $uId = $uid;
+
+
         $patientData = Common::getPatientDataByUID($uId);
 
-        switch (session('user_type')) 
+       
+        switch (Auth::user()->user_type) 
         {
             case 'ADMIN':
             case 'PMANAGER':
@@ -25,17 +30,23 @@ class CommonController extends Controller
             case 'PHARMA':
                 if($patientData->exists)
                 {
-                    return redirect('pharmatransaction/' . $patientData->id);
+                    return redirect('pharmatransaction/' . $patientData->data->id);
                 }
 
                 break;
 
             case 'DOCTOR':
+            {
+               if($patientData->exists)
+                {
+                    return redirect('patients/' . $patientData->data->id);
+                }
+            }
             case 'SECRETARY':
             default:
                 if($patientData->exists)
                 {
-                    return redirect('patients/' . $patientData->id);
+                    return redirect('patients/' . $patientData->data->id);
                 }
                 else
                 {
@@ -45,6 +56,6 @@ class CommonController extends Controller
                 break;
         }
 
-        abort(404);
+                abort(503);
     }
 }

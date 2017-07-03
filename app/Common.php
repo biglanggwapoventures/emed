@@ -505,10 +505,12 @@ class Common
 
     public static function getPatientDataByUID($uId)
     {
-        $dbData =  DB::table('patients')->where('uid', $uId)->first();
+
+        $dbData =  DB::table('patients')->whereUid($uId)->first();
         $data = array('exists' => !is_null($dbData), 'data' => $dbData);
 
-        return json_decode(json_encode($data));
+
+        return json_decode(json_encode($data)) ? : [];
     }
 }
 
