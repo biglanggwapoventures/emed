@@ -101,3 +101,5 @@ Route::get('consultations/history/{consultationId}', 'MedicalHistoryController@l
 
 Route::post('forgotpassword', 'PasswordChangeController@requestReset')->name('sendresetemail');
 Route::get('reset/{userId}/{hashKey}', 'PasswordChangeController@resetPassword')->name('resetpassword');
+
+Route::get('rfid/{uid}', 'CommonController@rfidAccess');

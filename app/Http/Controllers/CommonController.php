@@ -8,10 +8,10 @@ use App\Common;
 
 class CommonController extends Controller
 {
-    public function rfidAccess()
+    public function rfidAccess($uid)
     {
         // This is the patient UID
-        $uId = 1;
+        $uId = $uid;
         $patientData = Common::getPatientDataByUID($uId);
 
         switch (session('user_type')) 
