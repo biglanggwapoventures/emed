@@ -12,15 +12,21 @@
 <body>
     @include('partials.navbar')
 <br><br><br><br><br><br>
-<table>
-    <thead>
-        <th>Download This</th>
-        <th>Para sa rfid</th>
-    </thead>
-    <td><a href="/downloadjar" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download jar file </a></td>
-    <td>Para sa tanan os windows or mac</td>
-</table>
- 
+    <div class="row" style="margin-right: 50px; margin-left: 50px">
+         <div class="col-xs-12">
+                <div class="box-body table-responsive no-padding">
+                        <table id="example1" class="table table-bordered table-striped">
+
+                                <thead>
+                                    <th>Download This</th>
+                                    <th>Para sa rfid</th>
+                                </thead>
+                                <td ><a href="/downloadjar" class="btn btn-large pull-left"><i class="icon-download-alt"> </i> Download jar file </a></td>
+                                <td>Para sa tanan os windows or mac</td>
+                        </table>
+                </div>
+        </div>
+    </div>
 </body>
 
 </html>
