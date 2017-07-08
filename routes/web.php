@@ -38,6 +38,8 @@ Route::get('/pmanager-home', 'ManagersController@showHomepage')->middleware('aut
 Route::get('/aboutus', 'OtherController@aboutus');
 Route::get('/contactus', 'OtherController@contactus');
 Route::get('/faq', 'OtherController@faq');
+Route::get('/downloads', 'OtherController@downloads');
+Route::get('/downloadjar', 'DownloadsController@getDownload');
 // Route::get('/ChangePass', 'OtherController@ChangePass');
 
 Route::get('/admin', 'LoginController@redirectDefaultPage')->middleware('auth');
@@ -104,3 +106,4 @@ Route::get('reset/{userId}/{hashKey}', 'PasswordChangeController@resetPassword')
 
 
 Route::get('rfid/{uid}', 'CommonController@rfidAccess')->middleware('auth');
+

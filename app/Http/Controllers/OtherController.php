@@ -24,6 +24,11 @@ class OtherController extends Controller
         return view('others.faq');
     }
 
+     public function downloads()
+    {
+        // potang ina mo
+        return view('others.downloads');
+    }
    
 
     

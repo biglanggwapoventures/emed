@@ -32,6 +32,7 @@
                 <li><a href="{{ url('aboutus') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">ABOUT US</a></li>
                 <li><a href="{{ url('faq') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">FAQ</a></li>
                 <li><a href="{{ url('contactus') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">CONTACT US</a></li>
+                <li><a href="{{ url('downloads') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">DOWNLOADS</a></li>
                 @if(Auth::check()) 
                 <li><a href="{{ url('logout') }}" class="btn btn-home btn-2" style="margin-bottom: -20px; color: white;">LOGOUT</a></li>
                 @endif
