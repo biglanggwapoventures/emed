@@ -165,9 +165,9 @@
 
             @if(EMedHelper::hasTargetActionPermission('PHARMA', 'TRANSACT'))
                 <li>
-                    <a href="{{ url('patient-prescriptions')}} ">
-                        <i class="fa fa-medkit sidebar-icon"/></i>
-                        <span class="sidebar-label">Prescription Transaction</span>
+                    <a href="{{ url('patient-prescriptions')}} "  class="disabled" >
+                        <i class="fa fa-medkit sidebar-icon" style="color:#CED5D3;"/></i>
+                        <span class="sidebar-label" style="color:#CED5D3;">Prescription Transaction</span>
                     </a>
                 </li>
                 <?php $hasNonUserPermission = true; ?>
@@ -294,6 +294,11 @@
         .sidebar-label {
             font-size:97% !important;
         }
+        .disabled {
+           pointer-events: none;
+           cursor: default;
+           
+       }
     </style>
 
  
