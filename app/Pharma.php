@@ -23,6 +23,7 @@ class Pharma extends Model
 
 	public static function getPharmaData($user_id)
 	{
+		
 		return DB::table('pharmas')
 			   ->join('pharmacies', 'pharmas.drugstore', '=', 'pharmacies.id')
 			   ->join('pharmacy_branches', 'pharmas.drugstore_branch', '=', 'pharmacy_branches.id')

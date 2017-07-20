@@ -10,7 +10,7 @@ use App\TransactionLine;
 use App\Common;
 use App\Pharma;
 use App\PharmacyManager;
-
+use Auth;
 
 use Log, Session;
 use EMedUtil, EMedHelper;
@@ -86,6 +86,8 @@ class PharmaTransactionController extends Controller
     public function storeTransaction(Request $request)
     {
         $data = $request->all();
+
+        //dd($data);
         $transactionData = array('pharma_id' => $data['pharmaId'], 'quantity' => $data['quantity'], 'prescription_id' => $data['prescriptionId']);
 
         $transaction = TransactionLine::create($transactionData);
@@ -95,19 +97,22 @@ class PharmaTransactionController extends Controller
 
     public function transactionList()
     {
+
         $userId = session('user_id');
         
         if(session('user_type') === 'PMANAGER')
         {
             $userData = PharmacyManager::getManagerData($userId);
-            $mgrList = [];
+            $mgrList = []; 
         }
         elseif(session('user_type') === 'PHARMA')
         {
+          
             $userData = Pharma::getPharmaData($userId);
             $mgrList = PharmacyManager::getManagerData();
 
             $mgrList = EMedUtil::formatManagerList($mgrList);
+
         }
         else
         {
@@ -115,6 +120,8 @@ class PharmaTransactionController extends Controller
         }
 
         $data = TransactionLine::getTransactionsOf($userData->drugstore, $userData->drugstore_branch);
+
+      
         // Log::info(json_decode(json_encode($data), true));
         return view('transactions.transaction-list', ['items' => $data, 'userdata' => $userData, 'mgrList' => $mgrList]);
     }

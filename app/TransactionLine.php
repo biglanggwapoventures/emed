@@ -22,6 +22,7 @@ class TransactionLine extends Model
     protected $table = 'transaction_lines';
 
 
+
     public static function getPurcQtyOfPrescription($id)
     {
         $qty = 0;
@@ -41,8 +42,9 @@ class TransactionLine extends Model
 
     public static function getTransactionsOf($pharmacyId, $branchId)
     {
+      
         return DB::table('transaction_lines')
-               ->join('pharmas', 'transaction_lines.pharma_id', '=', 'pharmas.id')
+               ->join('pharmas', 'transaction_lines.pharma_id', '=', 'pharmas.user_id')
                ->join('users AS pharma', 'pharmas.user_id', '=', 'pharma.id')
                ->join('prescriptions', 'transaction_lines.prescription_id', '=', 'prescriptions.id')
                ->join('patients', 'prescriptions.patient_id', '=', 'patients.id')

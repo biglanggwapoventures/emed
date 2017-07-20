@@ -70,10 +70,11 @@
                                             @endif
                                                 
                                         </td>
+
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center">No transactions for this pharmacy branch.</td>
+                                        <td colspan="9" class="text-center">No transactions for this pharmacy branch.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
