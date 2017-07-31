@@ -113,7 +113,7 @@
                         <div class="tab-pane" id="timeline">
                             <!-- The timeline -->
                             <table class="table table-user-information">
-                                @if(EMedHelper::hasDoctorAttachment($patients->id))
+                                @if(EMedHelper::isAttachedToDoctor($patients->id, Auth::user()->id))
                                     <a href="{{ route('patients.edit', ['id' => $patients->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
                                 @endif
                                 <tbody>
@@ -503,12 +503,12 @@
                                             <td>
 
                                                 <a href="{{ route('consultations.edit', ['id' => $a->id]) }}" class="btn btn-info
-                                                    {{ Auth::user()->fullname() === $a->doctor->userInfo->fullname() ? '' : 'disabled' }}">
+                                                    {{ EMedHelper::isAttachedToDoctor($patients->id, Auth::user()->id) ? '' : 'disabled' }}">
                                                     <span class="glyphicon glyphicon-edit action-icon"></span>
                                                 </a>
 
                                                 <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info
-                                                {{ Auth::user()->fullname() === $a->doctor->userInfo->fullname() ? '' : 'disabled' }}" style="" data-toggle="tooltip" id="myTooltip" title="Add Prescriptions"><b>P</b></a>
+                                                {{ EMedHelper::isAttachedToDoctor($patients->id, Auth::user()->id) ? '' : 'disabled' }}" style="" data-toggle="tooltip" id="myTooltip" title="Add Prescriptions"><b>P</b></a>
 
                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
