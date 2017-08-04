@@ -56,6 +56,8 @@
                         <!-- tab start -->
                         <div class="active tab-pane" id="activity">
                             <a href="{{ route('doctors.edit', ['id' => $docs->userInfo->id]) }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-edit"></a>
+                            <h3>Personal information</h3>
+                            <hr class="style17">
                             <table class="table table-user-information">
                                 <tbody>
                                     <tr>
@@ -70,7 +72,7 @@
                                         </div>
                                         @endif
                                     </tr>
-                                    <tr><b><h3>Personal information</h3></tr></b></tr>
+                                    <!-- <tr><b><h3>Personal information</h3></tr></b></tr> -->
                                     <tr>
                                         <td><span class="glyphicon glyphicon-user"></span> &nbsp<b>Username</b> <br> {{ $docs->userInfo->username }}</td>
                                         <td><span class="glyphicon glyphicon-envelope"></span> <b>Email</b> <br> {{$docs->userInfo->email}}</td>
@@ -99,8 +101,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                            <td><b><h3>Clinic Information</h3></td>
-                            <td></td>
+                            <td colspan="2"><b><h3>Clinic Information</h3></td>
                             </tr>  
                                 <tr>
                                     <td colspan="3">
@@ -196,5 +197,24 @@
     margin-bottom: : 30px;
     width: 500px;
 }
+hr.style17 {
+    border-top: 1px solid #8c8b8b;
+    text-align: center;
+}
+hr.style17:after {
+    content: '§';
+    display: inline-block;
+    position: relative;
+    top: -14px;
+    padding: 0 10px;
+    background: #f0f0f0;
+    /*color: #8c8b8b;*/
+    color: #28A198;
+    font-size: 18px;
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
 </style>
     @endsection
