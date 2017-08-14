@@ -23,9 +23,24 @@
                                     <th>Specifications</th>
                                     <th></th>
                                 </thead>
+                                <tr>
+                                  <td>JAR File</td> 
+                                  <td></td>
+                                  <td></td> 
+                                </tr>
+                                <tr>
                                 <td ><a href="/downloadjar" class="btn btn-large pull-left"><i class="fa fa-download" aria-hidden="true"></i> &nbsp Download jar file  (4.55 MB ) </a></td>
                                 <td>Windows or Mac</td>
                                 <td>Run file to use rfid</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"> JRE Downloads:</td>
+                                </tr>
+                                <tr>
+                                <td colspan="3"><a href="http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html">download here</a></td>
+                               </tr>
+                               
+
                         </table>
                 </div>
         </div>
