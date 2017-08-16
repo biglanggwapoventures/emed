@@ -75,7 +75,7 @@
 
                         <div id="collapse5" class="panel-collapse collapse">
                             <div class="panel-body bg">
-                                - The RFID tags are given to the patients.
+                                - It works as a third-party application that will detect the cards and retrieve its tag to execute the action depending on the user that is logged in.
                             </div>
                         </div>
                     </div>

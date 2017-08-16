@@ -33,7 +33,7 @@
 
     <style type="text/css">
         
-        body {
+       /* body {
             background: url("./../images/Background-2.png") center center no-repeat;
             background-size: cover;
             position: fixed;
@@ -42,7 +42,7 @@
             width: 100%;
             height: 100%;
             -webkit-font-smoothing: antialiased;
-        }
+        }*/
         
         body:before {
             content: "";
