@@ -191,7 +191,7 @@ class PatientsController extends Controller
         $item = Auth::user()->where('username', 'mdag')->get();
         return view('patients.patient-form', [
                 'item' => $item,
-                'predefinedUId' => ''
+                'predefinedUId' => request()->uid
             ]);
     }
 

@@ -50,7 +50,8 @@ class CommonController extends Controller
                 }
                 else
                 {
-                    return view('patients.patient-form', ['predefinedUId' => $uId]);
+                    return redirect()->route('patients.create', ['uid' => $uid]);
+                    // return view('patients.patient-form', ['predefinedUId' => $uId]);
                 }
 
                 break;
