@@ -197,7 +197,7 @@
                                         <!-- <td>{{ $consultation->quantity }}</td> -->
                                         <!-- <td>{{ $consultation->start }}</td> -->
                                         <!-- <td>{{ $consultation->end }}</td> -->
-                                        <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes">
+                                        <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes-{{$loop->index}}">
                                                     <span class="glyphicon glyphicon-eye-open"></span>  Details
                                                 </button></td>
                                     </tr>
@@ -212,7 +212,7 @@
                                                 </button>
                <!-- notes -->
                                 @forelse($patients->prescriptions AS $consultation)
-                                 <div class="modal fade" id="notes" tabindex="-1" role="basic" aria-hidden="true">
+                                 <div class="modal fade" id="notes-{{$loop->index}}" tabindex="-1" role="basic" aria-hidden="true">
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content" style="padding:20px 35px 20px 40px;">
                                             <div class="modal-body"><!--  style="height:200px; overflow: scroll;"  -->
