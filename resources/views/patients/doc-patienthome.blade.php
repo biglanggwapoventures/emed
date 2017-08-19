@@ -189,46 +189,46 @@
                                     <?php $today = date('Y-m-d'); ?>
 
                                     @forelse($patients->prescriptions AS $consultation)
-                                   <!--  @if($consultation->end >= $today)
- -->
-
-
-                                    @if($consultation->quantity != 0)
-                                         <tr>
-                                        <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
-                                        <td>{{ $consultation->genericname }}</td>
-                                        <td>{{ $consultation->brand }}</td>
-                                        <!-- <td>{{ $consultation->dosage }}</td> -->
-                                        <td>{{ $consultation->frequency }}</td>
-                                        <td>{{ $consultation->quantity }}</td>
-                                        <!-- <td>{{ $consultation->start }}</td> -->
-                                        <!-- <td>{{ $consultation->end }}</td> -->
-                                        <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes">
-                                                    <span class="glyphicon glyphicon-eye-open"></span>  Details
-                                                </button></td>
-                                    </tr> @endif
-
-                                    @elseif($consultation->quantity == 0)
-                                        @if($consultation->end <= $today)
-                                    <tr>
-                                        <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
-                                        <td>{{ $consultation->genericname }}</td>
-                                        <td>{{ $consultation->brand }}</td>
-                                        <!-- <td>{{ $consultation->dosage }}</td> -->
-                                        <td>{{ $consultation->frequency }}</td>
-                                        <td>{{ $consultation->quantity }}</td>
-                                        <!-- <td>{{ $consultation->start }}</td> -->
-                                        <!-- <td>{{ $consultation->end }}</td> -->
-                                        <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes-{{$loop->index}}">
-                                                    <span class="glyphicon glyphicon-eye-open"></span>  Details
-                                                </button></td>
-                                    </tr> 
-                                        @endif
-                                    @endif
-
-
-                                  
+                                        @if($consultation->quantity != 0)
+                                        <tr>
+                                            <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
+                                            <td>{{ $consultation->genericname }}</td>
+                                            <td>{{ $consultation->brand }}</td>
+                                            <!-- <td>{{ $consultation->dosage }}</td> -->
+                                            <td>{{ $consultation->frequency }}</td>
+                                            <td>{{ $consultation->quantity }}</td>
+                                            <!-- <td>{{ $consultation->start }}</td> -->
+                                            <!-- <td>{{ $consultation->end }}</td> -->
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes-{{$loop->index}}">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                    Details
+                                                </button>
+                                            </td>
+                                        </tr> 
                                         
+
+                                        @elseif($consultation->quantity == 0)
+                                            @if($consultation->end <= $today)
+                                        <tr>
+                                            <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
+                                            <td>{{ $consultation->genericname }}</td>
+                                            <td>{{ $consultation->brand }}</td>
+                                            <!-- <td>{{ $consultation->dosage }}</td> -->
+                                            <td>{{ $consultation->frequency }}</td>
+                                            <td>{{ $consultation->quantity }}</td>
+                                            <!-- <td>{{ $consultation->start }}</td> -->
+                                            <!-- <td>{{ $consultation->end }}</td> -->
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes-{{$loop->index}}">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>  
+                                                    Details
+                                                </button>
+                                                </td>
+                                        </tr> 
+                                            @endif
+                                        @endif
+
                                         @empty
                                          @endforelse
                                     </tbody>
