@@ -178,6 +178,7 @@
                                         <th>Brand name</th>
                                         <!-- <th>Dosage</th> -->
                                         <th>Frequency</th>
+                                        <th>Quantity</th>
                                       <th>Info</th>
                                         <!-- <th>Available</th> -->
                                         <!-- <th>Start</th> -->
@@ -186,30 +187,56 @@
                                 </thead>
                                 <tbody>
                                     <?php $today = date('Y-m-d'); ?>
-                                    @forelse($patients->prescriptions AS $consultation)@if($consultation->end >= $today)
-                                    
+
+                                    @forelse($patients->prescriptions AS $consultation)
+                                   <!--  @if($consultation->end >= $today)
+ -->
+
+
+                                    @if($consultation->quantity != 0)
+                                         <tr>
+                                        <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
+                                        <td>{{ $consultation->genericname }}</td>
+                                        <td>{{ $consultation->brand }}</td>
+                                        <!-- <td>{{ $consultation->dosage }}</td> -->
+                                        <td>{{ $consultation->frequency }}</td>
+                                        <td>{{ $consultation->quantity }}</td>
+                                        <!-- <td>{{ $consultation->start }}</td> -->
+                                        <!-- <td>{{ $consultation->end }}</td> -->
+                                        <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>  Details
+                                                </button></td>
+                                    </tr> @endif
+
+                                    @elseif($consultation->quantity == 0)
+                                        @if($consultation->end <= $today)
                                     <tr>
                                         <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
                                         <td>{{ $consultation->genericname }}</td>
                                         <td>{{ $consultation->brand }}</td>
                                         <!-- <td>{{ $consultation->dosage }}</td> -->
                                         <td>{{ $consultation->frequency }}</td>
-                                        <!-- <td>{{ $consultation->quantity }}</td> -->
+                                        <td>{{ $consultation->quantity }}</td>
                                         <!-- <td>{{ $consultation->start }}</td> -->
                                         <!-- <td>{{ $consultation->end }}</td> -->
                                         <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes-{{$loop->index}}">
                                                     <span class="glyphicon glyphicon-eye-open"></span>  Details
                                                 </button></td>
-                                    </tr>
+                                    </tr> 
                                         @endif
+                                    @endif
+
+
+                                  
+                                        
                                         @empty
                                          @endforelse
                                     </tbody>
                                 </table>
                             </div>
                             <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#history">
-                                                    <i class="fa fa-history" aria-hidden="true"></i> History
-                                                </button>
+                                <i class="fa fa-history" aria-hidden="true"></i> History
+                            </button>
                <!-- notes -->
                                 @forelse($patients->prescriptions AS $consultation)
                                  <div class="modal fade" id="notes-{{$loop->index}}" tabindex="-1" role="basic" aria-hidden="true">
