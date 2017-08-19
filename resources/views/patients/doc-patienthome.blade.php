@@ -61,10 +61,12 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#activity" data-toggle="tab">Profile</a></li>
-                        <li><a href="#timeline" data-toggle="tab">Medical profile</a></li>
-                        <li><a href="#settings" data-toggle="tab">Prescriptions</a></li>
-                        <li><a href="#doctor" data-toggle="tab">Doctor</a></li>
-                        <li><a href="#consultation" data-toggle="tab">Consultations</a></li>
+                        @if(EMedHelper::isAttachedToDoctor($patients->id, Auth::user()->id))
+                            <li><a href="#timeline" data-toggle="tab">Medical profile</a></li>
+                            <li><a href="#settings" data-toggle="tab">Prescriptions</a></li>
+                            <li><a href="#doctor" data-toggle="tab">Doctor</a></li>
+                            <li><a href="#consultation" data-toggle="tab">Consultations</a></li>
+                        @endif
                     </ul>
                     <div class="tab-content">
                         <!-- tab start -->
@@ -98,7 +100,7 @@
                                     </tr>
                                     <tr>
                                         <td><i class="fa fa-gavel" aria-hidden="true"></i><b>Civil Status</b> <br> {{ $patients->civilstatus }}</td>
-                                        <td><span class="glyphicon glyphicon-briefcase"></span> <b>Occuptation</b><br>{{ $patients->occupation }}</td>
+                                        <td><span class="glyphicon glyphicon-briefcase"></span> <b>Occupation</b><br>{{ $patients->occupation }}</td>
                                         <td><span class="glyphicon glyphicon-flag"></span> <b>Nationality</b><br>{{ $patients->nationality }}</td>
                                     </tr>
 
@@ -478,7 +480,7 @@
                         <div class="tab-pane" id="consultation">
                             <div class="box-body table-responsive no-padding">
                                 <table>
-                                    @if(EMedHelper::hasDoctorAttachment($patients->id))
+                                    @if(EMedHelper::isAttachedToDoctor($patients->id, Auth::user()->id))
                                         <thead>
                                             <th> <a href="{{ route('consultations.index', ['patient_id' =>  $patients->id]) }}" class="btn btn-info pull-left"><span class="glyphicon glyphicon-plus"></span> Consultation</a></th>
                                         </thead>
