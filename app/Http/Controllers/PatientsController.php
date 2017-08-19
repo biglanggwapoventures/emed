@@ -211,7 +211,7 @@ class PatientsController extends Controller
                 'lastname' => 'required',
                 'username' => 'required|unique:users',
                 'address' => 'required',
-                'birthdate' => 'required|date_format:"Y-m-d"',
+                'birthdate' => 'required|date_format:"Y-m-d"|before:tomorrow',
                 'sex' => 'required',
                 'contact_number' => 'required|min:6',
                 'civilstatus' => 'required',
@@ -222,11 +222,13 @@ class PatientsController extends Controller
                 'enumber' => 'required',
                 'erelationship' => 'required',
                 'econtact' => 'required',
+                'uid' => 'required'
             ], [
                 'firstname.required' => 'Please enter your first name.',
                 'middle_initial.required' => 'Please enter your middle initial.',
                 'lastname.required' => 'Please enter your last name.',
                 'birthdate.required' => 'Please enter your birthdate.',
+                'birthdate.after' => 'Invalid birthdate',
                 'username.required' => 'Please enter your username.',
                 'address.required' => 'Please enter your address.',
                 'sex.required' => 'Please select your gender.',

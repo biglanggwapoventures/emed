@@ -102,7 +102,7 @@ class DoctorsController extends Controller
                 'lastname' => 'required',
                 'username' => 'required|unique:users',
                 'address' => 'required',
-                'birthdate' => 'required|date',
+                'birthdate' => 'required|date|before:tomorrow',
                 'sex' => 'required',
                 'contact_number' => 'required|min:6'
             ], [
@@ -110,6 +110,7 @@ class DoctorsController extends Controller
                 'middle_initial.required' => 'Please enter your middle initial.',
                 'lastname.required' => 'Please enter your last name.',
                 'birthdate.required' => 'Please enter your birthdate.',
+                'birthdate.before' => 'Invalid birthdate',
                 'username.required' => 'Please enter your username.',
                 'address.required' => 'Please enter your address.',
                 'sex.required' => 'Please select your gender.',

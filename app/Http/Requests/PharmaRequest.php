@@ -30,7 +30,7 @@ class PharmaRequest extends FormRequest
             'firstname' => 'required',
             'middle_initial' => 'required|size:1',
             'lastname' => 'required',
-            'birthdate' => 'required',
+            'birthdate' => 'required|date_format:"Y-m-d"|before:tomorrow',
             'sex' => 'required',
             'contact_number' => 'required|min:6',
             'address' => 'required',

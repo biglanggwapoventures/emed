@@ -113,7 +113,7 @@ class CustomUserController extends Controller
                 'lastname' => 'required',
                 'username' => 'required|unique:users',
                 'address' => 'required',
-                'birthdate' => 'required|date_format:"Y-m-d"',
+                'birthdate' => 'required|date_format:"Y-m-d"|before:tomorrow',
                 'sex' => 'required',
                 'contact_number' => 'required|min:6',
                 'civilstatus' => 'required',
@@ -141,6 +141,7 @@ class CustomUserController extends Controller
                 'econtact.required' => 'Please enter your emergency contact.',
                 'erelationship.required' => 'Please enter your relationship with emergency contact.',
                 'enumber.required' => 'Please enter your emergency person contact number.',
+                 'birthdate.start' => 'Invalid Birthdate',
            ]);
 
         $rules = array(
