@@ -505,12 +505,12 @@
                                             <td>
 
                                                 <a href="{{ route('consultations.edit', ['id' => $a->id]) }}" class="btn btn-info
-                                                    {{ EMedHelper::isAttachedToDoctor($patients->id, Auth::user()->id) ? '' : 'disabled' }}">
+                                                    {{ $a->doctor->userInfo->id == Auth::user()->id ? '' : 'disabled' }}">
                                                     <span class="glyphicon glyphicon-edit action-icon"></span>
                                                 </a>
 
                                                 <a href="{{ route('prescription.index', ['patient_id' => $patients->id, 'consultation_id' => $a->id]) }}" class="btn btn-info
-                                                {{ EMedHelper::isAttachedToDoctor($patients->id, Auth::user()->id) ? '' : 'disabled' }}" style="" data-toggle="tooltip" id="myTooltip" title="Add Prescriptions"><b>P</b></a>
+                                                {{ $a->doctor->userInfo->id == Auth::user()->id ? '' : 'disabled' }}" style="" data-toggle="tooltip" id="myTooltip" title="Add Prescriptions"><b>P</b></a>
 
                                                <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#infoModals_{{ $a->id }}">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
