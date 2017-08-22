@@ -171,24 +171,27 @@
                                 </thead>
                                 <tbody>
                                     <?php $today = date('Y-m-d'); ?>
-                                    @forelse($items->prescriptions AS $consultation)@if($consultation->end >= $today)
+                                    @forelse($items->prescriptions AS $consultation)
+                                        @if($consultation->end >= $today || $consultation->quantity > 0)
                                     
-                                    <tr>
-                                        <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
-                                        <td>{{ $consultation->genericname }}</td>
-                                        <td>{{ $consultation->brand }}</td>
-                                        <!-- <td>{{ $consultation->dosage }}</td> -->
-                                        <td>{{ $consultation->frequency }}</td>
-                                        <!-- <td>{{ $consultation->quantity }}</td> -->
-                                        <!-- <td>{{ $consultation->start }}</td> -->
-                                        <!-- <td>{{ $consultation->end }}</td> -->
-                                        <td><button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes">
-                                                    <span class="glyphicon glyphicon-eye-open"></span>  Details
-                                                </button></td>
-                                    </tr>
+                                            <tr>
+                                                <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
+                                                <td>{{ $consultation->genericname }}</td>
+                                                <td>{{ $consultation->brand }}</td>
+                                                <!-- <td>{{ $consultation->dosage }}</td> -->
+                                                <td>{{ $consultation->frequency }}</td>
+                                                <!-- <td>{{ $consultation->quantity }}</td> -->
+                                                <!-- <td>{{ $consultation->start }}</td> -->
+                                                <!-- <td>{{ $consultation->end }}</td> -->
+                                                <td>
+                                                    <button type="button" class="btn btn-warning btn-default-sm" data-toggle="modal" data-target="#notes">
+                                                        <span class="glyphicon glyphicon-eye-open"></span>  Details
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @endif
                                         @empty
-                                         @endforelse
+                                     @endforelse
                                     </tbody>
                                 </table>
                             </div>

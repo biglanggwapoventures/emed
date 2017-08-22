@@ -39,6 +39,7 @@
                                     <th class="align-th">Gender</th>
                                     <th class="align-th">Contact No.</th>
                                     <th class="align-th">Email</th>
+                                    <th class="align-th">Assigned to</th>
                                     <th class="text-center"><span class="fa fa-ellipsis-h"></span></th>
                                 </tr>
                             </thead>
@@ -59,6 +60,9 @@
                                         </td>
                                         <td class="align-pt">
                                             {{ $secretary->userInfo->email }}
+                                        </td>
+                                        <td class="align-pt">
+                                            {{ EMedHelper::retrieveSecretaryDoctor($secretary->user_id) }}
                                         </td>
                                         <td class="text-center">
                                             <form action="{{ route('users.destroy', ['id' => $secretary->user_id]) }}" method="POST" onsubmit="javascript:return confirm('Are you sure?')">

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
-
+use Carbon;
 use EMedHelper, Log;
 
 class Patient extends Model
@@ -33,6 +33,12 @@ class Patient extends Model
 		return $this->hasMany('App\Prescription', 'patient_id');
 	}
 
+	public function getTransction()
+	{
+		return $this->hasMany('App\transaction_lines','prescription_id');
+	}
+
+
 	public static function doctorOfPatient($doctorId)
 	{
 		return DB::table('doctor_patient')
@@ -40,5 +46,7 @@ class Patient extends Model
 			   ->where('doctor_id', $doctorId)
 			   ->first();
 	}
+
+	
 	
 }

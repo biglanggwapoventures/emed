@@ -227,5 +227,13 @@
         {
             return Common::getDoctorName($doctorId);
         }
+
+        public static function retrieveSecretaryDoctor($secretaryUserId)
+        {
+            $secretaryId = Common::getSecretaryId($secretaryUserId);
+            $doctorId = Common::getSecretaryDoctorId($secretaryId);
+
+            return self::retrieveDoctorName($doctorId);
+        }
     }
 ?>
