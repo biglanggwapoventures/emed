@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>emed</title>
+    <title>eMed</title>
     <link rel="icon" href="https://1001freedownloads.s3.amazonaws.com/icon/thumb/340535/Health-Sign-blue-icon.png">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

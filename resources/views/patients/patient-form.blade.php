@@ -145,7 +145,7 @@
                                             <option>B+</option>
                                             <option>B-</option>
                                             <option>AB+</option>
-                                            <option>A-</option>
+                                            <option>A</option>
                                             <option>O+</option>
                                             <option>O-</option>
                                             <option>Unknown</option>
