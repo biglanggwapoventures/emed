@@ -65,4 +65,6 @@ class TransactionLine extends Model
         ->where('id', $transactionId)
         ->update(array('voided' => 1, 'manager_id' => $managerId));
     }
+
+    
 }

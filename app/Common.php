@@ -329,6 +329,11 @@ class Common
         return DB::table('secretaries')->select('user_id')->where('id', $id)->first()->user_id;   
     }
 
+    public static function getSecretaryDoctorId($id)
+    {
+        return DB::table('secretaries')->select('doctor_id')->where('id', $id)->first()->doctor_id;   
+    }
+
 
     public static function getAffiliation($affiliationId)
     {
@@ -370,7 +375,8 @@ class Common
 
     public static function getActivePrescriptions($patientId = null, $doctorId = null)
     {
-        $clause = 'prescriptions.end >= NOW() AND quantity > COALESCE((SELECT SUM(quantity) FROM transaction_lines WHERE prescription_id = prescriptions.id AND voided = 0), 0)';
+        //$clause = '(prescriptions.end >= NOW() OR quantity > COALESCE((SELECT SUM(quantity) FROM transaction_lines WHERE prescription_id = prescriptions.id AND voided = 0), 0))';
+        $clause = 'quantity > COALESCE((SELECT SUM(quantity) FROM transaction_lines WHERE prescription_id = prescriptions.id AND voided = 0), 0)';
         if(!is_null($patientId))
         {
             $clause .= ' AND patient_id = ' . $patientId;
@@ -380,6 +386,8 @@ class Common
         {
             $clause .= ' AND doctor_id = ' . $doctorId;
         }
+
+        Log::info($clause);
 
         return DB::table('prescriptions')
                ->whereRaw(DB::raw($clause))
