@@ -71,7 +71,7 @@
                 
                 <div class="row">
                             <div class="col-md-12">
-                            <label>Diagnosis:</label>
+                            <label>Diagnosis/Treatment:</label>
                                     {!! Form::bsText('notes', '',null,['placeholder'=> 'results', 'class' => 'form-control']) !!}
                             </div>    
                  </div>
