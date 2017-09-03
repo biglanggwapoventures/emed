@@ -66,7 +66,7 @@
                         <li><a href="#timeline" data-toggle="tab">Medical profile</a></li>
                         <li><a href="#settings" data-toggle="tab">Prescriptions</a></li>
                         <li><a href="#doctor" data-toggle="tab">Doctor</a></li>
-                        <!-- <li><a href="#consultation" data-toggle="tab">Consultations</a></li> -->
+                        <li><a href="#consultation" data-toggle="tab">Consultations</a></li>
                     </ul>
                     <div class="tab-content">
                         <!-- tab start -->
@@ -458,7 +458,7 @@
                         </div>
 
                         <!-- tab -->
-                 <!--        <div class="tab-pane" id="consultation">
+                        <div class="tab-pane" id="consultation">
                             <h4 class="panel-title"><i class="glyphicon glyphicon-user"></i>Consultations</h4>
                             <table id="example3" class="table table-bordered table-striped">
                                 <thead>
@@ -557,7 +557,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                            <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
+                                            <!-- <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -607,7 +607,7 @@
                                                 </div>
                                             </div> -->
 
-                                <!--         </td>
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -617,7 +617,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                        </div> -->
+                        </div>
                     </div>
                     <!-- /.tab-content -->
                 </div>
