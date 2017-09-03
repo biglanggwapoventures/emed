@@ -206,6 +206,7 @@
                                     <?php $today = date('Y-m-d'); ?>
 
                                     @forelse($patients->prescriptions AS $consultation)
+                                    @if(Auth::user()->id == $consultation->doctor->userInfo->id)
                                         @if($consultation->quantity != 0)
                                         <tr>
                                             <!-- <td>Dr. {{ $consultation->doctor->userInfo->fullname() }}</td> -->
@@ -245,7 +246,7 @@
                                         </tr> 
                                             @endif
                                         @endif
-
+                                    @endif
                                         @empty
                                          @endforelse
                                     </tbody>
