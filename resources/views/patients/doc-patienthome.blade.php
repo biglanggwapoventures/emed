@@ -527,6 +527,7 @@
                                     
                                         @forelse($patients->consultations AS $a)
                                         <tr>
+                                            @if(Auth::user()->id == $a->doctor->userInfo->id)
                                             <td>{{ $a->created_at }}</td>
                                             <td>{{ $a->doctor->userInfo->fullname() }}</td>
                                             <td><li>{!! $a->doctor->specializations->implode('name', '</li><li>') !!}</li></td>
@@ -548,86 +549,87 @@
                                                     <span class="fa fa-h-square"></span>
                                                 </a>
 
-                                <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="basic" aria-hidden="true">
-                                    <div class="modal-dialog modal-md">
-                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
-                                            <div class="modal-body">
-                                            <h3 class="page-title text-info sbold" style="margin-left:-7px;">
-                                                    Consultation Summary
-                                                </h3>
-                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
+                                                <div class="modal fade" id="infoModals_{{ $a->id }}" tabindex="-1" role="basic" aria-hidden="true">
+                                                    <div class="modal-dialog modal-md">
+                                                        <div class="modal-content" style="padding:20px 35px 20px 40px;">
+                                                            <div class="modal-body">
+                                                            <h3 class="page-title text-info sbold" style="margin-left:-7px;">
+                                                                    Consultation Summary
+                                                                </h3>
+                                                                <hr style="margin-top:-5px;margin-bottom:5px;"/>
 
-                                                <div class="row">
-                                                    <div class="form-body">
-                                                    <table style="padding-left:10px">
-                                                    <tr>
-                                                        <h4 class="form-section" style="padding-left:10px;">{{ $patients->userInfo->fullname()}} <p style="padding-left:10px" class="pull-right">{{ $a->created_at  }}</p></h4>
-                                                        
-                                                    </tr>
-                                                     </table>
-                                                    </div>
-                                                    <table class="table" style="padding-left:10px">
-                                                   <tr>
-                                                   <td>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Weight</label><br/>
-                                                        <span> {{ $a->weight  }} kgs</span>
-                                                    </div>
-                                                    </td>
-                                                    <td>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Height</label><br/>
-                                                        <span> {{ $a->height }} ft.</span>
-                                                    </div>
-                                                    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> <div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Blood Pressure</label><br/>
-                                                        <span>{{ $a->bloodpressure }} mmHg</span>
-                                                    </div></td>
-                                                        <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Temperature</label><br/>
-                                                        <span>{{ $a->temperature }} °C</span>
-                                                    </div></td>
-                                                    </tr>
-                                                   <tr>
-                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Respiratory Rate</label><br/>
-                                                        <span> {{ $a->resprate }} cpm</span>
-                                                    </div></td>
-                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
-                                                        <label>Pulse Rate</label><br/>
-                                                        <span> {{ $a->pulserate }} bpm</span>
-                                                    </div></td>
-                                                   </tr>
-                                                    
-                                                     <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
-                                                        <label>Chief Complaints</label><br/>
-                                                        <span> {{ $a->chiefcomplaints }}</span>
-                                                    </div>
-                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
-                                                        <label>Diagnosis</label><br/>
-                                                        <span> {{ $a->notes }}</span>
-                                                    </div>
-                                                    
-                                                    </table>
-                                                   
-                                                </div>
+                                                                <div class="row">
+                                                                    <div class="form-body">
+                                                                    <table style="padding-left:10px">
+                                                                    <tr>
+                                                                        <h4 class="form-section" style="padding-left:10px;">{{ $patients->userInfo->fullname()}} <p style="padding-left:10px" class="pull-right">{{ $a->created_at  }}</p></h4>
+                                                                        
+                                                                    </tr>
+                                                                     </table>
+                                                                    </div>
+                                                                    <table class="table" style="padding-left:10px">
+                                                                   <tr>
+                                                                   <td>
+                                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                        <label>Weight</label><br/>
+                                                                        <span> {{ $a->weight  }} kgs</span>
+                                                                    </div>
+                                                                    </td>
+                                                                    <td>
+                                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                        <label>Height</label><br/>
+                                                                        <span> {{ $a->height }} ft.</span>
+                                                                    </div>
+                                                                    </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td> <div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                        <label>Blood Pressure</label><br/>
+                                                                        <span>{{ $a->bloodpressure }} mmHg</span>
+                                                                    </div></td>
+                                                                        <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                        <label>Temperature</label><br/>
+                                                                        <span>{{ $a->temperature }} °C</span>
+                                                                    </div></td>
+                                                                    </tr>
+                                                                   <tr>
+                                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                        <label>Respiratory Rate</label><br/>
+                                                                        <span> {{ $a->resprate }} cpm</span>
+                                                                    </div></td>
+                                                                       <td><div class="form-body" style="padding-left:10px;margin-bottom:13px">
+                                                                        <label>Pulse Rate</label><br/>
+                                                                        <span> {{ $a->pulserate }} bpm</span>
+                                                                    </div></td>
+                                                                   </tr>
+                                                                    
+                                                                     <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
+                                                                        <label>Chief Complaints</label><br/>
+                                                                        <span> {{ $a->chiefcomplaints }}</span>
+                                                                    </div>
+                                                                    <div class="form-body" style="padding-left:10px;margin-bottom:13px;background-color: whitesmoke">
+                                                                        <label>Diagnosis</label><br/>
+                                                                        <span> {{ $a->notes }}</span>
+                                                                    </div>
+                                                                    
+                                                                    </table>
+                                                                   
+                                                                </div>
 
-                                                <div class="row" style="margin-top:10px;">
-                                                    <div class="col-md-12">
-                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
-                                                            Close 
-                                                        </button>
+                                                                <div class="row" style="margin-top:10px;">
+                                                                    <div class="col-md-12">
+                                                                        <button style="width:140px;margin-left:5px;" type="button" class="btn btn-primary grey pull-right" data-dismiss="modal">
+                                                                            Close 
+                                                                        </button>
+                                                                    </div>
+                                                                        
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                        
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                             </td>
+                                            @endif
                                         </tr>
                                         @empty
                                         <tr>
