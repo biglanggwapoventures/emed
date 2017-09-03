@@ -12,13 +12,29 @@
     @endif -->
     <!-- Content Header (Page header) -->
     <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                   <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                   <a href="{{ route('patients.index') }}">Patients</a>
+                </li>
+                <li class="breadcrumb-item active">{{ $patients->userInfo->fullname() }}</li>
+            </ol>
+        </div>
         <h1>
-            User Profile
+            <span style="font-size:80% !important;">
+                <span style="font-size:135%!important"></span>
+                &nbsp;User Profile
+            </span>
         </h1>
-        <ol class="breadcrumb">
+        <!-- <ol class="breadcrumb">
             <li><a href="/doctor-home"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('patients.index') }}">Patients</a></li>
             <li><a href="#"><i class="fa fa-user"></i> {{ $patients->userInfo->fullname() }} </a></li>
+         -->
+         
     </section>
 
     <!-- Main content -->

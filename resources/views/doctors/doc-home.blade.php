@@ -6,12 +6,12 @@
            User Profile
             <small></small>
         </h1>
-        <ol class="breadcrumb">
+        <!-- <ol class="breadcrumb">
             <li><a href="/patient-home"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="/doctor-home"><i class="fa fa-user"></i> Dr. {{ $doctors->userInfo->fullname() }}</a></li>
            
 
-        </ol>
+        </ol> -->
     </section>
 
     <!-- Main content -->
