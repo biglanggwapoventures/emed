@@ -164,7 +164,7 @@
             @endif
 
             @if(EMedHelper::hasTargetActionPermission('PHARMA', 'TRANSACT'))
-                <li>
+                <li class="disabled">
                     <a href="{{ url('patient-prescriptions')}} "  class="disabled" >
                         <i class="fa fa-medkit sidebar-icon" style="color:#CED5D3;"/></i>
                         <span class="sidebar-label" style="color:#CED5D3;">Prescription Transaction</span>
@@ -229,7 +229,7 @@
              
             @if(EMedHelper::showListOfTarget('PATIENT'))
             @if(Session::get('user_type') === 'DOCTOR')
-                <li>
+                <li class="hovering">
                      <a href="{{ route( 'mypatients.list') }} ">
                         <i class="fa fa-qq sidebar-icon"></i> 
                         <span class="sidebar-label"> My Patients</span>
@@ -237,10 +237,10 @@
                 </li>
                 
                 @endif
-                <li>
-                    <a href="{{ route( 'patients.index') }} ">
-                        <i class="fa fa-users"></i> 
-                        <span class="sidebar-label">All Patients</span>
+                <li class="disabled">
+                    <a href="{{ route( 'patients.index') }} " class="disabled">
+                        <i class="fa fa-users" style="color: #f9fafc"></i> 
+                        <span class="sidebar-label" style="color: #f9fafc;">All Patients</span>
                     </a>
                 </li>
                 <?php $hasUserPermission = true; ?>
@@ -297,8 +297,11 @@
         .disabled {
            pointer-events: none;
            cursor: default;
+        }
            
-       }
+        .disabled:hover{
+            color:  #f9fafc;
+        }
     </style>
 
  

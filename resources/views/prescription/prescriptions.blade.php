@@ -73,8 +73,11 @@
                         <div class="col-md-5">
                             {!! Form::bsText('quantity', 'Quantity', null,['placeholder'=> 'pcs']) !!}
                         </div>
-                        <div class="col-md-5  ">
-                            {!! Form::bsText('dosage', 'Dosage', null,['placeholder'=> 'mg']) !!}
+                        <div class="col-md-2">
+                            {!! Form::bsText('dosage', 'Dosage', null) !!}
+                        </div>
+                        <div class="col-md-3">
+                            {!! Form::bsSelect('weight_type', 'Unit', [''  => '', 'mg' => 'mg', 'ml' => 'ml','mcg' => 'mcg','mEq' => 'mEq']) !!}
                         </div>
                     </div>
                     <div class="row col-md-offset-1 ">
@@ -144,7 +147,7 @@
                                     <tr>
                                         <td>{{ $prescription->genericname }}</td>
                                         <td>{{ $prescription->brand }}</td>
-                                        <td>{{ $prescription->dosage }}</td>
+                                        <td>{{ $prescription->dosage }} {{ $prescription->weight_type }}</td>
                                         <td>{{ $prescription->frequency }}</td>
                                         <td>{{ $prescription->quantity }}</td>
                                         <td>{{ $prescription->start }}</td>
@@ -184,6 +187,7 @@
 <script type="text/javascript">
     $(document).ready(function() 
     {
+        // alert('i love you :*');
         $("input[name=duration]").focusout(function()
         {
             var duration = $(this).val();

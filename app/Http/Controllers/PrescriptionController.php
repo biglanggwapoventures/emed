@@ -56,6 +56,7 @@ class PrescriptionController extends Controller
             'quantity' => 'required|numeric|min:1',
             'duration' => 'required',
             'dosage' => 'required',
+            'weight_type' => 'required',
             'frequency' => 'required',
             'start' => 'required|date_format:"Y-m-d"|after:today',
             'end' => 'required|date_format:"Y-m-d"',

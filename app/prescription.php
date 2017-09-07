@@ -19,7 +19,8 @@ class Prescription extends Model
 		'end',
 		'patient_id',
 		'doctor_id',
-		'consultation_id'
+		'consultation_id',
+		'weight_type'
 	];
 
 
