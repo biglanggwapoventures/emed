@@ -269,7 +269,7 @@
                                                     <td>
                                                     <div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                         <label>Dosage</label><br/>
-                                                        <span>{{ $consultation->dosage  }}</span>
+                                                        <span>{{ $consultation->dosage  }} {{ $consultation->weight_type  }}</span>
                                                     </div>
                                                     </td>
                                                     </tr>
@@ -346,7 +346,7 @@
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->doctor->userInfo->fullname() }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->genericname }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->brand }}</td>
-                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->dosage }}</td>
+                                    <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->dosage }} {{ $consultation->weight_type  }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->frequency }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->quantity }}</td>
                                     <td style="{{ strtotime($consultation->end) < strtotime($today) ? 'color:red' : '' }}">{{ $consultation->start }}</td>
