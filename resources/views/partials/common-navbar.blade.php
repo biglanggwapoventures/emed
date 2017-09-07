@@ -240,9 +240,10 @@
                 <li class="disabled">
                     <a href="{{ route( 'patients.index') }} " class="disabled">
                         <i class="fa fa-users" style="color: #f9fafc"></i> 
-                        <span class="sidebar-label" style="color: #f9fafc;">All Patients</span>
+                        <span class="sidebar-label" style="color: #f9fafc;"></span>
                     </a>
                 </li>
+                <!-- All Patients -->
                 <?php $hasUserPermission = true; ?>
             @endif
 
