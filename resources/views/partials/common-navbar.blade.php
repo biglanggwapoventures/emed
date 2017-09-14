@@ -216,6 +216,15 @@
                 </li>
                 <?php $hasUserPermission = true; ?>
             @endif
+                @if(EMedHelper::showListOfTarget('PATIENT'))
+               <li>
+                    <a href="{{ route( 'patients.index') }} ">
+                        <i class="fa fa-users" ></i> 
+                        <span class="sidebar-label">All patients</span>
+                    </a>
+                </li>
+                <?php $hasUserPermission = true; ?>
+            @endif
 
             @if(EMedHelper::showListOfTarget('PHARMA'))
                 <li>
