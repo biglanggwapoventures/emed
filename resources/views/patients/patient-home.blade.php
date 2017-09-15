@@ -12,15 +12,18 @@
     @endif
     <!-- Content Header (Page header) -->
    <section class="content-header">
+        <div style="margin-top:10px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                   <a href="{{ url(session('homepage') . '') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active">{{ $items->userInfo->fullname()}}</li>
+            </ol>
+        </div>
         <h1>
            User Profile
             <small></small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/patient-home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="/patient-home"><i class="fa fa-user"></i> {{ $items->userInfo->fullname()}} </a></li>
-            
-        </ol>
     </section>
 
     <!-- Main content -->
