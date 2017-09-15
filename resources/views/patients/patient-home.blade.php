@@ -170,12 +170,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                   <!--  <?php $today = date('Y-m-d');
-                                        $zero = 0;
-                                     ?>
-                                    @forelse($items->prescriptions AS $consultation)@if($consultation->end >= $today || $consultation->quantity != $zero) -->
-
                                     <?php $today = date('Y-m-d'); ?>
                                     @forelse($items->prescriptions AS $consultation)
                                         @if($consultation->end >= $today || $consultation->quantity > 0)
