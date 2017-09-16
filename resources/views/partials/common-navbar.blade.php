@@ -158,8 +158,7 @@
                     <a href="{{ route('pharmatrans.history')}} ">
                         <i class="fa fa-medkit sidebar-icon"/></i>
                         <span class="sidebar-label">Transaction History</span>
-                    </a>
-                </li>
+    
                 <?php $hasNonUserPermission = true; ?>
             @endif
 
@@ -216,14 +215,16 @@
                 </li>
                 <?php $hasUserPermission = true; ?>
             @endif
+
                 @if(EMedHelper::showListOfTarget('PATIENT'))
+                 @if(Session::get('user_type') === 'ADMIN')
                <li>
                     <a href="{{ route( 'patients.index') }} ">
                         <i class="fa fa-users" ></i> 
                         <span class="sidebar-label">All patients</span>
                     </a>
                 </li>
-                <?php $hasUserPermission = true; ?>
+               @endif
             @endif
 
             @if(EMedHelper::showListOfTarget('PHARMA'))
