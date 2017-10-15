@@ -198,6 +198,7 @@
                                         <option>Father</option>
                                         <option>Sister</option>
                                         <option>Brother</option>
+                                         <option>Child</option>
                                         <option>Cousin</option>
                                         <option>Guardian</option>
                                         <option>Spouse</option>

@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item">
                    <a href="{{ url(session('homepage') . '') }}">Home</a>
                 </li>
-                <li class="breadcrumb-item active">{{ $items->userInfo->fullname()}}</li>
+                
             </ol>
         </div>
         <h1>

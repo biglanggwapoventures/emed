@@ -18,7 +18,7 @@
                    <a href="{{ url(session('homepage') . '') }}">Home</a>
                 </li>
                 <li class="breadcrumb-item">
-                   <a href="{{ route('patients.index') }}">Patients</a>
+                   <a href="{{ route( 'mypatients.list') }} ">Patients</a>
                 </li>
                 <li class="breadcrumb-item active">{{ $patients->userInfo->fullname() }}</li>
             </ol>
@@ -595,7 +595,7 @@
                                                                     <td>
                                                                     <div class="form-body" style="padding-left:10px;margin-bottom:13px">
                                                                         <label>Height</label><br/>
-                                                                        <span> {{ $a->height }} ft.</span>
+                                                                        <span> {{ $a->height }} cm.</span>
                                                                     </div>
                                                                     </td>
                                                                     </tr>
